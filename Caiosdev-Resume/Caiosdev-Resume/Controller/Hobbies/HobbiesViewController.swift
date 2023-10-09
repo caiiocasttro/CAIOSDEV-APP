@@ -15,6 +15,13 @@ class HobbiesViewController: UIViewController {
         filter.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         return filter
     }()
+    
+    lazy var contactButton: UIButton = {
+        let button = UIButton()
+        button.frame = .init(x: 0, y: 0, width: 40, height: 40)
+        button.setBackgroundImage(UIImage(named: "contact"), for: .normal)
+        return button
+    }()
 
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -35,9 +42,11 @@ class HobbiesViewController: UIViewController {
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
+        view.addSubview(contactButton)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
+        contactButton.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
         NSLayoutConstraint.activate([
@@ -46,7 +55,10 @@ class HobbiesViewController: UIViewController {
             background.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
-            filter.heightAnchor.constraint(equalToConstant: view.bounds.height)
+            filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
+            
+            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         
         ])
         

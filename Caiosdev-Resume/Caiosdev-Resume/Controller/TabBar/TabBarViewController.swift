@@ -27,16 +27,21 @@ class TabBarViewController: UITabBarController {
     //MARK: Configuring tab bar
     private func configureTabBar() {
         
-        tabBar.addSubview(line)
+//        tabBar.addSubview(line)
+//        
+//        line.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        NSLayoutConstraint.activate([
+//            line.widthAnchor.constraint(equalToConstant: view.bounds.width / 7),
+//            line.heightAnchor.constraint(equalToConstant: 2),
+//            line.topAnchor.constraint(equalTo: tabBar.topAnchor),
+//            line.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor, constant: 10)
+//        ])
         
-        line.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            line.widthAnchor.constraint(equalToConstant: view.bounds.width / 7),
-            line.heightAnchor.constraint(equalToConstant: 2),
-            line.topAnchor.constraint(equalTo: tabBar.topAnchor),
-            line.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor, constant: 10)
-        ])
+        tabBar.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
+        tabBar.layer.shadowRadius = -4
+        tabBar.layer.shadowOpacity = 0.5
+        tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
         
         let AboutMe = AboutMeViewController()
         let CareerGoals = CareerGoalsViewController()

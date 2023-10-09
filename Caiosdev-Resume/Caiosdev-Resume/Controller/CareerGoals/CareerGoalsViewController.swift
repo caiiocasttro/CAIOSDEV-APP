@@ -31,7 +31,7 @@ class CareerGoalsViewController: UIViewController {
     
     lazy var aboutMeView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(named: "WhiteBackground" )
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
         return view

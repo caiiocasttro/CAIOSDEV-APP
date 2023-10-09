@@ -38,6 +38,7 @@
 		E5C6199D2AD216E3007C1EFB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E5C6199F2AD3FBBC007C1EFB /* ContactsSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSheetViewController.swift; sourceTree = "<group>"; };
 		E5C619A22AD42A6F007C1EFB /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
+		E5C619AB2AD4774B007C1EFB /* typing.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = typing.mp4; path = ../../../../../../../../../Downloads/typing.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 				E5C619A52AD42A7C007C1EFB /* Experience */,
 				E5C619A42AD42A72007C1EFB /* Hobbies */,
 				E5C619812AD196B2007C1EFB /* LaunchScreen.storyboard */,
+				E5C619AB2AD4774B007C1EFB /* typing.mp4 */,
 				E5C6197F2AD196B2007C1EFB /* Assets.xcassets */,
 			);
 			path = View;
@@ -435,6 +437,8 @@
 				DEVELOPMENT_TEAM = 3A74NBF86H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Caiosdev-Resume/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = CaiosDev;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -464,6 +468,8 @@
 				DEVELOPMENT_TEAM = 3A74NBF86H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Caiosdev-Resume/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = CaiosDev;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

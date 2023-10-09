@@ -16,7 +16,6 @@ class TabBarViewController: UITabBarController {
         return line
     }()
     
-    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,21 +26,21 @@ class TabBarViewController: UITabBarController {
     //MARK: Configuring tab bar
     private func configureTabBar() {
         
-//        tabBar.addSubview(line)
-//        
-//        line.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        NSLayoutConstraint.activate([
-//            line.widthAnchor.constraint(equalToConstant: view.bounds.width / 7),
-//            line.heightAnchor.constraint(equalToConstant: 2),
-//            line.topAnchor.constraint(equalTo: tabBar.topAnchor),
-//            line.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor, constant: 10)
-//        ])
+        tabBar.addSubview(line)
         
-        tabBar.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
-        tabBar.layer.shadowRadius = -4
-        tabBar.layer.shadowOpacity = 0.5
+        line.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            line.widthAnchor.constraint(equalToConstant: view.bounds.width / 7),
+            line.heightAnchor.constraint(equalToConstant: 2),
+            line.topAnchor.constraint(equalTo: tabBar.topAnchor),
+            line.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor, constant: 10),
+        ])
+        
+        tabBar.layer.shadowRadius = 5
+        tabBar.layer.shadowOpacity = 0.1
         tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
+        tabBar.layer.shadowPath = UIBezierPath(rect: tabBar.bounds).cgPath
         
         let AboutMe = AboutMeViewController()
         let CareerGoals = CareerGoalsViewController()
@@ -70,6 +69,8 @@ class TabBarViewController: UITabBarController {
         items[4].title = "Hobbies"
         
     }
+    
+    
     
     
 }

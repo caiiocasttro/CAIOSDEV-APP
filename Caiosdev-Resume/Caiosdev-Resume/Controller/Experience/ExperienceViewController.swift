@@ -99,6 +99,7 @@ class ExperienceViewController: UIViewController {
             contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

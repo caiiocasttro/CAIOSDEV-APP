@@ -19,7 +19,9 @@
 		E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619952AD1A4AD007C1EFB /* TabBarViewController.swift */; };
 		E5C6199E2AD216E3007C1EFB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C6199D2AD216E3007C1EFB /* Model.swift */; };
 		E5C619A02AD3FBBC007C1EFB /* ContactsSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C6199F2AD3FBBC007C1EFB /* ContactsSheetViewController.swift */; };
-		E5C619A32AD42A6F007C1EFB /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619A22AD42A6F007C1EFB /* AboutMeView.swift */; };
+		E5C619AD2AD54092007C1EFB /* AboutMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */; };
+		E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619AF2AD554C4007C1EFB /* CustomView.swift */; };
+		E5C619B22AD55BC4007C1EFB /* AdaptativeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619B12AD55BC4007C1EFB /* AdaptativeConstraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +39,10 @@
 		E5C619952AD1A4AD007C1EFB /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		E5C6199D2AD216E3007C1EFB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E5C6199F2AD3FBBC007C1EFB /* ContactsSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSheetViewController.swift; sourceTree = "<group>"; };
-		E5C619A22AD42A6F007C1EFB /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
 		E5C619AB2AD4774B007C1EFB /* typing.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = typing.mp4; path = ../../../../../../../../../Downloads/typing.mp4; sourceTree = "<group>"; };
+		E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeTableViewCell.swift; sourceTree = "<group>"; };
+		E5C619AF2AD554C4007C1EFB /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		E5C619B12AD55BC4007C1EFB /* AdaptativeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptativeConstraints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 		E5C6198B2AD19833007C1EFB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E5C619AE2AD55490007C1EFB /* CustomView */,
 				E5C619A82AD42A9C007C1EFB /* AboutMe */,
 				E5C619A72AD42A8E007C1EFB /* CareerGoals */,
 				E5C619A62AD42A83007C1EFB /* Education */,
@@ -205,9 +210,18 @@
 		E5C619A82AD42A9C007C1EFB /* AboutMe */ = {
 			isa = PBXGroup;
 			children = (
-				E5C619A22AD42A6F007C1EFB /* AboutMeView.swift */,
+				E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */,
 			);
 			path = AboutMe;
+			sourceTree = "<group>";
+		};
+		E5C619AE2AD55490007C1EFB /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				E5C619AF2AD554C4007C1EFB /* CustomView.swift */,
+				E5C619B12AD55BC4007C1EFB /* AdaptativeConstraints.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,15 +294,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5C619AD2AD54092007C1EFB /* AboutMeTableViewCell.swift in Sources */,
 				E5C6199E2AD216E3007C1EFB /* Model.swift in Sources */,
+				E5C619B22AD55BC4007C1EFB /* AdaptativeConstraints.swift in Sources */,
 				E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */,
-				E5C619A32AD42A6F007C1EFB /* AboutMeView.swift in Sources */,
 				E5C619922AD1A185007C1EFB /* ExperienceViewController.swift in Sources */,
 				E5C6197B2AD196B1007C1EFB /* AboutMeViewController.swift in Sources */,
 				E5C6198E2AD1A163007C1EFB /* CareerGoalsViewController.swift in Sources */,
 				E5C619772AD196B1007C1EFB /* AppDelegate.swift in Sources */,
 				E5C619902AD1A173007C1EFB /* EducationViewController.swift in Sources */,
 				E5C619942AD1A198007C1EFB /* HobbiesViewController.swift in Sources */,
+				E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */,
 				E5C619A02AD3FBBC007C1EFB /* ContactsSheetViewController.swift in Sources */,
 				E5C619792AD196B1007C1EFB /* SceneDelegate.swift in Sources */,
 			);

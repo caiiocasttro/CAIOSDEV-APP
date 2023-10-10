@@ -29,11 +29,9 @@ class ExperienceViewController: UIViewController {
         return scrollView
     }()
     
-    lazy var aboutMeView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "WhiteBackground")
-        view.layer.cornerRadius = 20
-        view.clipsToBounds = true
+    lazy var aboutMeView: CustomView = {
+        let view = CustomView()
+        view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
     }()
     
@@ -63,6 +61,8 @@ class ExperienceViewController: UIViewController {
     
     //MARK: Configuring layout
     private func configureLayout() {
+        let heightSpace = UIScreen.main.bounds.height * 0.7
+        
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
         
@@ -104,12 +104,12 @@ class ExperienceViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 535),
+            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
             aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: 800),
+            aboutMeView.heightAnchor.constraint(equalToConstant: 440),
             
             titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 20),
             titlePage.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20),

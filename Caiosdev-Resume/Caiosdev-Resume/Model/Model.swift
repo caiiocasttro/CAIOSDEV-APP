@@ -7,8 +7,9 @@
 
 import Foundation
 
-
 struct AboutMeModel {
+    
+    static let identifier = "AboutMeViewCell"
     
     static let whoIam = "Brazilian tech enthusiast, embracing challenges, project growth, and human connections. Passionate about learning, especially in tech and aviation realms."
     

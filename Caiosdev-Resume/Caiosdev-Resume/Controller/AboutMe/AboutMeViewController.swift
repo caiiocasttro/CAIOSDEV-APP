@@ -29,11 +29,9 @@ class AboutMeViewController: UIViewController {
         return scrollView
     }()
     
-    lazy var aboutMeView: UIView = {
-        let view = UIView()
+    lazy var aboutMeView: CustomView = {
+        let view = CustomView()
         view.backgroundColor = UIColor(named: "WhiteBackground" )
-        view.layer.cornerRadius = 15
-        view.clipsToBounds = true
         return view
     }()
     
@@ -46,9 +44,24 @@ class AboutMeViewController: UIViewController {
         return title
     }()
     
+    lazy var cellTitle: [String] = ["Who am I?", "What am I looking for?", "Where do I live?"]
+    
+    lazy var text: [String] = [AboutMeModel.whoIam, AboutMeModel.lookingFor, AboutMeModel.location]
+    
+    private var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(AboutMeTableViewCell.self, forCellReuseIdentifier: AboutMeModel.identifier)
+        tableView.backgroundColor = UIColor(named: "WhiteBackground")
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         configureTabBar()
         configureLayout()
@@ -60,6 +73,9 @@ class AboutMeViewController: UIViewController {
     
     //MARK: Configuring layout
     private func configureLayout() {
+        
+        let heightSpace = UIScreen.main.bounds.height * 0.7
+        
         
         //Configuring background
         let width = UIScreen.main.bounds.width
@@ -76,6 +92,7 @@ class AboutMeViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(aboutMeView)
         aboutMeView.addSubview(titlePage)
+        aboutMeView.addSubview(tableView)
         
         
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +101,7 @@ class AboutMeViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         aboutMeView.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         
         //Constraints
@@ -95,7 +113,7 @@ class AboutMeViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -103,15 +121,20 @@ class AboutMeViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 535),
+            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
             aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: 800),
+            aboutMeView.heightAnchor.constraint(equalToConstant: 440),
             
             titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20)
+            titlePage.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20),
+            
+            tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
+            tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
             
             
         ])
@@ -145,6 +168,23 @@ class AboutMeViewController: UIViewController {
         
         navigationController?.present(sheetVC, animated: true)
         
+    }
+    
+    
+}
+
+
+//MARK: TableView Delegate & DataSource
+extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellTitle.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeModel.identifier, for: indexPath) as! AboutMeTableViewCell
+        cell.title = cellTitle[indexPath.row]
+        cell.textString = text[indexPath.row]
+        return cell
     }
     
     

@@ -26,6 +26,7 @@ class AboutMeViewController: UIViewController {
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.clear
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
@@ -33,6 +34,14 @@ class AboutMeViewController: UIViewController {
         let view = CustomView()
         view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
+    }()
+    
+    lazy var line: UIView = {
+        let line = UIView()
+        line.backgroundColor = UIColor(named: "BlackLabels")
+        line.layer.cornerRadius = 1
+        line.clipsToBounds = true
+        return line
     }()
     
     lazy var titlePage: UILabel = {
@@ -44,15 +53,18 @@ class AboutMeViewController: UIViewController {
         return title
     }()
     
-    lazy var cellTitle: [String] = ["Who am I?", "What am I looking for?", "Where do I live?"]
+    lazy var cellTitle: [String] = ["Who am I?", "What am I looking for?", "What languages do I speak?", "Where do I live?"]
     
     lazy var text: [String] = [AboutMeModel.whoIam, AboutMeModel.lookingFor, AboutMeModel.location]
     
     private var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(AboutMeTableViewCell.self, forCellReuseIdentifier: AboutMeModel.identifier)
+        tableView.register(AboutMeTableViewCell.self, forCellReuseIdentifier: AboutMeIdentifiers.main.rawValue)
+        tableView.register(LanguagesViewCell.self, forCellReuseIdentifier: AboutMeIdentifiers.Languages.rawValue)
+        tableView.register(LocationViewCell.self, forCellReuseIdentifier: AboutMeIdentifiers.Location.rawValue)
         tableView.backgroundColor = UIColor(named: "WhiteBackground")
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
     
@@ -84,6 +96,7 @@ class AboutMeViewController: UIViewController {
         let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         background.image = UIImage(named: "picture")
         
+        
         //Adding subview
         view.addSubview(background)
         view.sendSubviewToBack(background)
@@ -91,6 +104,7 @@ class AboutMeViewController: UIViewController {
         view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(aboutMeView)
+        aboutMeView.addSubview(line)
         aboutMeView.addSubview(titlePage)
         aboutMeView.addSubview(tableView)
         
@@ -100,6 +114,7 @@ class AboutMeViewController: UIViewController {
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         aboutMeView.translatesAutoresizingMaskIntoConstraints = false
+        line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -113,7 +128,7 @@ class AboutMeViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -126,7 +141,12 @@ class AboutMeViewController: UIViewController {
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: 440),
+            aboutMeView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
+            
+            line.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
+            line.widthAnchor.constraint(equalToConstant: 30),
+            line.heightAnchor.constraint(equalToConstant: 2),
+            line.centerXAnchor.constraint(equalTo: aboutMeView.centerXAnchor),
             
             titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 20),
             titlePage.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20),
@@ -148,8 +168,8 @@ class AboutMeViewController: UIViewController {
         
         guard let item = self.tabBarController?.tabBar else { return }
         
-        item.tintColor = UIColor(named: "Orange")
-        item.unselectedItemTintColor = UIColor(named: "Black")
+        item.tintColor = UIColor(named: "OrangeIcon")
+        item.unselectedItemTintColor = UIColor(named: "BlackLabels")
         
     }
 
@@ -181,10 +201,22 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeModel.identifier, for: indexPath) as! AboutMeTableViewCell
-        cell.title = cellTitle[indexPath.row]
-        cell.textString = text[indexPath.row]
-        return cell
+        
+        if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.Languages.rawValue, for: indexPath) as! LanguagesViewCell
+            cell.title = cellTitle[2]
+            return cell
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.Location.rawValue, for: indexPath) as! LocationViewCell
+            cell.title = cellTitle[3]
+            cell.textString = text[2]
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.main.rawValue, for: indexPath) as! AboutMeTableViewCell
+            cell.title = cellTitle[indexPath.row]
+            cell.textString = text[indexPath.row]
+            return cell
+        }
     }
     
     

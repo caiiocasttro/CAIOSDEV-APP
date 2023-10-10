@@ -9,6 +9,7 @@ import UIKit
 
 class EducationViewController: UIViewController {
     
+    
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
@@ -29,16 +30,24 @@ class EducationViewController: UIViewController {
         return scrollView
     }()
     
-    lazy var aboutMeView: CustomView = {
+    lazy var educationView: CustomView = {
         let view = CustomView()
         view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
     }()
     
+    lazy var line: UIView = {
+        let line = UIView()
+        line.backgroundColor = UIColor(named: "BlackLabels")
+        line.layer.cornerRadius = 1
+        line.clipsToBounds = true
+        return line
+    }()
+    
     lazy var titlePage: UILabel = {
         let title = UILabel()
         title.text = "My education"
-        title.textColor = UIColor(named: "blackSecondary")
+        title.textColor = UIColor(named: "BlackSecondary")
         title.font = .systemFont(ofSize: 20, weight: .bold)
         title.textAlignment = .left
         return title
@@ -47,10 +56,18 @@ class EducationViewController: UIViewController {
     lazy var subtitle: UILabel = {
         let label = UILabel()
         label.text = "Here you can see my education!"
-        label.textColor = UIColor(named: "Gray")
+        label.textColor = UIColor(named: "GrayLabels")
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.textAlignment = .left
         return label
+    }()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(EducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.education.rawValue)
+        tableView.register(CertificateViewCell.self, forCellReuseIdentifier: EducationIdentifiers.certificate.rawValue)
+        tableView.showsVerticalScrollIndicator = false
+        return tableView
     }()
 
     //MARK: Lifecycle
@@ -77,15 +94,17 @@ class EducationViewController: UIViewController {
         view.addSubview(filter)
         view.addSubview(contactButton)
         view.addSubview(scrollView)
-        scrollView.addSubview(aboutMeView)
-        aboutMeView.addSubview(titlePage)
-        aboutMeView.addSubview(subtitle)
+        scrollView.addSubview(educationView)
+        educationView.addSubview(line)
+        educationView.addSubview(titlePage)
+        educationView.addSubview(subtitle)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        aboutMeView.translatesAutoresizingMaskIntoConstraints = false
+        educationView.translatesAutoresizingMaskIntoConstraints = false
+        line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         
@@ -106,20 +125,48 @@ class EducationViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
-            aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: 440),
+            educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
+            educationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            educationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            educationView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            educationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            educationView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
             
-            titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20),
+            line.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
+            line.widthAnchor.constraint(equalToConstant: 30),
+            line.heightAnchor.constraint(equalToConstant: 2),
+            line.centerXAnchor.constraint(equalTo: educationView.centerXAnchor),
+            
+            titlePage.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 20),
+            titlePage.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20),
             subtitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 5),
-            subtitle.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20)
+            subtitle.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20)
             
         ])
         
     }
+    
+}
+
+//MARK: TableView Delegate & DataSource
+extension EducationViewController: UITabBarDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as! CertificateViewCell
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
+            return cell
+        }
+        
+    }
+    
     
 }

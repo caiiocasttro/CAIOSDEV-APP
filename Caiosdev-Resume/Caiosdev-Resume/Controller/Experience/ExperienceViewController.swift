@@ -29,10 +29,18 @@ class ExperienceViewController: UIViewController {
         return scrollView
     }()
     
-    lazy var aboutMeView: CustomView = {
+    lazy var experienceView: CustomView = {
         let view = CustomView()
         view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
+    }()
+    
+    lazy var line: UIView = {
+        let line = UIView()
+        line.backgroundColor = UIColor(named: "BlackLabels")
+        line.layer.cornerRadius = 1
+        line.clipsToBounds = true
+        return line
     }()
     
     lazy var titlePage: UILabel = {
@@ -47,7 +55,7 @@ class ExperienceViewController: UIViewController {
     lazy var subtitle: UILabel = {
         let label = UILabel()
         label.text = "Let me tell you about my experience!"
-        label.textColor = UIColor(named: "Gray")
+        label.textColor = UIColor(named: "GrayLabels")
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.textAlignment = .left
         return label
@@ -75,15 +83,17 @@ class ExperienceViewController: UIViewController {
         view.addSubview(filter)
         view.addSubview(contactButton)
         view.addSubview(scrollView)
-        scrollView.addSubview(aboutMeView)
-        aboutMeView.addSubview(titlePage)
-        aboutMeView.addSubview(subtitle)
+        scrollView.addSubview(experienceView)
+        experienceView.addSubview(line)
+        experienceView.addSubview(titlePage)
+        experienceView.addSubview(subtitle)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        aboutMeView.translatesAutoresizingMaskIntoConstraints = false
+        experienceView.translatesAutoresizingMaskIntoConstraints = false
+        line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         
@@ -104,17 +114,22 @@ class ExperienceViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
-            aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: 440),
+            experienceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
+            experienceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            experienceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            experienceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            experienceView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            experienceView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
             
-            titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20),
+            line.topAnchor.constraint(equalTo: experienceView.topAnchor, constant: 10),
+            line.widthAnchor.constraint(equalToConstant: 30),
+            line.heightAnchor.constraint(equalToConstant: 2),
+            line.centerXAnchor.constraint(equalTo: experienceView.centerXAnchor),
+            
+            titlePage.topAnchor.constraint(equalTo: experienceView.topAnchor, constant: 20),
+            titlePage.leadingAnchor.constraint(equalTo: experienceView.leadingAnchor, constant: 20),
             subtitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 5),
-            subtitle.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20)
+            subtitle.leadingAnchor.constraint(equalTo: experienceView.leadingAnchor, constant: 20)
         ])
     }
     

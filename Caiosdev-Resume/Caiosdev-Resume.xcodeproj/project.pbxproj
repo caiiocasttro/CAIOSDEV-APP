@@ -22,6 +22,13 @@
 		E5C619AD2AD54092007C1EFB /* AboutMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */; };
 		E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619AF2AD554C4007C1EFB /* CustomView.swift */; };
 		E5C619B22AD55BC4007C1EFB /* AdaptativeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619B12AD55BC4007C1EFB /* AdaptativeConstraints.swift */; };
+		E5C619B42AD57CDC007C1EFB /* CareerGoalsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619B32AD57CDC007C1EFB /* CareerGoalsViewCell.swift */; };
+		E5C619B62AD58E0E007C1EFB /* LanguagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619B52AD58E0E007C1EFB /* LanguagesViewCell.swift */; };
+		E5C619B82AD59739007C1EFB /* LocationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619B72AD59739007C1EFB /* LocationViewCell.swift */; };
+		E5C619BA2AD59D04007C1EFB /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619B92AD59D04007C1EFB /* Identifiers.swift */; };
+		E5C619BC2AD5B811007C1EFB /* SkillsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BB2AD5B811007C1EFB /* SkillsViewCell.swift */; };
+		E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */; };
+		E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +50,13 @@
 		E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeTableViewCell.swift; sourceTree = "<group>"; };
 		E5C619AF2AD554C4007C1EFB /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		E5C619B12AD55BC4007C1EFB /* AdaptativeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptativeConstraints.swift; sourceTree = "<group>"; };
+		E5C619B32AD57CDC007C1EFB /* CareerGoalsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerGoalsViewCell.swift; sourceTree = "<group>"; };
+		E5C619B52AD58E0E007C1EFB /* LanguagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewCell.swift; sourceTree = "<group>"; };
+		E5C619B72AD59739007C1EFB /* LocationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewCell.swift; sourceTree = "<group>"; };
+		E5C619B92AD59D04007C1EFB /* Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		E5C619BB2AD5B811007C1EFB /* SkillsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewCell.swift; sourceTree = "<group>"; };
+		E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewCell.swift; sourceTree = "<group>"; };
+		E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				E5C6199D2AD216E3007C1EFB /* Model.swift */,
+				E5C619B92AD59D04007C1EFB /* Identifiers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +211,8 @@
 		E5C619A62AD42A83007C1EFB /* Education */ = {
 			isa = PBXGroup;
 			children = (
+				E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */,
+				E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */,
 			);
 			path = Education;
 			sourceTree = "<group>";
@@ -203,6 +220,8 @@
 		E5C619A72AD42A8E007C1EFB /* CareerGoals */ = {
 			isa = PBXGroup;
 			children = (
+				E5C619B32AD57CDC007C1EFB /* CareerGoalsViewCell.swift */,
+				E5C619BB2AD5B811007C1EFB /* SkillsViewCell.swift */,
 			);
 			path = CareerGoals;
 			sourceTree = "<group>";
@@ -211,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */,
+				E5C619B52AD58E0E007C1EFB /* LanguagesViewCell.swift */,
+				E5C619B72AD59739007C1EFB /* LocationViewCell.swift */,
 			);
 			path = AboutMe;
 			sourceTree = "<group>";
@@ -296,16 +317,23 @@
 			files = (
 				E5C619AD2AD54092007C1EFB /* AboutMeTableViewCell.swift in Sources */,
 				E5C6199E2AD216E3007C1EFB /* Model.swift in Sources */,
+				E5C619BC2AD5B811007C1EFB /* SkillsViewCell.swift in Sources */,
 				E5C619B22AD55BC4007C1EFB /* AdaptativeConstraints.swift in Sources */,
+				E5C619B62AD58E0E007C1EFB /* LanguagesViewCell.swift in Sources */,
 				E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */,
+				E5C619B82AD59739007C1EFB /* LocationViewCell.swift in Sources */,
 				E5C619922AD1A185007C1EFB /* ExperienceViewController.swift in Sources */,
+				E5C619B42AD57CDC007C1EFB /* CareerGoalsViewCell.swift in Sources */,
 				E5C6197B2AD196B1007C1EFB /* AboutMeViewController.swift in Sources */,
+				E5C619BA2AD59D04007C1EFB /* Identifiers.swift in Sources */,
 				E5C6198E2AD1A163007C1EFB /* CareerGoalsViewController.swift in Sources */,
 				E5C619772AD196B1007C1EFB /* AppDelegate.swift in Sources */,
 				E5C619902AD1A173007C1EFB /* EducationViewController.swift in Sources */,
 				E5C619942AD1A198007C1EFB /* HobbiesViewController.swift in Sources */,
+				E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */,
 				E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */,
 				E5C619A02AD3FBBC007C1EFB /* ContactsSheetViewController.swift in Sources */,
+				E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */,
 				E5C619792AD196B1007C1EFB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +486,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,6 +518,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,5 +1,5 @@
 //
-//  AboutMeTableViewCell.swift
+//  LocationViewCell.swift
 //  Caiosdev-Resume
 //
 //  Created by Caio Chaves on 10.10.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutMeTableViewCell: UITableViewCell {
+class LocationViewCell: UITableViewCell {
     
     //MARK: Proprieties
     var title: String? {
@@ -48,6 +48,12 @@ class AboutMeTableViewCell: UITableViewCell {
         return view
     }()
     
+    lazy var iconLocation: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "map")
+        return image
+    }()
+    
     lazy var text: UILabel = {
         let text = UILabel()
         text.text = "Text"
@@ -57,7 +63,6 @@ class AboutMeTableViewCell: UITableViewCell {
         text.textAlignment = .left
         return text
     }()
-    
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -68,39 +73,43 @@ class AboutMeTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     //MARK: Configuring layout
     private func configureLayout() {
         
         backgroundColor = UIColor(named: "WhiteBackground")
         
-        //Adding subviews
         addSubview(cellTitle)
         addSubview(cellView)
+        cellView.addSubview(iconLocation)
         cellView.addSubview(text)
         
         cellTitle.translatesAutoresizingMaskIntoConstraints = false
         cellView.translatesAutoresizingMaskIntoConstraints = false
+        iconLocation.translatesAutoresizingMaskIntoConstraints = false
         text.translatesAutoresizingMaskIntoConstraints = false
         
-        //Constraints
         NSLayoutConstraint.activate([
-            
+        
             cellTitle.topAnchor.constraint(equalTo: topAnchor),
             cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-        
+            
             cellView.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 5),
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             
-            text.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20),
-            text.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),
-            text.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -20),
-            text.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -20),
+            iconLocation.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 10),
+            iconLocation.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),
+            iconLocation.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -10),
+            iconLocation.widthAnchor.constraint(equalToConstant: 30),
+            iconLocation.heightAnchor.constraint(equalToConstant: 30),
+            
+            text.leadingAnchor.constraint(equalTo: iconLocation.trailingAnchor, constant: 10),
+            text.centerYAnchor.constraint(equalTo: iconLocation.centerYAnchor)
         
         ])
         
+        
     }
-    
+
 }

@@ -1,5 +1,5 @@
 //
-//  AboutMeTableViewCell.swift
+//  CareerGoalsViewCell.swift
 //  Caiosdev-Resume
 //
 //  Created by Caio Chaves on 10.10.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutMeTableViewCell: UITableViewCell {
+class CareerGoalsViewCell: UITableViewCell {
     
     //MARK: Proprieties
     var title: String? {
@@ -57,8 +57,8 @@ class AboutMeTableViewCell: UITableViewCell {
         text.textAlignment = .left
         return text
     }()
-    
 
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureLayout()
@@ -68,8 +68,7 @@ class AboutMeTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    //MARK: Configuring layout
+        //MARK: Configuring layout
     private func configureLayout() {
         
         backgroundColor = UIColor(named: "WhiteBackground")
@@ -88,7 +87,7 @@ class AboutMeTableViewCell: UITableViewCell {
             
             cellTitle.topAnchor.constraint(equalTo: topAnchor),
             cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-        
+            
             cellView.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 5),
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
@@ -102,5 +101,5 @@ class AboutMeTableViewCell: UITableViewCell {
         ])
         
     }
-    
+
 }

@@ -9,11 +9,9 @@ import Foundation
 
 struct AboutMeModel {
     
-    static let identifier = "AboutMeViewCell"
+    static let whoIam = "Brazilian tech enthusiast, embracing challenges, project growth, and human connections. Passionate about learning, especially in tech and aviation realms. 👨🏾‍💻❤️"
     
-    static let whoIam = "Brazilian tech enthusiast, embracing challenges, project growth, and human connections. Passionate about learning, especially in tech and aviation realms."
-    
-    static let lookingFor = "Eager for an iOS Developer role, bringing energy to teams, diving into exciting projects, and tackling career challenges head-on. Can't wait to make a mark!"
+    static let lookingFor = "Eager for an iOS Developer role, bringing energy to teams, diving into exciting projects, and tackling career challenges head-on. Can't wait to make a mark!📱💡"
     
     static let languages = ["Portuguese", "English", "French"]
     
@@ -23,13 +21,38 @@ struct AboutMeModel {
 
 struct CareerGoalsModel {
     
-    static let shortTerm = "Diving into projects, syncing with company goals, and personal aspirations. Thrilled for challenges, growth, and team support. Aim: Impact project success, nurture a culture of growth and triumph!"
+    static let identifier = "CareerGoalsViewCell"
     
-    static let midTerm = "Next 2-5 years: Bossing up to a senior role, guiding iOS newbies, and being the helpful wizard of the team. Sharing wisdom and high-fives – that's my gig. Need advice? I'm your iOS Yoda!"
+    static let shortTerm = "Diving into projects, syncing with company goals, and personal aspirations. Thrilled for challenges, growth, and team support. Aim: Impact project success, nurture a culture of growth and triumph! 🚀🌱"
     
-    static let longTerm = "5+ years: Head of Development dreams! Pumped to elevate the team experience and create a thriving workplace. Big on studying and dropping game changing ideas. Also, spreading the tech love by coaching newbies and giving back to the community!"
+    static let midTerm = "Next 2-5 years: Bossing up to a senior role, guiding iOS newbies, and being the helpful wizard of the team. Sharing wisdom and high-fives – that's my gig. Need advice? I'm your iOS Yoda! 🌟📱"
     
-    static let initialSkills = ["Swift", "MVC", "MVVM", "VIPER", "UIKit", "SwiftUI", "CoreData",
-                                "Firebase", "JSON", "APIs", "CocoaPods", "Git", "GitHub", "UX/UI Design", "Figma"]
+    static let longTerm = "5+ years: Head of Development dreams! Pumped to elevate the team experience and create a thriving workplace. Big on studying and dropping game changing ideas. Also, spreading the tech love by coaching newbies and giving back to the community! 🚀🌟"
+    
+    static let initialSkills: [String] = ["Swift", "MVC", "MVVM", "VIPER", "UIKit", "SwiftUI", "CoreData",
+                                    "Firebase", "JSON", "APIs", "CocoaPods", "Git", "GitHub", "UX/UI Design", "Figma"]
+    
+    static let skillsLevel: [String] = ["Advanced", "Advanced", "Advanced", "Beginner", "Intermediate", "Elementary", "Elementary",
+                                                   "Intermediate", "Elementary", "Intermediate", "Intermediate", "Elementary", "Intermediate", "Intermediate", "Intermediate"]
+    
+}
+
+struct MyEducationModel {
+    
+    static let school: [String] = ["London App Brewery", "Zero To Mastery", "Proflight Escola de Aviação"]
+    
+    static let graduation = "Certicate graduated"
+    
+    static let description: [String] = ["Certificated to work as iOS Developer", "Certificated to work as Web & Mobile Designer", "Certificated to work in Brazilian Civil Aviation as Flight Attendant"]
+    
+}
+
+struct MyCertificateModel {
+    
+    static let cetificateName: [String] = ["iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
+    
+    static let school = "Udemy"
+    
+    static let date: [String] = ["October 2022", "October 2022", "March 2023"]
     
 }

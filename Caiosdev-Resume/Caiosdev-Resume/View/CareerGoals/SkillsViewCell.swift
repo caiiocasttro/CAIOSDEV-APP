@@ -97,8 +97,6 @@ class SkillsViewCell: UITableViewCell {
         for i in 0..<15 {
             
             space += 30
-            
-            if i == 0 {
                 
                 let skill = UILabel()
                 skill.text = CareerGoalsModel.initialSkills[i]
@@ -144,53 +142,6 @@ class SkillsViewCell: UITableViewCell {
                 levelName.centerXAnchor.constraint(equalTo: background.centerXAnchor).isActive = true
                 levelName.centerYAnchor.constraint(equalTo: background.centerYAnchor).isActive = true
                 
-            } else {
-                
-                let skill = UILabel()
-                skill.text = CareerGoalsModel.initialSkills[i]
-                skill.textColor = UIColor(named: "BlackSecondary")
-                skill.font = .systemFont(ofSize: 16, weight: .bold)
-                skill.textAlignment = .left
-                
-                let levelName = UILabel()
-                levelName.text = CareerGoalsModel.skillsLevel[i]
-                levelName.textColor = UIColor.white
-                levelName.font = .systemFont(ofSize: 12, weight: .semibold)
-                levelName.textAlignment = .center
-                
-                let background = UIView()
-                if i == 3 {
-                    background.backgroundColor = UIColor(named: "YellowLevel")
-                } else {
-                    background.backgroundColor = UIColor(named: "GreenLevel")
-                }
-                background.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
-                background.layer.shadowRadius = 4
-                background.layer.shadowOpacity = 0.5
-                background.layer.shadowOffset = CGSize(width: 0, height: 0)
-                background.layer.cornerRadius = 5
-                background.clipsToBounds = true
-                
-                cellView.addSubview(skill)
-                cellView.addSubview(background)
-                background.addSubview(levelName)
-                
-                skill.translatesAutoresizingMaskIntoConstraints = false
-                background.translatesAutoresizingMaskIntoConstraints = false
-                levelName.translatesAutoresizingMaskIntoConstraints = false
-                
-                skill.topAnchor.constraint(equalTo: cellView.topAnchor, constant: space).isActive = true
-                skill.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20).isActive = true
-                
-                background.widthAnchor.constraint(equalToConstant: 100).isActive = true
-                background.heightAnchor.constraint(equalToConstant: 20).isActive = true
-                background.topAnchor.constraint(equalTo: cellView.topAnchor, constant: space).isActive = true
-                background.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -20).isActive = true
-                
-                levelName.centerXAnchor.constraint(equalTo: background.centerXAnchor).isActive = true
-                levelName.centerYAnchor.constraint(equalTo: background.centerYAnchor).isActive = true
-                
-            }
         }
     }
 }

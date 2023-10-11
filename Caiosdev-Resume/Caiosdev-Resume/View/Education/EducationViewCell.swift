@@ -9,69 +9,134 @@ import UIKit
 
 class EducationViewCell: UITableViewCell {
     
-    var schoolName: String? {
-        didSet {
-            guard let string = schoolName else { return }
-            
-            school.text = string
-        }
-    }
-    
-    var graduateCertificateName: String? {
-        didSet {
-            guard let string = graduateCertificateName else { return }
-            
-            graduateDescription.text = string
-        }
-    }
-    
-    
-    //MARK: Objects
-    lazy var iconImage: UIImageView = {
-        let icon = UIImageView()
-        icon.frame = .init(x: 0, y: 0, width: 40, height: 40)
-        icon.image = UIImage(named: "education")
-        
-        return icon
+    lazy var cellView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
     }()
     
-    lazy var school: UILabel = {
-        let title = UILabel()
-        title.text = "Title"
-        title.textColor = UIColor(named: "BlackLabels")
-        title.font = .systemFont(ofSize: 18, weight: .semibold)
-        title.textAlignment = .left
-        return title
-    }()
-    
-    lazy var graduate: UILabel = {
-        let title = UILabel()
-        title.text = "Title"
-        title.textColor = UIColor(named: "GrayLabels")
-        title.font = .systemFont(ofSize: 12, weight: .regular)
-        title.textAlignment = .left
-        return title
-    }()
-    
-    lazy var graduateDescription: UILabel = {
-        let title = UILabel()
-        title.text = "Title"
-        title.textColor = UIColor(named: "GrayLabels")
-        title.font = .systemFont(ofSize: 12, weight: .semibold)
-        title.textAlignment = .left
-        return title
-    }()
-    
-    
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Configuring layout
+    private func configureLayout() {
+        
+        var iconSpace: CGFloat = 0
+        var schoolSpace: CGFloat = 10
+        var dotImageSpace: CGFloat = 50
+        var dotImageIISpace: CGFloat = 70
+        var graduateSpace: CGFloat = 45
+        var descriptionSpace: CGFloat = 65
+        
+        addSubview(cellView)
+        
+        cellView.translatesAutoresizingMaskIntoConstraints = false
+        
+        cellView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        cellView.heightAnchor.constraint(equalToConstant: 290).isActive = true
+        cellView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        cellView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        cellView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        cellView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        for i in 0..<3 {
+            
+            if i == 1  {
+                iconSpace += 100
+                schoolSpace += 100
+                dotImageSpace += 100
+                graduateSpace += 100
+                dotImageIISpace += 100
+                descriptionSpace += 100
+            } else if i == 2 {
+                iconSpace += 100
+                schoolSpace += 100
+                dotImageSpace += 100
+                graduateSpace += 100
+                dotImageIISpace += 100
+                descriptionSpace += 100
+            }
+            
+            let school = UILabel()
+            school.text = MyEducationModel.school[i]
+            school.textColor = UIColor(named: "BlackLabels")
+            school.font = .systemFont(ofSize: 18, weight: .semibold)
+            school.textAlignment = .left
+            
+            let graduate = UILabel()
+            graduate.text = MyEducationModel.graduation
+            graduate.textColor = UIColor(named: "GrayLabels")
+            graduate.font = .systemFont(ofSize: 12, weight: .regular)
+            graduate.textAlignment = .left
+            
+            let graduateDescription = UILabel()
+            graduateDescription.text = MyEducationModel.description[i]
+            graduateDescription.textColor = UIColor(named: "GrayLabels")
+            graduateDescription.font = .systemFont(ofSize: 12, weight: .regular)
+            graduateDescription.textAlignment = .left
+            graduateDescription.numberOfLines = 0
+            
+            let iconImage = UIImageView()
+            iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
+            iconImage.image = UIImage(named: "education")
+            
+            let dotImage = UIImageView()
+            dotImage.frame = .init(x: 0, y: 0, width: 5, height: 5)
+            dotImage.image = UIImage(named: "dot")
+            
+            let dotImageII = UIImageView()
+            dotImageII.frame = .init(x: 0, y: 0, width: 5, height: 5)
+            dotImageII.image = UIImage(named: "dot")
+            
+            backgroundColor = UIColor(named: "WhiteBackground")
+            
+            cellView.addSubview(iconImage)
+            cellView.addSubview(school)
+            cellView.addSubview(dotImage)
+            cellView.addSubview(graduate)
+            cellView.addSubview(dotImageII)
+            cellView.addSubview(graduateDescription)
+            
+            
+            iconImage.translatesAutoresizingMaskIntoConstraints = false
+            school.translatesAutoresizingMaskIntoConstraints = false
+            dotImage.translatesAutoresizingMaskIntoConstraints = false
+            graduate.translatesAutoresizingMaskIntoConstraints = false
+            dotImageII.translatesAutoresizingMaskIntoConstraints = false
+            graduateDescription.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                
+                iconImage.topAnchor.constraint(equalTo: topAnchor, constant: iconSpace),
+                iconImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+                
+                school.topAnchor.constraint(equalTo: topAnchor, constant: schoolSpace),
+                school.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
+                
+                dotImage.topAnchor.constraint(equalTo: topAnchor, constant: dotImageSpace),
+                dotImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+                
+                graduate.topAnchor.constraint(equalTo: topAnchor, constant: graduateSpace),
+                graduate.leadingAnchor.constraint(equalTo: dotImage.trailingAnchor, constant: 5),
+                
+                dotImageII.topAnchor.constraint(equalTo: topAnchor, constant: dotImageIISpace),
+                dotImageII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+                
+                graduateDescription.topAnchor.constraint(equalTo: topAnchor, constant: descriptionSpace),
+                graduateDescription.leadingAnchor.constraint(equalTo: dotImageII.trailingAnchor, constant: 5),
+                graduateDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+                
+                
+            ])
+            
+        }
+        
+    }
     
-
 }

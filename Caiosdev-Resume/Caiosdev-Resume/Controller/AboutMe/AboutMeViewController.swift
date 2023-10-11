@@ -47,7 +47,7 @@ class AboutMeViewController: UIViewController {
     lazy var titlePage: UILabel = {
         let title = UILabel()
         title.text = "Hello, I am Caio!"
-        title.textColor = UIColor(named: "blackSecondary")
+        title.textColor = UIColor(named: "BlackLabels")
         title.font = .systemFont(ofSize: 20, weight: .bold)
         title.textAlignment = .left
         return title
@@ -86,7 +86,7 @@ class AboutMeViewController: UIViewController {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        let heightSpace = UIScreen.main.bounds.height * 0.7
+        let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
         
         
         //Configuring background

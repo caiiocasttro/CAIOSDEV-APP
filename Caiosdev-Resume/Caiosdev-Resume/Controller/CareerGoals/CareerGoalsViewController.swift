@@ -47,7 +47,7 @@ class CareerGoalsViewController: UIViewController {
     lazy var titlePage: UILabel = {
         let title = UILabel()
         title.text = "My career goals"
-        title.textColor = UIColor(named: "BlackSecondary")
+        title.textColor = UIColor(named: "BlackLabels")
         title.font = .systemFont(ofSize: 20, weight: .bold)
         title.textAlignment = .left
         return title
@@ -88,7 +88,7 @@ class CareerGoalsViewController: UIViewController {
 
     //MARK: Configuring layout
     private func configureLayout() {
-        let heightSpace = UIScreen.main.bounds.height * 0.7
+        let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
         
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height

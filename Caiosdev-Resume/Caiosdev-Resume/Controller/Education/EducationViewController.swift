@@ -47,7 +47,7 @@ class EducationViewController: UIViewController {
     lazy var titlePage: UILabel = {
         let title = UILabel()
         title.text = "My education"
-        title.textColor = UIColor(named: "BlackSecondary")
+        title.textColor = UIColor(named: "BlackLabels")
         title.font = .systemFont(ofSize: 20, weight: .bold)
         title.textAlignment = .left
         return title
@@ -64,8 +64,10 @@ class EducationViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = UIColor(named: "WhiteBackground")
         tableView.register(EducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.education.rawValue)
         tableView.register(CertificateViewCell.self, forCellReuseIdentifier: EducationIdentifiers.certificate.rawValue)
+        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
@@ -73,14 +75,15 @@ class EducationViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         configureLayout()
     }
     
     
     //MARK: Configuring layout
     private func configureLayout() {
-        let heightSpace = UIScreen.main.bounds.height * 0.7
+        let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
         
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
@@ -98,6 +101,7 @@ class EducationViewController: UIViewController {
         educationView.addSubview(line)
         educationView.addSubview(titlePage)
         educationView.addSubview(subtitle)
+        educationView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
@@ -107,6 +111,7 @@ class EducationViewController: UIViewController {
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         subtitle.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
         NSLayoutConstraint.activate([
@@ -140,7 +145,12 @@ class EducationViewController: UIViewController {
             titlePage.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 20),
             titlePage.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20),
             subtitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 5),
-            subtitle.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20)
+            subtitle.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20),
+            
+            tableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 30),
+            tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
             
         ])
         
@@ -149,20 +159,22 @@ class EducationViewController: UIViewController {
 }
 
 //MARK: TableView Delegate & DataSource
-extension EducationViewController: UITabBarDelegate, UITableViewDataSource {
+extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 4 {
+        if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as! CertificateViewCell
-            
+            cell.backgroundColor = UIColor(named: "WhiteBackground")
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
+            cell.backgroundColor = UIColor(named: "WhiteBackground")
             return cell
         }
         

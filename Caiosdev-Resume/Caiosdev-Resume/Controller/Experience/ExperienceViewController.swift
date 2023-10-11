@@ -26,6 +26,7 @@ class ExperienceViewController: UIViewController {
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.clear
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
@@ -60,10 +61,24 @@ class ExperienceViewController: UIViewController {
         label.textAlignment = .left
         return label
     }()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = UIColor(named: "WhiteBackground")
+        tableView.register(ExperienceViewCell.self, forCellReuseIdentifier: ExperienceIdentifiers.main.rawValue)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
 
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         configureLayout()
     }
     
@@ -87,6 +102,7 @@ class ExperienceViewController: UIViewController {
         experienceView.addSubview(line)
         experienceView.addSubview(titlePage)
         experienceView.addSubview(subtitle)
+        experienceView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +112,7 @@ class ExperienceViewController: UIViewController {
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         subtitle.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
         NSLayoutConstraint.activate([
@@ -129,8 +146,29 @@ class ExperienceViewController: UIViewController {
             titlePage.topAnchor.constraint(equalTo: experienceView.topAnchor, constant: 20),
             titlePage.leadingAnchor.constraint(equalTo: experienceView.leadingAnchor, constant: 20),
             subtitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 5),
-            subtitle.leadingAnchor.constraint(equalTo: experienceView.leadingAnchor, constant: 20)
+            subtitle.leadingAnchor.constraint(equalTo: experienceView.leadingAnchor, constant: 20),
+            
+            tableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 30),
+            tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
+    
+}
+
+
+extension ExperienceViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ExperienceIdentifiers.main.rawValue, for: indexPath) as! ExperienceViewCell
+        cell.backgroundColor = UIColor(named: "WhiteBackground")
+        return cell
+    }
+    
     
 }

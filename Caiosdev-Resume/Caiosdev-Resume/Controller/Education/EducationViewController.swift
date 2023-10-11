@@ -27,6 +27,7 @@ class EducationViewController: UIViewController {
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.clear
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     

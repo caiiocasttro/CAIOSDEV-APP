@@ -29,6 +29,7 @@
 		E5C619BC2AD5B811007C1EFB /* SkillsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BB2AD5B811007C1EFB /* SkillsViewCell.swift */; };
 		E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */; };
 		E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */; };
+		E5C619C22AD727D1007C1EFB /* ExperienceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619C12AD727D0007C1EFB /* ExperienceViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		E5C619BB2AD5B811007C1EFB /* SkillsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewCell.swift; sourceTree = "<group>"; };
 		E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewCell.swift; sourceTree = "<group>"; };
 		E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewCell.swift; sourceTree = "<group>"; };
+		E5C619C12AD727D0007C1EFB /* ExperienceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 		E5C619A52AD42A7C007C1EFB /* Experience */ = {
 			isa = PBXGroup;
 			children = (
+				E5C619C12AD727D0007C1EFB /* ExperienceViewCell.swift */,
 			);
 			path = Experience;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				E5C619B82AD59739007C1EFB /* LocationViewCell.swift in Sources */,
 				E5C619922AD1A185007C1EFB /* ExperienceViewController.swift in Sources */,
 				E5C619B42AD57CDC007C1EFB /* CareerGoalsViewCell.swift in Sources */,
+				E5C619C22AD727D1007C1EFB /* ExperienceViewCell.swift in Sources */,
 				E5C6197B2AD196B1007C1EFB /* AboutMeViewController.swift in Sources */,
 				E5C619BA2AD59D04007C1EFB /* Identifiers.swift in Sources */,
 				E5C6198E2AD1A163007C1EFB /* CareerGoalsViewController.swift in Sources */,

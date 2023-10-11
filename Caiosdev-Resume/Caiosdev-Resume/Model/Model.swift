@@ -56,3 +56,21 @@ struct MyCertificateModel {
     static let date: [String] = ["October 2022", "October 2022", "March 2023"]
     
 }
+
+struct MyExperienceModel {
+    
+    static let companies: [String] = ["Sky Switzerland", "EccoSalva", "Arcor do Brasil", "Motiva Contact Center"]
+    
+    static let position: [String] = ["iOS Developer Freelancer", "Assistant", "Production", "Customer Care"]
+    
+    static let date: [String] = ["Sep 2023 · 1 mo", "Nov 2019 - Jul 2022 · 2 yrs 9 mos", "May 2018 - Feb 2019 · 10 mos", "Feb 2016 - Apr 2018 · 2 yrs 3 mos"]
+    
+    static let skySwitzerland: [String] = ["New features implementation on iOS app.", "iOS application maintenance.", "Improving existing iOS app."]
+    
+    static let eccosalva: [String] = ["Providing patient care.", "Administration of documents.", "Emergency transport."]
+    
+    static let arcor: [String] = ["Food production.", "Machine maintenance.", "Stock replenishment."]
+    
+    static let motiva: [String] = ["Customer's support.", "Transport of products support.", "Selling products."]
+    
+}

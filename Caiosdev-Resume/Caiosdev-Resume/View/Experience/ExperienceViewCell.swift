@@ -18,7 +18,7 @@ class ExperienceViewCell: UITableViewCell {
     lazy var line: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor(named: "BlackLabels")
-        line.layer.cornerRadius = 1.5
+        line.layer.cornerRadius = 2
         line.clipsToBounds = true
         return line
     }()
@@ -35,7 +35,7 @@ class ExperienceViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        
+
         addSubview(line)
         sendSubviewToBack(line)
         
@@ -43,7 +43,7 @@ class ExperienceViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
         
-            line.widthAnchor.constraint(equalToConstant: 3),
+            line.widthAnchor.constraint(equalToConstant: 4),
             line.heightAnchor.constraint(equalToConstant: 600),
             line.topAnchor.constraint(equalTo: topAnchor),
             line.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
@@ -51,14 +51,14 @@ class ExperienceViewCell: UITableViewCell {
         
         ])
         
-        for i in 0..<4 {
+        for i in 0..<5 {
             
-            var circleSpace: CGFloat = 20
+            var circleSpace: CGFloat = 25
             var positionNameSpace: CGFloat = 20
             var companysNameSpace: CGFloat = 40
-            var circleISpace: CGFloat = 56
-            var circleIISpace: CGFloat = 70
-            var circleIIISpace: CGFloat = 84
+            var circleISpace: CGFloat = 58
+            var circleIISpace: CGFloat = 72
+            var circleIIISpace: CGFloat = 86
             var responsabilityISpace: CGFloat = 53
             var responsabilityIISpace: CGFloat = 69
             var responsabilityIIISpace: CGFloat = 83
@@ -75,25 +75,35 @@ class ExperienceViewCell: UITableViewCell {
                 responsabilityIISpace  += 100
                 responsabilityIIISpace  += 100
             } else if i == 2 {
-                circleSpace += 100
-                positionNameSpace  += 100
-                companysNameSpace  += 100
-                circleISpace  += 100
-                circleIISpace  += 100
-                circleIIISpace  += 100
-                responsabilityISpace  += 100
-                responsabilityIISpace  += 100
-                responsabilityIIISpace  += 100
+                circleSpace += 200
+                positionNameSpace  += 200
+                companysNameSpace  += 200
+                circleISpace  += 200
+                circleIISpace  += 200
+                circleIIISpace  += 200
+                responsabilityISpace  += 200
+                responsabilityIISpace  += 200
+                responsabilityIIISpace  += 200
             } else if i == 3 {
-                circleSpace += 100
-                positionNameSpace  += 100
-                companysNameSpace  += 100
-                circleISpace  += 100
-                circleIISpace  += 100
-                circleIIISpace  += 100
-                responsabilityISpace  += 100
-                responsabilityIISpace  += 100
-                responsabilityIIISpace  += 100
+                circleSpace += 300
+                positionNameSpace  += 300
+                companysNameSpace  += 300
+                circleISpace  += 300
+                circleIISpace  += 300
+                circleIIISpace  += 300
+                responsabilityISpace  += 300
+                responsabilityIISpace  += 300
+                responsabilityIIISpace  += 300
+            } else if i == 4 {
+                circleSpace += 400
+                positionNameSpace  += 400
+                companysNameSpace  += 400
+                circleISpace  += 400
+                circleIISpace  += 400
+                circleIIISpace  += 400
+                responsabilityISpace  += 400
+                responsabilityIISpace  += 400
+                responsabilityIIISpace  += 400
             }
             
             let position = UILabel()
@@ -109,28 +119,48 @@ class ExperienceViewCell: UITableViewCell {
             company.textAlignment = .left
             
             let responsabilityI = UILabel()
-            responsabilityI.text = MyExperienceModel.skySwitzerland[0]
+            responsabilityI.text = MyExperienceModel.malt[0]
             responsabilityI.textColor = UIColor(named: "GrayLabels")
             responsabilityI.font = .systemFont(ofSize: 10, weight: .regular)
             responsabilityI.textAlignment = .left
             responsabilityI.numberOfLines = 0
             
             let responsabilityII = UILabel()
-            responsabilityII.text = MyExperienceModel.skySwitzerland[1]
+            responsabilityII.text = MyExperienceModel.malt[1]
             responsabilityII.textColor = UIColor(named: "GrayLabels")
             responsabilityII.font = .systemFont(ofSize: 10, weight: .regular)
             responsabilityII.textAlignment = .left
             responsabilityII.numberOfLines = 0
             
             let responsabilityIII = UILabel()
-            responsabilityIII.text = MyExperienceModel.skySwitzerland[2]
+            responsabilityIII.text = MyExperienceModel.malt[2]
             responsabilityIII.textColor = UIColor(named: "GrayLabels")
             responsabilityIII.font = .systemFont(ofSize: 10, weight: .regular)
             responsabilityIII.textAlignment = .left
             responsabilityIII.numberOfLines = 0
             
+            if i == 1 {
+                responsabilityI.text = MyExperienceModel.skySwitzerland[0]
+                responsabilityII.text = MyExperienceModel.skySwitzerland[1]
+                responsabilityIII.text = MyExperienceModel.skySwitzerland[2]
+            } else if i == 2 {
+                responsabilityI.text = MyExperienceModel.eccosalva[0]
+                responsabilityII.text = MyExperienceModel.eccosalva[1]
+                responsabilityIII.text = MyExperienceModel.eccosalva[2]
+            } else if i == 3 {
+                responsabilityI.text = MyExperienceModel.arcor[0]
+                responsabilityII.text = MyExperienceModel.arcor[1]
+                responsabilityIII.text = MyExperienceModel.arcor[2]
+            } else if i == 4 {
+                responsabilityI.text = MyExperienceModel.motiva[0]
+                responsabilityII.text = MyExperienceModel.motiva[1]
+                responsabilityIII.text = MyExperienceModel.motiva[2]
+            }
+            
+            
+            
             let bigCircle = UIImageView()
-            bigCircle.frame = .init(x: 0, y: 0, width: 10, height: 10)
+            bigCircle.frame = .init(x: 0, y: 0, width: 12, height: 12)
             bigCircle.image = UIImage(named: "circle")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
             
             let circleI = UIImageView()
@@ -168,13 +198,13 @@ class ExperienceViewCell: UITableViewCell {
             NSLayoutConstraint.activate([
             
                 bigCircle.topAnchor.constraint(equalTo: topAnchor, constant: circleSpace),
-                bigCircle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+                bigCircle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
                 
                 position.topAnchor.constraint(equalTo: topAnchor, constant: positionNameSpace),
                 position.leadingAnchor.constraint(equalTo: bigCircle.trailingAnchor, constant: 10),
                 
                 company.topAnchor.constraint(equalTo: topAnchor, constant: companysNameSpace),
-                company.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
+                company.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38),
                 
                 circleI.topAnchor.constraint(equalTo: topAnchor, constant: circleISpace),
                 circleI.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),

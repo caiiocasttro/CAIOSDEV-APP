@@ -46,9 +46,9 @@ class TabBarViewController: UITabBarController {
         let CareerGoals = CareerGoalsViewController()
         let Education = EducationViewController()
         let Experience = ExperienceViewController()
-        let Hobbies = HobbiesViewController()
+//        let Hobbies = HobbiesViewController()
         
-        self.setViewControllers([AboutMe, CareerGoals, Education, Experience, Hobbies], animated: true)
+        self.setViewControllers([AboutMe, CareerGoals, Education, Experience], animated: true)
         self.tabBar.backgroundColor = UIColor.white
         
         guard let items = tabBar.items else { return }
@@ -65,8 +65,8 @@ class TabBarViewController: UITabBarController {
         items[3].image = UIImage(named: "book")
         items[3].title = "Experience"
         
-        items[4].image = UIImage(named: "fire")
-        items[4].title = "Hobbies"
+//        items[4].image = UIImage(named: "fire")
+//        items[4].title = "Hobbies"
         
     }
     

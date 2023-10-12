@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EducationViewController: UIViewController {
+class EducationViewController: UIViewController, contactSheetProtocol {
     
     
     //MARK: Objects
@@ -19,8 +19,8 @@ class EducationViewController: UIViewController {
     
     lazy var contactButton: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 40, height: 40)
-        button.setBackgroundImage(UIImage(named: "contact"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 20, height: 20)
+        button.setBackgroundImage(UIImage(named: "contact30px"), for: .normal)
         return button
     }()
     
@@ -96,12 +96,13 @@ class EducationViewController: UIViewController {
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
-        view.addSubview(contactButton)
+//        view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(educationView)
         educationView.addSubview(line)
         educationView.addSubview(titlePage)
         educationView.addSubview(subtitle)
+        educationView.addSubview(contactButton)
         educationView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -123,8 +124,8 @@ class EducationViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            contactButton.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
+            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -154,6 +155,24 @@ class EducationViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
             
         ])
+        
+        //Adding button's action
+        contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+        
+    }
+    
+    //MARK: pulling contact view
+    @objc func pullContactView() {
+        
+        let vc = ContactsSheetViewController()
+        vc.delegate = self
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.preferredCornerRadius = 15
+        }
+        present(vc, animated: true)
         
     }
     

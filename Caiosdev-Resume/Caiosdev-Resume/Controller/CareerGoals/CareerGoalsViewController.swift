@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CareerGoalsViewController: UIViewController {
+class CareerGoalsViewController: UIViewController, contactSheetProtocol {
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -18,8 +18,8 @@ class CareerGoalsViewController: UIViewController {
     
     lazy var contactButton: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 40, height: 40)
-        button.setBackgroundImage(UIImage(named: "contact"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 20, height: 20)
+        button.setBackgroundImage(UIImage(named: "contact30px"), for: .normal)
         return button
     }()
     
@@ -100,12 +100,13 @@ class CareerGoalsViewController: UIViewController {
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
-        view.addSubview(contactButton)
+//        view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(careerGoalsView)
         careerGoalsView.addSubview(line)
         careerGoalsView.addSubview(titlePage)
         careerGoalsView.addSubview(subtitle)
+        careerGoalsView.addSubview(contactButton)
         careerGoalsView.addSubview(tableView)
 
         
@@ -128,8 +129,8 @@ class CareerGoalsViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            contactButton.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
+            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -161,6 +162,24 @@ class CareerGoalsViewController: UIViewController {
         
         
         ])
+        
+        //Adding button's action
+        contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+    }
+    
+    //MARK: pulling contact view
+    @objc func pullContactView() {
+        
+        let vc = ContactsSheetViewController()
+        vc.delegate = self
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.preferredCornerRadius = 15
+        }
+        present(vc, animated: true)
+        
     }
 }
 

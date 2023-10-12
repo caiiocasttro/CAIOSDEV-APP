@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -21,13 +22,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="FUY-1x-A6O">
-                                        <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                        <rect key="frame" x="57" y="160" width="300" height="300"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey there! Welcome to my iOS world, where in the end of this journey you will know a bit more about me." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-w3-zwh">
+                                        <rect key="frame" x="40" y="480" width="334" height="50.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" name="BlackSecondary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="launchScreen"/>
                                 <constraints>
-                                    <constraint firstItem="FUY-1x-A6O" firstAttribute="centerX" secondItem="TDQ-8p-N2z" secondAttribute="centerX" id="caN-5q-8hL"/>
-                                    <constraint firstItem="FUY-1x-A6O" firstAttribute="centerY" secondItem="TDQ-8p-N2z" secondAttribute="centerY" id="iJ7-qI-zhf"/>
+                                    <constraint firstItem="FUY-1x-A6O" firstAttribute="centerX" secondItem="TDQ-8p-N2z" secondAttribute="centerX" id="3Pq-Gb-N7w"/>
+                                    <constraint firstItem="zqK-w3-zwh" firstAttribute="leading" secondItem="TDQ-8p-N2z" secondAttribute="leading" constant="40" id="Gtx-tz-7nT"/>
+                                    <constraint firstItem="FUY-1x-A6O" firstAttribute="top" secondItem="TDQ-8p-N2z" secondAttribute="top" constant="160" id="ISq-no-7NI"/>
+                                    <constraint firstAttribute="trailing" secondItem="zqK-w3-zwh" secondAttribute="trailing" constant="40" id="q7Y-1b-w8L"/>
+                                    <constraint firstItem="zqK-w3-zwh" firstAttribute="top" secondItem="FUY-1x-A6O" secondAttribute="bottom" constant="20" id="qbV-42-vzf"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -48,6 +58,9 @@
     </scenes>
     <resources>
         <image name="avatar" width="300" height="300"/>
+        <namedColor name="BlackSecondary">
+            <color red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="launchScreen">
             <color red="0.96078431372549022" green="0.7803921568627451" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

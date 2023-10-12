@@ -7,7 +7,10 @@
 
 import UIKit
 
-class AboutMeViewController: UIViewController {
+class AboutMeViewController: UIViewController, contactSheetProtocol {
+    
+    //MARK: Initializer
+    private let sheet = ContactsSheetViewController()
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -18,8 +21,8 @@ class AboutMeViewController: UIViewController {
     
     lazy var contactButton: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 40, height: 40)
-        button.setBackgroundImage(UIImage(named: "contact"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 20, height: 20)
+        button.setBackgroundImage(UIImage(named: "contact30px"), for: .normal)
         return button
     }()
     
@@ -101,11 +104,12 @@ class AboutMeViewController: UIViewController {
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
-        view.addSubview(contactButton)
+//        view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(aboutMeView)
         aboutMeView.addSubview(line)
         aboutMeView.addSubview(titlePage)
+        aboutMeView.addSubview(contactButton)
         aboutMeView.addSubview(tableView)
         
         
@@ -128,8 +132,8 @@ class AboutMeViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
+            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -176,20 +180,18 @@ class AboutMeViewController: UIViewController {
     
     //MARK: pulling contact view
     @objc func pullContactView() {
-        print("tapped")
+        
         let vc = ContactsSheetViewController()
-        let sheetVC =  UINavigationController(rootViewController: vc)
+        vc.delegate = self
         
-        sheetVC.isModalInPresentation = true
-        if let sheet = sheetVC.sheetPresentationController {
+        if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.preferredCornerRadius = 15
         }
-        
-        
-        navigationController?.present(sheetVC, animated: true)
+        present(vc, animated: true)
         
     }
-    
     
 }
 

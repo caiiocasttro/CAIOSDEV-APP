@@ -12,7 +12,7 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
-        filter.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        filter.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         return filter
     }()
     
@@ -25,14 +25,12 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
     
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.clear
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
     lazy var experienceView: CustomView = {
         let view = CustomView()
-        view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
     }()
     
@@ -48,7 +46,7 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
         let title = UILabel()
         title.text = "Experience"
         title.textColor = UIColor(named: "BlackLabels")
-        title.font = .systemFont(ofSize: 20, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
     }()
@@ -57,14 +55,14 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
         let label = UILabel()
         label.text = "Let me tell you about my experience!"
         label.textColor = UIColor(named: "GrayLabels")
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         label.textAlignment = .left
         return label
     }()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = UIColor(named: "WhiteBackground")
+        tableView.backgroundColor = UIColor.clear
         tableView.register(ExperienceViewCell.self, forCellReuseIdentifier: ExperienceIdentifiers.main.rawValue)
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -92,13 +90,17 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
         let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         background.image = UIImage(named: "office")
         
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        backgroundSheet.image = UIImage(named: "background")
+        
         //Adding subview
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
-//        view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(experienceView)
+        experienceView.addSubview(backgroundSheet)
+        experienceView.sendSubviewToBack(backgroundSheet)
         experienceView.addSubview(line)
         experienceView.addSubview(titlePage)
         experienceView.addSubview(subtitle)
@@ -106,6 +108,7 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
         experienceView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
+        backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +134,9 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            backgroundSheet.widthAnchor.constraint(equalTo: experienceView.widthAnchor),
+            backgroundSheet.heightAnchor.constraint(equalTo: experienceView.heightAnchor),
             
             experienceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
             experienceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -185,7 +191,7 @@ extension ExperienceViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExperienceIdentifiers.main.rawValue, for: indexPath) as! ExperienceViewCell
-        cell.backgroundColor = UIColor(named: "WhiteBackground")
+        cell.isUserInteractionEnabled = false
         return cell
     }
     

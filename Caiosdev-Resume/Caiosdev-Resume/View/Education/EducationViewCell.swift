@@ -11,7 +11,6 @@ class EducationViewCell: UITableViewCell {
     
     lazy var cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.clear
         return view
     }()
     
@@ -66,19 +65,19 @@ class EducationViewCell: UITableViewCell {
             let school = UILabel()
             school.text = MyEducationModel.school[i]
             school.textColor = UIColor(named: "BlackLabels")
-            school.font = .systemFont(ofSize: 18, weight: .semibold)
+            school.font = UIFont(name: "Nunito-Bold", size: 18)
             school.textAlignment = .left
             
             let graduate = UILabel()
             graduate.text = MyEducationModel.graduation
             graduate.textColor = UIColor(named: "GrayLabels")
-            graduate.font = .systemFont(ofSize: 12, weight: .regular)
+            graduate.font = UIFont(name: "Nunito-SemiBold", size: 12)
             graduate.textAlignment = .left
             
             let graduateDescription = UILabel()
             graduateDescription.text = MyEducationModel.description[i]
             graduateDescription.textColor = UIColor(named: "GrayLabels")
-            graduateDescription.font = .systemFont(ofSize: 12, weight: .regular)
+            graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 12)
             graduateDescription.textAlignment = .left
             graduateDescription.numberOfLines = 0
             
@@ -94,7 +93,7 @@ class EducationViewCell: UITableViewCell {
             dotImageII.frame = .init(x: 0, y: 0, width: 5, height: 5)
             dotImageII.image = UIImage(named: "dot")
             
-            backgroundColor = UIColor(named: "WhiteBackground")
+            backgroundColor = UIColor.clear
             
             cellView.addSubview(iconImage)
             cellView.addSubview(school)

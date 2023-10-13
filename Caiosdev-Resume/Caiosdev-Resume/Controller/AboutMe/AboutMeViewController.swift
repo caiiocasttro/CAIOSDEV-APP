@@ -15,7 +15,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
-        filter.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        filter.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         return filter
     }()
     
@@ -28,14 +28,12 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.clear
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
     lazy var aboutMeView: CustomView = {
         let view = CustomView()
-        view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
     }()
     
@@ -51,7 +49,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         let title = UILabel()
         title.text = "Hello, I am Caio!"
         title.textColor = UIColor(named: "BlackLabels")
-        title.font = .systemFont(ofSize: 20, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
     }()
@@ -65,7 +63,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         tableView.register(AboutMeTableViewCell.self, forCellReuseIdentifier: AboutMeIdentifiers.main.rawValue)
         tableView.register(LanguagesViewCell.self, forCellReuseIdentifier: AboutMeIdentifiers.Languages.rawValue)
         tableView.register(LocationViewCell.self, forCellReuseIdentifier: AboutMeIdentifiers.Location.rawValue)
-        tableView.backgroundColor = UIColor(named: "WhiteBackground")
+        tableView.backgroundColor = UIColor.clear
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
@@ -82,10 +80,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         configureLayout()
     }
     
-    
-    
-    
-    
+
     //MARK: Configuring layout
     private func configureLayout() {
         
@@ -99,14 +94,18 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         background.image = UIImage(named: "picture")
         
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        backgroundSheet.image = UIImage(named: "background")
+        
         
         //Adding subview
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
-//        view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(aboutMeView)
+        aboutMeView.addSubview(backgroundSheet)
+        aboutMeView.sendSubviewToBack(backgroundSheet)
         aboutMeView.addSubview(line)
         aboutMeView.addSubview(titlePage)
         aboutMeView.addSubview(contactButton)
@@ -114,6 +113,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         
         
         background.translatesAutoresizingMaskIntoConstraints = false
+        backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -139,6 +139,9 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            backgroundSheet.widthAnchor.constraint(equalTo: aboutMeView.widthAnchor),
+            backgroundSheet.heightAnchor.constraint(equalTo: aboutMeView.heightAnchor),
             
             aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
             aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -170,10 +173,13 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     //MARK: Configuring tab button
     private func configureTabBar() {
         
-        guard let item = self.tabBarController?.tabBar else { return }
-        
-        item.tintColor = UIColor(named: "OrangeIcon")
-        item.unselectedItemTintColor = UIColor(named: "BlackLabels")
+        UIView.animate(withDuration: 0.2) {
+            guard let item = self.tabBarController?.tabBar else { return }
+            
+            item.tintColor = UIColor(named: "OrangeIcon")
+            item.unselectedItemTintColor = UIColor(named: "BlackLabels")
+            self.view.layoutIfNeeded()
+        }
         
     }
 
@@ -206,16 +212,19 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.Languages.rawValue, for: indexPath) as! LanguagesViewCell
             cell.title = cellTitle[2]
+            cell.isUserInteractionEnabled = false
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.Location.rawValue, for: indexPath) as! LocationViewCell
             cell.title = cellTitle[3]
             cell.textString = text[2]
+            cell.isUserInteractionEnabled = false
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.main.rawValue, for: indexPath) as! AboutMeTableViewCell
             cell.title = cellTitle[indexPath.row]
             cell.textString = text[indexPath.row]
+            cell.isUserInteractionEnabled = false
             return cell
         }
     }

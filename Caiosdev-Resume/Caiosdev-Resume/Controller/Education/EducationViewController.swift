@@ -13,7 +13,7 @@ class EducationViewController: UIViewController, contactSheetProtocol {
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
-        filter.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        filter.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         return filter
     }()
     
@@ -26,14 +26,12 @@ class EducationViewController: UIViewController, contactSheetProtocol {
     
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.clear
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
     lazy var educationView: CustomView = {
         let view = CustomView()
-        view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
     }()
     
@@ -49,7 +47,7 @@ class EducationViewController: UIViewController, contactSheetProtocol {
         let title = UILabel()
         title.text = "My education"
         title.textColor = UIColor(named: "BlackLabels")
-        title.font = .systemFont(ofSize: 20, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
     }()
@@ -58,16 +56,16 @@ class EducationViewController: UIViewController, contactSheetProtocol {
         let label = UILabel()
         label.text = "Here you can see my education!"
         label.textColor = UIColor(named: "GrayLabels")
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         label.textAlignment = .left
         return label
     }()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = UIColor(named: "WhiteBackground")
         tableView.register(EducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.education.rawValue)
         tableView.register(CertificateViewCell.self, forCellReuseIdentifier: EducationIdentifiers.certificate.rawValue)
+        tableView.backgroundColor = UIColor.clear
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
@@ -92,13 +90,17 @@ class EducationViewController: UIViewController, contactSheetProtocol {
         let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         background.image = UIImage(named: "setup")
         
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        backgroundSheet.image = UIImage(named: "background")
+        
         //Adding subview
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
-//        view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(educationView)
+        educationView.addSubview(backgroundSheet)
+        educationView.sendSubviewToBack(backgroundSheet)
         educationView.addSubview(line)
         educationView.addSubview(titlePage)
         educationView.addSubview(subtitle)
@@ -106,6 +108,7 @@ class EducationViewController: UIViewController, contactSheetProtocol {
         educationView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
+        backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +134,9 @@ class EducationViewController: UIViewController, contactSheetProtocol {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            backgroundSheet.widthAnchor.constraint(equalTo: educationView.widthAnchor),
+            backgroundSheet.heightAnchor.constraint(equalTo: educationView.heightAnchor),
             
             educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
             educationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -190,11 +196,11 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as! CertificateViewCell
-            cell.backgroundColor = UIColor(named: "WhiteBackground")
+            cell.isUserInteractionEnabled = false
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
-            cell.backgroundColor = UIColor(named: "WhiteBackground")
+            cell.isUserInteractionEnabled = false
             return cell
         }
         

@@ -16,6 +16,8 @@ class TabBarViewController: UITabBarController {
     lazy var line: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor(named: "OrangeIcon")
+        line.layer.cornerRadius = 1
+        line.clipsToBounds = true
         return line
     }()
     
@@ -33,13 +35,11 @@ class TabBarViewController: UITabBarController {
         
         line.translatesAutoresizingMaskIntoConstraints = false
         
-//        NSLayoutConstraint.activate([
         line.widthAnchor.constraint(equalToConstant: view.bounds.width / 7).isActive = true
         line.heightAnchor.constraint(equalToConstant: 2).isActive = true
         line.topAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
-       lineLeadingConstraints = line.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor, constant: 10)
+        lineLeadingConstraints = line.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor, constant: 10)
         lineLeadingConstraints.isActive = true
-//        ])
         
         tabBar.layer.shadowRadius = 5
         tabBar.layer.shadowOpacity = 0.1
@@ -71,6 +71,7 @@ class TabBarViewController: UITabBarController {
         
         items[4].image = UIImage(named: "fire")
         items[4].title = "Hobbies"
+        
         
     }
     

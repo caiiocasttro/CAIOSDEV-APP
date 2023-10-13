@@ -31,7 +31,7 @@ class AboutMeTableViewCell: UITableViewCell {
         let title = UILabel()
         title.text = "Title"
         title.textColor = UIColor(named: "BlackSecondary")
-        title.font = .systemFont(ofSize: 15, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 15)
         title.textAlignment = .left
         return title
     }()
@@ -52,7 +52,7 @@ class AboutMeTableViewCell: UITableViewCell {
         let text = UILabel()
         text.text = "Text"
         text.textColor = UIColor(named: "BlackSecondary")
-        text.font = .systemFont(ofSize: 12, weight: .medium)
+        text.font = UIFont(name: "Nunito-SemiBold", size: 12)
         text.numberOfLines = 0
         text.textAlignment = .left
         return text
@@ -72,12 +72,13 @@ class AboutMeTableViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        backgroundColor = UIColor(named: "WhiteBackground")
+        backgroundColor = UIColor.clear
         
         //Adding subviews
         addSubview(cellTitle)
         addSubview(cellView)
         cellView.addSubview(text)
+        
         
         cellTitle.translatesAutoresizingMaskIntoConstraints = false
         cellView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +86,7 @@ class AboutMeTableViewCell: UITableViewCell {
         
         //Constraints
         NSLayoutConstraint.activate([
+            
             
             cellTitle.topAnchor.constraint(equalTo: topAnchor),
             cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

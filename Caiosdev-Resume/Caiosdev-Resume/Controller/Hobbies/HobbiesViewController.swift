@@ -12,7 +12,7 @@ class HobbiesViewController: UIViewController {
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
-        filter.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        filter.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         return filter
     }()
     

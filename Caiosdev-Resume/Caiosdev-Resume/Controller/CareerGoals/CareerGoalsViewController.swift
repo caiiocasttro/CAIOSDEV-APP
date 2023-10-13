@@ -12,7 +12,7 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
-        filter.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        filter.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         return filter
     }()
     
@@ -25,14 +25,12 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
     
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.clear
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
     lazy var careerGoalsView: CustomView = {
         let view = CustomView()
-        view.backgroundColor = UIColor(named: "WhiteBackground" )
         return view
     }()
     
@@ -48,7 +46,7 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
         let title = UILabel()
         title.text = "My career goals"
         title.textColor = UIColor(named: "BlackLabels")
-        title.font = .systemFont(ofSize: 20, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
     }()
@@ -57,7 +55,7 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
         let label = UILabel()
         label.text = "Let's talk about my goals!"
         label.textColor = UIColor(named: "GrayLabels")
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         label.textAlignment = .left
         return label
     }()
@@ -66,7 +64,7 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
         let tableView = UITableView()
         tableView.register(CareerGoalsViewCell.self, forCellReuseIdentifier: CareerGoalsIdentifiers.main.rawValue)
         tableView.register(SkillsViewCell.self, forCellReuseIdentifier: CareerGoalsIdentifiers.skills.rawValue)
-        tableView.backgroundColor = UIColor(named: "WhiteBackground")
+        tableView.backgroundColor = UIColor.clear
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
@@ -96,13 +94,17 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
         let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         background.image = UIImage(named: "studying")
         
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        backgroundSheet.image = UIImage(named: "background")
+        
         //Adding subviews
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
-//        view.addSubview(contactButton)
         view.addSubview(scrollView)
         scrollView.addSubview(careerGoalsView)
+        careerGoalsView.addSubview(backgroundSheet)
+        careerGoalsView.sendSubviewToBack(backgroundSheet)
         careerGoalsView.addSubview(line)
         careerGoalsView.addSubview(titlePage)
         careerGoalsView.addSubview(subtitle)
@@ -111,6 +113,7 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
 
         
         background.translatesAutoresizingMaskIntoConstraints = false
+        backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -136,6 +139,9 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            backgroundSheet.widthAnchor.constraint(equalTo: careerGoalsView.widthAnchor),
+            backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
             
             careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
             careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -194,12 +200,14 @@ extension CareerGoalsViewController: UITableViewDelegate, UITableViewDataSource 
         if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CareerGoalsIdentifiers.skills.rawValue, for: indexPath) as! SkillsViewCell
             cell.title = cellTitle[3]
+            cell.isUserInteractionEnabled = false
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CareerGoalsIdentifiers.main.rawValue, for: indexPath) as! CareerGoalsViewCell
              cell.title = cellTitle[indexPath.row]
              cell.textString = text[indexPath.row]
+            cell.isUserInteractionEnabled = false
              return cell
 
         }

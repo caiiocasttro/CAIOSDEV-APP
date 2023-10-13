@@ -25,7 +25,7 @@ class SkillsViewCell: UITableViewCell {
         let title = UILabel()
         title.text = "Title"
         title.textColor = UIColor(named: "BlackSecondary")
-        title.font = .systemFont(ofSize: 15, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 15)
         title.textAlignment = .left
         return title
     }()
@@ -40,15 +40,6 @@ class SkillsViewCell: UITableViewCell {
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
         return view
-    }()
-    
-    lazy var skillName: UILabel = {
-        let label = UILabel()
-        label.text = "Skill"
-        label.textColor = UIColor(named: "BlackSecondary")
-        label.font = .systemFont(ofSize: 16, weight: .bold)
-        label.textAlignment = .left
-        return label
     }()
     
     lazy var levelBackground: UIView = {
@@ -71,7 +62,7 @@ class SkillsViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        backgroundColor = UIColor(named: "WhiteBackground")
+        backgroundColor = UIColor.clear
         
         var space: CGFloat = 0
         
@@ -101,13 +92,13 @@ class SkillsViewCell: UITableViewCell {
                 let skill = UILabel()
                 skill.text = CareerGoalsModel.initialSkills[i]
                 skill.textColor = UIColor(named: "BlackSecondary")
-                skill.font = .systemFont(ofSize: 16, weight: .bold)
+                skill.font = UIFont(name: "Nunito-Black", size: 16)
                 skill.textAlignment = .left
                 
                 let levelName = UILabel()
                 levelName.text = CareerGoalsModel.skillsLevel[i]
                 levelName.textColor = UIColor.white
-                levelName.font = .systemFont(ofSize: 12, weight: .semibold)
+                levelName.font = UIFont(name: "Nunito-SemiBold", size: 12)
                 levelName.textAlignment = .center
                 
                 let background = UIView()

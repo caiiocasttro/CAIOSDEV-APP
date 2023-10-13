@@ -12,7 +12,6 @@ class CertificateViewCell: UITableViewCell {
     //MARK: Objects
     lazy var cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.clear
         return view
     }()
     
@@ -20,7 +19,7 @@ class CertificateViewCell: UITableViewCell {
         let title = UILabel()
         title.text = "My certificates"
         title.textColor = UIColor(named: "BlackSecondary")
-        title.font = .systemFont(ofSize: 20, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
     }()
@@ -29,7 +28,7 @@ class CertificateViewCell: UITableViewCell {
         let title = UILabel()
         title.text = "Let me show you!"
         title.textColor = UIColor(named: "GrayLabels")
-        title.font = .systemFont(ofSize: 14, weight: .medium)
+        title.font = UIFont(name: "Nunito-SemiBold", size: 14)
         title.textAlignment = .left
         return title
     }()
@@ -97,20 +96,22 @@ class CertificateViewCell: UITableViewCell {
             let certificateTitle = UILabel()
             certificateTitle.text = MyCertificateModel.cetificateName[i]
             certificateTitle.textColor = UIColor(named: "BlackLabels")
-            certificateTitle.font = .systemFont(ofSize: 18, weight: .semibold)
+            certificateTitle.font = UIFont(name: "Nunito-Bold", size: 18)
             certificateTitle.textAlignment = .left
             
             let schoolName = UILabel()
             schoolName.text = "Udemy"
             schoolName.textColor = UIColor(named: "GrayLabels")
-            schoolName.font = .systemFont(ofSize: 14, weight: .medium)
+            schoolName.font = UIFont(name: "Nunito-SemiBold", size: 14)
             schoolName.textAlignment = .left
             
             let date = UILabel()
             date.text = MyCertificateModel.date[i]
             date.textColor = UIColor(named: "GrayLabels")
-            date.font = .systemFont(ofSize: 12, weight: .regular)
+            date.font = UIFont(name: "Nunito-Medium", size: 12)
             date.textAlignment = .left
+            
+            backgroundColor = UIColor.clear
             
             cellView.addSubview(iconImage)
             cellView.addSubview(certificateTitle)

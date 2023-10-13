@@ -35,6 +35,7 @@ class ExperienceViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         
+        backgroundColor = UIColor.clear
 
         addSubview(line)
         sendSubviewToBack(line)

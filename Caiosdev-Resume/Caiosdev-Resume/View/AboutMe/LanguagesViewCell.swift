@@ -23,7 +23,7 @@ class LanguagesViewCell: UITableViewCell {
         let title = UILabel()
         title.text = "Title"
         title.textColor = UIColor(named: "BlackSecondary")
-        title.font = .systemFont(ofSize: 15, weight: .bold)
+        title.font = UIFont(name: "Nunito-Black", size: 15)
         title.textAlignment = .left
         return title
     }()
@@ -44,7 +44,7 @@ class LanguagesViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Portuguese"
         label.textColor = UIColor(named: "BlackSecondary")
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         return label
     }()
     
@@ -68,7 +68,7 @@ class LanguagesViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "English"
         label.textColor = UIColor(named: "BlackSecondary")
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         return label
     }()
     
@@ -92,7 +92,7 @@ class LanguagesViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "French"
         label.textColor = UIColor(named: "BlackSecondary")
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         return label
     }()
     
@@ -124,7 +124,7 @@ class LanguagesViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        backgroundColor = UIColor(named: "WhiteBackground")
+        backgroundColor = UIColor.clear
         
         //Adding subviews
         addSubview(cellTitle)

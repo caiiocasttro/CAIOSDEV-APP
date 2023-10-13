@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */; };
+		E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */; };
+		E5BF06E22AD9435700195F5F /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06E12AD9435700195F5F /* EducationModel.swift */; };
+		E5BF06E52AD9439800195F5F /* ExperienceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06E42AD9439800195F5F /* ExperienceModel.swift */; };
+		E5BF06E82AD943DF00195F5F /* HobbiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06E72AD943DF00195F5F /* HobbiesModel.swift */; };
 		E5C619772AD196B1007C1EFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619762AD196B1007C1EFB /* AppDelegate.swift */; };
 		E5C619792AD196B1007C1EFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619782AD196B1007C1EFB /* SceneDelegate.swift */; };
 		E5C6197B2AD196B1007C1EFB /* AboutMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C6197A2AD196B1007C1EFB /* AboutMeViewController.swift */; };
@@ -17,7 +22,6 @@
 		E5C619922AD1A185007C1EFB /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619912AD1A185007C1EFB /* ExperienceViewController.swift */; };
 		E5C619942AD1A198007C1EFB /* HobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619932AD1A198007C1EFB /* HobbiesViewController.swift */; };
 		E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619952AD1A4AD007C1EFB /* TabBarViewController.swift */; };
-		E5C6199E2AD216E3007C1EFB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C6199D2AD216E3007C1EFB /* Model.swift */; };
 		E5C619A02AD3FBBC007C1EFB /* ContactsSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C6199F2AD3FBBC007C1EFB /* ContactsSheetViewController.swift */; };
 		E5C619AD2AD54092007C1EFB /* AboutMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */; };
 		E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619AF2AD554C4007C1EFB /* CustomView.swift */; };
@@ -33,6 +37,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeModel.swift; sourceTree = "<group>"; };
+		E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerGoalsModel.swift; sourceTree = "<group>"; };
+		E5BF06E12AD9435700195F5F /* EducationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationModel.swift; sourceTree = "<group>"; };
+		E5BF06E42AD9439800195F5F /* ExperienceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceModel.swift; sourceTree = "<group>"; };
+		E5BF06E72AD943DF00195F5F /* HobbiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesModel.swift; sourceTree = "<group>"; };
 		E5C619732AD196B1007C1EFB /* Caiosdev-Resume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Caiosdev-Resume.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C619762AD196B1007C1EFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5C619782AD196B1007C1EFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +54,6 @@
 		E5C619912AD1A185007C1EFB /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		E5C619932AD1A198007C1EFB /* HobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewController.swift; sourceTree = "<group>"; };
 		E5C619952AD1A4AD007C1EFB /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		E5C6199D2AD216E3007C1EFB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E5C6199F2AD3FBBC007C1EFB /* ContactsSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSheetViewController.swift; sourceTree = "<group>"; };
 		E5C619AB2AD4774B007C1EFB /* typing.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = typing.mp4; path = ../../../../../../../../../Downloads/typing.mp4; sourceTree = "<group>"; };
 		E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +80,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E5BF06DA2AD942BD00195F5F /* AboutMeModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */,
+			);
+			path = AboutMeModel;
+			sourceTree = "<group>";
+		};
+		E5BF06DD2AD942EB00195F5F /* CareerGoalsModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */,
+			);
+			path = CareerGoalsModel;
+			sourceTree = "<group>";
+		};
+		E5BF06E02AD9432900195F5F /* EducationModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF06E12AD9435700195F5F /* EducationModel.swift */,
+			);
+			path = EducationModel;
+			sourceTree = "<group>";
+		};
+		E5BF06E32AD9437A00195F5F /* ExperienceModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF06E42AD9439800195F5F /* ExperienceModel.swift */,
+			);
+			path = ExperienceModel;
+			sourceTree = "<group>";
+		};
+		E5BF06E62AD943CF00195F5F /* HobbiesModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF06E72AD943DF00195F5F /* HobbiesModel.swift */,
+			);
+			path = HobbiesModel;
+			sourceTree = "<group>";
+		};
 		E5C6196A2AD196B1007C1EFB = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +152,11 @@
 		E5C6198A2AD19823007C1EFB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E5C6199D2AD216E3007C1EFB /* Model.swift */,
+				E5BF06DA2AD942BD00195F5F /* AboutMeModel */,
+				E5BF06DD2AD942EB00195F5F /* CareerGoalsModel */,
+				E5BF06E02AD9432900195F5F /* EducationModel */,
+				E5BF06E32AD9437A00195F5F /* ExperienceModel */,
+				E5BF06E62AD943CF00195F5F /* HobbiesModel */,
 				E5C619B92AD59D04007C1EFB /* Identifiers.swift */,
 			);
 			path = Model;
@@ -319,8 +371,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5C619AD2AD54092007C1EFB /* AboutMeTableViewCell.swift in Sources */,
-				E5C6199E2AD216E3007C1EFB /* Model.swift in Sources */,
+				E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */,
 				E5C619BC2AD5B811007C1EFB /* SkillsViewCell.swift in Sources */,
+				E5BF06E22AD9435700195F5F /* EducationModel.swift in Sources */,
 				E5C619B22AD55BC4007C1EFB /* AdaptativeConstraints.swift in Sources */,
 				E5C619B62AD58E0E007C1EFB /* LanguagesViewCell.swift in Sources */,
 				E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */,
@@ -336,9 +389,12 @@
 				E5C619942AD1A198007C1EFB /* HobbiesViewController.swift in Sources */,
 				E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */,
 				E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */,
+				E5BF06E82AD943DF00195F5F /* HobbiesModel.swift in Sources */,
 				E5C619A02AD3FBBC007C1EFB /* ContactsSheetViewController.swift in Sources */,
+				E5BF06E52AD9439800195F5F /* ExperienceModel.swift in Sources */,
 				E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */,
 				E5C619792AD196B1007C1EFB /* SceneDelegate.swift in Sources */,
+				E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

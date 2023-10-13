@@ -183,7 +183,6 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         
         let vc = ContactsSheetViewController()
         vc.delegate = self
-        
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.largestUndimmedDetentIdentifier = .medium

@@ -32,6 +32,11 @@ class ContactsSheetViewController: UIViewController {
     //MARK: Configuring Layout
     private func configureLayout() {
         
+        let width = UIScreen.main.bounds.width - 20
+        let height = UIScreen.main.bounds.height - 10
+        
+        view.frame.size = .init(width: width, height: height)
+        
         view.addSubview(dismissButton)
         
         dismissButton.translatesAutoresizingMaskIntoConstraints = false

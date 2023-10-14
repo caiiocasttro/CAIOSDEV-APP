@@ -148,7 +148,7 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
             careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            careerGoalsView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
+            careerGoalsView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
             
             line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 30),

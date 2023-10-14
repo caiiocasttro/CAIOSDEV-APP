@@ -143,7 +143,7 @@ class EducationViewController: UIViewController, contactSheetProtocol {
             educationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             educationView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             educationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            educationView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
+            educationView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
             
             line.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 30),

@@ -176,7 +176,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
+            aboutMeView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
             
             contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),

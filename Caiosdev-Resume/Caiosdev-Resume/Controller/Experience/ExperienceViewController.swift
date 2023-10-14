@@ -143,7 +143,7 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
             experienceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             experienceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             experienceView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            experienceView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
+            experienceView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
             
             line.topAnchor.constraint(equalTo: experienceView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 30),

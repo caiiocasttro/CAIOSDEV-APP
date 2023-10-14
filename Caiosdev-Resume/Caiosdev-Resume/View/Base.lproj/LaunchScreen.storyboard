@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,23 +20,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDQ-8p-N2z">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="FUY-1x-A6O">
-                                        <rect key="frame" x="57" y="160" width="300" height="300"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="1O6-5r-8LT">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey there! Welcome to my iOS world, where in the end of this journey you will know a bit more about me." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-w3-zwh">
-                                        <rect key="frame" x="40" y="480" width="334" height="50.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" name="BlackSecondary"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" name="launchScreen"/>
                                 <constraints>
-                                    <constraint firstItem="FUY-1x-A6O" firstAttribute="centerX" secondItem="TDQ-8p-N2z" secondAttribute="centerX" id="3Pq-Gb-N7w"/>
-                                    <constraint firstItem="zqK-w3-zwh" firstAttribute="leading" secondItem="TDQ-8p-N2z" secondAttribute="leading" constant="40" id="Gtx-tz-7nT"/>
-                                    <constraint firstItem="FUY-1x-A6O" firstAttribute="top" secondItem="TDQ-8p-N2z" secondAttribute="top" constant="160" id="ISq-no-7NI"/>
-                                    <constraint firstAttribute="trailing" secondItem="zqK-w3-zwh" secondAttribute="trailing" constant="40" id="q7Y-1b-w8L"/>
-                                    <constraint firstItem="zqK-w3-zwh" firstAttribute="top" secondItem="FUY-1x-A6O" secondAttribute="bottom" constant="20" id="qbV-42-vzf"/>
+                                    <constraint firstAttribute="bottom" secondItem="1O6-5r-8LT" secondAttribute="bottom" id="A8r-uy-YPZ"/>
+                                    <constraint firstItem="1O6-5r-8LT" firstAttribute="top" secondItem="TDQ-8p-N2z" secondAttribute="top" id="GEU-Gy-I3W"/>
+                                    <constraint firstAttribute="trailing" secondItem="1O6-5r-8LT" secondAttribute="trailing" id="UWo-cv-I7D"/>
+                                    <constraint firstItem="1O6-5r-8LT" firstAttribute="leading" secondItem="TDQ-8p-N2z" secondAttribute="leading" id="dg0-M0-F1w"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -57,13 +48,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="avatar" width="300" height="300"/>
-        <namedColor name="BlackSecondary">
-            <color red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="launchScreen">
-            <color red="0.96078431372549022" green="0.7803921568627451" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="background" width="390" height="844"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

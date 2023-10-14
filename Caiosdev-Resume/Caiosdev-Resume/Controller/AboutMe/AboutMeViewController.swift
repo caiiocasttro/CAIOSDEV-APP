@@ -45,9 +45,29 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         return line
     }()
     
+    lazy var hello: UILabel = {
+        let hello = UILabel()
+        hello.text = "Hello,"
+        hello.textColor = UIColor.white
+        hello.font = UIFont(name: "Nunito-Black", size: 60)
+        hello.textAlignment = .left
+        hello.numberOfLines = 0
+        return hello
+    }()
+    
+    lazy var myName: UILabel = {
+        let name = UILabel()
+        name.text = "I am Caio!"
+        name.textColor = UIColor.white
+        name.font = UIFont(name: "Nunito-Black", size: 60)
+        name.textAlignment = .left
+        name.numberOfLines = 0
+        return name
+    }()
+    
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Hello, I am Caio!"
+        title.text = "About Me"
         title.textColor = UIColor(named: "BlackLabels")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
@@ -84,7 +104,8 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
+        let sheetHeightSpace = (UIScreen.main.bounds.height * 0.7) + 5
+        let helloHeightSpace = (UIScreen.main.bounds.height * 0.7) + 5
         
         
         //Configuring background
@@ -102,6 +123,8 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
+        view.addSubview(hello)
+        view.addSubview(myName)
         view.addSubview(scrollView)
         scrollView.addSubview(aboutMeView)
         aboutMeView.addSubview(backgroundSheet)
@@ -115,10 +138,12 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         background.translatesAutoresizingMaskIntoConstraints = false
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
-        contactButton.translatesAutoresizingMaskIntoConstraints = false
+        hello.translatesAutoresizingMaskIntoConstraints = false
+        myName.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         aboutMeView.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
+        contactButton.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -132,8 +157,11 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (height * 0.6)),
+            hello.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
+            myName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -143,12 +171,15 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
             backgroundSheet.widthAnchor.constraint(equalTo: aboutMeView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: aboutMeView.heightAnchor),
             
-            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
+            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: sheetHeightSpace),
             aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             aboutMeView.heightAnchor.constraint(equalToConstant: (height * 0.8) - 20),
+            
+            contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
+            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             line.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 30),
@@ -168,6 +199,11 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         
         //Adding button's action
         contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+        
+        
+        
+        
+        
     }
     
     //MARK: Configuring tab button

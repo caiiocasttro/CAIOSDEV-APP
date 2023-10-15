@@ -42,22 +42,33 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
         return line
     }()
     
+    lazy var titlePartI: UILabel = {
+        let hello = UILabel()
+        hello.text = "My"
+        hello.textColor = UIColor.white
+        hello.font = UIFont(name: "Nunito-Black", size: 60)
+        hello.textAlignment = .left
+        hello.numberOfLines = 0
+        return hello
+    }()
+    
+    lazy var titlePartII: UILabel = {
+        let name = UILabel()
+        name.text = "Goals"
+        name.textColor = UIColor(named: "OrangeTitle")
+        name.font = UIFont(name: "Nunito-Black", size: 60)
+        name.textAlignment = .left
+        name.numberOfLines = 0
+        return name
+    }()
+    
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "My career goals"
+        title.text = "Let's find out!"
         title.textColor = UIColor(named: "BlackLabels")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
-    }()
-    
-    lazy var subtitle: UILabel = {
-        let label = UILabel()
-        label.text = "Let's talk about my goals!"
-        label.textColor = UIColor(named: "GrayLabels")
-        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
-        label.textAlignment = .left
-        return label
     }()
     
     lazy var tableView: UITableView = {
@@ -101,13 +112,14 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
+        view.addSubview(titlePartI)
+        view.addSubview(titlePartII)
         view.addSubview(scrollView)
         scrollView.addSubview(careerGoalsView)
         careerGoalsView.addSubview(backgroundSheet)
         careerGoalsView.sendSubviewToBack(backgroundSheet)
         careerGoalsView.addSubview(line)
         careerGoalsView.addSubview(titlePage)
-        careerGoalsView.addSubview(subtitle)
         careerGoalsView.addSubview(contactButton)
         careerGoalsView.addSubview(tableView)
 
@@ -115,12 +127,13 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
         background.translatesAutoresizingMaskIntoConstraints = false
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
+        titlePartI.translatesAutoresizingMaskIntoConstraints = false
+        titlePartII.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         careerGoalsView.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
-        subtitle.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
@@ -131,6 +144,12 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
             
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
+            
+            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (height * 0.6)),
+            titlePartI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+            titlePartII.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             contactButton.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -157,10 +176,10 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
             
             titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 20),
             titlePage.leadingAnchor.constraint(equalTo: careerGoalsView.leadingAnchor, constant: 20),
-            subtitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 5),
-            subtitle.leadingAnchor.constraint(equalTo: careerGoalsView.leadingAnchor, constant: 20),
+//            subtitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 5),
+//            subtitle.leadingAnchor.constraint(equalTo: careerGoalsView.leadingAnchor, constant: 20),
             
-            tableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 30),
+            tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)

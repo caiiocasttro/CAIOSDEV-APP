@@ -58,7 +58,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     lazy var myName: UILabel = {
         let name = UILabel()
         name.text = "I am Caio!"
-        name.textColor = UIColor.white
+        name.textColor = UIColor(named: "OrangeTitle")
         name.font = UIFont(name: "Nunito-Black", size: 60)
         name.textAlignment = .left
         name.numberOfLines = 0

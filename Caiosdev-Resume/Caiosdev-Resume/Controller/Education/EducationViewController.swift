@@ -43,22 +43,33 @@ class EducationViewController: UIViewController, contactSheetProtocol {
         return line
     }()
     
+    lazy var titlePartI: UILabel = {
+        let hello = UILabel()
+        hello.text = "My"
+        hello.textColor = UIColor.white
+        hello.font = UIFont(name: "Nunito-Black", size: 60)
+        hello.textAlignment = .left
+        hello.numberOfLines = 0
+        return hello
+    }()
+    
+    lazy var titlePartII: UILabel = {
+        let name = UILabel()
+        name.text = "Education"
+        name.textColor = UIColor(named: "OrangeTitle")
+        name.font = UIFont(name: "Nunito-Black", size: 60)
+        name.textAlignment = .left
+        name.numberOfLines = 0
+        return name
+    }()
+    
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "My education"
+        title.text = "Scroll up to know more!"
         title.textColor = UIColor(named: "BlackLabels")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
-    }()
-    
-    lazy var subtitle: UILabel = {
-        let label = UILabel()
-        label.text = "Here you can see my education!"
-        label.textColor = UIColor(named: "GrayLabels")
-        label.font = UIFont(name: "Nunito-SemiBold", size: 14)
-        label.textAlignment = .left
-        return label
     }()
     
     lazy var tableView: UITableView = {
@@ -97,25 +108,27 @@ class EducationViewController: UIViewController, contactSheetProtocol {
         view.addSubview(background)
         view.sendSubviewToBack(background)
         view.addSubview(filter)
+        view.addSubview(titlePartI)
+        view.addSubview(titlePartII)
         view.addSubview(scrollView)
         scrollView.addSubview(educationView)
         educationView.addSubview(backgroundSheet)
         educationView.sendSubviewToBack(backgroundSheet)
         educationView.addSubview(line)
         educationView.addSubview(titlePage)
-        educationView.addSubview(subtitle)
         educationView.addSubview(contactButton)
         educationView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
+        titlePartI.translatesAutoresizingMaskIntoConstraints = false
+        titlePartII.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         educationView.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
-        subtitle.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
@@ -126,6 +139,12 @@ class EducationViewController: UIViewController, contactSheetProtocol {
             
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
+            
+            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (height * 0.6)),
+            titlePartI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+            titlePartII.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             contactButton.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -152,10 +171,8 @@ class EducationViewController: UIViewController, contactSheetProtocol {
             
             titlePage.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 20),
             titlePage.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20),
-            subtitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 5),
-            subtitle.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20),
             
-            tableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 30),
+            tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)

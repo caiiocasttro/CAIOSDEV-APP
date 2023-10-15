@@ -26,7 +26,7 @@ class CertificateViewCell: UITableViewCell {
     
     lazy var subtitle: UILabel = {
         let title = UILabel()
-        title.text = "Let me show you!"
+        title.text = ""
         title.textColor = UIColor(named: "GrayLabels")
         title.font = UIFont(name: "Nunito-SemiBold", size: 14)
         title.textAlignment = .left
@@ -52,12 +52,10 @@ class CertificateViewCell: UITableViewCell {
         
         addSubview(cellView)
         cellView.addSubview(cellTitle)
-        cellView.addSubview(subtitle)
         
         cellView.translatesAutoresizingMaskIntoConstraints = false
         cellTitle.translatesAutoresizingMaskIntoConstraints = false
-        subtitle.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             
             cellView.widthAnchor.constraint(equalTo: widthAnchor),            
@@ -67,11 +65,9 @@ class CertificateViewCell: UITableViewCell {
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor),
         
-            cellTitle.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            cellTitle.topAnchor.constraint(equalTo: topAnchor, constant: 40),
             cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
-            subtitle.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 5),
-            subtitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
         
         ])
         
@@ -89,12 +85,20 @@ class CertificateViewCell: UITableViewCell {
                 dateSpace += 100
             }
             
+            // Defining an attribute for underlining text using an NSAttributedString
+            // I also setted the NSUnderlineStyle attribute to single wich represents only one line
+            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+            
+            // I created an NSAttributedString using the NSAttributedString initializer.
+            // I provided the original text string and the underlineAttribute to apply the underline style to the text.
+            let underlineString = NSAttributedString(string: MyCertificateModel.cetificateName[i], attributes: underlineAttribute)
+            
             let iconImage = UIImageView()
             iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
             iconImage.image = UIImage(named: "certificate")
             
             let certificateTitle = UILabel()
-            certificateTitle.text = MyCertificateModel.cetificateName[i]
+            certificateTitle.attributedText = underlineString
             certificateTitle.textColor = UIColor(named: "BlackLabels")
             certificateTitle.font = UIFont(name: "Nunito-Bold", size: 18)
             certificateTitle.textAlignment = .left

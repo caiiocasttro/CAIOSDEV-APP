@@ -34,15 +34,21 @@ class EducationViewCell: UITableViewCell {
         var descriptionSpace: CGFloat = 65
         
         addSubview(cellView)
-        
+
         cellView.translatesAutoresizingMaskIntoConstraints = false
+
         
-        cellView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        cellView.heightAnchor.constraint(equalToConstant: 290).isActive = true
-        cellView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        cellView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        cellView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        cellView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        
+            cellView.widthAnchor.constraint(equalTo: widthAnchor),
+            cellView.heightAnchor.constraint(equalToConstant: 290),
+            cellView.topAnchor.constraint(equalTo: topAnchor),
+            cellView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cellView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+        ])
+        
         
         for i in 0..<3 {
             

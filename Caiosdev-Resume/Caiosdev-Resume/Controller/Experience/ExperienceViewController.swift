@@ -36,8 +36,8 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
     
     lazy var line: UIView = {
         let line = UIView()
-        line.backgroundColor = UIColor(named: "BlackLabels")
-        line.layer.cornerRadius = 1
+        line.backgroundColor = UIColor(named: "BlackSecondary")
+        line.layer.cornerRadius = 2.5
         line.clipsToBounds = true
         return line
     }()
@@ -55,7 +55,7 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
     lazy var titlePartII: UILabel = {
         let name = UILabel()
         name.text = "Experience"
-        name.textColor = UIColor(named: "OrangeTitle")
+        name.textColor = UIColor.white
         name.font = UIFont(name: "Nunito-Black", size: 60)
         name.textAlignment = .left
         name.numberOfLines = 0
@@ -64,8 +64,8 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Experience"
-        title.textColor = UIColor(named: "BlackLabels")
+        title.text = "Professional Path Stories"
+        title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
@@ -165,8 +165,8 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
             experienceView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
             
             line.topAnchor.constraint(equalTo: experienceView.topAnchor, constant: 10),
-            line.widthAnchor.constraint(equalToConstant: 30),
-            line.heightAnchor.constraint(equalToConstant: 2),
+            line.widthAnchor.constraint(equalToConstant: 35),
+            line.heightAnchor.constraint(equalToConstant: 5),
             line.centerXAnchor.constraint(equalTo: experienceView.centerXAnchor),
             
             titlePage.topAnchor.constraint(equalTo: experienceView.topAnchor, constant: 20),
@@ -193,7 +193,9 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
             sheet.largestUndimmedDetentIdentifier = .medium
             sheet.preferredCornerRadius = 15
         }
-        present(vc, animated: true)
+        UIView.animate(withDuration: 0.3) {
+            self.present(vc, animated: true)
+        }
         
     }
     
@@ -203,12 +205,31 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
 extension ExperienceViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExperienceIdentifiers.main.rawValue, for: indexPath) as! ExperienceViewCell
         cell.isUserInteractionEnabled = false
+        cell.position = MyExperienceModel.position[indexPath.row]
+        cell.location = MyExperienceModel.companies[indexPath.row]
+        if indexPath.row == 0 {
+            cell.taskI = MyExperienceModel.skySwitzerland[0]
+            cell.taskII = MyExperienceModel.skySwitzerland[1]
+            cell.taskIII = MyExperienceModel.skySwitzerland[2]
+        } else if indexPath.row == 1 {
+            cell.taskI = MyExperienceModel.eccosalva[0]
+            cell.taskII = MyExperienceModel.eccosalva[1]
+            cell.taskIII = MyExperienceModel.eccosalva[2]
+        } else if indexPath.row == 2 {
+            cell.taskI = MyExperienceModel.arcor[0]
+            cell.taskII = MyExperienceModel.arcor[1]
+            cell.taskIII = MyExperienceModel.arcor[2]
+        } else if indexPath.row == 3 {
+            cell.taskI = MyExperienceModel.motiva[0]
+            cell.taskII = MyExperienceModel.motiva[1]
+            cell.taskIII = MyExperienceModel.motiva[2]
+        }
         return cell
     }
     

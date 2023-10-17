@@ -39,12 +39,7 @@ class AboutMeTableViewCell: UITableViewCell {
     lazy var cellView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
-        view.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
-        view.layer.shadowRadius = 4
-        view.layer.shadowOpacity = 0.5
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.cornerRadius = 15
-        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
         return view
     }()
     

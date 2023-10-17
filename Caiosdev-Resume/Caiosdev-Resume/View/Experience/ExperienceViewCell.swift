@@ -9,18 +9,141 @@ import UIKit
 
 class ExperienceViewCell: UITableViewCell {
     
+    //MARK: Proprieties
+    var position: String? {
+        didSet {
+            guard let name = position else { return }
+            
+            positionName.text = name
+        }
+    }
+    
+    var location: String? {
+        didSet {
+            guard let name = location else { return }
+            
+            locationName.text = name
+        }
+    }
+    
+    var taskI: String? {
+        didSet {
+            guard let name = taskI else { return }
+            
+            taskNameI.text = name
+        }
+    }
+    
+    var taskII: String? {
+        didSet {
+            guard let name = taskII else { return }
+            
+            taskNameII.text = name
+        }
+    }
+    
+    var taskIII: String? {
+        didSet {
+            guard let name = taskIII else { return }
+            
+            taskNameIII.text = name
+        }
+    }
+    
     //MARK: Objects
     lazy var cellView: UIView = {
         let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 20
         return view
     }()
     
     lazy var line: UIView = {
         let line = UIView()
-        line.backgroundColor = UIColor(named: "BlackLabels")
-        line.layer.cornerRadius = 2
+        line.frame = .init(x: 0, y: 0, width: 6, height: 140)
+        line.layer.cornerRadius = 3
         line.clipsToBounds = true
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = line.bounds
+        gradient.colors = [UIColor(red: 0.61, green: 0.17, blue: 0.47, alpha: 0.7).cgColor, UIColor(red: 0.8, green: 0.06, blue: 0.3, alpha: 0.8).cgColor, UIColor(red: 0.88, green: 0.3, blue: 0.16, alpha: 0.8).cgColor, UIColor(red: 0.99, green: 0.52, blue: 0.12, alpha: 0.8).cgColor]
+        
+        line.layer.addSublayer(gradient)
+        
         return line
+    }()
+    
+    lazy var positionName: UILabel = {
+        let name = UILabel()
+        name.text = "iOS Developer Freelancer"
+        name.font = UIFont(name: "Nunito-Black", size: 20)
+        name.textColor = UIColor(named: "BlackSecondary")
+        name.textAlignment = .left
+        return  name
+    }()
+    
+    lazy var locationName: UILabel = {
+        let location = UILabel()
+        location.text = "Sky Switzerland, Neuchâtel, VD - Sep 2023 · 1 mo"
+        location.font = UIFont(name: "Nunito-Bold", size: 12)
+        location.textColor = UIColor(named: "GrayLabels")
+        location.textAlignment = .left
+        location.numberOfLines = 0
+        return location
+    }()
+    
+    lazy var circleTaskI: UIView = {
+        let circle = UIView()
+        circle.frame = .init(x: 0, y: 0, width: 5, height: 5)
+        circle.backgroundColor = UIColor(named: "BlackLabels")
+        circle.layer.cornerRadius = circle.frame.width / 2
+        circle.clipsToBounds = true
+        return circle
+    }()
+    
+    lazy var circleTaskII: UIView = {
+        let circle = UIView()
+        circle.frame = .init(x: 0, y: 0, width: 5, height: 5)
+        circle.backgroundColor = UIColor(named: "BlackLabels")
+        circle.layer.cornerRadius = circle.frame.width / 2
+        circle.clipsToBounds = true
+        return circle
+    }()
+    
+    lazy var circleTaskIII: UIView = {
+        let circle = UIView()
+        circle.frame = .init(x: 0, y: 0, width: 5, height: 5)
+        circle.backgroundColor = UIColor(named: "BlackLabels")
+        circle.layer.cornerRadius = circle.frame.width / 2
+        circle.clipsToBounds = true
+        return circle
+    }()
+    
+    lazy var taskNameI: UILabel = {
+        let position = UILabel()
+        position.text = "New features implementation on iOS app."
+        position.font = UIFont(name: "Nunito-SemiBold", size: 12)
+        position.textColor = UIColor(named: "GrayLabels")
+        position.textAlignment = .left
+        return position
+    }()
+    
+    lazy var taskNameII: UILabel = {
+        let position = UILabel()
+        position.text = "iOS application maintenance."
+        position.font = UIFont(name: "Nunito-SemiBold", size: 12)
+        position.textColor = UIColor(named: "GrayLabels")
+        position.textAlignment = .left
+        return position
+    }()
+    
+    lazy var taskNameIII: UILabel = {
+        let position = UILabel()
+        position.text = "Improving existing iOS app."
+        position.font = UIFont(name: "Nunito-SemiBold", size: 12)
+        position.textColor = UIColor(named: "GrayLabels")
+        position.textAlignment = .left
+        return position
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -37,200 +160,74 @@ class ExperienceViewCell: UITableViewCell {
         
         backgroundColor = UIColor.clear
 
-        addSubview(line)
-        sendSubviewToBack(line)
+        addSubview(cellView)
+        cellView.addSubview(line)
+        cellView.sendSubviewToBack(line)
+        cellView.addSubview(positionName)
+        cellView.addSubview(locationName)
+        cellView.addSubview(circleTaskI)
+        cellView.addSubview(circleTaskII)
+        cellView.addSubview(circleTaskIII)
+        cellView.addSubview(taskNameI)
+        cellView.addSubview(taskNameII)
+        cellView.addSubview(taskNameIII)
         
+        cellView.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
+        positionName.translatesAutoresizingMaskIntoConstraints = false
+        locationName.translatesAutoresizingMaskIntoConstraints = false
+        circleTaskI.translatesAutoresizingMaskIntoConstraints = false
+        circleTaskII.translatesAutoresizingMaskIntoConstraints = false
+        circleTaskIII.translatesAutoresizingMaskIntoConstraints = false
+        taskNameI.translatesAutoresizingMaskIntoConstraints = false
+        taskNameII.translatesAutoresizingMaskIntoConstraints = false
+        taskNameIII.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
         
-            line.widthAnchor.constraint(equalToConstant: 4),
-            line.heightAnchor.constraint(equalToConstant: 600),
-            line.topAnchor.constraint(equalTo: topAnchor),
-            line.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            cellView.topAnchor.constraint(equalTo: topAnchor),
+            cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            cellView.heightAnchor.constraint(equalToConstant: 180),
+            
+            line.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
+            line.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),
+            line.widthAnchor.constraint(equalToConstant: 6),
+            line.heightAnchor.constraint(equalToConstant: 100),
+            
+            positionName.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20),
+            positionName.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 10),
+            
+            locationName.topAnchor.constraint(equalTo: positionName.bottomAnchor),
+            locationName.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 10),
+            
+            circleTaskI.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 20),
+            circleTaskI.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 20),
+            circleTaskI.widthAnchor.constraint(equalToConstant: 5),
+            circleTaskI.heightAnchor.constraint(equalToConstant: 5),
+            
+            circleTaskII.topAnchor.constraint(equalTo: circleTaskI.bottomAnchor, constant: 20),
+            circleTaskII.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 20),
+            circleTaskII.widthAnchor.constraint(equalToConstant: 5),
+            circleTaskII.heightAnchor.constraint(equalToConstant: 5),
+            
+            circleTaskIII.topAnchor.constraint(equalTo: circleTaskII.bottomAnchor, constant: 20),
+            circleTaskIII.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 20),
+            circleTaskIII.widthAnchor.constraint(equalToConstant: 5),
+            circleTaskIII.heightAnchor.constraint(equalToConstant: 5),
+            
+            taskNameI.centerYAnchor.constraint(equalTo: circleTaskI.centerYAnchor),
+            taskNameI.leadingAnchor.constraint(equalTo: circleTaskI.trailingAnchor, constant: 5),
+            
+            taskNameII.centerYAnchor.constraint(equalTo: circleTaskII.centerYAnchor),
+            taskNameII.leadingAnchor.constraint(equalTo: circleTaskII.trailingAnchor, constant: 5),
+            
+            taskNameIII.centerYAnchor.constraint(equalTo: circleTaskIII.centerYAnchor),
+            taskNameIII.leadingAnchor.constraint(equalTo: circleTaskIII.trailingAnchor, constant: 5)
             
         
         ])
-        
-        for i in 0..<5 {
-            
-            var circleSpace: CGFloat = 25
-            var positionNameSpace: CGFloat = 20
-            var companysNameSpace: CGFloat = 40
-            var circleISpace: CGFloat = 58
-            var circleIISpace: CGFloat = 72
-            var circleIIISpace: CGFloat = 86
-            var responsabilityISpace: CGFloat = 53
-            var responsabilityIISpace: CGFloat = 69
-            var responsabilityIIISpace: CGFloat = 83
-            
-            
-            if i == 1 {
-                circleSpace += 100
-                positionNameSpace  += 100
-                companysNameSpace  += 100
-                circleISpace  += 100
-                circleIISpace  += 100
-                circleIIISpace  += 100
-                responsabilityISpace  += 100
-                responsabilityIISpace  += 100
-                responsabilityIIISpace  += 100
-            } else if i == 2 {
-                circleSpace += 200
-                positionNameSpace  += 200
-                companysNameSpace  += 200
-                circleISpace  += 200
-                circleIISpace  += 200
-                circleIIISpace  += 200
-                responsabilityISpace  += 200
-                responsabilityIISpace  += 200
-                responsabilityIIISpace  += 200
-            } else if i == 3 {
-                circleSpace += 300
-                positionNameSpace  += 300
-                companysNameSpace  += 300
-                circleISpace  += 300
-                circleIISpace  += 300
-                circleIIISpace  += 300
-                responsabilityISpace  += 300
-                responsabilityIISpace  += 300
-                responsabilityIIISpace  += 300
-            } else if i == 4 {
-                circleSpace += 400
-                positionNameSpace  += 400
-                companysNameSpace  += 400
-                circleISpace  += 400
-                circleIISpace  += 400
-                circleIIISpace  += 400
-                responsabilityISpace  += 400
-                responsabilityIISpace  += 400
-                responsabilityIIISpace  += 400
-            }
-            
-            let position = UILabel()
-            position.text = MyExperienceModel.position[i]
-            position.textColor = UIColor(named: "BlackLabels")
-            position.font = .systemFont(ofSize: 18, weight: .semibold)
-            position.textAlignment = .left
-            
-            let company = UILabel()
-            company.text = MyExperienceModel.companies[i]
-            company.textColor = UIColor(named: "GrayLabels")
-            company.font = .systemFont(ofSize: 10, weight: .medium)
-            company.textAlignment = .left
-            
-            let responsabilityI = UILabel()
-            responsabilityI.text = MyExperienceModel.malt[0]
-            responsabilityI.textColor = UIColor(named: "GrayLabels")
-            responsabilityI.font = .systemFont(ofSize: 10, weight: .regular)
-            responsabilityI.textAlignment = .left
-            responsabilityI.numberOfLines = 0
-            
-            let responsabilityII = UILabel()
-            responsabilityII.text = MyExperienceModel.malt[1]
-            responsabilityII.textColor = UIColor(named: "GrayLabels")
-            responsabilityII.font = .systemFont(ofSize: 10, weight: .regular)
-            responsabilityII.textAlignment = .left
-            responsabilityII.numberOfLines = 0
-            
-            let responsabilityIII = UILabel()
-            responsabilityIII.text = MyExperienceModel.malt[2]
-            responsabilityIII.textColor = UIColor(named: "GrayLabels")
-            responsabilityIII.font = .systemFont(ofSize: 10, weight: .regular)
-            responsabilityIII.textAlignment = .left
-            responsabilityIII.numberOfLines = 0
-            
-            if i == 1 {
-                responsabilityI.text = MyExperienceModel.skySwitzerland[0]
-                responsabilityII.text = MyExperienceModel.skySwitzerland[1]
-                responsabilityIII.text = MyExperienceModel.skySwitzerland[2]
-            } else if i == 2 {
-                responsabilityI.text = MyExperienceModel.eccosalva[0]
-                responsabilityII.text = MyExperienceModel.eccosalva[1]
-                responsabilityIII.text = MyExperienceModel.eccosalva[2]
-            } else if i == 3 {
-                responsabilityI.text = MyExperienceModel.arcor[0]
-                responsabilityII.text = MyExperienceModel.arcor[1]
-                responsabilityIII.text = MyExperienceModel.arcor[2]
-            } else if i == 4 {
-                responsabilityI.text = MyExperienceModel.motiva[0]
-                responsabilityII.text = MyExperienceModel.motiva[1]
-                responsabilityIII.text = MyExperienceModel.motiva[2]
-            }
-            
-            
-            
-            let bigCircle = UIImageView()
-            bigCircle.frame = .init(x: 0, y: 0, width: 12, height: 12)
-            bigCircle.image = UIImage(named: "circle")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-            
-            let circleI = UIImageView()
-            circleI.frame = .init(x: 0, y: 0, width: 4, height: 4)
-            circleI.image = UIImage(named: "dot")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-            
-            let circleII = UIImageView()
-            circleII.frame = .init(x: 0, y: 0, width: 4, height: 4)
-            circleII.image = UIImage(named: "dot")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-            
-            let circleIII = UIImageView()
-            circleIII.frame = .init(x: 0, y: 0, width: 4, height: 4)
-            circleIII.image = UIImage(named: "dot")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-            
-            addSubview(bigCircle)
-            addSubview(position)
-            addSubview(company)
-            addSubview(circleI)
-            addSubview(responsabilityI)
-            addSubview(circleII)
-            addSubview(responsabilityII)
-            addSubview(circleIII)
-            addSubview(responsabilityIII)
-            
-            bigCircle.translatesAutoresizingMaskIntoConstraints = false
-            position.translatesAutoresizingMaskIntoConstraints = false
-            company.translatesAutoresizingMaskIntoConstraints = false
-            circleI.translatesAutoresizingMaskIntoConstraints = false
-            responsabilityI.translatesAutoresizingMaskIntoConstraints = false
-            circleII.translatesAutoresizingMaskIntoConstraints = false
-            responsabilityII.translatesAutoresizingMaskIntoConstraints = false
-            circleIII.translatesAutoresizingMaskIntoConstraints = false
-            responsabilityIII.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-            
-                bigCircle.topAnchor.constraint(equalTo: topAnchor, constant: circleSpace),
-                bigCircle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
-                
-                position.topAnchor.constraint(equalTo: topAnchor, constant: positionNameSpace),
-                position.leadingAnchor.constraint(equalTo: bigCircle.trailingAnchor, constant: 10),
-                
-                company.topAnchor.constraint(equalTo: topAnchor, constant: companysNameSpace),
-                company.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38),
-                
-                circleI.topAnchor.constraint(equalTo: topAnchor, constant: circleISpace),
-                circleI.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
-                
-                responsabilityI.topAnchor.constraint(equalTo: topAnchor, constant: responsabilityISpace),
-                responsabilityI.leadingAnchor.constraint(equalTo: circleI.trailingAnchor, constant: 5),
-                
-                circleII.topAnchor.constraint(equalTo: topAnchor, constant: circleIISpace),
-                circleII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
-                
-                responsabilityII.topAnchor.constraint(equalTo: topAnchor, constant: responsabilityIISpace),
-                responsabilityII.leadingAnchor.constraint(equalTo: circleII.trailingAnchor, constant: 5),
-                
-                circleIII.topAnchor.constraint(equalTo: topAnchor, constant: circleIIISpace),
-                circleIII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
-                
-                responsabilityIII.topAnchor.constraint(equalTo: topAnchor, constant: responsabilityIIISpace),
-                responsabilityIII.leadingAnchor.constraint(equalTo: circleIII.trailingAnchor, constant: 5),
-                
-                
-            
-            ])
-            
-        }
-        
         
     }
     

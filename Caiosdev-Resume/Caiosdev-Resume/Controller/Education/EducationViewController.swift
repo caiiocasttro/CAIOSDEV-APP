@@ -5,10 +5,10 @@
 //  Created by Caio Chaves on 07.10.2023.
 //
 
+import SafariServices
 import UIKit
 
-class EducationViewController: UIViewController, contactSheetProtocol {
-    
+class EducationViewController: UIViewController, contactSheetProtocol, certificatePage {
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -37,8 +37,8 @@ class EducationViewController: UIViewController, contactSheetProtocol {
     
     lazy var line: UIView = {
         let line = UIView()
-        line.backgroundColor = UIColor(named: "BlackLabels")
-        line.layer.cornerRadius = 1
+        line.backgroundColor = UIColor(named: "BlackSecondary")
+        line.layer.cornerRadius = 2.5
         line.clipsToBounds = true
         return line
     }()
@@ -56,7 +56,7 @@ class EducationViewController: UIViewController, contactSheetProtocol {
     lazy var titlePartII: UILabel = {
         let name = UILabel()
         name.text = "Education"
-        name.textColor = UIColor(named: "OrangeTitle")
+        name.textColor = UIColor.white
         name.font = UIFont(name: "Nunito-Black", size: 60)
         name.textAlignment = .left
         name.numberOfLines = 0
@@ -66,7 +66,7 @@ class EducationViewController: UIViewController, contactSheetProtocol {
     lazy var titlePage: UILabel = {
         let title = UILabel()
         title.text = "Scroll up to know more!"
-        title.textColor = UIColor(named: "BlackLabels")
+        title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
@@ -165,8 +165,8 @@ class EducationViewController: UIViewController, contactSheetProtocol {
             educationView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
             
             line.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
-            line.widthAnchor.constraint(equalToConstant: 30),
-            line.heightAnchor.constraint(equalToConstant: 2),
+            line.widthAnchor.constraint(equalToConstant: 35),
+            line.heightAnchor.constraint(equalToConstant: 5),
             line.centerXAnchor.constraint(equalTo: educationView.centerXAnchor),
             
             titlePage.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 20),
@@ -195,8 +195,14 @@ class EducationViewController: UIViewController, contactSheetProtocol {
             sheet.largestUndimmedDetentIdentifier = .medium
             sheet.preferredCornerRadius = 15
         }
-        present(vc, animated: true)
+        UIView.animate(withDuration: 0.3) {
+            self.present(vc, animated: true)
+        }
         
+    }
+    
+    func certificateView(view: UIViewController) {
+        navigationController?.present(view, animated: true)
     }
     
 }
@@ -214,6 +220,7 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as! CertificateViewCell
             cell.isUserInteractionEnabled = false
+            cell.delegate = self
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell

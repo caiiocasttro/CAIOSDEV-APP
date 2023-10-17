@@ -5,7 +5,14 @@
 //  Created by Caio Chaves on 11.10.2023.
 //
 
+import SafariServices
 import UIKit
+
+protocol certificatePage {
+    
+    func certificateView(view: UIViewController)
+    
+}
 
 class CertificateViewCell: UITableViewCell {
     
@@ -32,10 +39,13 @@ class CertificateViewCell: UITableViewCell {
         title.textAlignment = .left
         return title
     }()
+    
+    var delegate: certificatePage?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureLayout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -46,7 +56,7 @@ class CertificateViewCell: UITableViewCell {
     private func configureLayout() {
         
         var iconSpace: CGFloat = 100
-        var certificateNameSpace: CGFloat = 110
+        var certificateNameSpace: CGFloat = 102
         var schoolNameSpace: CGFloat = 135
         var dateSpace: CGFloat = 150
         
@@ -97,11 +107,11 @@ class CertificateViewCell: UITableViewCell {
             iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
             iconImage.image = UIImage(named: "certificate")
             
-            let certificateTitle = UILabel()
-            certificateTitle.attributedText = underlineString
-            certificateTitle.textColor = UIColor(named: "BlackLabels")
-            certificateTitle.font = UIFont(name: "Nunito-Bold", size: 18)
-            certificateTitle.textAlignment = .left
+            let certificateTitle = UIButton()
+            certificateTitle.setAttributedTitle(underlineString, for: .normal)
+            certificateTitle.titleLabel?.textColor = UIColor(named: "BlackLabels")
+            certificateTitle.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
+            certificateTitle.titleLabel?.textAlignment = .left
             
             let schoolName = UILabel()
             schoolName.text = "Udemy"
@@ -143,7 +153,21 @@ class CertificateViewCell: UITableViewCell {
             
             ])
             
+            certificateTitle.addTarget(self, action: #selector(certificatePageDidTapped), for: .touchUpInside)
+            
         }
+        
+    }
+    
+    //Certificate button target
+    @objc func certificatePageDidTapped() {
+        guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+        
+        let vc = SFSafariViewController(url: url )
+        vc.modalPresentationStyle = .pageSheet
+        
+        delegate?.certificateView(view: vc)
+        
         
     }
 

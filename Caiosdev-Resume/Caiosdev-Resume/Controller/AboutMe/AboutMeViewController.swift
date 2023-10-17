@@ -39,8 +39,8 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     
     lazy var line: UIView = {
         let line = UIView()
-        line.backgroundColor = UIColor(named: "BlackLabels")
-        line.layer.cornerRadius = 1
+        line.backgroundColor = UIColor(named: "BlackSecondary")
+        line.layer.cornerRadius = 2.5
         line.clipsToBounds = true
         return line
     }()
@@ -58,7 +58,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     lazy var myName: UILabel = {
         let name = UILabel()
         name.text = "I am Caio!"
-        name.textColor = UIColor(named: "OrangeTitle")
+        name.textColor = UIColor.white
         name.font = UIFont(name: "Nunito-Black", size: 60)
         name.textAlignment = .left
         name.numberOfLines = 0
@@ -68,7 +68,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     lazy var titlePage: UILabel = {
         let title = UILabel()
         title.text = "About Me"
-        title.textColor = UIColor(named: "BlackLabels")
+        title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
@@ -105,7 +105,6 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     private func configureLayout() {
         
         let sheetHeightSpace = (UIScreen.main.bounds.height * 0.7) + 5
-        let helloHeightSpace = (UIScreen.main.bounds.height * 0.7) + 5
         
         
         //Configuring background
@@ -182,8 +181,8 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             line.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
-            line.widthAnchor.constraint(equalToConstant: 30),
-            line.heightAnchor.constraint(equalToConstant: 2),
+            line.widthAnchor.constraint(equalToConstant: 35),
+            line.heightAnchor.constraint(equalToConstant: 5),
             line.centerXAnchor.constraint(equalTo: aboutMeView.centerXAnchor),
             
             titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 20),
@@ -228,9 +227,13 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.largestUndimmedDetentIdentifier = .medium
-            sheet.preferredCornerRadius = 15
+            sheet.preferredCornerRadius = 20
         }
-        present(vc, animated: true)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.present(vc, animated: true)
+        }
+        
         
     }
     

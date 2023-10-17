@@ -218,7 +218,7 @@ extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.date = HobbiesModel.dates[indexPath.row]
         cell.isUserInteractionEnabled = false
         
-        if indexPath.row == 6 {
+        if indexPath.row == 5 {
             cell.thoughts.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -20).isActive = true
         }
         

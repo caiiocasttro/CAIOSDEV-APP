@@ -28,7 +28,7 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
     
     lazy var titlePartII: UILabel = {
         let name = UILabel()
-        name.text = "Hobbies"
+        name.text = "Passions"
         name.textColor = UIColor.white
         name.font = UIFont(name: "Nunito-Black", size: 60)
         name.textAlignment = .left
@@ -65,17 +65,28 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Welcome to my life :)"
+        title.text = "All the versions of me 😄"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
+    }()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = UIColor.clear
+        tableView.register(HobbiesViewCell.self, forCellReuseIdentifier: HobbiesIdentifier.main.rawValue)
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        return tableView
     }()
 
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
 
@@ -87,7 +98,8 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
         let height = UIScreen.main.bounds.height
         
         let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
-        background.image = UIImage(named: "travel")
+        background.image = UIImage(named: "passions")
+        background.contentMode = .scaleAspectFill
         
         let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         backgroundSheet.image = UIImage(named: "background")
@@ -105,6 +117,7 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
         hobbiesView.addSubview(line)
         hobbiesView.addSubview(titlePage)
         hobbiesView.addSubview(contactButton)
+        hobbiesView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
@@ -112,9 +125,11 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
         titlePartII.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         hobbiesView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         contactButton.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
         NSLayoutConstraint.activate([
@@ -155,7 +170,13 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
             line.centerXAnchor.constraint(equalTo: hobbiesView.centerXAnchor),
             
             titlePage.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: hobbiesView.leadingAnchor, constant: 20)
+            titlePage.leadingAnchor.constraint(equalTo: hobbiesView.leadingAnchor, constant: 20),
+            
+            tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
+            tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            
         
         ])
         
@@ -181,4 +202,27 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
         
     }
 
+}
+
+extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return HobbiesModel.pictures.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: HobbiesIdentifier.main.rawValue, for: indexPath) as! HobbiesViewCell
+        cell.backgroundColor = UIColor.clear
+        cell.image = HobbiesModel.pictures[indexPath.row]
+        cell.text = HobbiesModel.thoughts[indexPath.row]
+        cell.date = HobbiesModel.dates[indexPath.row]
+        cell.isUserInteractionEnabled = false
+        
+        if indexPath.row == 6 {
+            cell.thoughts.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -20).isActive = true
+        }
+        
+        return cell
+    }
+    
 }

@@ -64,7 +64,7 @@ class CareerGoalsViewController: UIViewController, contactSheetProtocol {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Dreams to Reality!"
+        title.text = "Dreams to Reality 🚀"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left

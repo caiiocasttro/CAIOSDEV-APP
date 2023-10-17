@@ -65,7 +65,7 @@ class EducationViewController: UIViewController, contactSheetProtocol, certifica
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Scroll up to know more!"
+        title.text = "Scroll up to know more 📚"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left

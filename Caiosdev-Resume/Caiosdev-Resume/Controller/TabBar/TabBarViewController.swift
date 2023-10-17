@@ -69,8 +69,8 @@ class TabBarViewController: UITabBarController {
         items[3].image = UIImage(named: "book")
         items[3].title = "Experience"
         
-        items[4].image = UIImage(named: "fire")
-        items[4].title = "Hobbies"
+        items[4].image = UIImage(named: "Heart")
+        items[4].title = "Passions"
         
         
     }

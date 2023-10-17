@@ -67,7 +67,7 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "About Me"
+        title.text = "About Me 🤔"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left

@@ -26,3 +26,7 @@ enum EducationIdentifiers: String {
 enum ExperienceIdentifiers: String {
     case main = "ExperienceViewCell"
 }
+
+enum HobbiesIdentifier: String {
+    case main = "HobbiesViewCell"
+}

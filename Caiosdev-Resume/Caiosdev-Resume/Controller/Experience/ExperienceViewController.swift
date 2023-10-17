@@ -64,7 +64,7 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Professional Path Stories"
+        title.text = "Professional Path Stories 👨🏾‍💻"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left

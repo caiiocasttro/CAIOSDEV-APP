@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E57B35952ADEDCF200F037DC /* HobbiesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */; };
 		E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */; };
 		E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */; };
 		E5BF06E22AD9435700195F5F /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06E12AD9435700195F5F /* EducationModel.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewCell.swift; sourceTree = "<group>"; };
 		E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeModel.swift; sourceTree = "<group>"; };
 		E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerGoalsModel.swift; sourceTree = "<group>"; };
 		E5BF06E12AD9435700195F5F /* EducationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationModel.swift; sourceTree = "<group>"; };
@@ -73,7 +75,6 @@
 		E5C619932AD1A198007C1EFB /* HobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewController.swift; sourceTree = "<group>"; };
 		E5C619952AD1A4AD007C1EFB /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		E5C6199F2AD3FBBC007C1EFB /* ContactsSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSheetViewController.swift; sourceTree = "<group>"; };
-		E5C619AB2AD4774B007C1EFB /* typing.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = typing.mp4; path = ../../../../../../../../../Downloads/typing.mp4; sourceTree = "<group>"; };
 		E5C619AC2AD54092007C1EFB /* AboutMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeTableViewCell.swift; sourceTree = "<group>"; };
 		E5C619AF2AD554C4007C1EFB /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		E5C619B12AD55BC4007C1EFB /* AdaptativeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptativeConstraints.swift; sourceTree = "<group>"; };
@@ -215,7 +216,6 @@
 				E5C619A52AD42A7C007C1EFB /* Experience */,
 				E5C619A42AD42A72007C1EFB /* Hobbies */,
 				E5C619812AD196B2007C1EFB /* LaunchScreen.storyboard */,
-				E5C619AB2AD4774B007C1EFB /* typing.mp4 */,
 				E5C6197F2AD196B2007C1EFB /* Assets.xcassets */,
 			);
 			path = View;
@@ -294,6 +294,7 @@
 		E5C619A42AD42A72007C1EFB /* Hobbies */ = {
 			isa = PBXGroup;
 			children = (
+				E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */,
 			);
 			path = Hobbies;
 			sourceTree = "<group>";
@@ -425,6 +426,7 @@
 				E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */,
 				E5C619BC2AD5B811007C1EFB /* SkillsViewCell.swift in Sources */,
 				E5BF06E22AD9435700195F5F /* EducationModel.swift in Sources */,
+				E57B35952ADEDCF200F037DC /* HobbiesViewCell.swift in Sources */,
 				E5C619B22AD55BC4007C1EFB /* AdaptativeConstraints.swift in Sources */,
 				E5C619B62AD58E0E007C1EFB /* LanguagesViewCell.swift in Sources */,
 				E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */,

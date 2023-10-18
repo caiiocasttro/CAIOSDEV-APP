@@ -93,21 +93,25 @@ class SkillsViewCell: UITableViewCell {
                 let levelName = UILabel()
                 levelName.text = CareerGoalsModel.skillsLevel[i]
                 levelName.textColor = UIColor.white
-                levelName.font = UIFont(name: "Nunito-SemiBold", size: 12)
+                levelName.font = UIFont(name: "Nunito-Bold", size: 12)
                 levelName.textAlignment = .center
                 
                 let background = UIView()
-                if i == 3 {
-                    background.backgroundColor = UIColor(named: "YellowLevel")
-                } else {
-                    background.backgroundColor = UIColor(named: "GreenLevel")
-                }
+            background.frame = .init(x: 0, y: 0, width: 100, height: 20)
                 background.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
                 background.layer.shadowRadius = 4
                 background.layer.shadowOpacity = 0.5
                 background.layer.shadowOffset = CGSize(width: 0, height: 0)
                 background.layer.cornerRadius = 5
                 background.clipsToBounds = true
+            
+            let gradient = CAGradientLayer()
+            gradient.frame = background.bounds
+            gradient.colors = [UIColor(red: 0.61, green: 0.17, blue: 0.47, alpha: 0.7).cgColor, UIColor(red: 0.8, green: 0.06, blue: 0.3, alpha: 0.8).cgColor, UIColor(red: 0.88, green: 0.3, blue: 0.16, alpha: 0.8).cgColor, UIColor(red: 0.99, green: 0.52, blue: 0.12, alpha: 0.8).cgColor]
+            gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+            
+            background.layer.addSublayer(gradient)
                 
                 cellView.addSubview(skill)
                 cellView.addSubview(background)

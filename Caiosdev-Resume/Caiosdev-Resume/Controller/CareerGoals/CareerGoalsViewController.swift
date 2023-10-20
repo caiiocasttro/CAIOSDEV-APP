@@ -104,6 +104,7 @@ class CareerGoalsViewController: UIViewController {
         
         let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         background.image = UIImage(named: "studying")
+        background.contentMode = .scaleAspectFill
         
         let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         backgroundSheet.image = UIImage(named: "background")

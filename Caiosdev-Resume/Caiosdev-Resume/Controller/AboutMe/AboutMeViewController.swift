@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutMeViewController: UIViewController, contactSheetProtocol {
+class AboutMeViewController: UIViewController {
     
     //MARK: Initializer
     private let sheet = ContactsSheetViewController()
@@ -223,7 +223,6 @@ class AboutMeViewController: UIViewController, contactSheetProtocol {
     @objc func pullContactView() {
         
         let vc = ContactsSheetViewController()
-        vc.delegate = self
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.largestUndimmedDetentIdentifier = .medium

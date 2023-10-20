@@ -210,6 +210,8 @@
 		E5C6198B2AD19833007C1EFB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E5C619812AD196B2007C1EFB /* LaunchScreen.storyboard */,
+				E5C6197F2AD196B2007C1EFB /* Assets.xcassets */,
 				E5BF06EC2AD9FEF200195F5F /* CustomFonts */,
 				E5C619AE2AD55490007C1EFB /* CustomView */,
 				E5C619A82AD42A9C007C1EFB /* AboutMe */,
@@ -217,8 +219,6 @@
 				E5C619A62AD42A83007C1EFB /* Education */,
 				E5C619A52AD42A7C007C1EFB /* Experience */,
 				E5C619A42AD42A72007C1EFB /* Hobbies */,
-				E5C619812AD196B2007C1EFB /* LaunchScreen.storyboard */,
-				E5C6197F2AD196B2007C1EFB /* Assets.xcassets */,
 			);
 			path = View;
 			sourceTree = "<group>";

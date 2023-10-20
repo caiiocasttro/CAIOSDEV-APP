@@ -123,7 +123,7 @@ class HobbiesViewCell: UITableViewCell {
             thoughts.topAnchor.constraint(equalTo: imageI.bottomAnchor, constant: 5),
             thoughts.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             thoughts.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            thoughts.bottomAnchor.constraint(equalTo: bottomAnchor)
+            thoughts.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
             
         
         ])

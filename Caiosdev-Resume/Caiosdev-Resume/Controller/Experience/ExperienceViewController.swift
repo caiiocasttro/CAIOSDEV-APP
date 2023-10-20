@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExperienceViewController: UIViewController, contactSheetProtocol {
+class ExperienceViewController: UIViewController {
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -186,7 +186,6 @@ class ExperienceViewController: UIViewController, contactSheetProtocol {
     @objc func pullContactView() {
         
         let vc = ContactsSheetViewController()
-        vc.delegate = self
         
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]

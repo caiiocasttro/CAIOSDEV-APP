@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HobbiesViewController: UIViewController, contactSheetProtocol {
+class HobbiesViewController: UIViewController {
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -188,7 +188,6 @@ class HobbiesViewController: UIViewController, contactSheetProtocol {
     @objc func pullContactView() {
         
         let vc = ContactsSheetViewController()
-        vc.delegate = self
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.largestUndimmedDetentIdentifier = .medium
@@ -217,11 +216,6 @@ extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.text = HobbiesModel.thoughts[indexPath.row]
         cell.date = HobbiesModel.dates[indexPath.row]
         cell.isUserInteractionEnabled = false
-        
-        if indexPath.row == 5 {
-            cell.thoughts.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -20).isActive = true
-        }
-        
         return cell
     }
     

@@ -29,8 +29,6 @@ struct MyCertificateModel {
     
     static let webAndMobileURL: String = "https://www.udemy.com/certificate/UC-4d1806b9-6ecd-4966-8f97-9444a0b76bca/"
     
-    static let userExperience: String = "https://ude.my/UC-484cc9a3-b965-4374-a8c9-a20785e2290f"
-    
-    static let urls: [String] = [iOSDevelopmentURL, webAndMobileURL, userExperience]
+    static let userExperience: String = "https://www.udemy.com/certificate/UC-484cc9a3-b965-437f-a8c9-a20785e2290f/"
     
 }

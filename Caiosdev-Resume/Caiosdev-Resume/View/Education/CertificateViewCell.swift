@@ -8,12 +8,6 @@
 import SafariServices
 import UIKit
 
-protocol certificatePage {
-    
-    func certificateView(view: UIViewController)
-    
-}
-
 class CertificateViewCell: UITableViewCell {
     
     //MARK: Properties
@@ -86,8 +80,6 @@ class CertificateViewCell: UITableViewCell {
         date.textAlignment = .left
         return date
     }()
-    
-    var delegate: certificatePage?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

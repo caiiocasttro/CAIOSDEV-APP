@@ -5,10 +5,9 @@
 //  Created by Caio Chaves on 09.10.2023.
 //
 
+import MessageUI
+import SafariServices
 import UIKit
-
-protocol contactSheetProtocol {
-    }
 
 class ContactsSheetViewController: UIViewController {
     
@@ -88,12 +87,12 @@ class ContactsSheetViewController: UIViewController {
         return image
     }()
     
-    lazy var phoneNumber: UILabel = {
-        let label = UILabel()
-        label.text = "+41 76 834 86 65"
-        label.font = UIFont(name: "Nunito-Bold", size: 14)
-        label.textColor = UIColor(named: "BlackLabels")
-        label.textAlignment = .left
+    lazy var phoneNumber: UIButton = {
+        let label = UIButton()
+        label.setTitle(ContactsModel.phoneNumber, for: .normal)
+        label.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 14)
+        label.setTitleColor(UIColor(named: "BlackLabels"), for: .normal)
+        label.titleLabel?.textAlignment = .left
         return label
     }()
     
@@ -113,12 +112,12 @@ class ContactsSheetViewController: UIViewController {
         return icon
     }()
     
-    lazy var emailAddress: UILabel = {
-        let email = UILabel()
-        email.text = "caiojob@outlook.pt"
-        email.font = UIFont(name: "Nunito-Bold", size: 14)
-        email.textColor = UIColor(named: "BlackLabels")
-        email.textAlignment = .left
+    lazy var emailAddress: UIButton = {
+        let email = UIButton()
+        email.setTitle(ContactsModel.emailAddress, for: .normal)
+        email.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 14)
+        email.setTitleColor(UIColor(named: "BlackLabels"), for: .normal)
+        email.titleLabel?.textAlignment = .left
         return email
     }()
     
@@ -138,16 +137,14 @@ class ContactsSheetViewController: UIViewController {
         return icon
     }()
     
-    lazy var linkedinLink: UILabel = {
-        let link = UILabel()
-        link.text = "linkedin.com/in/caio-chaves/"
-        link.font = UIFont(name: "Nunito-Bold", size: 14)
-        link.textColor = UIColor(named: "BlackLabels")
-        link.textAlignment = .left
+    lazy var linkedinLink: UIButton = {
+        let link = UIButton()
+        link.setTitle("linkedin.com/in/caio-chaves/", for: .normal)
+        link.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 14)
+        link.setTitleColor(UIColor(named: "BlackLabels"), for: .normal)
+        link.titleLabel?.textAlignment = .left
         return link
     }()
-    
-    var delegate: contactSheetProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -263,11 +260,10 @@ class ContactsSheetViewController: UIViewController {
         
         ])
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        panGesture.view?.layer.cornerRadius = 15
-                view.addGestureRecognizer(panGesture)
-        
         dismissButton.addTarget(self, action: #selector(dismissButtonDidTapped), for: .touchUpInside)
+        phoneNumber.addTarget(self, action: #selector(contactDidTapped), for: .touchUpInside)
+        emailAddress.addTarget(self, action: #selector(emailDidTapped), for: .touchUpInside)
+        linkedinLink.addTarget(self, action: #selector(linkedinDidTapped), for: .touchUpInside)
     }
     
     //DismissButto
@@ -275,25 +271,91 @@ class ContactsSheetViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc private func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
-            let translation = recognizer.translation(in: view)
+    //Linkedin page
+    @objc func linkedinDidTapped() {
         
-            switch recognizer.state {
-            case .changed:
-                if translation.y > 0 {
-                    view.transform = CGAffineTransform(translationX: 0, y: translation.y)
-                }
-            case .ended:
-                let velocity = recognizer.velocity(in: view)
-                if velocity.y > 100 {
-                    dismiss(animated: true, completion: nil)
-                } else {
-                    UIView.animate(withDuration: 0.3) {
-                        self.view.transform = .identity
-                    }
-                }
-            default:
-                break
+        guard let url = URL(string: ContactsModel.linkedin) else { return }
+        
+        let vc = SFSafariViewController(url: url)
+        vc.modalPresentationStyle = .pageSheet
+        present(vc, animated: true)
+        
+    }
+    
+    @objc func contactDidTapped() {
+        
+        
+        //Creating the UIAlertController(This will represents the alert that will show up on the bottom) with title and message setted to nil
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Creating the action to copy the number
+        let copyNumber = UIAlertAction(title: "Copy Number", style: .default) { (action) in
+            
+            UIPasteboard.general.string = ContactsModel.phoneNumber
+            
+        }
+        
+        //Creating the action to call to this number
+        let callMe = UIAlertAction(title: "Call Me", style: .default) { (action) in
+            
+            if let phoneURL = URL(string: "tel://\(ContactsModel.phoneNumber)") {
+                
+              if  UIApplication.shared.canOpenURL(phoneURL) {
+                  UIApplication.shared.open(phoneURL)
+              } else {
+                  print("Error to find phoneURL")
+              }
             }
         }
+        
+        //Creating the cancel action
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        //Adding all the actions to the alert
+        alert.addAction(copyNumber)
+        alert.addAction(callMe)
+        alert.addAction(cancel)
+        
+        //Presenting the alert on the view controller
+        present(alert, animated: true)
+    }
+    
+    @objc func emailDidTapped() {
+        
+        //Creating the UIAlertController(This will represents the alert that will show up on the bottom) with title and message setted to nil
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Creating the action to copy the email
+        let copyEmail = UIAlertAction(title: "Copy Email", style: .default) { (action) in
+            
+            UIPasteboard.general.string = ContactsModel.emailAddress
+            
+        }
+        
+        //Creating the action to send email to this email address
+        let sendEmail = UIAlertAction(title: "Send Email", style: .default) { (action) in
+            
+            if let email = ContactsModel.emailAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                if let emailURL = URL(string: "mailTo: \(email)") {
+                    
+                    if UIApplication.shared.canOpenURL(emailURL) {
+                        UIApplication.shared.open(emailURL)
+                    } else {
+                        print("Error to find emailURL")
+                    }
+                }
+            }
+        }
+        
+        //Creating the cancel action
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        //Adding all the actions to the alert
+        alert.addAction(copyEmail)
+        alert.addAction(sendEmail)
+        alert.addAction(cancel)
+        
+        //Presenting the alert on the view controller
+        present(alert, animated: true)
+    }
 }

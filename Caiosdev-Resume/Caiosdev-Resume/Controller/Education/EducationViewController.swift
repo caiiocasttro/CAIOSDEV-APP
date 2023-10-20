@@ -8,7 +8,7 @@
 import SafariServices
 import UIKit
 
-class EducationViewController: UIViewController, contactSheetProtocol, certificatePage {
+class EducationViewController: UIViewController {
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -189,7 +189,6 @@ class EducationViewController: UIViewController, contactSheetProtocol, certifica
     @objc func pullContactView() {
         
         let vc = ContactsSheetViewController()
-        vc.delegate = self
         
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]

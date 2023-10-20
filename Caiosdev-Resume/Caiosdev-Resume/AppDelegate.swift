@@ -11,12 +11,23 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 var window: UIWindow?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         Thread.sleep(forTimeInterval: 2.0)
         
         if #available(iOS 15.0, *) {
             window?.overrideUserInterfaceStyle = .light
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.window?.removeFromSuperview()
+            self.window = nil
+            
+            self.window?.makeKeyAndVisible()
+            
+            
         }
         
         // Override point for customization after application launch.

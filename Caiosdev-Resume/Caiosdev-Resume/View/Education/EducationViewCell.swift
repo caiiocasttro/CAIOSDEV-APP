@@ -9,9 +9,72 @@ import UIKit
 
 class EducationViewCell: UITableViewCell {
     
+    //MARK: Proprieties
+    var school: String? {
+        didSet {
+            guard let string = school else { return }
+            schoolName.text = string
+        }
+    }
+    
+    var graduateInfo: String? {
+        didSet {
+            guard let string = graduateInfo else { return }
+            graduateDescription.text = string
+        }
+    }
+    
     lazy var cellView: UIView = {
         let view = UIView()
         return view
+    }()
+    
+    //MARK: Objects
+    lazy var iconImage: UIImageView = {
+        let iconImage = UIImageView()
+        iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
+        iconImage.image = UIImage(named: "education")
+        return iconImage
+    }()
+    
+    lazy var schoolName: UILabel = {
+        let school = UILabel()
+        school.textColor = UIColor(named: "BlackLabels")
+        school.font = UIFont(name: "Nunito-Bold", size: 18)
+        school.textAlignment = .left
+        return school
+    }()
+    
+    lazy var dotImage: UIImageView = {
+        let dotImage = UIImageView()
+        dotImage.frame = .init(x: 0, y: 0, width: 5, height: 5)
+        dotImage.image = UIImage(named: "dot")
+        return dotImage
+    }()
+    
+    lazy var graduateName: UILabel = {
+        let graduate = UILabel()
+        graduate.text = "Graduated Certificate"
+        graduate.textColor = UIColor(named: "GrayLabels")
+        graduate.font = UIFont(name: "Nunito-SemiBold", size: 12)
+        graduate.textAlignment = .left
+        return graduate
+    }()
+    
+    lazy var dotImageII: UIImageView = {
+        let dotImageII = UIImageView()
+        dotImageII.frame = .init(x: 0, y: 0, width: 5, height: 5)
+        dotImageII.image = UIImage(named: "dot")
+        return dotImageII
+    }()
+    
+    lazy var graduateDescription: UILabel = {
+        let graduateDescription = UILabel()
+        graduateDescription.textColor = UIColor(named: "GrayLabels")
+        graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 12)
+        graduateDescription.textAlignment = .left
+        graduateDescription.numberOfLines = 0
+        return graduateDescription
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -26,121 +89,53 @@ class EducationViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        var iconSpace: CGFloat = 0
-        var schoolSpace: CGFloat = 10
-        var dotImageSpace: CGFloat = 50
-        var dotImageIISpace: CGFloat = 70
-        var graduateSpace: CGFloat = 45
-        var descriptionSpace: CGFloat = 65
+        backgroundColor = UIColor.clear
         
         addSubview(cellView)
+        cellView.addSubview(iconImage)
+        cellView.addSubview(schoolName)
+        cellView.addSubview(dotImage)
+        cellView.addSubview(graduateName)
+        cellView.addSubview(dotImageII)
+        cellView.addSubview(graduateDescription)
 
         cellView.translatesAutoresizingMaskIntoConstraints = false
+        iconImage.translatesAutoresizingMaskIntoConstraints = false
+        schoolName.translatesAutoresizingMaskIntoConstraints = false
+        dotImage.translatesAutoresizingMaskIntoConstraints = false
+        graduateName.translatesAutoresizingMaskIntoConstraints = false
+        dotImageII.translatesAutoresizingMaskIntoConstraints = false
+        graduateDescription.translatesAutoresizingMaskIntoConstraints = false
 
         
         NSLayoutConstraint.activate([
         
             cellView.widthAnchor.constraint(equalTo: widthAnchor),
-            cellView.heightAnchor.constraint(equalToConstant: 290),
             cellView.topAnchor.constraint(equalTo: topAnchor),
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor),
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            cellView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 20),
+            
+            iconImage.topAnchor.constraint(equalTo: topAnchor),
+            iconImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            
+            schoolName.centerYAnchor.constraint(equalTo: iconImage.centerYAnchor),
+            schoolName.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
+            
+            dotImage.topAnchor.constraint(equalTo: schoolName.bottomAnchor, constant: 10),
+            dotImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            
+            graduateName.centerYAnchor.constraint(equalTo: dotImage.centerYAnchor),
+            graduateName.leadingAnchor.constraint(equalTo: dotImage.trailingAnchor, constant: 5),
+            
+            dotImageII.topAnchor.constraint(equalTo: dotImage.bottomAnchor, constant: 10),
+            dotImageII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            
+            graduateDescription.topAnchor.constraint(equalTo: graduateName.bottomAnchor, constant: -1),
+            graduateDescription.leadingAnchor.constraint(equalTo: dotImageII.trailingAnchor, constant: 5),
+            graduateDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
             
         ])
-        
-        
-        for i in 0..<3 {
-            
-            if i == 1  {
-                iconSpace += 100
-                schoolSpace += 100
-                dotImageSpace += 100
-                graduateSpace += 100
-                dotImageIISpace += 100
-                descriptionSpace += 100
-            } else if i == 2 {
-                iconSpace += 100
-                schoolSpace += 100
-                dotImageSpace += 100
-                graduateSpace += 100
-                dotImageIISpace += 100
-                descriptionSpace += 100
-            }
-            
-            let school = UILabel()
-            school.text = MyEducationModel.school[i]
-            school.textColor = UIColor(named: "BlackLabels")
-            school.font = UIFont(name: "Nunito-Bold", size: 18)
-            school.textAlignment = .left
-            
-            let graduate = UILabel()
-            graduate.text = MyEducationModel.graduation
-            graduate.textColor = UIColor(named: "GrayLabels")
-            graduate.font = UIFont(name: "Nunito-SemiBold", size: 12)
-            graduate.textAlignment = .left
-            
-            let graduateDescription = UILabel()
-            graduateDescription.text = MyEducationModel.description[i]
-            graduateDescription.textColor = UIColor(named: "GrayLabels")
-            graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 12)
-            graduateDescription.textAlignment = .left
-            graduateDescription.numberOfLines = 0
-            
-            let iconImage = UIImageView()
-            iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
-            iconImage.image = UIImage(named: "education")
-            
-            let dotImage = UIImageView()
-            dotImage.frame = .init(x: 0, y: 0, width: 5, height: 5)
-            dotImage.image = UIImage(named: "dot")
-            
-            let dotImageII = UIImageView()
-            dotImageII.frame = .init(x: 0, y: 0, width: 5, height: 5)
-            dotImageII.image = UIImage(named: "dot")
-            
-            backgroundColor = UIColor.clear
-            
-            cellView.addSubview(iconImage)
-            cellView.addSubview(school)
-            cellView.addSubview(dotImage)
-            cellView.addSubview(graduate)
-            cellView.addSubview(dotImageII)
-            cellView.addSubview(graduateDescription)
-            
-            
-            iconImage.translatesAutoresizingMaskIntoConstraints = false
-            school.translatesAutoresizingMaskIntoConstraints = false
-            dotImage.translatesAutoresizingMaskIntoConstraints = false
-            graduate.translatesAutoresizingMaskIntoConstraints = false
-            dotImageII.translatesAutoresizingMaskIntoConstraints = false
-            graduateDescription.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                
-                iconImage.topAnchor.constraint(equalTo: topAnchor, constant: iconSpace),
-                iconImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-                
-                school.topAnchor.constraint(equalTo: topAnchor, constant: schoolSpace),
-                school.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
-                
-                dotImage.topAnchor.constraint(equalTo: topAnchor, constant: dotImageSpace),
-                dotImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-                
-                graduate.topAnchor.constraint(equalTo: topAnchor, constant: graduateSpace),
-                graduate.leadingAnchor.constraint(equalTo: dotImage.trailingAnchor, constant: 5),
-                
-                dotImageII.topAnchor.constraint(equalTo: topAnchor, constant: dotImageIISpace),
-                dotImageII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-                
-                graduateDescription.topAnchor.constraint(equalTo: topAnchor, constant: descriptionSpace),
-                graduateDescription.leadingAnchor.constraint(equalTo: dotImageII.trailingAnchor, constant: 5),
-                graduateDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-                
-                
-            ])
-            
-        }
         
     }
     

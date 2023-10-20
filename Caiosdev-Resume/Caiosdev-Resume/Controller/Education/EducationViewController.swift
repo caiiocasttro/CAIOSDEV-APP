@@ -75,13 +75,14 @@ class EducationViewController: UIViewController, contactSheetProtocol, certifica
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(EducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.education.rawValue)
+        tableView.register(MyCertificatesViewCell.self, forCellReuseIdentifier: EducationIdentifiers.title.rawValue)
         tableView.register(CertificateViewCell.self, forCellReuseIdentifier: EducationIdentifiers.certificate.rawValue)
         tableView.backgroundColor = UIColor.clear
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
-
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,25 +211,64 @@ class EducationViewController: UIViewController, contactSheetProtocol, certifica
 //MARK: TableView Delegate & DataSource
 extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as! CertificateViewCell
-            cell.isUserInteractionEnabled = false
-            cell.delegate = self
-            return cell
-        } else {
+        if indexPath.row <= 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
             cell.isUserInteractionEnabled = false
+            cell.school = MyEducationModel.school[indexPath.row]
+            cell.graduateInfo = MyEducationModel.description[indexPath.row]
+            return cell
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.title.rawValue, for: indexPath) as! MyCertificatesViewCell
+            cell.isUserInteractionEnabled = false
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as!
+            CertificateViewCell
+            if indexPath.row == 4 {
+                cell.certificate = MyCertificateModel.cetificateName[0]
+                cell.dateString = MyCertificateModel.date[0]
+            } else if indexPath.row == 5 {
+                cell.certificate = MyCertificateModel.cetificateName[1]
+                cell.dateString = MyCertificateModel.date[1]
+            } else {
+                cell.certificate = MyCertificateModel.cetificateName[2]
+                cell.dateString = MyCertificateModel.date[2]
+            }
+            cell.selectionStyle = .none
             return cell
         }
-        
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 4 {
+            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            
+            let vc = SFSafariViewController(url: url)
+            vc.modalPresentationStyle = .pageSheet
+            self.present(vc, animated: true)
+        } else if indexPath.row == 5 {
+            guard let url = URL(string: MyCertificateModel.userExperience) else { return }
+            
+            let vc = SFSafariViewController(url: url)
+            vc.modalPresentationStyle = .pageSheet
+            self.present(vc, animated: true)
+        } else {
+            guard let url = URL(string: MyCertificateModel.webAndMobileURL) else { return }
+            
+            let vc = SFSafariViewController(url: url)
+            vc.modalPresentationStyle = .pageSheet
+            self.present(vc, animated: true)
+        }
+    }
 }

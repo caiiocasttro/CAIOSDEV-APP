@@ -16,19 +16,34 @@ protocol certificatePage {
 
 class CertificateViewCell: UITableViewCell {
     
+    //MARK: Properties
+    var certificate: String? {
+        didSet {
+            guard let string = certificate else { return }
+            // Defining an attribute for underlining text using an NSAttributedString
+            // I also setted the NSUnderlineStyle attribute to single wich represents only one line
+            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+            
+            // I created an NSAttributedString using the NSAttributedString initializer.
+            // I provided the original text string and the underlineAttribute to apply the underline style to the text.
+            let underlineString = NSAttributedString(string: string, attributes: underlineAttribute)
+            
+            certificateTitle.attributedText = underlineString
+        }
+    }
+    
+    var dateString: String? {
+        didSet {
+            guard let string = dateString else { return }
+            
+            date.text = string
+        }
+    }
+    
     //MARK: Objects
     lazy var cellView: UIView = {
         let view = UIView()
         return view
-    }()
-    
-    lazy var cellTitle: UILabel = {
-        let title = UILabel()
-        title.text = "My certificates"
-        title.textColor = UIColor(named: "BlackSecondary")
-        title.font = UIFont(name: "Nunito-Black", size: 20)
-        title.textAlignment = .left
-        return title
     }()
     
     lazy var subtitle: UILabel = {
@@ -38,6 +53,38 @@ class CertificateViewCell: UITableViewCell {
         title.font = UIFont(name: "Nunito-SemiBold", size: 14)
         title.textAlignment = .left
         return title
+    }()
+    
+    lazy var iconImage: UIImageView = {
+        let iconImage = UIImageView()
+        iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
+        iconImage.image = UIImage(named: "certificate")
+        return iconImage
+    }()
+    
+    lazy var certificateTitle: UILabel = {
+        let certificateTitle = UILabel()
+        certificateTitle.textColor = UIColor(named: "BlackLabels")
+        certificateTitle.font = UIFont(name: "Nunito-Bold", size: 18)
+        certificateTitle.textAlignment = .left
+        return certificateTitle
+    }()
+    
+    lazy var schoolName: UILabel = {
+        let schoolName = UILabel()
+        schoolName.text = "Udemy"
+        schoolName.textColor = UIColor(named: "GrayLabels")
+        schoolName.font = UIFont(name: "Nunito-SemiBold", size: 14)
+        schoolName.textAlignment = .left
+        return schoolName
+    }()
+    
+    lazy var date: UILabel = {
+        let date = UILabel()
+        date.textColor = UIColor(named: "GrayLabels")
+        date.font = UIFont(name: "Nunito-Medium", size: 12)
+        date.textAlignment = .left
+        return date
     }()
     
     var delegate: certificatePage?
@@ -55,121 +102,43 @@ class CertificateViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         
-        var iconSpace: CGFloat = 100
-        var certificateNameSpace: CGFloat = 102
-        var schoolNameSpace: CGFloat = 135
-        var dateSpace: CGFloat = 150
+        backgroundColor = UIColor.clear
         
         addSubview(cellView)
-        cellView.addSubview(cellTitle)
+        cellView.addSubview(iconImage)
+        cellView.addSubview(certificateTitle)
+        cellView.addSubview(schoolName)
+        cellView.addSubview(date)
         
         cellView.translatesAutoresizingMaskIntoConstraints = false
-        cellTitle.translatesAutoresizingMaskIntoConstraints = false
+        iconImage.translatesAutoresizingMaskIntoConstraints = false
+        certificateTitle.translatesAutoresizingMaskIntoConstraints = false
+        schoolName.translatesAutoresizingMaskIntoConstraints = false
+        date.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             
             cellView.widthAnchor.constraint(equalTo: widthAnchor),            
-            cellView.heightAnchor.constraint(equalToConstant: 380),
             cellView.topAnchor.constraint(equalTo: topAnchor),
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor),
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            cellView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        
-            cellTitle.topAnchor.constraint(equalTo: topAnchor, constant: 40),
-            cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            
+            iconImage.topAnchor.constraint(equalTo: topAnchor),
+            iconImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            
+            certificateTitle.centerYAnchor.constraint(equalTo: iconImage.centerYAnchor),
+            certificateTitle.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
+            
+            schoolName.topAnchor.constraint(equalTo: certificateTitle.bottomAnchor),
+            schoolName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            
+            date.topAnchor.constraint(equalTo: schoolName.bottomAnchor),
+            date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70)
             
         
         ])
         
-        for i in 0..<3 {
-            
-            if i == 1  {
-                iconSpace += 100
-                certificateNameSpace += 100
-                schoolNameSpace += 100
-                dateSpace += 100
-            } else if i == 2 {
-                iconSpace += 100
-                certificateNameSpace += 100
-                schoolNameSpace += 100
-                dateSpace += 100
-            }
-            
-            // Defining an attribute for underlining text using an NSAttributedString
-            // I also setted the NSUnderlineStyle attribute to single wich represents only one line
-            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
-            
-            // I created an NSAttributedString using the NSAttributedString initializer.
-            // I provided the original text string and the underlineAttribute to apply the underline style to the text.
-            let underlineString = NSAttributedString(string: MyCertificateModel.cetificateName[i], attributes: underlineAttribute)
-            
-            let iconImage = UIImageView()
-            iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
-            iconImage.image = UIImage(named: "certificate")
-            
-            let certificateTitle = UIButton()
-            certificateTitle.setAttributedTitle(underlineString, for: .normal)
-            certificateTitle.titleLabel?.textColor = UIColor(named: "BlackLabels")
-            certificateTitle.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
-            certificateTitle.titleLabel?.textAlignment = .left
-            
-            let schoolName = UILabel()
-            schoolName.text = "Udemy"
-            schoolName.textColor = UIColor(named: "GrayLabels")
-            schoolName.font = UIFont(name: "Nunito-SemiBold", size: 14)
-            schoolName.textAlignment = .left
-            
-            let date = UILabel()
-            date.text = MyCertificateModel.date[i]
-            date.textColor = UIColor(named: "GrayLabels")
-            date.font = UIFont(name: "Nunito-Medium", size: 12)
-            date.textAlignment = .left
-            
-            backgroundColor = UIColor.clear
-            
-            cellView.addSubview(iconImage)
-            cellView.addSubview(certificateTitle)
-            cellView.addSubview(schoolName)
-            cellView.addSubview(date)
-            
-            iconImage.translatesAutoresizingMaskIntoConstraints = false
-            certificateTitle.translatesAutoresizingMaskIntoConstraints = false
-            schoolName.translatesAutoresizingMaskIntoConstraints = false
-            date.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-            
-                iconImage.topAnchor.constraint(equalTo: topAnchor, constant: iconSpace),
-                iconImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-                
-                certificateTitle.topAnchor.constraint(equalTo: topAnchor, constant: certificateNameSpace),
-                certificateTitle.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
-                
-                schoolName.topAnchor.constraint(equalTo: topAnchor, constant: schoolNameSpace),
-                schoolName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-                
-                date.topAnchor.constraint(equalTo: topAnchor, constant: dateSpace),
-                date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70)
-            
-            ])
-            
-            certificateTitle.addTarget(self, action: #selector(certificatePageDidTapped), for: .touchUpInside)
-            
-        }
-        
     }
-    
-    //Certificate button target
-    @objc func certificatePageDidTapped() {
-        guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
-        
-        let vc = SFSafariViewController(url: url )
-        vc.modalPresentationStyle = .pageSheet
-        
-        delegate?.certificateView(view: vc)
-        
-        
-    }
-
 
 }

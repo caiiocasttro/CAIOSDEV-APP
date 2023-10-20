@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E57B35952ADEDCF200F037DC /* HobbiesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */; };
+		E57B35992AE1390500F037DC /* MyCertificatesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */; };
 		E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */; };
 		E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */; };
 		E5BF06E22AD9435700195F5F /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06E12AD9435700195F5F /* EducationModel.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewCell.swift; sourceTree = "<group>"; };
+		E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertificatesViewCell.swift; sourceTree = "<group>"; };
 		E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeModel.swift; sourceTree = "<group>"; };
 		E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerGoalsModel.swift; sourceTree = "<group>"; };
 		E5BF06E12AD9435700195F5F /* EducationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationModel.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */,
+				E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */,
 				E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */,
 			);
 			path = Education;
@@ -432,6 +435,7 @@
 				E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */,
 				E5C619B82AD59739007C1EFB /* LocationViewCell.swift in Sources */,
 				E5C619922AD1A185007C1EFB /* ExperienceViewController.swift in Sources */,
+				E57B35992AE1390500F037DC /* MyCertificatesViewCell.swift in Sources */,
 				E5C619B42AD57CDC007C1EFB /* CareerGoalsViewCell.swift in Sources */,
 				E5C619C22AD727D1007C1EFB /* ExperienceViewCell.swift in Sources */,
 				E5C6197B2AD196B1007C1EFB /* AboutMeViewController.swift in Sources */,

@@ -32,3 +32,12 @@ struct MyCertificateModel {
     static let userExperience: String = "https://www.udemy.com/certificate/UC-484cc9a3-b965-437f-a8c9-a20785e2290f/"
     
 }
+
+struct MySkillsModel {
+    
+    static let skills: [String] = ["APIs", "CocoaPods", "CoreData", "Firebase", "Figma", "Git", "GitHub", "JSON", "MVC", "MVVM", "Swift", "SwiftUI", "UIKit", "UI/UX Designer", "VIPER"]
+    
+    static let skillsLevel: [String] = ["Intermediate", "Intermediate", "Elementary", "Intermediate", "Intermediate", "Elementary", "Elementary",
+                                                   "Intermediate", "Advanced", "Advanced", "Advanced", "Elementary", "Intermediate", "Intermediate", "Basic"]
+    
+}

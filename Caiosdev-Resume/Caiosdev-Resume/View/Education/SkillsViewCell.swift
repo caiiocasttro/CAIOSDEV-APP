@@ -61,19 +61,19 @@ class SkillsViewCell: UITableViewCell {
             
         ])
         
-        for i in 0..<CareerGoalsModel.initialSkills.count {
+        for i in 0..<MySkillsModel.skills.count {
             
             space += 30
             
             let skill = UILabel()
-            skill.text = CareerGoalsModel.initialSkills[i]
+            skill.text = MySkillsModel.skills[i]
             skill.textColor = UIColor(named: "BlackSecondary")
-            skill.font = UIFont(name: "Nunito-Black", size: 16)
-            skill.textAlignment = .left
+            skill.font = UIFont(name: "Nunito-Bold", size: 16)
+            skill.textAlignment = .right
             
             let level = UIImageView()
             level.frame = .init(x: 0, y: 0, width: 100, height: 5)
-            level.image = UIImage(named: CareerGoalsModel.skillsLevel[i])
+            level.image = UIImage(named: MySkillsModel.skillsLevel[i])
             
             cellView.addSubview(skill)
             cellView.addSubview(level)
@@ -83,12 +83,12 @@ class SkillsViewCell: UITableViewCell {
             level.translatesAutoresizingMaskIntoConstraints = false
             
             skill.topAnchor.constraint(equalTo: cellView.topAnchor, constant: space).isActive = true
-            skill.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20).isActive = true
+            skill.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -(UIScreen.main.bounds.width / 2)).isActive = true
             
             level.widthAnchor.constraint(equalToConstant: 100).isActive = true
             level.heightAnchor.constraint(equalToConstant: 5).isActive = true
             level.centerYAnchor.constraint(equalTo: skill.centerYAnchor).isActive = true
-            level.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -20).isActive = true
+            level.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: (UIScreen.main.bounds.width / 2)).isActive = true
             
             
         }

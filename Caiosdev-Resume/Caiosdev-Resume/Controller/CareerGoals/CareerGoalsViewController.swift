@@ -71,14 +71,29 @@ class CareerGoalsViewController: UIViewController {
         return title
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(CareerGoalsViewCell.self, forCellReuseIdentifier: CareerGoalsIdentifiers.main.rawValue)
-        tableView.register(SkillsViewCell.self, forCellReuseIdentifier: CareerGoalsIdentifiers.skills.rawValue)
-        tableView.backgroundColor = UIColor.clear
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        return tableView
+    lazy var chartView: UIImageView = {
+        let chart = UIImageView()
+        chart.frame = .init(x: 0, y: 0, width: 350, height: 600)
+        chart.image = UIImage(named: "Chart")
+        return chart
+    }()
+    
+    lazy var fiveYrsButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "5yrs+"), for: .normal)
+        return button
+    }()
+    
+    lazy var twoYrsButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "2-5yrs"), for: .normal)
+        return button
+    }()
+    
+    lazy var oneYearButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "1-2yrs"), for: .normal)
+        return button
     }()
     
     lazy var cellTitle: [String] = ["Short Term", "Mid Term(2-5 yrs)", "Long Term > 5 yrs"]
@@ -88,8 +103,6 @@ class CareerGoalsViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         
         configureLayout()
     }
@@ -122,7 +135,10 @@ class CareerGoalsViewController: UIViewController {
         careerGoalsView.addSubview(line)
         careerGoalsView.addSubview(titlePage)
         careerGoalsView.addSubview(contactButton)
-        careerGoalsView.addSubview(tableView)
+        careerGoalsView.addSubview(chartView)
+        careerGoalsView.addSubview(fiveYrsButton)
+        careerGoalsView.addSubview(twoYrsButton)
+        careerGoalsView.addSubview(oneYearButton)
         
         
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -135,7 +151,10 @@ class CareerGoalsViewController: UIViewController {
         careerGoalsView.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        fiveYrsButton.translatesAutoresizingMaskIntoConstraints = false
+        twoYrsButton.translatesAutoresizingMaskIntoConstraints = false
+        oneYearButton.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
         NSLayoutConstraint.activate([
@@ -178,10 +197,19 @@ class CareerGoalsViewController: UIViewController {
             titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 20),
             titlePage.leadingAnchor.constraint(equalTo: careerGoalsView.leadingAnchor, constant: 20),
             
-            tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
-            tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            chartView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width * 0.9)),
+            chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
+            chartView.centerXAnchor.constraint(equalTo: careerGoalsView.centerXAnchor),
+            chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor, constant: -20),
+            
+            fiveYrsButton.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) + 12)),
+            fiveYrsButton.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 20)),
+            
+            twoYrsButton.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.3) + 34)),
+            twoYrsButton.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 20)),
+            
+            oneYearButton.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 3)),
+            oneYearButton.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 15))
             
             
             
@@ -209,20 +237,3 @@ class CareerGoalsViewController: UIViewController {
     }
 }
 
-
-extension CareerGoalsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellTitle.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: CareerGoalsIdentifiers.main.rawValue, for: indexPath) as! CareerGoalsViewCell
-        cell.title = cellTitle[indexPath.row]
-        cell.textString = text[indexPath.row]
-        cell.isUserInteractionEnabled = false
-        return cell
-        
-    }
-    
-}

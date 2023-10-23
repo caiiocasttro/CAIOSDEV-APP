@@ -323,6 +323,7 @@
 				E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */,
 				E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */,
 				E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */,
+				E5C619BB2AD5B811007C1EFB /* SkillsViewCell.swift */,
 			);
 			path = Education;
 			sourceTree = "<group>";
@@ -331,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				E5C619B32AD57CDC007C1EFB /* CareerGoalsViewCell.swift */,
-				E5C619BB2AD5B811007C1EFB /* SkillsViewCell.swift */,
 			);
 			path = CareerGoals;
 			sourceTree = "<group>";

@@ -77,6 +77,7 @@ class EducationViewController: UIViewController {
         tableView.register(EducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.education.rawValue)
         tableView.register(MyCertificatesViewCell.self, forCellReuseIdentifier: EducationIdentifiers.title.rawValue)
         tableView.register(CertificateViewCell.self, forCellReuseIdentifier: EducationIdentifiers.certificate.rawValue)
+        tableView.register(SkillsViewCell.self, forCellReuseIdentifier: EducationIdentifiers.skills.rawValue )
         tableView.backgroundColor = UIColor.clear
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
@@ -212,11 +213,16 @@ class EducationViewController: UIViewController {
 extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        if indexPath.row <= 6 {
+            return 80
+        } else {
+            return 600
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -230,6 +236,10 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.title.rawValue, for: indexPath) as! MyCertificatesViewCell
             cell.isUserInteractionEnabled = false
+            return cell
+        } else if indexPath.row == 7 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.skills.rawValue, for: indexPath) as!
+            SkillsViewCell
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as!

@@ -22,6 +22,7 @@ enum EducationIdentifiers: String {
     case education = "EducationViewCell"
     case certificate = "CertificateViewCell"
     case title = "MyCertificatesViewCell"
+    case skills = "SkillsViewCell"
 }
 
 enum ExperienceIdentifiers: String {

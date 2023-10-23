@@ -81,10 +81,10 @@ class CareerGoalsViewController: UIViewController {
         return tableView
     }()
     
-    lazy var cellTitle: [String] = ["Short Term", "Mid Term(2-5 yrs)", "Long Term > 5 yrs", "My initial skills for that!"]
+    lazy var cellTitle: [String] = ["Short Term", "Mid Term(2-5 yrs)", "Long Term > 5 yrs"]
     
     lazy var text: [String] = [CareerGoalsModel.shortTerm, CareerGoalsModel.midTerm, CareerGoalsModel.longTerm]
-
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +94,7 @@ class CareerGoalsViewController: UIViewController {
         configureLayout()
     }
     
-
+    
     //MARK: Configuring layout
     private func configureLayout() {
         let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
@@ -123,7 +123,7 @@ class CareerGoalsViewController: UIViewController {
         careerGoalsView.addSubview(titlePage)
         careerGoalsView.addSubview(contactButton)
         careerGoalsView.addSubview(tableView)
-
+        
         
         background.translatesAutoresizingMaskIntoConstraints = false
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
@@ -139,7 +139,7 @@ class CareerGoalsViewController: UIViewController {
         
         //Constraints
         NSLayoutConstraint.activate([
-        
+            
             background.widthAnchor.constraint(equalToConstant: view.bounds.width),
             background.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
@@ -182,9 +182,9 @@ class CareerGoalsViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        
-        
-        
+            
+            
+            
         ])
         
         //Adding button's action
@@ -217,23 +217,12 @@ extension CareerGoalsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CareerGoalsIdentifiers.skills.rawValue, for: indexPath) as! SkillsViewCell
-            cell.title = cellTitle[3]
-            cell.isUserInteractionEnabled = false
-            return cell
-            
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CareerGoalsIdentifiers.main.rawValue, for: indexPath) as! CareerGoalsViewCell
-             cell.title = cellTitle[indexPath.row]
-             cell.textString = text[indexPath.row]
-            cell.isUserInteractionEnabled = false
-             return cell
-
-        }
-           }
-    
-    
-    
+        let cell = tableView.dequeueReusableCell(withIdentifier: CareerGoalsIdentifiers.main.rawValue, for: indexPath) as! CareerGoalsViewCell
+        cell.title = cellTitle[indexPath.row]
+        cell.textString = text[indexPath.row]
+        cell.isUserInteractionEnabled = false
+        return cell
+        
+    }
     
 }

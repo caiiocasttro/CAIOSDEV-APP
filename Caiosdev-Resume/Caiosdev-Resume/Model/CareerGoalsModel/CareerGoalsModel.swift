@@ -18,7 +18,7 @@ struct CareerGoalsModel {
     static let initialSkills: [String] = ["Swift", "MVC", "MVVM", "VIPER", "UIKit", "SwiftUI", "CoreData",
                                     "Firebase", "JSON", "APIs", "CocoaPods", "Git", "GitHub", "UX/UI Design", "Figma"]
     
-    static let skillsLevel: [String] = ["Advanced", "Advanced", "Advanced", "Beginner", "Intermediate", "Elementary", "Elementary",
+    static let skillsLevel: [String] = ["Advanced", "Advanced", "Advanced", "Basic", "Intermediate", "Elementary", "Elementary",
                                                    "Intermediate", "Elementary", "Intermediate", "Intermediate", "Elementary", "Intermediate", "Intermediate", "Intermediate"]
     
 }

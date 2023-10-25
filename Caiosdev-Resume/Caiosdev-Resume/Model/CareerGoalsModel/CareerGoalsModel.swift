@@ -9,7 +9,7 @@ import Foundation
 
 struct CareerGoalsModel {
     
-    static let shortTerm = "Diving into projects, syncing with company goals, and personal aspirations. Thrilled for challenges, growth, and team support. Aim: Impact project success, nurture a culture of growth and triumph! 🚀🌱"
+    static let shortTerm = "1-2yrs: Diving into projects, syncing with company goals, and personal aspirations. Thrilled for challenges, growth, and team support. Aim: Impact project success, nurture a culture of growth and triumph! 🚀🌱"
     
     static let midTerm = "Next 2-5 years: Bossing up to a senior role, guiding iOS newbies, and being the helpful wizard of the team. Sharing wisdom and high-fives – that's my gig. Need advice? I'm your iOS Yoda! 🌟📱"
     

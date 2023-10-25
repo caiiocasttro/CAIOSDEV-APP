@@ -13,11 +13,6 @@ enum AboutMeIdentifiers: String {
     case Location = "LocationViewCell"
 }
 
-enum CareerGoalsIdentifiers: String {
-    case main = "CareerGoalsViewCell"
-    case skills = "SkillsViewCell"
-}
-
 enum EducationIdentifiers: String {
     case education = "EducationViewCell"
     case certificate = "CertificateViewCell"

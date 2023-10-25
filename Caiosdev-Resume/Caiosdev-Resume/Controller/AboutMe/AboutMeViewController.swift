@@ -6,11 +6,15 @@
 //
 
 import UIKit
+//import QuartzCore
 
 class AboutMeViewController: UIViewController {
     
     //MARK: Initializer
     private let sheet = ContactsSheetViewController()
+    
+    //MARK: Properties
+    
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -98,25 +102,31 @@ class AboutMeViewController: UIViewController {
         
         configureTabBar()
         configureLayout()
+//        helloAnimation()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        hello.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -ConstraintsManager.width).isActive = true
+//        myName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -ConstraintsManager.width).isActive = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        helloAnimation()
+    }
 
     //MARK: Configuring layout
     private func configureLayout() {
         
-        let sheetHeightSpace = (UIScreen.main.bounds.height * 0.7) + 5
-        
-        
-        //Configuring background
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-        
-        let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let background = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         background.image = UIImage(named: "picture")
         background.contentMode = .scaleAspectFill
         
-        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
+        
         
         
         //Adding subview
@@ -157,7 +167,7 @@ class AboutMeViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (height * 0.6)),
+            hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
             hello.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
@@ -171,12 +181,12 @@ class AboutMeViewController: UIViewController {
             backgroundSheet.widthAnchor.constraint(equalTo: aboutMeView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: aboutMeView.heightAnchor),
             
-            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: sheetHeightSpace),
+            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
             aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
+            aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
             contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -237,6 +247,27 @@ class AboutMeViewController: UIViewController {
         
     }
     
+    //MARK: Animations
+    func helloAnimation() {
+        
+        hello.alpha = 0
+//        hello.transform = CGAffineTransform(translationX: -20, y: 0)
+        myName.alpha = 0
+//        myName.transform = CGAffineTransform(translationX: -20, y: 0)
+        
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0) {
+            self.hello.alpha = 1
+            self.hello.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+            self.view.layoutIfNeeded()
+        }
+        
+        UIView.animate(withDuration: 1.5, delay: 0.25, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0) {
+            self.myName.alpha = 1
+            self.myName.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+            self.view.layoutIfNeeded()
+        }
+    }
+    
 }
 
 
@@ -267,7 +298,6 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    
     
 }
 

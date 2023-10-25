@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum tabBarSegue: String {
+    case main = "tabBarSegue"
+}
+
 enum AboutMeIdentifiers: String {
     case main = "AboutMeViewCell"
     case Languages = "LanguagesViewCell"
@@ -27,3 +31,4 @@ enum ExperienceIdentifiers: String {
 enum HobbiesIdentifier: String {
     case main = "HobbiesViewCell"
 }
+

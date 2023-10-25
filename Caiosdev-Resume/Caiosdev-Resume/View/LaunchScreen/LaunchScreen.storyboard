@@ -19,18 +19,13 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="backgroundStrong" translatesAutoresizingMaskIntoConstraints="NO" id="sOa-NH-Z8r">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="avatar" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLZ-DE-Z1j">
-                                <rect key="frame" x="82" y="323" width="250" height="250"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uLZ-DE-Z1j" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="1fc-Mw-fdQ"/>
                             <constraint firstAttribute="bottom" secondItem="sOa-NH-Z8r" secondAttribute="bottom" id="4nh-Nh-b7z"/>
                             <constraint firstItem="sOa-NH-Z8r" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="NOk-OH-9wT"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="sOa-NH-Z8r" secondAttribute="trailing" id="XNF-Dh-goj"/>
-                            <constraint firstItem="uLZ-DE-Z1j" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oh7-zP-DRa"/>
                             <constraint firstItem="sOa-NH-Z8r" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ysV-1O-wsT"/>
                         </constraints>
                     </view>
@@ -41,7 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="avatar" width="250" height="250"/>
         <image name="backgroundStrong" width="390" height="844"/>
     </resources>
 </document>

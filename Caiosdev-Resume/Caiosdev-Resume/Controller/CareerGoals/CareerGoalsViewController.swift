@@ -188,16 +188,11 @@ class CareerGoalsViewController: UIViewController {
     
     //MARK: Configuring layout
     private func configureLayout() {
-        let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
-        
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-        
-        let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let background = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         background.image = UIImage(named: "studying")
         background.contentMode = .scaleAspectFill
         
-        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
         
         //Adding subviews
@@ -261,7 +256,7 @@ class CareerGoalsViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (height * 0.6)),
+            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
             titlePartI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
@@ -278,12 +273,12 @@ class CareerGoalsViewController: UIViewController {
             backgroundSheet.widthAnchor.constraint(equalTo: careerGoalsView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
             
-            careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
+            careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
             careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            careerGoalsView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
+            careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
             line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),
@@ -378,16 +373,11 @@ class CareerGoalsViewController: UIViewController {
         fiveYrsToggle.toggle()
         
         if fiveYrsToggle {
-                self.fiveYrsView.isHidden = false
-                self.curveTopRight.isHidden = false
-                self.fiveYrsButton.setImage(UIImage(named: "5yrs+ hide"), for: .normal)
-            self.curveTopRight.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            self.fiveYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            self.fiveYrsView.isHidden = false
+            self.curveTopRight.isHidden = false
+            self.fiveYrsButton.setImage(UIImage(named: "5yrs+ hide"), for: .normal)
+            fiveYrsAnimation()
             
-            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3) {
-                self.curveTopRight.transform = .identity
-                self.fiveYrsView.transform = .identity
-            }
         } else {
             self.fiveYrsView.isHidden = true
             self.curveTopRight.isHidden = true
@@ -401,16 +391,10 @@ class CareerGoalsViewController: UIViewController {
         twoYrsToggle.toggle()
         
         if twoYrsToggle {
-                self.twoYrsView.isHidden = false
-                self.curveTop.isHidden = false
-                self.twoYrsButton.setImage(UIImage(named: "2-5yrs hide"), for: .normal)
-            self.curveTop.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            self.twoYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            
-            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3) {
-                self.curveTop.transform = .identity
-                self.twoYrsView.transform = .identity
-            }
+            self.twoYrsView.isHidden = false
+            self.curveTop.isHidden = false
+            self.twoYrsButton.setImage(UIImage(named: "2-5yrs hide"), for: .normal)
+            twoYrsAnimation()
         } else {
             self.twoYrsView.isHidden = true
             self.curveTop.isHidden = true
@@ -425,29 +409,50 @@ class CareerGoalsViewController: UIViewController {
         oneYearToggle.toggle()
         
         if oneYearToggle {
-
-                self.oneYearView.isHidden = false
-                self.curveLeft.isHidden = false
-            self.curveLeft.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            self.oneYearView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                self.oneYearButton.setImage(UIImage(named: "1-2yrs hide"), for: .normal)
             
-            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3) {
-                self.curveLeft.transform = .identity
-                self.oneYearView.transform = .identity
-            }
-
+            self.oneYearView.isHidden = false
+            self.curveLeft.isHidden = false
+            self.oneYearButton.setImage(UIImage(named: "1-2yrs hide"), for: .normal)
+            oneYearAnimation()
+            
         } else {
-
-                self.oneYearView.isHidden = true
-                self.curveLeft.isHidden = true
-                self.oneYearButton.setImage(UIImage(named: "1-2yrs"), for: .normal)
-
+            
+            self.oneYearView.isHidden = true
+            self.curveLeft.isHidden = true
+            self.oneYearButton.setImage(UIImage(named: "1-2yrs"), for: .normal)
+            
         }
     }
     
-    func showBubbleWithAnimation() {
+    //MARK: Animations
+    func fiveYrsAnimation() {
+        self.curveTopRight.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.fiveYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3) {
+            self.curveTopRight.transform = .identity
+            self.fiveYrsView.transform = .identity
+        }
+    }
+    
+    func twoYrsAnimation() {
+        self.curveTop.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.twoYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3) {
+            self.curveTop.transform = .identity
+            self.twoYrsView.transform = .identity
+        }
+    }
+    
+    func oneYearAnimation() {
+        self.curveLeft.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.oneYearView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3) {
+            self.curveLeft.transform = .identity
+            self.oneYearView.transform = .identity
+        }
     }
 }
 

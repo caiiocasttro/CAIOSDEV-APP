@@ -57,7 +57,7 @@ class SkillsViewCell: UITableViewCell {
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            cellView.heightAnchor.constraint(equalToConstant: 495)
+            cellView.heightAnchor.constraint(equalToConstant: 525)
             
         ])
         

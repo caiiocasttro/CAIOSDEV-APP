@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E50B0B4E2AE98DEB0038DDB4 /* AnimationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B0B4D2AE98DEB0038DDB4 /* AnimationsManager.swift */; };
+		E50B0B512AE98FAC0038DDB4 /* ConstraintsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B0B502AE98FAC0038DDB4 /* ConstraintsManager.swift */; };
+		E530C65F2AE94C0800B91C48 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E530C65E2AE94C0800B91C48 /* LaunchScreen.swift */; };
+		E530C6612AE951FD00B91C48 /* LaunchScreenII.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */; };
 		E57B35952ADEDCF200F037DC /* HobbiesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */; };
 		E57B35992AE1390500F037DC /* MyCertificatesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */; };
 		E5B3AEAB2AE2FBB700D0A9F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */; };
@@ -47,6 +51,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E50B0B4D2AE98DEB0038DDB4 /* AnimationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsManager.swift; sourceTree = "<group>"; };
+		E50B0B502AE98FAC0038DDB4 /* ConstraintsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsManager.swift; sourceTree = "<group>"; };
+		E530C65E2AE94C0800B91C48 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenII.storyboard; sourceTree = "<group>"; };
 		E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewCell.swift; sourceTree = "<group>"; };
 		E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertificatesViewCell.swift; sourceTree = "<group>"; };
 		E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,10 +107,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E50B0B4B2AE98DC50038DDB4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E50B0B4F2AE98F8F0038DDB4 /* Constraints Manager */,
+				E50B0B4C2AE98DD30038DDB4 /* Animations Manager */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		E50B0B4C2AE98DD30038DDB4 /* Animations Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E50B0B4D2AE98DEB0038DDB4 /* AnimationsManager.swift */,
+			);
+			path = "Animations Manager";
+			sourceTree = "<group>";
+		};
+		E50B0B4F2AE98F8F0038DDB4 /* Constraints Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E50B0B502AE98FAC0038DDB4 /* ConstraintsManager.swift */,
+			);
+			path = "Constraints Manager";
+			sourceTree = "<group>";
+		};
+		E530C65D2AE94BDE00B91C48 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E530C65E2AE94C0800B91C48 /* LaunchScreen.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		E5B3AEA72AE2EF6900D0A9F5 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
 				E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */,
+				E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */,
 			);
 			path = LaunchScreen;
 			sourceTree = "<group>";
@@ -192,6 +234,7 @@
 				E5C619762AD196B1007C1EFB /* AppDelegate.swift */,
 				E5C619782AD196B1007C1EFB /* SceneDelegate.swift */,
 				E5C619842AD196B2007C1EFB /* Info.plist */,
+				E50B0B4B2AE98DC50038DDB4 /* Manager */,
 				E5C6198A2AD19823007C1EFB /* Model */,
 				E5C6198B2AD19833007C1EFB /* View */,
 				E5C6198C2AD19843007C1EFB /* Controller */,
@@ -232,6 +275,7 @@
 		E5C6198C2AD19843007C1EFB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E530C65D2AE94BDE00B91C48 /* LaunchScreen */,
 				E5C619A12AD4272A007C1EFB /* Contacts */,
 				E5C619972AD1A4C0007C1EFB /* TabBar */,
 				E5C619982AD1A4D0007C1EFB /* AboutMe */,
@@ -412,6 +456,7 @@
 			files = (
 				E5BF07072AD9FF4C00195F5F /* Nunito-SemiBold.ttf in Resources */,
 				E5BF06FF2AD9FF4C00195F5F /* Nunito-Black.ttf in Resources */,
+				E530C6612AE951FD00B91C48 /* LaunchScreenII.storyboard in Resources */,
 				E5BF07052AD9FF4C00195F5F /* Nunito-Light.ttf in Resources */,
 				E5B3AEAB2AE2FBB700D0A9F5 /* LaunchScreen.storyboard in Resources */,
 				E5BF070C2AD9FF4C00195F5F /* Nunito-Medium.ttf in Resources */,
@@ -430,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E530C65F2AE94C0800B91C48 /* LaunchScreen.swift in Sources */,
 				E5C619AD2AD54092007C1EFB /* AboutMeTableViewCell.swift in Sources */,
 				E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */,
 				E5C619BC2AD5B811007C1EFB /* SkillsViewCell.swift in Sources */,
@@ -438,6 +484,7 @@
 				E5C619B62AD58E0E007C1EFB /* LanguagesViewCell.swift in Sources */,
 				E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */,
 				E5C619B82AD59739007C1EFB /* LocationViewCell.swift in Sources */,
+				E50B0B4E2AE98DEB0038DDB4 /* AnimationsManager.swift in Sources */,
 				E5C619922AD1A185007C1EFB /* ExperienceViewController.swift in Sources */,
 				E57B35992AE1390500F037DC /* MyCertificatesViewCell.swift in Sources */,
 				E5C619C22AD727D1007C1EFB /* ExperienceViewCell.swift in Sources */,
@@ -452,6 +499,7 @@
 				E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */,
 				E5BF06E82AD943DF00195F5F /* HobbiesModel.swift in Sources */,
 				E5C619A02AD3FBBC007C1EFB /* ContactsSheetViewController.swift in Sources */,
+				E50B0B512AE98FAC0038DDB4 /* ConstraintsManager.swift in Sources */,
 				E5BF06E52AD9439800195F5F /* ExperienceModel.swift in Sources */,
 				E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */,
 				E5C619792AD196B1007C1EFB /* SceneDelegate.swift in Sources */,
@@ -587,6 +635,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3A74NBF86H;
@@ -595,7 +644,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = CAIOSDEV;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreenII;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -619,6 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3A74NBF86H;
@@ -627,7 +678,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = CAIOSDEV;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreenII;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

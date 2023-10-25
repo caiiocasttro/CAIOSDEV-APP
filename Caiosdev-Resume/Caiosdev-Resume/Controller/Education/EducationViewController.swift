@@ -95,16 +95,11 @@ class EducationViewController: UIViewController {
     
     //MARK: Configuring layout
     private func configureLayout() {
-        let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
-        
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-        
-        let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let background = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         background.image = UIImage(named: "setup")
         background.contentMode = .scaleAspectFill
         
-        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
         
         //Adding subview
@@ -143,7 +138,7 @@ class EducationViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (height * 0.6)),
+            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
             titlePartI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
@@ -160,12 +155,12 @@ class EducationViewController: UIViewController {
             backgroundSheet.widthAnchor.constraint(equalTo: educationView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: educationView.heightAnchor),
             
-            educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
+            educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
             educationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             educationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             educationView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             educationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            educationView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
+            educationView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
             line.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),
@@ -213,7 +208,7 @@ class EducationViewController: UIViewController {
 extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row <= 6 {
+        if indexPath.row <= 7 {
             return 80
         } else {
             return 600
@@ -222,7 +217,7 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 9
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -237,9 +232,10 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.title.rawValue, for: indexPath) as! MyCertificatesViewCell
             cell.isUserInteractionEnabled = false
             return cell
-        } else if indexPath.row == 7 {
+        } else if indexPath.row == 8 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.skills.rawValue, for: indexPath) as!
             SkillsViewCell
+            cell.isUserInteractionEnabled = false
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as!
@@ -250,9 +246,12 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             } else if indexPath.row == 5 {
                 cell.certificate = MyCertificateModel.cetificateName[1]
                 cell.dateString = MyCertificateModel.date[1]
-            } else {
+            } else if indexPath.row == 6 {
                 cell.certificate = MyCertificateModel.cetificateName[2]
                 cell.dateString = MyCertificateModel.date[2]
+            } else {
+                cell.certificate = MyCertificateModel.cetificateName[3]
+                cell.dateString = MyCertificateModel.date[3]
             }
             cell.selectionStyle = .none
             return cell
@@ -262,12 +261,18 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 4 {
-            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            guard let url = URL(string: MyCertificateModel.iOSAnimationURL) else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 5 {
+            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            
+            let vc = SFSafariViewController(url: url)
+            vc.modalPresentationStyle = .pageSheet
+            self.present(vc, animated: true)
+        } else if indexPath.row == 6 {
             guard let url = URL(string: MyCertificateModel.userExperience) else { return }
             
             let vc = SFSafariViewController(url: url)

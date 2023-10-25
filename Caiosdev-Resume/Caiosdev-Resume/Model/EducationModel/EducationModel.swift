@@ -19,11 +19,13 @@ struct MyEducationModel {
 
 struct MyCertificateModel {
     
-    static let cetificateName: [String] = ["iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
+    static let cetificateName: [String] = ["iOS Animations", "iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
     
     static let school = "Udemy"
     
-    static let date: [String] = ["October 2022", "October 2022", "March 2023"]
+    static let date: [String] = ["October 2023", "October 2022", "October 2022", "March 2023"]
+    
+    static let iOSAnimationURL: String = "https://ude.my/UC-0c96e837-69d3-471f-95d6-d0351594fe4b/"
     
     static let iOSDevelopmentURL: String = "https://www.udemy.com/certificate/UC-439988f3-d583-4f05-ae0f-a5e5de2b4b2f/"
     
@@ -35,9 +37,9 @@ struct MyCertificateModel {
 
 struct MySkillsModel {
     
-    static let skills: [String] = ["APIs", "CocoaPods", "CoreData", "Firebase", "Figma", "Git", "GitHub", "JSON", "MVC", "MVVM", "Swift", "SwiftUI", "UIKit", "UI/UX Designer", "VIPER"]
+    static let skills: [String] = ["APIs", "CocoaPods", "CoreData", "Firebase", "Figma", "Git", "GitHub", "iOS Animations", "JSON", "MVC", "MVVM", "Swift", "SwiftUI", "UIKit", "UI/UX Designer", "VIPER"]
     
-    static let skillsLevel: [String] = ["Intermediate", "Intermediate", "Elementary", "Intermediate", "Intermediate", "Elementary", "Elementary",
+    static let skillsLevel: [String] = ["Intermediate", "Intermediate", "Elementary", "Intermediate", "Intermediate", "Elementary", "Elementary", "Elementary",
                                                    "Intermediate", "Advanced", "Advanced", "Advanced", "Elementary", "Intermediate", "Intermediate", "Basic"]
     
 }

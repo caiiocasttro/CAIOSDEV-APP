@@ -92,16 +92,11 @@ class HobbiesViewController: UIViewController {
 
     //MARK: COnfiguring layout
     private func configureLayout() {
-        let heightSpace = (UIScreen.main.bounds.height * 0.7) + 5
-        
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-        
-        let background = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let background = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         background.image = UIImage(named: "passions")
         background.contentMode = .scaleAspectFill
         
-        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
+        let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
         
         //Adding subview
@@ -140,7 +135,7 @@ class HobbiesViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (height * 0.6)),
+            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
             titlePartI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
@@ -154,12 +149,12 @@ class HobbiesViewController: UIViewController {
             backgroundSheet.widthAnchor.constraint(equalTo: hobbiesView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: hobbiesView.heightAnchor),
             
-            hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightSpace),
+            hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
             hobbiesView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             hobbiesView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             hobbiesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             hobbiesView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            hobbiesView.heightAnchor.constraint(equalToConstant: (height * 0.8) + 20),
+            hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
             contactButton.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 10),
             contactButton.trailingAnchor.constraint(equalTo: hobbiesView.trailingAnchor, constant: -10),

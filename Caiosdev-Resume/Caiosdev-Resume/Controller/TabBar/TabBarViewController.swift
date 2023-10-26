@@ -80,7 +80,7 @@ class TabBarViewController: UITabBarController {
         if let index = tabBar.items?.firstIndex(of: item) {
             
             //Applying animation
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.25) {
                 
                 //The total width of the tabbar
                 let tabBarWidth = tabBar.frame.width

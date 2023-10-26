@@ -10,6 +10,9 @@ import UIKit
 
 class EducationViewController: UIViewController {
     
+    //MARK:Properties
+    var animatedOnce = false
+    
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
@@ -44,23 +47,25 @@ class EducationViewController: UIViewController {
     }()
     
     lazy var titlePartI: UILabel = {
-        let hello = UILabel()
-        hello.text = "My"
-        hello.textColor = UIColor.white
-        hello.font = UIFont(name: "Nunito-Black", size: 60)
-        hello.textAlignment = .left
-        hello.numberOfLines = 0
-        return hello
+        let title = UILabel()
+        title.text = "My"
+        title.textColor = UIColor.white
+        title.font = UIFont(name: "Nunito-Black", size: 60)
+        title.textAlignment = .left
+        title.numberOfLines = 0
+        title.alpha = 0
+        return title
     }()
     
     lazy var titlePartII: UILabel = {
-        let name = UILabel()
-        name.text = "Education"
-        name.textColor = UIColor.white
-        name.font = UIFont(name: "Nunito-Black", size: 60)
-        name.textAlignment = .left
-        name.numberOfLines = 0
-        return name
+        let title = UILabel()
+        title.text = "Education"
+        title.textColor = UIColor.white
+        title.font = UIFont(name: "Nunito-Black", size: 60)
+        title.textAlignment = .left
+        title.numberOfLines = 0
+        title.alpha = 0
+        return title
     }()
     
     lazy var titlePage: UILabel = {
@@ -90,6 +95,14 @@ class EducationViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         configureLayout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !animatedOnce {
+            titleAnimation()
+            animatedOnce = true
+        }
     }
     
     
@@ -139,10 +152,8 @@ class EducationViewController: UIViewController {
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
             titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
-            titlePartI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            titlePartII.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             contactButton.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
             contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -192,7 +203,10 @@ class EducationViewController: UIViewController {
             sheet.largestUndimmedDetentIdentifier = .medium
             sheet.preferredCornerRadius = 15
         }
-        UIView.animate(withDuration: 0.3) {
+        
+        contactButtonAnimation()
+        
+        UIView.animate(withDuration: 0.75, delay: 1.0) {
             self.present(vc, animated: true)
         }
         
@@ -202,6 +216,28 @@ class EducationViewController: UIViewController {
         navigationController?.present(view, animated: true)
     }
     
+    //MARK: Animations
+    func titleAnimation() {
+        
+        UIView.animate(withDuration: 0.75) {
+            self.titlePartI.alpha = 1
+            self.titlePartI.frame.origin.x += 20
+        } completion: { (done) in
+            UIView.animate(withDuration: 1.0) {
+                self.titlePartII.alpha = 1
+                self.titlePartII.frame.origin.x += 20
+            }
+        }
+    }
+    
+    func contactButtonAnimation() {
+        self.contactButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.75) {
+            self.contactButton.transform = .identity
+        }
+        
+    }
 }
 
 //MARK: TableView Delegate & DataSource

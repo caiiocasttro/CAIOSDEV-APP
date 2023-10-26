@@ -14,7 +14,7 @@ class AboutMeViewController: UIViewController {
     private let sheet = ContactsSheetViewController()
     
     //MARK: Properties
-    
+    var animatedOnce = false
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -56,6 +56,7 @@ class AboutMeViewController: UIViewController {
         hello.font = UIFont(name: "Nunito-Black", size: 60)
         hello.textAlignment = .left
         hello.numberOfLines = 0
+        hello.alpha = 0
         return hello
     }()
     
@@ -66,6 +67,7 @@ class AboutMeViewController: UIViewController {
         name.font = UIFont(name: "Nunito-Black", size: 60)
         name.textAlignment = .left
         name.numberOfLines = 0
+        name.alpha = 0
         return name
     }()
     
@@ -105,16 +107,14 @@ class AboutMeViewController: UIViewController {
 //        helloAnimation()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        hello.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -ConstraintsManager.width).isActive = true
-//        myName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -ConstraintsManager.width).isActive = true
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        helloAnimation()
+        
+        if !animatedOnce {
+            helloAnimation()
+            animatedOnce = true
+        }
+        
     }
 
     //MARK: Configuring layout
@@ -168,10 +168,8 @@ class AboutMeViewController: UIViewController {
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
             hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
-            hello.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
-            myName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -240,7 +238,9 @@ class AboutMeViewController: UIViewController {
             sheet.preferredCornerRadius = 20
         }
         
-        UIView.animate(withDuration: 0.3) {
+        contactButtonAnimation()
+        
+        UIView.animate(withDuration: 0.75, delay: 1.0) {
             self.present(vc, animated: true)
         }
         
@@ -250,22 +250,24 @@ class AboutMeViewController: UIViewController {
     //MARK: Animations
     func helloAnimation() {
         
-        hello.alpha = 0
-//        hello.transform = CGAffineTransform(translationX: -20, y: 0)
-        myName.alpha = 0
-//        myName.transform = CGAffineTransform(translationX: -20, y: 0)
-        
-        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0) {
+        UIView.animate(withDuration: 0.75) {
             self.hello.alpha = 1
-            self.hello.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-            self.view.layoutIfNeeded()
+            self.hello.frame.origin.x += 20
+        } completion: { done in
+            UIView.animate(withDuration: 1.0) {
+                self.myName.alpha = 1
+                self.myName.frame.origin.x += 20
+            }
+        }
+    }
+    
+    func contactButtonAnimation() {
+        self.contactButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.75) {
+            self.contactButton.transform = .identity
         }
         
-        UIView.animate(withDuration: 1.5, delay: 0.25, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0) {
-            self.myName.alpha = 1
-            self.myName.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-            self.view.layoutIfNeeded()
-        }
     }
     
 }
@@ -299,5 +301,11 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if indexPath.row == 2 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.Languages.rawValue, for: indexPath) as! LanguagesViewCell
+//                cell.portugueseWidth = 296
+//        }
+//    }
 }
 

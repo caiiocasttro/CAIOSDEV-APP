@@ -226,10 +226,16 @@ class LanguagesViewCell: UITableViewCell {
             frenchLevel.widthAnchor.constraint(equalToConstant: 50),
             frenchLevel.heightAnchor.constraint(equalToConstant: 6),
             
-            
-            
         ])
         
+    }
+    
+    //MARK: Animation
+    func languageLevelAnimation() {
+        
+        UIView.animate(withDuration: 1.5) {
+            
+        }
         
     }
     

@@ -13,6 +13,8 @@
 		E530C6612AE951FD00B91C48 /* LaunchScreenII.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */; };
 		E57B35952ADEDCF200F037DC /* HobbiesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */; };
 		E57B35992AE1390500F037DC /* MyCertificatesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */; };
+		E597B7C02AEBC9AC00DC3081 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E597B7BF2AEBC9AC00DC3081 /* beep.mp3 */; };
+		E597B7C22AEC042100DC3081 /* slice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E597B7C12AEC042100DC3081 /* slice.mp3 */; };
 		E5B3AEAB2AE2FBB700D0A9F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */; };
 		E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */; };
 		E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */; };
@@ -57,6 +59,8 @@
 		E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenII.storyboard; sourceTree = "<group>"; };
 		E57B35942ADEDCF200F037DC /* HobbiesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewCell.swift; sourceTree = "<group>"; };
 		E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertificatesViewCell.swift; sourceTree = "<group>"; };
+		E597B7BF2AEBC9AC00DC3081 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
+		E597B7C12AEC042100DC3081 /* slice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slice.mp3; sourceTree = "<group>"; };
 		E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeModel.swift; sourceTree = "<group>"; };
 		E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerGoalsModel.swift; sourceTree = "<group>"; };
@@ -138,6 +142,15 @@
 				E530C65E2AE94C0800B91C48 /* LaunchScreen.swift */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		E597B7BE2AEBC59200DC3081 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				E597B7C12AEC042100DC3081 /* slice.mp3 */,
+				E597B7BF2AEBC9AC00DC3081 /* beep.mp3 */,
+			);
+			path = Effects;
 			sourceTree = "<group>";
 		};
 		E5B3AEA72AE2EF6900D0A9F5 /* LaunchScreen */ = {
@@ -245,6 +258,7 @@
 		E5C6198A2AD19823007C1EFB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E597B7BE2AEBC59200DC3081 /* Effects */,
 				E5BF06E92AD9499000195F5F /* ContactsModel */,
 				E5BF06DA2AD942BD00195F5F /* AboutMeModel */,
 				E5BF06DD2AD942EB00195F5F /* CareerGoalsModel */,
@@ -456,6 +470,7 @@
 			files = (
 				E5BF07072AD9FF4C00195F5F /* Nunito-SemiBold.ttf in Resources */,
 				E5BF06FF2AD9FF4C00195F5F /* Nunito-Black.ttf in Resources */,
+				E597B7C02AEBC9AC00DC3081 /* beep.mp3 in Resources */,
 				E530C6612AE951FD00B91C48 /* LaunchScreenII.storyboard in Resources */,
 				E5BF07052AD9FF4C00195F5F /* Nunito-Light.ttf in Resources */,
 				E5B3AEAB2AE2FBB700D0A9F5 /* LaunchScreen.storyboard in Resources */,
@@ -463,6 +478,7 @@
 				E5BF06FE2AD9FF4C00195F5F /* Nunito-Regular.ttf in Resources */,
 				E5BF070B2AD9FF4C00195F5F /* Nunito-Bold.ttf in Resources */,
 				E5C619802AD196B2007C1EFB /* Assets.xcassets in Resources */,
+				E597B7C22AEC042100DC3081 /* slice.mp3 in Resources */,
 				E5BF07012AD9FF4C00195F5F /* Nunito-ExtraBold.ttf in Resources */,
 				E5BF07022AD9FF4C00195F5F /* Nunito-ExtraLight.ttf in Resources */,
 			);

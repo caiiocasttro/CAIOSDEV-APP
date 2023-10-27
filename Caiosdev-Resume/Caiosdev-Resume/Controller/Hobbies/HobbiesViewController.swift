@@ -90,8 +90,10 @@ class HobbiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
+//        scrollView.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+//        configuringCellCentered()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -191,6 +193,19 @@ class HobbiesViewController: UIViewController {
         contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
     }
     
+//    func configuringCellCentered() {
+//        
+//        let cellHeight: CGFloat = 500
+//        
+//        let tableViewHeight = tableView.frame.size.height
+//        
+//        let topInset = (tableViewHeight - cellHeight) / 2
+//        
+//        tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: topInset, right: 0)
+//        
+//    }
+
+    
     //MARK: pulling contact view
     @objc func pullContactView() {
         
@@ -230,7 +245,8 @@ class HobbiesViewController: UIViewController {
         }
         
     }
-
+    
+    
 }
 
 extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -249,4 +265,18 @@ extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
+    
 }
+
+//extension HobbiesViewController: UIScrollViewDelegate {
+//  
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let center = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width / 2, y: scrollView.bounds.size.height / 2)
+//        
+//        if let indexPath = tableView.indexPathForRow(at: center) {
+//            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+//        }
+//    }
+//    
+//}

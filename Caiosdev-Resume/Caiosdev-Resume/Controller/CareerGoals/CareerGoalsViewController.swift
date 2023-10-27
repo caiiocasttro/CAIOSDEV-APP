@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CareerGoalsViewController: UIViewController {
     
@@ -19,6 +20,11 @@ class CareerGoalsViewController: UIViewController {
     var titleAnimatedOnce = false
     
     var bubbleAnimatedOnce = false
+    
+    //MARK: Initializer
+    var player: AVAudioPlayer!
+    
+    var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -388,7 +394,6 @@ class CareerGoalsViewController: UIViewController {
         }
         
         contactButtonAnimation()
-        
         UIView.animate(withDuration: 0.75, delay: 1.0) {
             self.present(vc, animated: true)
         }
@@ -413,11 +418,13 @@ class CareerGoalsViewController: UIViewController {
     
     
     func fiveYrsAnimation() {
+        
+        
         self.fiveYrsView.isHidden = false
         self.curveTopRight.isHidden = false
         self.curveTopRight.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         self.fiveYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        UIView.animate(withDuration: 1.0, delay: 1.5, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
             self.curveTopRight.transform = .identity
             self.fiveYrsView.transform = .identity
             self.fiveYrsView.alpha = 1
@@ -431,7 +438,7 @@ class CareerGoalsViewController: UIViewController {
         self.curveTop.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         self.twoYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
-        UIView.animate(withDuration: 1.0, delay: 1.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
             self.curveTop.transform = .identity
             self.twoYrsView.transform = .identity
             self.twoYrsView.alpha = 1
@@ -445,7 +452,7 @@ class CareerGoalsViewController: UIViewController {
         self.curveLeft.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         self.oneYearView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         
-        UIView.animate(withDuration: 1.0, delay: 0.5, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
             self.curveLeft.transform = .identity
             self.oneYearView.transform = .identity
             self.oneYearView.alpha = 1
@@ -461,7 +468,22 @@ class CareerGoalsViewController: UIViewController {
         }
         
     }
-
+    
+    //MARK: SongEffect
+    
+    func soundeffect() {
+        guard let url = Bundle.main.url(forResource: "slice", withExtension: ".mp3") else { return print("sound not found") }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player.volume = 0.3
+            player.prepareToPlay()
+            player.play()
+        } catch {
+            print("Error trying to play the sound \(error.localizedDescription)")
+        }
+    }
+    
 }
 
 extension CareerGoalsViewController: UIScrollViewDelegate {
@@ -475,11 +497,31 @@ extension CareerGoalsViewController: UIScrollViewDelegate {
         
         if yOffset + scrollViewHeigt + shouldAnimate >= contentViewHeigt {
             
-            if !bubbleAnimatedOnce {
-                fiveYrsAnimation()
-                twoYrsAnimation()
-                oneYearAnimation()
-                bubbleAnimatedOnce = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                
+                if !self.bubbleAnimatedOnce {
+                    self.feedbackGenerator.prepare()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        self.oneYearAnimation()
+                        self.feedbackGenerator.impactOccurred()
+                        self.soundeffect()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        self.twoYrsAnimation()
+                        self.feedbackGenerator.impactOccurred()
+                        self.soundeffect()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                        self.fiveYrsAnimation()
+                        self.feedbackGenerator.impactOccurred()
+                        self.soundeffect()
+                    }
+                    
+                    self.bubbleAnimatedOnce = true
+                }
             }
                 
         }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,13 @@ var window: UIWindow?
             self.window?.makeKeyAndVisible()
             
             
+        }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Error trying to turn on the audio \(error.localizedDescription)")
         }
         
         // Override point for customization after application launch.

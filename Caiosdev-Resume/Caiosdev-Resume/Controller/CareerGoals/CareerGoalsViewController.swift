@@ -22,7 +22,10 @@ class CareerGoalsViewController: UIViewController {
     var bubbleAnimatedOnce = false
     
     //MARK: Initializer
-    var player: AVAudioPlayer!
+    var bubbleEffect: AVAudioPlayer?
+    
+    var click: AVAudioPlayer?
+    
     
     var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -206,6 +209,9 @@ class CareerGoalsViewController: UIViewController {
         
         //Layout
         configureLayout()
+        
+        //Preparing sound
+        prepareSoundEffect()
         
     }
     
@@ -393,6 +399,7 @@ class CareerGoalsViewController: UIViewController {
             sheet.preferredCornerRadius = 15
         }
         
+        soundClick()
         contactButtonAnimation()
         UIView.animate(withDuration: 0.75, delay: 1.0) {
             self.present(vc, animated: true)
@@ -409,6 +416,8 @@ class CareerGoalsViewController: UIViewController {
             UIView.animate(withDuration: 1.0) {
                 self.titlePartII.alpha = 1
                 self.titlePartII.frame.origin.x += 20
+                self.titlePartI.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+                self.titlePartII.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
             }
             
         }
@@ -472,16 +481,41 @@ class CareerGoalsViewController: UIViewController {
     //MARK: SongEffect
     
     func soundeffect() {
-        guard let url = Bundle.main.url(forResource: "slice", withExtension: ".mp3") else { return print("sound not found") }
+        guard let url = Bundle.main.url(forResource: "pop-up", withExtension: ".wav") else { return print("sound not found") }
         
         do {
-            player = try AVAudioPlayer(contentsOf: url)
-            player.volume = 0.3
-            player.prepareToPlay()
-            player.play()
+            bubbleEffect = try AVAudioPlayer(contentsOf: url)
+            bubbleEffect?.volume = 0.3
+            bubbleEffect?.prepareToPlay()
+            bubbleEffect?.play()
         } catch {
             print("Error trying to play the sound \(error.localizedDescription)")
         }
+    }
+    
+    //MARK: Sound effects
+    private func prepareSoundEffect() {
+        guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }
+        
+        do {
+            click = try AVAudioPlayer(contentsOf: url)
+            click?.volume = 0.3
+            click?.prepareToPlay()
+        } catch {
+            print("Error trying to prepare sound click \(error.localizedDescription)")
+        }
+    }
+    
+    private func soundClick() {
+        
+        if let player = click {
+            if player.isPlaying {
+                player.currentTime = 0
+            } else {
+                player.play()
+            }
+        }
+        
     }
     
 }
@@ -497,24 +531,24 @@ extension CareerGoalsViewController: UIScrollViewDelegate {
         
         if yOffset + scrollViewHeigt + shouldAnimate >= contentViewHeigt {
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 
                 if !self.bubbleAnimatedOnce {
                     self.feedbackGenerator.prepare()
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.oneYearAnimation()
                         self.feedbackGenerator.impactOccurred()
                         self.soundeffect()
                     }
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.twoYrsAnimation()
                         self.feedbackGenerator.impactOccurred()
                         self.soundeffect()
                     }
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                         self.fiveYrsAnimation()
                         self.feedbackGenerator.impactOccurred()
                         self.soundeffect()

@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class HobbiesViewController: UIViewController {
+    
+    //MARK: Initializer
+    var player: AVAudioPlayer?
     
     //MARK: properties
     var animatedOnce = false
@@ -70,7 +74,7 @@ class HobbiesViewController: UIViewController {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "All the versions of me 😄"
+        title.text = "Versions of me 😄"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
@@ -89,11 +93,15 @@ class HobbiesViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureLayout()
-//        scrollView.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-//        configuringCellCentered()
+        
+        //Layout
+        configureLayout()
+        
+        //Preparing sound
+        prepareSoundEffect()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -193,18 +201,6 @@ class HobbiesViewController: UIViewController {
         contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
     }
     
-//    func configuringCellCentered() {
-//        
-//        let cellHeight: CGFloat = 500
-//        
-//        let tableViewHeight = tableView.frame.size.height
-//        
-//        let topInset = (tableViewHeight - cellHeight) / 2
-//        
-//        tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: topInset, right: 0)
-//        
-//    }
-
     
     //MARK: pulling contact view
     @objc func pullContactView() {
@@ -216,6 +212,7 @@ class HobbiesViewController: UIViewController {
             sheet.preferredCornerRadius = 20
         }
         
+        soundClick()
         contactButtonAnimation()
         
         UIView.animate(withDuration: 0.75, delay: 1.0) {
@@ -233,6 +230,8 @@ class HobbiesViewController: UIViewController {
             UIView.animate(withDuration: 1.0) {
                 self.titlePartII.alpha = 1
                 self.titlePartII.frame.origin.x += 20
+                self.titlePartI.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+                self.titlePartII.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
             }
         }
     }
@@ -242,6 +241,31 @@ class HobbiesViewController: UIViewController {
         
         UIView.animate(withDuration: 0.75) {
             self.contactButton.transform = .identity
+        }
+        
+    }
+    
+    //MARK: Sound effects
+    private func prepareSoundEffect() {
+        guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.volume = 0.3
+            player?.prepareToPlay()
+        } catch {
+            print("Error trying to prepare sound click \(error.localizedDescription)")
+        }
+    }
+    
+    private func soundClick() {
+        
+        if let player = player {
+            if player.isPlaying {
+                player.currentTime = 0
+            } else {
+                player.play()
+            }
         }
         
     }
@@ -269,14 +293,3 @@ extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//extension HobbiesViewController: UIScrollViewDelegate {
-//  
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let center = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width / 2, y: scrollView.bounds.size.height / 2)
-//        
-//        if let indexPath = tableView.indexPathForRow(at: center) {
-//            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
-//        }
-//    }
-//    
-//}

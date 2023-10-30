@@ -26,7 +26,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="avatar" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7EN-9R-szd">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="caio" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7EN-9R-szd">
                                 <rect key="frame" x="107" y="198" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="xlD-Qa-Xml"/>
@@ -74,8 +74,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="avatar" width="250" height="250"/>
         <image name="backgroundStrong" width="390" height="844"/>
+        <image name="caio" width="600" height="600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

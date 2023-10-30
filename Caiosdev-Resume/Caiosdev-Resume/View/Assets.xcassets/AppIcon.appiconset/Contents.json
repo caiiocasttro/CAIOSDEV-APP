@@ -36,7 +36,7 @@
       "size" : "38x38"
     },
     {
-      "filename" : "iTunesArtwork@1x 1.png",
+      "filename" : "apple-icon-114x114.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
@@ -50,7 +50,7 @@
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-App-40x40@3x.png",
+      "filename" : "Icon-App-60x60@2x 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
@@ -71,21 +71,21 @@
       "size" : "60x60"
     },
     {
-      "filename" : "iTunesArtwork@1x 2.png",
+      "filename" : "128.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "64x64"
     },
     {
-      "filename" : "iTunesArtwork@1x 3.png",
+      "filename" : "android-icon-192x192.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "64x64"
     },
     {
-      "filename" : "iTunesArtwork@1x 4.png",
+      "filename" : "136.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",

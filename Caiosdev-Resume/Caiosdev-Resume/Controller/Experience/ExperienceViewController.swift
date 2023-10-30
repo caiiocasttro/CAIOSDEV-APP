@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ExperienceViewController: UIViewController {
+    
+    //MARK: Initializer
+    var player: AVAudioPlayer?
     
     //MARK: properties
     var animatedOnce = false
@@ -69,7 +73,7 @@ class ExperienceViewController: UIViewController {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Professional Path Stories 👨🏾‍💻"
+        title.text = "Professional Path 👨🏾‍💻"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
@@ -93,7 +97,12 @@ class ExperienceViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Layout
         configureLayout()
+        
+        //Preparing sound
+        prepareSoundEffect()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -200,6 +209,7 @@ class ExperienceViewController: UIViewController {
             sheet.preferredCornerRadius = 15
         }
         
+        soundClick()
         contactButtonAnimation()
         
         UIView.animate(withDuration: 0.75, delay: 1.0) {
@@ -218,6 +228,8 @@ class ExperienceViewController: UIViewController {
             UIView.animate(withDuration: 1.0) {
                 self.titlePartII.alpha = 1
                 self.titlePartII.frame.origin.x += 20
+                self.titlePartI.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+                self.titlePartII.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
             }
         }
     }
@@ -227,6 +239,31 @@ class ExperienceViewController: UIViewController {
         
         UIView.animate(withDuration: 0.75) {
             self.contactButton.transform = .identity
+        }
+        
+    }
+    
+    //MARK: Sound effects
+    private func prepareSoundEffect() {
+        guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.volume = 0.3
+            player?.prepareToPlay()
+        } catch {
+            print("Error trying to prepare sound click \(error.localizedDescription)")
+        }
+    }
+    
+    private func soundClick() {
+        
+        if let player = player {
+            if player.isPlaying {
+                player.currentTime = 0
+            } else {
+                player.play()
+            }
         }
         
     }

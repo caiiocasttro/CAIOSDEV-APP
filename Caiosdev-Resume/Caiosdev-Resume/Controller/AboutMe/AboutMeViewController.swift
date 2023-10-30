@@ -6,12 +6,14 @@
 //
 
 import UIKit
-//import QuartzCore
+import AVFoundation
 
 class AboutMeViewController: UIViewController {
     
     //MARK: Initializer
     private let sheet = ContactsSheetViewController()
+    
+    private var player: AVAudioPlayer?
     
     //MARK: Properties
     var animatedOnce = false
@@ -102,9 +104,14 @@ class AboutMeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        //Tab bar
         configureTabBar()
+        
+        //Layout
         configureLayout()
-//        helloAnimation()
+        
+        //Preparing sound
+        prepareSoundEffect()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -237,10 +244,11 @@ class AboutMeViewController: UIViewController {
             sheet.largestUndimmedDetentIdentifier = .medium
             sheet.preferredCornerRadius = 20
         }
-        
+
+        soundClick()
         contactButtonAnimation()
         
-        UIView.animate(withDuration: 0.75, delay: 1.0) {
+        UIView.animate(withDuration: 0.25, delay: 0.5) {
             self.present(vc, animated: true)
         }
         
@@ -257,6 +265,8 @@ class AboutMeViewController: UIViewController {
             UIView.animate(withDuration: 1.0) {
                 self.myName.alpha = 1
                 self.myName.frame.origin.x += 20
+                self.hello.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+                self.myName.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
             }
         }
     }
@@ -266,6 +276,31 @@ class AboutMeViewController: UIViewController {
         
         UIView.animate(withDuration: 0.75) {
             self.contactButton.transform = .identity
+        }
+        
+    }
+    
+    //MARK: Sound effects
+    private func prepareSoundEffect() {
+        guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.volume = 0.3
+            player?.prepareToPlay()
+        } catch {
+            print("Error trying to prepare sound click \(error.localizedDescription)")
+        }
+    }
+    
+    private func soundClick() {
+        
+        if let player = player {
+            if player.isPlaying {
+                player.currentTime = 0
+            } else {
+                player.play()
+            }
         }
         
     }
@@ -300,12 +335,5 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if indexPath.row == 2 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: AboutMeIdentifiers.Languages.rawValue, for: indexPath) as! LanguagesViewCell
-//                cell.portugueseWidth = 296
-//        }
-//    }
 }
 

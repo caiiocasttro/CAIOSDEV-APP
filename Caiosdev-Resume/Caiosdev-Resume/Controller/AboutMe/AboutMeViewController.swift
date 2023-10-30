@@ -25,8 +25,8 @@ class AboutMeViewController: UIViewController {
     
     lazy var contactButton: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 20, height: 20)
-        button.setBackgroundImage(UIImage(named: "contact30px"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 85, height: 30)
+        button.setBackgroundImage(UIImage(named: "HireMe"), for: .normal)
         return button
     }()
     
@@ -186,8 +186,8 @@ class AboutMeViewController: UIViewController {
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
-            contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 15),
+            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             line.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),

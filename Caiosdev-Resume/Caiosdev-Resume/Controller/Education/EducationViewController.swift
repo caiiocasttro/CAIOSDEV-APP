@@ -22,8 +22,8 @@ class EducationViewController: UIViewController {
     
     lazy var contactButton: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 20, height: 20)
-        button.setBackgroundImage(UIImage(named: "contact30px"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 75, height: 25)
+        button.setBackgroundImage(UIImage(named: "HireMe"), for: .normal)
         return button
     }()
     
@@ -155,8 +155,8 @@ class EducationViewController: UIViewController {
             
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
             
-            contactButton.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 10),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            contactButton.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 15),
+            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

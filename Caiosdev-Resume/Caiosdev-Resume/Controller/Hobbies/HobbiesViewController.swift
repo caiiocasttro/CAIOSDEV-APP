@@ -43,8 +43,8 @@ class HobbiesViewController: UIViewController {
     
     lazy var contactButton: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 20, height: 20)
-        button.setBackgroundImage(UIImage(named: "contact30px"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 75, height: 25)
+        button.setBackgroundImage(UIImage(named: "HireMe"), for: .normal)
         return button
     }()
     
@@ -170,8 +170,8 @@ class HobbiesViewController: UIViewController {
             hobbiesView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
-            contactButton.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 10),
-            contactButton.trailingAnchor.constraint(equalTo: hobbiesView.trailingAnchor, constant: -10),
+            contactButton.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
+            contactButton.trailingAnchor.constraint(equalTo: hobbiesView.trailingAnchor, constant: -20),
             
             line.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),

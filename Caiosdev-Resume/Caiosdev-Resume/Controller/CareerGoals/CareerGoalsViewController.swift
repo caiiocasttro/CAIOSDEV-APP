@@ -401,6 +401,7 @@ class CareerGoalsViewController: UIViewController {
         
         soundClick()
         contactButtonAnimation()
+        feedbackGenerator.impactOccurred()
         UIView.animate(withDuration: 0.75, delay: 1.0) {
             self.present(vc, animated: true)
         }

@@ -19,11 +19,13 @@ struct MyEducationModel {
 
 struct MyCertificateModel {
     
-    static let cetificateName: [String] = ["iOS Animations", "iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
+    static let cetificateName: [String] = ["Level Up in Auto Layout - Swift", "iOS Animations", "iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
     
     static let school = "Udemy"
     
-    static let date: [String] = ["October 2023", "October 2022", "October 2022", "March 2023"]
+    static let date: [String] = ["October 2023", "October 2023", "October 2022", "October 2022", "March 2023"]
+    
+    static let iOSAutoLayoutURL: String = "https://ude.my/UC-ea1d2fea-5a0d-4691-8aa6-c9d8d315a58d/"
     
     static let iOSAnimationURL: String = "https://ude.my/UC-0c96e837-69d3-471f-95d6-d0351594fe4b/"
     

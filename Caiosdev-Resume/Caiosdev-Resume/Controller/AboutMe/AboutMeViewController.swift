@@ -15,8 +15,12 @@ class AboutMeViewController: UIViewController {
     
     private var player: AVAudioPlayer?
     
+    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
     //MARK: Properties
     var animatedOnce = false
+    
+    var shouldAnimate = false
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -101,6 +105,7 @@ class AboutMeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -112,6 +117,8 @@ class AboutMeViewController: UIViewController {
         
         //Preparing sound
         prepareSoundEffect()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,8 +129,10 @@ class AboutMeViewController: UIViewController {
             animatedOnce = true
         }
         
+        
+        
     }
-
+    
     //MARK: Configuring layout
     private func configureLayout() {
         
@@ -233,7 +242,7 @@ class AboutMeViewController: UIViewController {
         }
         
     }
-
+    
     
     //MARK: pulling contact view
     @objc func pullContactView() {
@@ -244,9 +253,10 @@ class AboutMeViewController: UIViewController {
             sheet.largestUndimmedDetentIdentifier = .medium
             sheet.preferredCornerRadius = 20
         }
-
+        
         soundClick()
         contactButtonAnimation()
+        feedbackGenerator.impactOccurred()
         
         UIView.animate(withDuration: 0.25, delay: 0.5) {
             self.present(vc, animated: true)
@@ -307,6 +317,27 @@ class AboutMeViewController: UIViewController {
     
 }
 
+//MARK: ScrollViewDelegate
+extension AboutMeViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewHeight = scrollView.frame.size.height
+        let contentViewHeight = scrollView.contentSize.height
+        let yOffset = scrollView.contentOffset.y
+        
+        let shouldAnimate: CGFloat = 10
+        
+        if yOffset + scrollViewHeight + shouldAnimate >= contentViewHeight {
+            
+            if !self.shouldAnimate {
+                self.shouldAnimate = true
+                tableView.reloadData()
+
+            }
+        }
+    }
+}
+
 
 //MARK: TableView Delegate & DataSource
 extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -335,5 +366,34 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let customCell = cell as? LanguagesViewCell {
+            
+            if shouldAnimate {
+                customCell.portugueseLevelFrame = 0
+
+                UIView.animate(withDuration: 1.5, delay: 0.5, options: .curveEaseIn) {
+                    customCell.portugueseLevelFrame = (ConstraintsManager.width * 0.8) - 19
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    customCell.englishLevelFrame = 0
+                    UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseIn) {
+                        customCell.englishLevelFrame = (ConstraintsManager.width * 0.7)
+                    }
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    customCell.frenchLevelFrame = 0
+                    UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseIn) {
+                        customCell.frenchLevelFrame = ((ConstraintsManager.width * 0.2) - 30)
+                    }
+                }
+            }
+        }
+    }
 }
+
+
 

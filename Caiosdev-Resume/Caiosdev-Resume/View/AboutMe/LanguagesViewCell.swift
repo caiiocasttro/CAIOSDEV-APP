@@ -18,6 +18,30 @@ class LanguagesViewCell: UITableViewCell {
         }
     }
     
+    var portugueseLevelFrame: CGFloat? {
+        didSet {
+            guard let frame = portugueseLevelFrame else { return }
+            portugueseLevel.frame = .init(x: 0, y: 0, width: frame, height: 6)
+            portugueseLevel.trailingAnchor.constraint(equalTo: portugueseLevelBackground.trailingAnchor, constant: -2).isActive = true
+        }
+    }
+    
+    var englishLevelFrame: CGFloat? {
+        didSet {
+            guard let frame = englishLevelFrame else { return }
+            englishLevel.frame = .init(x: 0, y: 0, width: frame, height: 6)
+            englishLevel.trailingAnchor.constraint(equalTo: englishLevelBackground.trailingAnchor, constant: -(ConstraintsManager.width * 0.3)).isActive = true
+        }
+    }
+    
+    var frenchLevelFrame: CGFloat? {
+        didSet {
+            guard let frame = frenchLevelFrame else { return }
+            frenchLevel.frame = .init(x: 0, y: 0, width: frame, height: 6)
+            frenchLevel.trailingAnchor.constraint(equalTo: frenchLevelBackground.trailingAnchor, constant: -((ConstraintsManager.width * 0.6) + 15)).isActive = true
+        }
+    }
+    
     //MARK: Objects
     lazy var cellTitle: UILabel = {
         let title = UILabel()
@@ -53,7 +77,7 @@ class LanguagesViewCell: UITableViewCell {
     
     lazy var portugueseLevel: UIView = {
         let line = UIView()
-        line.frame = .init(x: 0, y: 0, width: 296, height: 6)
+        line.frame = .init(x: 0, y: 0, width: ((ConstraintsManager.width * 0.8) - 17), height: 6)
         line.layer.cornerRadius = 3
         line.clipsToBounds = true
         
@@ -86,7 +110,7 @@ class LanguagesViewCell: UITableViewCell {
     
     lazy var englishLevel: UIView = {
         let line = UIView()
-        line.frame = .init(x: 0, y: 0, width: 220, height: 6)
+        line.frame = .init(x: 0, y: 0, width: ((ConstraintsManager.width * 0.7)), height: 6)
         line.layer.cornerRadius = 3
         line.clipsToBounds = true
         
@@ -119,7 +143,7 @@ class LanguagesViewCell: UITableViewCell {
     
     lazy var frenchLevel: UIView = {
         let line = UIView()
-        line.frame = .init(x: 0, y: 0, width: 50, height: 6)
+        line.frame = .init(x: 0, y: 0, width: ((ConstraintsManager.width * 0.2) - 30), height: 6)
         line.layer.cornerRadius = 3
         line.clipsToBounds = true
         
@@ -191,13 +215,11 @@ class LanguagesViewCell: UITableViewCell {
             
             portugueseLevelBackground.topAnchor.constraint(equalTo: portuguese.bottomAnchor, constant: 5),
             portugueseLevelBackground.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),
-            portugueseLevelBackground.widthAnchor.constraint(equalToConstant: 300),
+            portugueseLevelBackground.widthAnchor.constraint(equalToConstant: (ConstraintsManager.width * 0.8) - 15),
             portugueseLevelBackground.heightAnchor.constraint(equalToConstant: 10),
             
             portugueseLevel.centerYAnchor.constraint(equalTo: portugueseLevelBackground.centerYAnchor),
             portugueseLevel.leadingAnchor.constraint(equalTo: portugueseLevelBackground.leadingAnchor, constant: 2),
-            portugueseLevel.trailingAnchor.constraint(equalTo: portugueseLevelBackground.trailingAnchor, constant: -2),
-            portugueseLevel.widthAnchor.constraint(equalToConstant: 296),
             portugueseLevel.heightAnchor.constraint(equalToConstant: 6),
             
             english.topAnchor.constraint(equalTo: portugueseLevelBackground.bottomAnchor, constant: 20),
@@ -205,12 +227,11 @@ class LanguagesViewCell: UITableViewCell {
             
             englishLevelBackground.topAnchor.constraint(equalTo: english.bottomAnchor, constant: 5),
             englishLevelBackground.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),
-            englishLevelBackground.widthAnchor.constraint(equalToConstant: 300),
+            englishLevelBackground.widthAnchor.constraint(equalToConstant: (ConstraintsManager.width * 0.8) - 15),
             englishLevelBackground.heightAnchor.constraint(equalToConstant: 10),
             
             englishLevel.centerYAnchor.constraint(equalTo: englishLevelBackground.centerYAnchor),
             englishLevel.leadingAnchor.constraint(equalTo: englishLevelBackground.leadingAnchor, constant: 2),
-            englishLevel.widthAnchor.constraint(equalToConstant: 220),
             englishLevel.heightAnchor.constraint(equalToConstant: 6),
             
             french.topAnchor.constraint(equalTo: englishLevelBackground.bottomAnchor, constant: 20),
@@ -218,24 +239,14 @@ class LanguagesViewCell: UITableViewCell {
             
             frenchLevelBackground.topAnchor.constraint(equalTo: french.bottomAnchor, constant: 5),
             frenchLevelBackground.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),
-            frenchLevelBackground.widthAnchor.constraint(equalToConstant: 300),
+            frenchLevelBackground.widthAnchor.constraint(equalToConstant: (ConstraintsManager.width * 0.8) - 15),
             frenchLevelBackground.heightAnchor.constraint(equalToConstant: 10),
             
             frenchLevel.centerYAnchor.constraint(equalTo: frenchLevelBackground.centerYAnchor),
             frenchLevel.leadingAnchor.constraint(equalTo: frenchLevelBackground.leadingAnchor, constant: 2),
-            frenchLevel.widthAnchor.constraint(equalToConstant: 50),
             frenchLevel.heightAnchor.constraint(equalToConstant: 6),
             
         ])
-        
-    }
-    
-    //MARK: Animation
-    func languageLevelAnimation() {
-        
-        UIView.animate(withDuration: 1.5) {
-            
-        }
         
     }
     

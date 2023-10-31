@@ -11,6 +11,9 @@ import UIKit
 
 class ContactsSheetViewController: UIViewController {
     
+    //MARK: Initializer
+    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
     //MARK: Objects
     @objc lazy var dismissButton: UIButton = {
         let button = UIButton()
@@ -274,6 +277,8 @@ class ContactsSheetViewController: UIViewController {
     //Linkedin page
     @objc func linkedinDidTapped() {
         
+        feedbackGenerator.impactOccurred()
+        
         guard let url = URL(string: ContactsModel.linkedin) else { return }
         
         let vc = SFSafariViewController(url: url)
@@ -284,6 +289,7 @@ class ContactsSheetViewController: UIViewController {
     
     @objc func contactDidTapped() {
         
+        feedbackGenerator.impactOccurred()
         
         //Creating the UIAlertController(This will represents the alert that will show up on the bottom) with title and message setted to nil
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -321,6 +327,8 @@ class ContactsSheetViewController: UIViewController {
     }
     
     @objc func emailDidTapped() {
+        
+        feedbackGenerator.impactOccurred()
         
         //Creating the UIAlertController(This will represents the alert that will show up on the bottom) with title and message setted to nil
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

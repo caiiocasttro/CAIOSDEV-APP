@@ -14,6 +14,8 @@ class EducationViewController: UIViewController {
     //MARK: Initializer
     var player: AVAudioPlayer?
     
+    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
     //MARK: Properties
     var animatedOnce = false
     
@@ -215,7 +217,7 @@ class EducationViewController: UIViewController {
         
         soundClick()
         contactButtonAnimation()
-        
+        feedbackGenerator.impactOccurred()
         UIView.animate(withDuration: 0.75, delay: 1.0) {
             self.present(vc, animated: true)
         }
@@ -281,7 +283,7 @@ class EducationViewController: UIViewController {
 extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row <= 7 {
+        if indexPath.row <= 8 {
             return 80
         } else {
             return 600
@@ -290,7 +292,7 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -305,7 +307,7 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.title.rawValue, for: indexPath) as! MyCertificatesViewCell
             cell.isUserInteractionEnabled = false
             return cell
-        } else if indexPath.row == 8 {
+        } else if indexPath.row == 9 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.skills.rawValue, for: indexPath) as!
             SkillsViewCell
             cell.isUserInteractionEnabled = false
@@ -322,9 +324,12 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             } else if indexPath.row == 6 {
                 cell.certificate = MyCertificateModel.cetificateName[2]
                 cell.dateString = MyCertificateModel.date[2]
-            } else {
+            } else if indexPath.row == 7 {
                 cell.certificate = MyCertificateModel.cetificateName[3]
                 cell.dateString = MyCertificateModel.date[3]
+            } else {
+                cell.certificate = MyCertificateModel.cetificateName[4]
+                cell.dateString = MyCertificateModel.date[4]
             }
             cell.selectionStyle = .none
             return cell
@@ -334,24 +339,35 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 4 {
-            guard let url = URL(string: MyCertificateModel.iOSAnimationURL) else { return }
+            feedbackGenerator.impactOccurred()
+            guard let url = URL(string: MyCertificateModel.iOSAutoLayoutURL) else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 5 {
-            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            feedbackGenerator.impactOccurred()
+            guard let url = URL(string: MyCertificateModel.iOSAnimationURL) else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 6 {
+            feedbackGenerator.impactOccurred()
+            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            
+            let vc = SFSafariViewController(url: url)
+            vc.modalPresentationStyle = .pageSheet
+            self.present(vc, animated: true)
+        } else if indexPath.row == 7 {
+            feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel.userExperience) else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else {
+            feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel.webAndMobileURL) else { return }
             
             let vc = SFSafariViewController(url: url)

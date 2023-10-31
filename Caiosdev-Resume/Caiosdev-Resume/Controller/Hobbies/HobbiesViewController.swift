@@ -13,6 +13,8 @@ class HobbiesViewController: UIViewController {
     //MARK: Initializer
     var player: AVAudioPlayer?
     
+    private var feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
     //MARK: properties
     var animatedOnce = false
     
@@ -214,7 +216,7 @@ class HobbiesViewController: UIViewController {
         
         soundClick()
         contactButtonAnimation()
-        
+        feedbackGenerator.impactOccurred()
         UIView.animate(withDuration: 0.75, delay: 1.0) {
             self.present(vc, animated: true)
         }

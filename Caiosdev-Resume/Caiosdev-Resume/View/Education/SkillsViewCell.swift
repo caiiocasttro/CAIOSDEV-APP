@@ -26,6 +26,30 @@ class SkillsViewCell: UITableViewCell {
         return view
     }()
     
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 20
+        return stackView
+    }()
+    
+    lazy var skill: UILabel = {
+        let skill = UILabel()
+        skill.text = MySkillsModel.skills[0]
+        skill.textColor = UIColor(named: "BlackSecondary")
+        skill.font = UIFont(name: "Nunito-Bold", size: 16)
+        skill.textAlignment = .right
+        return skill
+    }()
+    
+    lazy var skillLevel: UIImageView = {
+        let level = UIImageView()
+        level.frame = .init(x: 0, y: 0, width: 100, height: 5)
+        level.image = UIImage(named: MySkillsModel.skillsLevel[0])
+        return level
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureLayout()
@@ -61,6 +85,7 @@ class SkillsViewCell: UITableViewCell {
             
         ])
         
+        //TODO: Change it for tableViews
         for i in 0..<MySkillsModel.skills.count {
             
             space += 30

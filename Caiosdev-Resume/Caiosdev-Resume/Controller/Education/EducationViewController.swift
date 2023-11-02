@@ -283,7 +283,7 @@ class EducationViewController: UIViewController {
 extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row <= 8 {
+        if indexPath.row <= 9 {
             return 80
         } else {
             return 600
@@ -292,7 +292,7 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 11
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -307,7 +307,7 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.title.rawValue, for: indexPath) as! MyCertificatesViewCell
             cell.isUserInteractionEnabled = false
             return cell
-        } else if indexPath.row == 9 {
+        } else if indexPath.row == 10 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.skills.rawValue, for: indexPath) as!
             SkillsViewCell
             cell.isUserInteractionEnabled = false
@@ -327,9 +327,12 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             } else if indexPath.row == 7 {
                 cell.certificate = MyCertificateModel.cetificateName[3]
                 cell.dateString = MyCertificateModel.date[3]
-            } else {
+            } else if indexPath.row == 8 {
                 cell.certificate = MyCertificateModel.cetificateName[4]
                 cell.dateString = MyCertificateModel.date[4]
+            } else {
+                cell.certificate = MyCertificateModel.cetificateName[5]
+                cell.dateString = MyCertificateModel.date[5]
             }
             cell.selectionStyle = .none
             return cell
@@ -340,26 +343,33 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 4 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.iOSAutoLayoutURL) else { return }
+            guard let url = URL(string: MyCertificateModel.LevelUpSwift) else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 5 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.iOSAnimationURL) else { return }
+            guard let url = URL(string: MyCertificateModel.iOSAutoLayoutURL) else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 6 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            guard let url = URL(string: MyCertificateModel.iOSAnimationURL) else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 7 {
+            feedbackGenerator.impactOccurred()
+            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            
+            let vc = SFSafariViewController(url: url)
+            vc.modalPresentationStyle = .pageSheet
+            self.present(vc, animated: true)
+        } else if indexPath.row == 8 {
             feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel.userExperience) else { return }
             

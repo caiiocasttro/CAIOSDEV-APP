@@ -112,10 +112,7 @@ enum MyCertificates: String {
 struct MySkillsModel {
     
     static let skills: [String] = ["APIs", "CocoaPods", "CoreData", "Firebase", "Figma", "Git", "GitHub", "iOS Animations", "JSON", "MVC", "MVVM", "Swift", "SwiftUI", "UIKit", "UI/UX Designer", "VIPER"]
-    
-    static let skillsLevel: [String] = ["Intermediate", "Intermediate", "Elementary", "Intermediate", "Intermediate", "Elementary", "Elementary", "Elementary",
-                                                   "Intermediate", "Advanced", "Advanced", "Advanced", "Elementary", "Intermediate", "Intermediate", "Basic"]
-    
+
 }
 
 enum MySkills: String {

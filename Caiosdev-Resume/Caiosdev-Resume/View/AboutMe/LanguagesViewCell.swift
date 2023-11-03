@@ -169,10 +169,12 @@ class LanguagesViewCell: UITableViewCell {
     
     //MARK: Configuring layout
     private func configureLayout() {
-        
-        
-        
+
         backgroundColor = UIColor.clear
+        
+        let leading = layoutMarginsGuide.leadingAnchor
+        
+        let trailing = layoutMarginsGuide.trailingAnchor
         
         //Adding subviews
         addSubview(cellTitle)
@@ -202,11 +204,11 @@ class LanguagesViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             
             cellTitle.topAnchor.constraint(equalTo: topAnchor),
-            cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            cellTitle.leadingAnchor.constraint(equalTo: leading),
             
             cellView.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 5),
-            cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            cellView.leadingAnchor.constraint(equalTo: leading),
+            cellView.trailingAnchor.constraint(equalTo: trailing),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             cellView.heightAnchor.constraint(equalToConstant: 190),
             

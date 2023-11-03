@@ -107,7 +107,7 @@ class CareerGoalsViewController: UIViewController {
         return view
     }()
     
-    lazy var fiveYrsView: UIView = {
+    lazy var fiveYrsBubble: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 15
@@ -140,7 +140,7 @@ class CareerGoalsViewController: UIViewController {
         return view
     }()
     
-    lazy var twoYrsView: UIView = {
+    lazy var twoYrsBubble: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 15
@@ -173,7 +173,7 @@ class CareerGoalsViewController: UIViewController {
         return view
     }()
     
-    lazy var oneYearView: UIView = {
+    lazy var oneYearBubble: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 15
@@ -233,6 +233,9 @@ class CareerGoalsViewController: UIViewController {
         let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
         
+        let leading = view.layoutMarginsGuide.leadingAnchor
+        let trailing = view.layoutMarginsGuide.trailingAnchor
+        
         //Adding subviews
         view.addSubview(background)
         view.sendSubviewToBack(background)
@@ -248,17 +251,17 @@ class CareerGoalsViewController: UIViewController {
         careerGoalsView.addSubview(contactButton)
         careerGoalsView.addSubview(chartView)
         careerGoalsView.addSubview(fiveYrsIcon)
-        careerGoalsView.addSubview(fiveYrsView)
+        careerGoalsView.addSubview(fiveYrsBubble)
         careerGoalsView.addSubview(curveTopRight)
-        fiveYrsView.addSubview(fiveYrsText)
+        fiveYrsBubble.addSubview(fiveYrsText)
         careerGoalsView.addSubview(twoYrsIcon)
-        careerGoalsView.addSubview(twoYrsView)
+        careerGoalsView.addSubview(twoYrsBubble)
         careerGoalsView.addSubview(curveTop)
-        twoYrsView.addSubview(twoYrsText)
+        twoYrsBubble.addSubview(twoYrsText)
         careerGoalsView.addSubview(oneYearIcon)
-        careerGoalsView.addSubview(oneYearView)
+        careerGoalsView.addSubview(oneYearBubble)
         careerGoalsView.addSubview(curveLeft)
-        oneYearView.addSubview(oneYearText)
+        oneYearBubble.addSubview(oneYearText)
         
         
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -273,15 +276,15 @@ class CareerGoalsViewController: UIViewController {
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         chartView.translatesAutoresizingMaskIntoConstraints = false
         fiveYrsIcon.translatesAutoresizingMaskIntoConstraints = false
-        fiveYrsView.translatesAutoresizingMaskIntoConstraints = false
+        fiveYrsBubble.translatesAutoresizingMaskIntoConstraints = false
         curveTopRight.translatesAutoresizingMaskIntoConstraints = false
         fiveYrsText.translatesAutoresizingMaskIntoConstraints = false
         twoYrsIcon.translatesAutoresizingMaskIntoConstraints = false
-        twoYrsView.translatesAutoresizingMaskIntoConstraints = false
+        twoYrsBubble.translatesAutoresizingMaskIntoConstraints = false
         curveTop.translatesAutoresizingMaskIntoConstraints = false
         twoYrsText.translatesAutoresizingMaskIntoConstraints = false
         oneYearIcon.translatesAutoresizingMaskIntoConstraints = false
-        oneYearView.translatesAutoresizingMaskIntoConstraints = false
+        oneYearBubble.translatesAutoresizingMaskIntoConstraints = false
         oneYearText.translatesAutoresizingMaskIntoConstraints = false
         curveLeft.translatesAutoresizingMaskIntoConstraints = false
         
@@ -299,7 +302,7 @@ class CareerGoalsViewController: UIViewController {
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
             
             contactButton.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            contactButton.trailingAnchor.constraint(equalTo: trailing),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -309,6 +312,7 @@ class CareerGoalsViewController: UIViewController {
             backgroundSheet.widthAnchor.constraint(equalTo: careerGoalsView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
             
+            //Career View
             careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
             careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -316,63 +320,77 @@ class CareerGoalsViewController: UIViewController {
             careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
+            //Dragger line
             line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),
             line.heightAnchor.constraint(equalToConstant: 5),
             line.centerXAnchor.constraint(equalTo: careerGoalsView.centerXAnchor),
             
-            titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: careerGoalsView.leadingAnchor, constant: 20),
+            //Title for the page
+            titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
+            titlePage.leadingAnchor.constraint(equalTo: leading),
             
-            chartView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width * 0.9)),
+            //Chart image
             chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
-            chartView.centerXAnchor.constraint(equalTo: careerGoalsView.centerXAnchor),
+            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
             chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
             
+            //Five years icon
             fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 25)),
             fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 40)),
             
-            fiveYrsView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width * 0.8)),
-            fiveYrsView.topAnchor.constraint(equalTo: fiveYrsIcon.bottomAnchor, constant: 5),
-            fiveYrsView.leadingAnchor.constraint(equalTo: careerGoalsView.leadingAnchor, constant: 20),
+            //Five years bubble
+            fiveYrsBubble.topAnchor.constraint(equalTo: fiveYrsIcon.bottomAnchor, constant: 5),
+            fiveYrsBubble.leadingAnchor.constraint(equalTo: leading),
+            fiveYrsBubble.trailingAnchor.constraint(equalTo: trailing),
             
-            curveTopRight.topAnchor.constraint(equalTo: fiveYrsView.topAnchor, constant: -4),
-            curveTopRight.trailingAnchor.constraint(equalTo: fiveYrsView.trailingAnchor),
+            //Custom curve for five years bubble
+            curveTopRight.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: -4),
+            curveTopRight.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor),
             
-            fiveYrsText.topAnchor.constraint(equalTo: fiveYrsView.topAnchor, constant: 10),
-            fiveYrsText.leadingAnchor.constraint(equalTo: fiveYrsView.leadingAnchor, constant: 10),
-            fiveYrsText.trailingAnchor.constraint(equalTo: fiveYrsView.trailingAnchor, constant: -10),
-            fiveYrsText.bottomAnchor.constraint(equalTo: fiveYrsView.bottomAnchor, constant: -10),
+            //Five years text
+            fiveYrsText.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: 10),
+            fiveYrsText.leadingAnchor.constraint(equalTo: fiveYrsBubble.leadingAnchor, constant: 10),
+            fiveYrsText.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor, constant: -10),
+            fiveYrsText.bottomAnchor.constraint(equalTo: fiveYrsBubble.bottomAnchor, constant: -10),
             
+            //Two years icon
             twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 58)),
             twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 35)),
             
-            curveTop.bottomAnchor.constraint(equalTo: twoYrsView.topAnchor, constant: 2),
+            //Custom curve for two years bubble
+            curveTop.bottomAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 2),
             curveTop.leadingAnchor.constraint(equalTo: twoYrsIcon.trailingAnchor, constant: 20),
             
-            twoYrsView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width * 0.8)),
-            twoYrsView.topAnchor.constraint(equalTo: twoYrsIcon.bottomAnchor, constant: 5),
-            twoYrsView.leadingAnchor.constraint(equalTo: careerGoalsView.leadingAnchor, constant: 20),
+            //Two years bubble
+            twoYrsBubble.topAnchor.constraint(equalTo: twoYrsIcon.bottomAnchor, constant: 5),
+            twoYrsBubble.leadingAnchor.constraint(equalTo: leading),
+            twoYrsBubble.trailingAnchor.constraint(equalTo: trailing),
             
-            twoYrsText.topAnchor.constraint(equalTo: twoYrsView.topAnchor, constant: 10),
-            twoYrsText.leadingAnchor.constraint(equalTo: twoYrsView.leadingAnchor, constant: 10),
-            twoYrsText.trailingAnchor.constraint(equalTo: twoYrsView.trailingAnchor, constant: -10),
-            twoYrsText.bottomAnchor.constraint(equalTo: twoYrsView.bottomAnchor, constant: -10),
+            //Two years text
+            twoYrsText.topAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 10),
+            twoYrsText.leadingAnchor.constraint(equalTo: twoYrsBubble.leadingAnchor, constant: 10),
+            twoYrsText.trailingAnchor.constraint(equalTo: twoYrsBubble.trailingAnchor, constant: -10),
+            twoYrsText.bottomAnchor.constraint(equalTo: twoYrsBubble.bottomAnchor, constant: -10),
             
+            //One year icon
             oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2))),
             oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 15)),
             
-            oneYearView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width * 0.5)),
-            oneYearView.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
-            oneYearView.leadingAnchor.constraint(equalTo: oneYearIcon.trailingAnchor, constant: 35),
+            //One year bubble
+            oneYearBubble.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
+            oneYearBubble.leadingAnchor.constraint(equalTo: oneYearIcon.trailingAnchor, constant: 35),
+            oneYearBubble.trailingAnchor.constraint(equalTo: trailing),
             
-            oneYearText.topAnchor.constraint(equalTo: oneYearView.topAnchor, constant: 10),
-            oneYearText.leadingAnchor.constraint(equalTo: oneYearView.leadingAnchor, constant: 10),
-            oneYearText.trailingAnchor.constraint(equalTo: oneYearView.trailingAnchor, constant: -10),
-            oneYearText.bottomAnchor.constraint(equalTo: oneYearView.bottomAnchor, constant: -10),
+            //One year text
+            oneYearText.topAnchor.constraint(equalTo: oneYearBubble.topAnchor, constant: 10),
+            oneYearText.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: 10),
+            oneYearText.trailingAnchor.constraint(equalTo: oneYearBubble.trailingAnchor, constant: -10),
+            oneYearText.bottomAnchor.constraint(equalTo: oneYearBubble.bottomAnchor, constant: -10),
             
+            //Custom curve for one year bubble
             curveLeft.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
-            curveLeft.leadingAnchor.constraint(equalTo: oneYearView.leadingAnchor, constant: -4),
+            curveLeft.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: -4),
             
             
             
@@ -412,13 +430,13 @@ class CareerGoalsViewController: UIViewController {
         
         UIView.animate(withDuration: 0.75) {
             self.titlePartI.alpha = 1
-            self.titlePartI.frame.origin.x += 20
+            self.titlePartI.frame.origin.x += 15
         } completion: { (done) in
             UIView.animate(withDuration: 1.0) {
                 self.titlePartII.alpha = 1
-                self.titlePartII.frame.origin.x += 20
-                self.titlePartI.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-                self.titlePartII.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+                self.titlePartII.frame.origin.x += 15
+                self.titlePartI.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
+                self.titlePartII.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
             }
             
         }
@@ -430,42 +448,42 @@ class CareerGoalsViewController: UIViewController {
     func fiveYrsAnimation() {
         
         
-        self.fiveYrsView.isHidden = false
+        self.fiveYrsBubble.isHidden = false
         self.curveTopRight.isHidden = false
         self.curveTopRight.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        self.fiveYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.fiveYrsBubble.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
             self.curveTopRight.transform = .identity
-            self.fiveYrsView.transform = .identity
-            self.fiveYrsView.alpha = 1
+            self.fiveYrsBubble.transform = .identity
+            self.fiveYrsBubble.alpha = 1
             self.curveTopRight.alpha = 1
         }
     }
     
     func twoYrsAnimation() {
-        self.twoYrsView.isHidden = false
+        self.twoYrsBubble.isHidden = false
         self.curveTop.isHidden = false
         self.curveTop.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        self.twoYrsView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.twoYrsBubble.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
             self.curveTop.transform = .identity
-            self.twoYrsView.transform = .identity
-            self.twoYrsView.alpha = 1
+            self.twoYrsBubble.transform = .identity
+            self.twoYrsBubble.alpha = 1
             self.curveTop.alpha = 1
         }
     }
     
     func oneYearAnimation() {
-        self.oneYearView.isHidden = false
+        self.oneYearBubble.isHidden = false
         self.curveLeft.isHidden = false
         self.curveLeft.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        self.oneYearView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        self.oneYearBubble.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2) {
             self.curveLeft.transform = .identity
-            self.oneYearView.transform = .identity
-            self.oneYearView.alpha = 1
+            self.oneYearBubble.transform = .identity
+            self.oneYearBubble.alpha = 1
             self.curveLeft.alpha = 1
         }
     }

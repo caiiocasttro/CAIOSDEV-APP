@@ -143,7 +143,9 @@ class AboutMeViewController: UIViewController {
         let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
         
+        let leading = view.layoutMarginsGuide.leadingAnchor
         
+        let trailing = view.layoutMarginsGuide.trailingAnchor
         
         //Adding subview
         view.addSubview(background)
@@ -203,15 +205,15 @@ class AboutMeViewController: UIViewController {
             aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
             contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 15),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            contactButton.trailingAnchor.constraint(equalTo: trailing),
             
             line.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),
             line.heightAnchor.constraint(equalToConstant: 5),
             line.centerXAnchor.constraint(equalTo: aboutMeView.centerXAnchor),
             
-            titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: aboutMeView.leadingAnchor, constant: 20),
+            titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 15),
+            titlePage.leadingAnchor.constraint(equalTo: leading),
             
             tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -270,13 +272,13 @@ class AboutMeViewController: UIViewController {
         
         UIView.animate(withDuration: 0.75) {
             self.hello.alpha = 1
-            self.hello.frame.origin.x += 20
+            self.hello.frame.origin.x += 15
         } completion: { done in
             UIView.animate(withDuration: 1.0) {
                 self.myName.alpha = 1
-                self.myName.frame.origin.x += 20
-                self.hello.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-                self.myName.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+                self.myName.frame.origin.x += 15
+                self.hello.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
+                self.myName.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
             }
         }
     }

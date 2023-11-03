@@ -72,6 +72,10 @@ class LocationViewCell: UITableViewCell {
     private func configureLayout() {
         
         backgroundColor = UIColor.clear
+        
+        let leading = layoutMarginsGuide.leadingAnchor
+        
+        let trailing = layoutMarginsGuide.trailingAnchor
 
         addSubview(cellTitle)
         addSubview(cellView)
@@ -90,9 +94,9 @@ class LocationViewCell: UITableViewCell {
             cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
             cellView.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 5),
-            cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            cellView.leadingAnchor.constraint(equalTo: leading),
+            cellView.trailingAnchor.constraint(equalTo: trailing),
+            cellView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
             
             iconLocation.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 10),
             iconLocation.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),

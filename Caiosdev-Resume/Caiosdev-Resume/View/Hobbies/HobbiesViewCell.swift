@@ -93,6 +93,9 @@ class HobbiesViewCell: UITableViewCell {
     //MARK: Configuring Layout
     private func configureLayout() {
         
+        let leading = layoutMarginsGuide.leadingAnchor
+        let trailing = layoutMarginsGuide.trailingAnchor
+        
         addSubview(imageI)
         imageI.addSubview(dateView)
         dateView.addSubview(dateName)
@@ -121,8 +124,8 @@ class HobbiesViewCell: UITableViewCell {
             dateName.centerYAnchor.constraint(equalTo: dateView.centerYAnchor),
             
             thoughts.topAnchor.constraint(equalTo: imageI.bottomAnchor, constant: 5),
-            thoughts.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            thoughts.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            thoughts.leadingAnchor.constraint(equalTo: leading),
+            thoughts.trailingAnchor.constraint(equalTo: trailing),
             thoughts.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
             
         

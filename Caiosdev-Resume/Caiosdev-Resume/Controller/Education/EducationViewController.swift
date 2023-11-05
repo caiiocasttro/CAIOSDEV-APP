@@ -126,6 +126,9 @@ class EducationViewController: UIViewController {
         let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
         
+        let leading = view.layoutMarginsGuide.leadingAnchor
+        let trailing = view.layoutMarginsGuide.trailingAnchor
+        
         //Adding subview
         view.addSubview(background)
         view.sendSubviewToBack(background)
@@ -167,7 +170,7 @@ class EducationViewController: UIViewController {
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
             
             contactButton.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 15),
-            contactButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            contactButton.trailingAnchor.constraint(equalTo: trailing),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -189,8 +192,8 @@ class EducationViewController: UIViewController {
             line.heightAnchor.constraint(equalToConstant: 5),
             line.centerXAnchor.constraint(equalTo: educationView.centerXAnchor),
             
-            titlePage.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: educationView.leadingAnchor, constant: 20),
+            titlePage.topAnchor.constraint(equalTo: educationView.topAnchor, constant: 15),
+            titlePage.leadingAnchor.constraint(equalTo: leading),
             
             tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),

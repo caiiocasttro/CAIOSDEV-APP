@@ -125,6 +125,9 @@ class HobbiesViewController: UIViewController {
         let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         backgroundSheet.image = UIImage(named: "background")
         
+        let leading = view.layoutMarginsGuide.leadingAnchor
+        let trailing = view.layoutMarginsGuide.trailingAnchor
+        
         //Adding subview
         view.addSubview(background)
         view.sendSubviewToBack(background)
@@ -181,15 +184,15 @@ class HobbiesViewController: UIViewController {
             hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
             
             contactButton.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
-            contactButton.trailingAnchor.constraint(equalTo: hobbiesView.trailingAnchor, constant: -20),
+            contactButton.trailingAnchor.constraint(equalTo: trailing),
             
             line.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),
             line.heightAnchor.constraint(equalToConstant: 5),
             line.centerXAnchor.constraint(equalTo: hobbiesView.centerXAnchor),
             
-            titlePage.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 20),
-            titlePage.leadingAnchor.constraint(equalTo: hobbiesView.leadingAnchor, constant: 20),
+            titlePage.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
+            titlePage.leadingAnchor.constraint(equalTo: leading),
             
             tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),

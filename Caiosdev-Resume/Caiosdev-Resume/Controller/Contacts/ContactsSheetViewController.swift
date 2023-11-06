@@ -7,12 +7,15 @@
 
 import MessageUI
 import SafariServices
+import AVFoundation
 import UIKit
 
 class ContactsSheetViewController: UIViewController {
     
     //MARK: Initializer
     private var feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
+    private var player: AVAudioPlayer?
     
     //MARK: Objects
     @objc lazy var dismissButton: UIButton = {
@@ -38,42 +41,6 @@ class ContactsSheetViewController: UIViewController {
         return title
     }()
     
-    lazy var contactViewI: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
-        view.layer.shadowRadius = 4
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.cornerRadius = 15
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    lazy var contactViewII: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
-        view.layer.shadowRadius = 4
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.cornerRadius = 15
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    lazy var contactViewIII: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.layer.shadowColor = UIColor(red: 0.078, green: 0.129, blue: 0.239, alpha: 0.25).cgColor
-        view.layer.shadowRadius = 4
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.cornerRadius = 15
-        view.clipsToBounds = true
-        return view
-    }()
-    
     lazy var phoneNumberTitle: UILabel = {
         let title = UILabel()
         title.text = "Phone Number"
@@ -84,22 +51,14 @@ class ContactsSheetViewController: UIViewController {
         return title
     }()
     
-    lazy var phoneIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "Call_Ringing")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-        return image
+    lazy var callButton: CustomButton = {
+        let icon = UIImage(named: "Call_Ringing")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
+        
+        let number = CustomButton(icon: icon!, text: "+41 76 834 86 65")
+        return number
     }()
     
-    lazy var phoneNumber: UIButton = {
-        let label = UIButton()
-        label.setTitle(ContactsModel.phoneNumber, for: .normal)
-        label.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 14)
-        label.setTitleColor(UIColor(named: "BlackLabels"), for: .normal)
-        label.titleLabel?.textAlignment = .left
-        return label
-    }()
-    
-    lazy var email: UILabel = {
+    lazy var emailTitle: UILabel = {
         let title = UILabel()
         title.text = "Email"
         title.textColor = UIColor(named: "BlackSecondary")
@@ -109,22 +68,16 @@ class ContactsSheetViewController: UIViewController {
         return title
     }()
     
-    lazy var emailIcon: UIImageView = {
-        let icon = UIImageView()
-        icon.image = UIImage(named: "Envelope")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-        return icon
+    lazy var emailButton: CustomButtonAttributedText = {
+        
+        let icon = UIImage(named: "Envelope")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
+        
+        let button = CustomButtonAttributedText(icon: icon!, text: ContactsModel.emailAddress, target: self, action: #selector(emailDidTapped))
+        
+        return button
     }()
     
-    lazy var emailAddress: UIButton = {
-        let email = UIButton()
-        email.setTitle(ContactsModel.emailAddress, for: .normal)
-        email.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 14)
-        email.setTitleColor(UIColor(named: "BlackLabels"), for: .normal)
-        email.titleLabel?.textAlignment = .left
-        return email
-    }()
-    
-    lazy var linkedin: UILabel = {
+    lazy var linkedinTitle: UILabel = {
         let title = UILabel()
         title.text = "Linkedin"
         title.textColor = UIColor(named: "BlackSecondary")
@@ -134,25 +87,18 @@ class ContactsSheetViewController: UIViewController {
         return title
     }()
     
-    lazy var linkedinIcon: UIImageView = {
-        let icon = UIImageView()
-        icon.image = UIImage(named: "Linkedin")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-        return icon
-    }()
-    
-    lazy var linkedinLink: UIButton = {
-        let link = UIButton()
-        link.setTitle("linkedin.com/in/caio-chaves/", for: .normal)
-        link.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 14)
-        link.setTitleColor(UIColor(named: "BlackLabels"), for: .normal)
-        link.titleLabel?.textAlignment = .left
-        return link
+    lazy var linkedinButton: CustomButtonAttributedText = {
+        let icon = UIImage(named: "Linkedin")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
+        let button = CustomButtonAttributedText(icon: icon!, text: ContactsModel.emailAddress, target: self, action: #selector(linkedinDidTapped))
+        
+        return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "WhiteBackground")
         configureLayout()
+        prepareSoundEffect()
     }
     
     
@@ -166,130 +112,97 @@ class ContactsSheetViewController: UIViewController {
         let backgroundSheet = UIImageView(frame: .init(x: 0, y: 0, width: width, height: height))
         backgroundSheet.image = UIImage(named: "background")
         
+        let leading = view.layoutMarginsGuide.leadingAnchor
+        
+        let trailing = view.layoutMarginsGuide.trailingAnchor
+        
+        
+        
         view.addSubview(backgroundSheet)
         view.sendSubviewToBack(backgroundSheet)
         view.addSubview(line)
         view.addSubview(dismissButton)
         view.addSubview(titlePage)
         view.addSubview(phoneNumberTitle)
-        view.addSubview(contactViewI)
-        view.addSubview(email)
-        view.addSubview(contactViewII)
-        view.addSubview(linkedin)
-        view.addSubview(contactViewIII)
-        contactViewI.addSubview(phoneIcon)
-        contactViewI.addSubview(phoneNumber)
-        contactViewII.addSubview(emailIcon)
-        contactViewII.addSubview(emailAddress)
-        contactViewIII.addSubview(linkedinIcon)
-        contactViewIII.addSubview(linkedinLink)
-        
+        view.addSubview(callButton)
+        view.addSubview(emailTitle)
+        view.addSubview(emailButton)
+        view.addSubview(linkedinTitle)
+        view.addSubview(linkedinButton)
+
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         phoneNumberTitle.translatesAutoresizingMaskIntoConstraints = false
-        contactViewI.translatesAutoresizingMaskIntoConstraints = false
-        email.translatesAutoresizingMaskIntoConstraints = false
-        contactViewII.translatesAutoresizingMaskIntoConstraints = false
-        linkedin.translatesAutoresizingMaskIntoConstraints = false
-        contactViewIII.translatesAutoresizingMaskIntoConstraints = false
-        phoneIcon.translatesAutoresizingMaskIntoConstraints = false
-        phoneNumber.translatesAutoresizingMaskIntoConstraints = false
-        emailIcon.translatesAutoresizingMaskIntoConstraints = false
-        emailAddress.translatesAutoresizingMaskIntoConstraints = false
-        linkedinIcon.translatesAutoresizingMaskIntoConstraints = false
-        linkedinLink.translatesAutoresizingMaskIntoConstraints = false
+        callButton.translatesAutoresizingMaskIntoConstraints = false
+        emailTitle.translatesAutoresizingMaskIntoConstraints = false
+        emailButton.translatesAutoresizingMaskIntoConstraints = false
+        linkedinTitle.translatesAutoresizingMaskIntoConstraints = false
+        linkedinButton.translatesAutoresizingMaskIntoConstraints = false
         
         
         NSLayoutConstraint.activate([
             
             backgroundSheet.widthAnchor.constraint(equalTo: view.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: view.heightAnchor),
-        
+            
             line.widthAnchor.constraint(equalToConstant: 35),
             line.heightAnchor.constraint(equalToConstant: 5),
             line.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             line.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            dismissButton.leadingAnchor.constraint(equalTo: leading),
             
             titlePage.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             titlePage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             phoneNumberTitle.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 20),
-            phoneNumberTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            phoneNumberTitle.leadingAnchor.constraint(equalTo: leading),
             
-            contactViewI.topAnchor.constraint(equalTo: phoneNumberTitle.bottomAnchor, constant: 5),
-            contactViewI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            contactViewI.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            contactViewI.heightAnchor.constraint(equalToConstant: 50),
+            callButton.topAnchor.constraint(equalTo: phoneNumberTitle.bottomAnchor, constant: 5),
+            callButton.leadingAnchor.constraint(equalTo: leading),
+            callButton.trailingAnchor.constraint(equalTo: trailing),
             
-            phoneIcon.leadingAnchor.constraint(equalTo: contactViewI.leadingAnchor, constant: 10),
-            phoneIcon.centerYAnchor.constraint(equalTo: contactViewI.centerYAnchor),
+            emailTitle.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 20),
+            emailTitle.leadingAnchor.constraint(equalTo: leading),
             
-            phoneNumber.leadingAnchor.constraint(equalTo: phoneIcon.trailingAnchor, constant: 5),
-            phoneNumber.centerYAnchor.constraint(equalTo: contactViewI.centerYAnchor),
+            emailButton.topAnchor.constraint(equalTo: emailTitle.bottomAnchor, constant: 5),
+            emailButton.leadingAnchor.constraint(equalTo: leading),
+            emailButton.trailingAnchor.constraint(equalTo: trailing),
             
-            email.topAnchor.constraint(equalTo: contactViewI.bottomAnchor, constant: 20),
-            email.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            linkedinTitle.topAnchor.constraint(equalTo: emailButton.bottomAnchor, constant: 20),
+            linkedinTitle.leadingAnchor.constraint(equalTo: leading),
             
-            contactViewII.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 5),
-            contactViewII.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            contactViewII.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            contactViewII.heightAnchor.constraint(equalToConstant: 50),
+            linkedinButton.topAnchor.constraint(equalTo: linkedinTitle.bottomAnchor, constant: 5),
+            linkedinButton.leadingAnchor.constraint(equalTo: leading),
+            linkedinButton.trailingAnchor.constraint(equalTo: trailing),
             
-            emailIcon.leadingAnchor.constraint(equalTo: contactViewII.leadingAnchor, constant: 10),
-            emailIcon.centerYAnchor.constraint(equalTo: contactViewII.centerYAnchor),
             
-            emailAddress.leadingAnchor.constraint(equalTo: emailIcon.trailingAnchor, constant: 5),
-            emailAddress.centerYAnchor.constraint(equalTo: contactViewII.centerYAnchor),
             
-            linkedin.topAnchor.constraint(equalTo: contactViewII.bottomAnchor, constant: 20),
-            linkedin.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
-            contactViewIII.topAnchor.constraint(equalTo: linkedin.bottomAnchor, constant: 5),
-            contactViewIII.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            contactViewIII.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            contactViewIII.heightAnchor.constraint(equalToConstant: 50),
-            
-            linkedinIcon.leadingAnchor.constraint(equalTo: contactViewIII.leadingAnchor, constant: 15),
-            linkedinIcon.centerYAnchor.constraint(equalTo: contactViewIII.centerYAnchor),
-            
-            linkedinLink.leadingAnchor.constraint(equalTo: linkedinIcon.trailingAnchor, constant: 5),
-            linkedinLink.centerYAnchor.constraint(equalTo: contactViewIII.centerYAnchor),
-        
-        
         ])
         
         dismissButton.addTarget(self, action: #selector(dismissButtonDidTapped), for: .touchUpInside)
-        phoneNumber.addTarget(self, action: #selector(contactDidTapped), for: .touchUpInside)
-        emailAddress.addTarget(self, action: #selector(emailDidTapped), for: .touchUpInside)
-        linkedinLink.addTarget(self, action: #selector(linkedinDidTapped), for: .touchUpInside)
+        callButton.addTarget(self, action: #selector(callDidTapped), for: .touchUpInside)
+        emailButton.addTarget(self, action: #selector(emailDidTapped), for: .touchUpInside)
+        linkedinButton.addTarget(self, action: #selector(linkedinDidTapped), for: .touchUpInside)
     }
+    
+    //MARK: Buttons function
     
     //DismissButto
     @objc func dismissButtonDidTapped() {
         dismiss(animated: true)
     }
     
-    //Linkedin page
-    @objc func linkedinDidTapped() {
-        
-        feedbackGenerator.impactOccurred()
-        
-        guard let url = URL(string: ContactsModel.linkedin) else { return }
-        
-        let vc = SFSafariViewController(url: url)
-        vc.modalPresentationStyle = .pageSheet
-        present(vc, animated: true)
-        
-    }
     
-    @objc func contactDidTapped() {
+    
+    @objc func callDidTapped() {
         
         feedbackGenerator.impactOccurred()
+        soundClick()
+        buttonPressedAnimation(button: callButton)
         
         //Creating the UIAlertController(This will represents the alert that will show up on the bottom) with title and message setted to nil
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -306,11 +219,11 @@ class ContactsSheetViewController: UIViewController {
             
             if let phoneURL = URL(string: "tel://\(ContactsModel.phoneNumber)") {
                 
-              if  UIApplication.shared.canOpenURL(phoneURL) {
-                  UIApplication.shared.open(phoneURL)
-              } else {
-                  print("Error to find phoneURL")
-              }
+                if  UIApplication.shared.canOpenURL(phoneURL) {
+                    UIApplication.shared.open(phoneURL)
+                } else {
+                    print("Error to find phoneURL")
+                }
             }
         }
         
@@ -329,6 +242,9 @@ class ContactsSheetViewController: UIViewController {
     @objc func emailDidTapped() {
         
         feedbackGenerator.impactOccurred()
+        soundClick()
+        buttonPressedAnimation(button: emailButton)
+        
         
         //Creating the UIAlertController(This will represents the alert that will show up on the bottom) with title and message setted to nil
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -365,5 +281,54 @@ class ContactsSheetViewController: UIViewController {
         
         //Presenting the alert on the view controller
         present(alert, animated: true)
+    }
+    
+    //Linkedin page
+    @objc func linkedinDidTapped() {
+        
+        feedbackGenerator.impactOccurred()
+        soundClick()
+        buttonPressedAnimation(button: linkedinButton)
+        
+        guard let url = URL(string: ContactsModel.linkedin) else { return }
+        
+        let vc = SFSafariViewController(url: url)
+        vc.modalPresentationStyle = .pageSheet
+        present(vc, animated: true)
+        
+    }
+    
+    //MARK: Animations
+    func buttonPressedAnimation(button: UIButton) {
+        button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        UIView.animate(withDuration: 0.5) {
+            button.transform = .identity
+        }
+    }
+    
+    //MARK: Sound effects
+    private func prepareSoundEffect() {
+        guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.volume = 0.3
+            player?.prepareToPlay()
+        } catch {
+            print("Error trying to prepare sound click \(error.localizedDescription)")
+        }
+    }
+    
+    private func soundClick() {
+        
+        if let player = player {
+            if player.isPlaying {
+                player.currentTime = 0
+            } else {
+                player.play()
+            }
+        }
+        
     }
 }

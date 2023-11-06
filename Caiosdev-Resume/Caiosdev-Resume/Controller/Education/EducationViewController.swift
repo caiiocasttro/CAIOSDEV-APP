@@ -304,7 +304,8 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
             cell.isUserInteractionEnabled = false
             cell.school = MyEducationModel.school[indexPath.row]
-            cell.graduateInfo = MyEducationModel.description[indexPath.row]
+            cell.graduatedString = MyEducationModel(rawValue: MyEducationModel.school[indexPath.row])?.graduation
+            cell.graduateInfo = MyEducationModel(rawValue: MyEducationModel.school[indexPath.row])?.description
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.title.rawValue, for: indexPath) as! MyCertificatesViewCell
@@ -319,23 +320,29 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as!
             CertificateViewCell
             if indexPath.row == 4 {
-                cell.certificate = MyCertificateModel.cetificateName[0]
-                cell.dateString = MyCertificateModel.date[0]
+                cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.rawValue
+                cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.school
+                cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.dates
             } else if indexPath.row == 5 {
-                cell.certificate = MyCertificateModel.cetificateName[1]
-                cell.dateString = MyCertificateModel.date[1]
+                cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.rawValue
+                cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.school
+                cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.dates
             } else if indexPath.row == 6 {
-                cell.certificate = MyCertificateModel.cetificateName[2]
-                cell.dateString = MyCertificateModel.date[2]
+                cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.rawValue
+                cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.school
+                cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.dates
             } else if indexPath.row == 7 {
-                cell.certificate = MyCertificateModel.cetificateName[3]
-                cell.dateString = MyCertificateModel.date[3]
+                cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.rawValue
+                cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.school
+                cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.dates
             } else if indexPath.row == 8 {
-                cell.certificate = MyCertificateModel.cetificateName[4]
-                cell.dateString = MyCertificateModel.date[4]
+                cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.rawValue
+                cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.school
+                cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.dates
             } else {
-                cell.certificate = MyCertificateModel.cetificateName[5]
-                cell.dateString = MyCertificateModel.date[5]
+                cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[5])?.rawValue
+                cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[5])?.school
+                cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[5])?.dates
             }
             cell.selectionStyle = .none
             return cell
@@ -346,42 +353,42 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 4 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.LevelUpSwift) else { return }
+            guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 5 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.iOSAutoLayoutURL) else { return }
+            guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 6 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.iOSAnimationURL) else { return }
+            guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 7 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.iOSDevelopmentURL) else { return }
+            guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else if indexPath.row == 8 {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.userExperience) else { return }
+            guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
         } else {
             feedbackGenerator.impactOccurred()
-            guard let url = URL(string: MyCertificateModel.webAndMobileURL) else { return }
+            guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[5])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet

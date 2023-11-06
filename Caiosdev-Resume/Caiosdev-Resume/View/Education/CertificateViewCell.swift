@@ -26,6 +26,13 @@ class CertificateViewCell: UITableViewCell {
         }
     }
     
+    var school: String? {
+        didSet {
+            guard let string = school else { return }
+            schoolName.text = string
+        }
+    }
+    
     var dateString: String? {
         didSet {
             guard let string = dateString else { return }
@@ -38,15 +45,6 @@ class CertificateViewCell: UITableViewCell {
     lazy var cellView: UIView = {
         let view = UIView()
         return view
-    }()
-    
-    lazy var subtitle: UILabel = {
-        let title = UILabel()
-        title.text = ""
-        title.textColor = UIColor(named: "GrayLabels")
-        title.font = UIFont(name: "Nunito-SemiBold", size: 14)
-        title.textAlignment = .left
-        return title
     }()
     
     lazy var iconImage: UIImageView = {
@@ -66,7 +64,6 @@ class CertificateViewCell: UITableViewCell {
     
     lazy var schoolName: UILabel = {
         let schoolName = UILabel()
-        schoolName.text = "Udemy"
         schoolName.textColor = UIColor(named: "GrayLabels")
         schoolName.font = UIFont(name: "Nunito-SemiBold", size: 14)
         schoolName.textAlignment = .left

@@ -68,7 +68,7 @@ class SkillsViewCell: UITableViewCell {
         
         for i in 0..<MySkillsModel.skills.count {
             
-            guard let skillData = MySkills(rawValue: MySkillsModel.skills[i]) else { continue }
+            guard let skillData = MySkillsModel(rawValue: MySkillsModel.skills[i]) else { continue }
             
             let rowView = UIView()
 

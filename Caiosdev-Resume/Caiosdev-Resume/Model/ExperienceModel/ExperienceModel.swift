@@ -7,79 +7,45 @@
 
 import Foundation
 
-struct MyExperienceModel {
+enum MyExperienceModel: String {
     
-    static let companies: [String] = ["Sky Switzerland, Neuchâtel, VD, Sep 2023 · 1 mo", "EccoSalva, Lisbon, LIS, 11/2019 - 07/2022", "Arcor do Brasil, Campinas, SP, May 2018 - Feb 2019", "Motiva, Campinas, SP, Feb 2016 - Apr 2018"]
+    static let companies: [String] = ["Malt", "Sky", "EccoSalva", "Arcor do Brasil", "Motiva Contact Center"]
     
-    static let position: [String] = ["iOS Developer Freelancer", "Assistant", "Production", "Customer Care"]
-    
-    static let date: [String] = ["Sep 2023 · 1 mo", "Nov 2019 - Jul 2022", "May 2018 - Feb 2019", "Feb 2016 - Apr 2018"]
-    
-    static let malt: [String] = ["New features implementation on iOS app.", "iOS application maintenance.", "Building projects"]
-    
-    static let skySwitzerland: [String] = ["New features implementation on iOS app.", "iOS application maintenance.", "Improving existing iOS app."]
-    
-    static let eccosalva: [String] = ["Providing patient care.", "Administration of documents.", "Emergency transport."]
-    
-    static let arcor: [String] = ["Food production.", "Machine maintenance.", "Stock replenishment."]
-    
-    static let motiva: [String] = ["Customer's support.", "Transport of products support.", "Selling products."]
-    
-    
-}
-
-enum MyExperience: String {
     case malt = "Malt"
     case sky = "Sky"
     case eccosalve = "EccoSalva"
     case arcor = "Arcor do Brasil"
     case motiva = "Motiva Contact Center"
     
-    var companiesName: String {
+    var position: String {
         switch self {
-        case .malt:
-            return "Malt Freelancer"
-        case .sky:
-            return "Sky Switzerland"
+        case .malt, .sky:
+            return "iOS Developer Freelancer"
         case .eccosalve:
-            return "EccoSalva"
+            return "Assistant"
         case .arcor:
-            return "Arcor do Brasil"
+            return "Production"
         case .motiva:
-            return "Motiva"
+            return "Customer Care"
         }
     }
     
-    var location: String {
+    var companiesNameLocationDate: String {
         switch self {
         case .malt:
-            return "Lausanne, VD"
+            return "Malt Freelancer, Lausanne, VD, Aug 2023 - Present"
         case .sky:
-            return "Neuchâtel, VD"
+            return "Sky Switzerland, Neuchâtel, VD, Sep 2023 · 1 mo"
         case .eccosalve:
-            return "Lisbon, LIS"
-        case .arcor, .motiva:
-            return "Campinas, SP"
-            
-        }
-    }
-    
-    var date: String {
-        switch self {
-        case .malt:
-            return "Aug 2023 - Present"
-        case .sky:
-            return "Sep 2023 · 1 mo"
-        case .eccosalve:
-            return "Nov 2019 - Jul 2022"
+            return "EccoSalva, Lisbon, LIS, Nov 2019 - Jul 2022"
         case .arcor:
-            return "May 2018 - Feb 2019"
+            return "Arcor do Brasil, Campinas, SP, May 2018 - Feb 2019"
         case .motiva:
-            return "Feb 2016 - Apr 2018"
+            return "Motiva, Campinas, SP, Feb 2016 - Apr 2018"
         }
     }
     
-    var postion: [String] {
+    var tasks: [String] {
         switch self {
             
         case .malt, .sky:

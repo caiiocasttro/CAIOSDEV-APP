@@ -17,6 +17,13 @@ class EducationViewCell: UITableViewCell {
         }
     }
     
+    var graduatedString: String? {
+        didSet {
+            guard let string = graduatedString else { return }
+            graduateName.text = string
+        }
+    }
+    
     var graduateInfo: String? {
         didSet {
             guard let string = graduateInfo else { return }
@@ -54,7 +61,6 @@ class EducationViewCell: UITableViewCell {
     
     lazy var graduateName: UILabel = {
         let graduate = UILabel()
-        graduate.text = "Graduated Certificate"
         graduate.textColor = UIColor(named: "GrayLabels")
         graduate.font = UIFont(name: "Nunito-SemiBold", size: 12)
         graduate.textAlignment = .left

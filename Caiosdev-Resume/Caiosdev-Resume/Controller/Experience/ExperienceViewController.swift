@@ -279,31 +279,17 @@ class ExperienceViewController: UIViewController {
 extension ExperienceViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return MyExperienceModel.companies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExperienceIdentifiers.main.rawValue, for: indexPath) as! ExperienceViewCell
         cell.isUserInteractionEnabled = false
-        cell.position = MyExperienceModel.position[indexPath.row]
-        cell.location = MyExperienceModel.companies[indexPath.row]
-        if indexPath.row == 0 {
-            cell.taskI = MyExperienceModel.skySwitzerland[0]
-            cell.taskII = MyExperienceModel.skySwitzerland[1]
-            cell.taskIII = MyExperienceModel.skySwitzerland[2]
-        } else if indexPath.row == 1 {
-            cell.taskI = MyExperienceModel.eccosalva[0]
-            cell.taskII = MyExperienceModel.eccosalva[1]
-            cell.taskIII = MyExperienceModel.eccosalva[2]
-        } else if indexPath.row == 2 {
-            cell.taskI = MyExperienceModel.arcor[0]
-            cell.taskII = MyExperienceModel.arcor[1]
-            cell.taskIII = MyExperienceModel.arcor[2]
-        } else if indexPath.row == 3 {
-            cell.taskI = MyExperienceModel.motiva[0]
-            cell.taskII = MyExperienceModel.motiva[1]
-            cell.taskIII = MyExperienceModel.motiva[2]
-        }
+        cell.position = MyExperienceModel(rawValue: MyExperienceModel.companies[indexPath.row])?.position
+        cell.location = MyExperienceModel(rawValue: MyExperienceModel.companies[indexPath.row])?.companiesNameLocationDate
+        cell.taskI = MyExperienceModel(rawValue: MyExperienceModel.companies[indexPath.row])?.tasks[0]
+        cell.taskII = MyExperienceModel(rawValue: MyExperienceModel.companies[indexPath.row])?.tasks[1]
+        cell.taskIII = MyExperienceModel(rawValue: MyExperienceModel.companies[indexPath.row])?.tasks[2]
         return cell
     }
     

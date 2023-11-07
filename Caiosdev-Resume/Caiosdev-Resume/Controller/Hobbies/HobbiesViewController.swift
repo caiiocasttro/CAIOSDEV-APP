@@ -18,6 +18,8 @@ class HobbiesViewController: UIViewController {
     //MARK: properties
     var animatedOnce = false
     
+    var buttonShowed = false
+    
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
@@ -47,10 +49,28 @@ class HobbiesViewController: UIViewController {
         return title
     }()
     
-    lazy var contactButton: UIButton = {
+    lazy var contactButtonI: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 75, height: 25)
-        button.setBackgroundImage(UIImage(named: "HireMe"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
+        button.backgroundColor = .white
+        button.setTitle("Hire me", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+        button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
+        button.layer.cornerRadius = button.frame.size.height / 3
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        return button
+    }()
+    
+    lazy var contactButtonII: UIButton = {
+        let button = UIButton()
+        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
+        button.backgroundColor = UIColor(named: "OrangeTitle")
+        button.setTitle("Hire me", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = button.frame.size.height / 3
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        button.alpha = 0
         return button
     }()
     
@@ -95,6 +115,7 @@ class HobbiesViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -135,16 +156,18 @@ class HobbiesViewController: UIViewController {
         view.addSubview(titlePartI)
         view.addSubview(titlePartII)
         view.addSubview(scrollView)
+        scrollView.addSubview(contactButtonI)
         scrollView.addSubview(hobbiesView)
         hobbiesView.addSubview(backgroundSheet)
         hobbiesView.sendSubviewToBack(backgroundSheet)
         hobbiesView.addSubview(line)
         hobbiesView.addSubview(titlePage)
-        hobbiesView.addSubview(contactButton)
+        hobbiesView.addSubview(contactButtonII)
         hobbiesView.addSubview(tableView)
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
+        contactButtonI.translatesAutoresizingMaskIntoConstraints = false
         titlePartI.translatesAutoresizingMaskIntoConstraints = false
         titlePartII.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -152,7 +175,7 @@ class HobbiesViewController: UIViewController {
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
-        contactButton.translatesAutoresizingMaskIntoConstraints = false
+        contactButtonII.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
@@ -181,10 +204,10 @@ class HobbiesViewController: UIViewController {
             hobbiesView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             hobbiesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             hobbiesView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
+            hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
             
-            contactButton.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
-            contactButton.trailingAnchor.constraint(equalTo: trailing),
+            contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
+            contactButtonI.trailingAnchor.constraint(equalTo: trailing),
             
             line.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),
@@ -193,6 +216,9 @@ class HobbiesViewController: UIViewController {
             
             titlePage.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
             titlePage.leadingAnchor.constraint(equalTo: leading),
+            
+            contactButtonII.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
+            contactButtonII.trailingAnchor.constraint(equalTo: trailing),
             
             tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -203,7 +229,8 @@ class HobbiesViewController: UIViewController {
         ])
         
         //Adding target to contact button
-        contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+        contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+        contactButtonII.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
     }
     
     
@@ -242,12 +269,33 @@ class HobbiesViewController: UIViewController {
     }
     
     func contactButtonAnimation() {
-        self.contactButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
-        UIView.animate(withDuration: 0.75) {
-            self.contactButton.transform = .identity
+        if contactButtonII.alpha == 1 {
+            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } else {
+            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }
         
+        UIView.animate(withDuration: 0.75) {
+            self.contactButtonI.transform = .identity
+            self.contactButtonII.transform = .identity
+        }
+        
+    }
+    
+    func showButtonAnimation() {
+        UIView.animate(withDuration: 1.0) {
+            self.contactButtonI.alpha = 0
+            self.contactButtonII.alpha = 1
+            
+        }
+    }
+    
+    func hideButtonAnimation() {
+        UIView.animate(withDuration: 0.5) {
+            self.contactButtonI.alpha = 1
+            self.contactButtonII.alpha = 0
+        }
     }
     
     //MARK: Sound effects
@@ -278,6 +326,34 @@ class HobbiesViewController: UIViewController {
     
 }
 
+//MARK: Scrollview Delegate
+extension HobbiesViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewHeigt = scrollView.frame.size.height
+        let contentViewHeigt = scrollView.contentSize.height
+        let yOffset = scrollView.contentOffset.y
+        
+        let shouldAnimate: CGFloat = 10
+        
+        if yOffset + scrollViewHeigt + shouldAnimate >= contentViewHeigt {
+            
+            showButtonAnimation()
+            buttonShowed = true
+                
+        } else {
+            
+            if self.buttonShowed {
+                hideButtonAnimation()
+            }
+            
+        }
+        
+    }
+    
+}
+
+//MARK: TableView Delegate & DataSource
 extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

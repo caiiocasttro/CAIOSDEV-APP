@@ -21,6 +21,8 @@ class CareerGoalsViewController: UIViewController {
     
     var bubbleAnimatedOnce = false
     
+    var buttonShowed = false
+    
     //MARK: Initializer
     var bubbleEffect: AVAudioPlayer?
     
@@ -36,10 +38,28 @@ class CareerGoalsViewController: UIViewController {
         return filter
     }()
     
-    lazy var contactButton: UIButton = {
+    lazy var contactButtonI: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 75, height: 25)
-        button.setBackgroundImage(UIImage(named: "HireMe"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
+        button.backgroundColor = .white
+        button.setTitle("Hire me", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+        button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
+        button.layer.cornerRadius = button.frame.size.height / 3
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        return button
+    }()
+    
+    lazy var contactButtonII: UIButton = {
+        let button = UIButton()
+        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
+        button.backgroundColor = UIColor(named: "OrangeTitle")
+        button.setTitle("Hire me", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = button.frame.size.height / 3
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        button.alpha = 0
         return button
     }()
     
@@ -243,12 +263,13 @@ class CareerGoalsViewController: UIViewController {
         view.addSubview(titlePartI)
         view.addSubview(titlePartII)
         view.addSubview(scrollView)
+        scrollView.addSubview(contactButtonI)
         scrollView.addSubview(careerGoalsView)
         careerGoalsView.addSubview(backgroundSheet)
         careerGoalsView.sendSubviewToBack(backgroundSheet)
         careerGoalsView.addSubview(line)
         careerGoalsView.addSubview(titlePage)
-        careerGoalsView.addSubview(contactButton)
+        careerGoalsView.addSubview(contactButtonII)
         careerGoalsView.addSubview(chartView)
         careerGoalsView.addSubview(fiveYrsIcon)
         careerGoalsView.addSubview(fiveYrsBubble)
@@ -269,11 +290,12 @@ class CareerGoalsViewController: UIViewController {
         filter.translatesAutoresizingMaskIntoConstraints = false
         titlePartI.translatesAutoresizingMaskIntoConstraints = false
         titlePartII.translatesAutoresizingMaskIntoConstraints = false
-        contactButton.translatesAutoresizingMaskIntoConstraints = false
+        contactButtonI.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         careerGoalsView.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
+        contactButtonII.translatesAutoresizingMaskIntoConstraints = false
         chartView.translatesAutoresizingMaskIntoConstraints = false
         fiveYrsIcon.translatesAutoresizingMaskIntoConstraints = false
         fiveYrsBubble.translatesAutoresizingMaskIntoConstraints = false
@@ -301,8 +323,8 @@ class CareerGoalsViewController: UIViewController {
             
             titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
             
-            contactButton.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
-            contactButton.trailingAnchor.constraint(equalTo: trailing),
+            contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
+            contactButtonI.trailingAnchor.constraint(equalTo: trailing),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -318,7 +340,7 @@ class CareerGoalsViewController: UIViewController {
             careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
+            careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
             
             //Dragger line
             line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
@@ -329,6 +351,10 @@ class CareerGoalsViewController: UIViewController {
             //Title for the page
             titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
             titlePage.leadingAnchor.constraint(equalTo: leading),
+            
+            //Contact Button 2nd
+            contactButtonII.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
+            contactButtonII.trailingAnchor.constraint(equalTo: trailing),
             
             //Chart image
             chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
@@ -400,7 +426,8 @@ class CareerGoalsViewController: UIViewController {
         ])
         
         //Adding button's action
-        contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+        contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+        contactButtonII.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
         
         
         
@@ -441,6 +468,36 @@ class CareerGoalsViewController: UIViewController {
             
         }
 
+        
+    }
+    
+    func showButtonAnimation() {
+        UIView.animate(withDuration: 1.0) {
+            self.contactButtonI.alpha = 0
+            self.contactButtonII.alpha = 1
+            
+        }
+    }
+    
+    func hideButtonAnimation() {
+        UIView.animate(withDuration: 0.5) {
+            self.contactButtonI.alpha = 1
+            self.contactButtonII.alpha = 0
+        }
+    }
+    
+    func contactButtonAnimation() {
+        
+        if contactButtonII.alpha == 1 {
+            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } else {
+            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+        
+        UIView.animate(withDuration: 0.75) {
+            self.contactButtonI.transform = .identity
+            self.contactButtonII.transform = .identity
+        }
         
     }
     
@@ -488,14 +545,7 @@ class CareerGoalsViewController: UIViewController {
         }
     }
     
-    func contactButtonAnimation() {
-        self.contactButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        
-        UIView.animate(withDuration: 0.75) {
-            self.contactButton.transform = .identity
-        }
-        
-    }
+    
     
     //MARK: SongEffect
     
@@ -539,6 +589,7 @@ class CareerGoalsViewController: UIViewController {
     
 }
 
+//MARK: Scrollview Delegate
 extension CareerGoalsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -549,6 +600,9 @@ extension CareerGoalsViewController: UIScrollViewDelegate {
         let shouldAnimate: CGFloat = 10
         
         if yOffset + scrollViewHeigt + shouldAnimate >= contentViewHeigt {
+            
+            showButtonAnimation()
+            buttonShowed = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 
@@ -577,9 +631,13 @@ extension CareerGoalsViewController: UIScrollViewDelegate {
                 }
             }
                 
+        } else {
+            
+            if self.buttonShowed {
+                hideButtonAnimation()
+            }
+            
         }
-        
-        
         
     }
     

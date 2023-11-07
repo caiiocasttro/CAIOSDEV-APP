@@ -22,6 +22,8 @@ class AboutMeViewController: UIViewController {
     
     var shouldAnimate = false
     
+    var buttonShowed = false
+    
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
@@ -29,10 +31,28 @@ class AboutMeViewController: UIViewController {
         return filter
     }()
     
-    lazy var contactButton: UIButton = {
+    lazy var contactButtonI: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 85, height: 30)
-        button.setBackgroundImage(UIImage(named: "HireMe"), for: .normal)
+        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
+        button.backgroundColor = .white
+        button.setTitle("Hire me", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+        button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
+        button.layer.cornerRadius = button.frame.size.height / 3
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        return button
+    }()
+    
+    lazy var contactButtonII: UIButton = {
+        let button = UIButton()
+        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
+        button.backgroundColor = UIColor(named: "OrangeTitle")
+        button.setTitle("Hire me", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = button.frame.size.height / 3
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        button.alpha = 0
         return button
     }()
     
@@ -154,12 +174,13 @@ class AboutMeViewController: UIViewController {
         view.addSubview(hello)
         view.addSubview(myName)
         view.addSubview(scrollView)
+        scrollView.addSubview(contactButtonI)
         scrollView.addSubview(aboutMeView)
         aboutMeView.addSubview(backgroundSheet)
         aboutMeView.sendSubviewToBack(backgroundSheet)
         aboutMeView.addSubview(line)
         aboutMeView.addSubview(titlePage)
-        aboutMeView.addSubview(contactButton)
+        aboutMeView.addSubview(contactButtonII)
         aboutMeView.addSubview(tableView)
         
         
@@ -169,10 +190,11 @@ class AboutMeViewController: UIViewController {
         hello.translatesAutoresizingMaskIntoConstraints = false
         myName.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contactButtonI.translatesAutoresizingMaskIntoConstraints = false
         aboutMeView.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
-        contactButton.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
+        contactButtonII.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -202,10 +224,10 @@ class AboutMeViewController: UIViewController {
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 20),
+            aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
             
-            contactButton.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 15),
-            contactButton.trailingAnchor.constraint(equalTo: trailing),
+            contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
+            contactButtonI.trailingAnchor.constraint(equalTo: trailing),
             
             line.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 10),
             line.widthAnchor.constraint(equalToConstant: 35),
@@ -214,6 +236,9 @@ class AboutMeViewController: UIViewController {
             
             titlePage.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 15),
             titlePage.leadingAnchor.constraint(equalTo: leading),
+            
+            contactButtonII.topAnchor.constraint(equalTo: aboutMeView.topAnchor, constant: 15),
+            contactButtonII.trailingAnchor.constraint(equalTo: trailing),
             
             tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -224,8 +249,8 @@ class AboutMeViewController: UIViewController {
         ])
         
         //Adding button's action
-        contactButton.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
-        
+        contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
+        contactButtonII.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
         
         
         
@@ -284,12 +309,33 @@ class AboutMeViewController: UIViewController {
     }
     
     func contactButtonAnimation() {
-        self.contactButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
-        UIView.animate(withDuration: 0.75) {
-            self.contactButton.transform = .identity
+        if contactButtonII.alpha == 1 {
+            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } else {
+            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }
         
+        UIView.animate(withDuration: 0.75) {
+            self.contactButtonI.transform = .identity
+            self.contactButtonII.transform = .identity
+        }
+        
+    }
+    
+    func showButtonAnimation() {
+        UIView.animate(withDuration: 1.0) {
+            self.contactButtonI.alpha = 0
+            self.contactButtonII.alpha = 1
+            
+        }
+    }
+    
+    func hideButtonAnimation() {
+        UIView.animate(withDuration: 0.5) {
+            self.contactButtonI.alpha = 1
+            self.contactButtonII.alpha = 0
+        }
     }
     
     //MARK: Sound effects
@@ -331,11 +377,20 @@ extension AboutMeViewController: UIScrollViewDelegate {
         
         if yOffset + scrollViewHeight + shouldAnimate >= contentViewHeight {
             
+            showButtonAnimation()
+            buttonShowed = true
+            
             if !self.shouldAnimate {
                 self.shouldAnimate = true
                 tableView.reloadData()
 
             }
+        } else {
+            
+            if self.buttonShowed {
+                hideButtonAnimation()
+            }
+            
         }
     }
 }

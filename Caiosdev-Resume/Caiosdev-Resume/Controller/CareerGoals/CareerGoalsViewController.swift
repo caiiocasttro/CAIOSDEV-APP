@@ -31,7 +31,6 @@ class CareerGoalsViewController: UIViewController {
     var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
     
     
-    
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
@@ -44,9 +43,7 @@ class CareerGoalsViewController: UIViewController {
         button.frame = .init(x: 0, y: 0, width: 100, height: 50)
         button.backgroundColor = .white
         button.setTitle("Hire me", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
         button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
-        button.layer.cornerRadius = button.frame.size.height / 3
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         return button
     }()
@@ -56,9 +53,7 @@ class CareerGoalsViewController: UIViewController {
         button.frame = .init(x: 0, y: 0, width: 100, height: 50)
         button.backgroundColor = UIColor(named: "OrangeTitle")
         button.setTitle("Hire me", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = button.frame.size.height / 3
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         button.alpha = 0
         return button
@@ -88,7 +83,6 @@ class CareerGoalsViewController: UIViewController {
         let title = UILabel()
         title.text = "My"
         title.textColor = UIColor.white
-        title.font = UIFont(name: "Nunito-Black", size: 60)
         title.textAlignment = .left
         title.numberOfLines = 0
         title.alpha = 0
@@ -99,7 +93,6 @@ class CareerGoalsViewController: UIViewController {
         let title = UILabel()
         title.text = "Goals"
         title.textColor = UIColor.white
-        title.font = UIFont(name: "Nunito-Black", size: 60)
         title.textAlignment = .left
         title.numberOfLines = 0
         title.alpha = 0
@@ -125,6 +118,7 @@ class CareerGoalsViewController: UIViewController {
     lazy var fiveYrsIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "5yrs+")
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -148,7 +142,6 @@ class CareerGoalsViewController: UIViewController {
     lazy var fiveYrsText: UILabel = {
         let text = UILabel()
         text.text = CareerGoalsModel.longTerm
-        text.font = UIFont(name: "Nunito-Bold", size: 12)
         text.textColor = UIColor(named: "BlackLabels")
         text.textAlignment = .center
         text.numberOfLines = 0
@@ -158,6 +151,7 @@ class CareerGoalsViewController: UIViewController {
     lazy var twoYrsIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "2-5yrs")
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -181,7 +175,6 @@ class CareerGoalsViewController: UIViewController {
     lazy var twoYrsText: UILabel = {
         let text = UILabel()
         text.text = CareerGoalsModel.midTerm
-        text.font = UIFont(name: "Nunito-Bold", size: 12)
         text.textColor = UIColor(named: "BlackLabels")
         text.textAlignment = .center
         text.numberOfLines = 0
@@ -191,6 +184,7 @@ class CareerGoalsViewController: UIViewController {
     lazy var oneYearIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "1-2yrs")
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -214,7 +208,6 @@ class CareerGoalsViewController: UIViewController {
     lazy var oneYearText: UILabel = {
         let text = UILabel()
         text.text = CareerGoalsModel.shortTerm
-        text.font = UIFont(name: "Nunito-Bold", size: 12)
         text.textColor = UIColor(named: "BlackLabels")
         text.textAlignment = .center
         text.numberOfLines = 0
@@ -257,8 +250,6 @@ class CareerGoalsViewController: UIViewController {
         let leading = view.layoutMarginsGuide.leadingAnchor
         let trailing = view.layoutMarginsGuide.trailingAnchor
         
-        let horizontalSize = self.traitCollection.horizontalSizeClass
-        
         //Adding subviews
         view.addSubview(background)
         view.sendSubviewToBack(background)
@@ -287,7 +278,6 @@ class CareerGoalsViewController: UIViewController {
         careerGoalsView.addSubview(curveLeft)
         oneYearBubble.addSubview(oneYearText)
         
-        
         background.translatesAutoresizingMaskIntoConstraints = false
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
@@ -314,9 +304,6 @@ class CareerGoalsViewController: UIViewController {
         curveLeft.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
-        
-        if horizontalSize == .regular {
-            
             NSLayoutConstraint.activate([
                 
                 background.widthAnchor.constraint(equalToConstant: view.bounds.width),
@@ -324,121 +311,7 @@ class CareerGoalsViewController: UIViewController {
                 
                 filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
                 filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
-                
-                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
-                
-                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-                
-                contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
-                contactButtonI.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                
-                scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                
-                backgroundSheet.widthAnchor.constraint(equalTo: careerGoalsView.widthAnchor),
-                backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
-                
-                //Career View
-                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
-                careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-                careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-                careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-                careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
-                
-                //Dragger line
-                line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
-                line.widthAnchor.constraint(equalToConstant: 35),
-                line.heightAnchor.constraint(equalToConstant: 5),
-                line.centerXAnchor.constraint(equalTo: careerGoalsView.centerXAnchor),
-                
-                //Title for the page
-                titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
-                titlePage.leadingAnchor.constraint(equalTo: leading),
-                
-                //Contact Button 2nd
-                contactButtonII.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
-                contactButtonII.trailingAnchor.constraint(equalTo: trailing),
-                
-                //Chart image
-                chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
-                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
-                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
-                
-                //Five years icon
-                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 25)),
-                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 40)),
-                
-                //Five years bubble
-                fiveYrsBubble.topAnchor.constraint(equalTo: fiveYrsIcon.bottomAnchor, constant: 5),
-                fiveYrsBubble.leadingAnchor.constraint(equalTo: leading),
-                fiveYrsBubble.trailingAnchor.constraint(equalTo: trailing),
-                
-                //Custom curve for five years bubble
-                curveTopRight.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: -4),
-                curveTopRight.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor),
-                
-                //Five years text
-                fiveYrsText.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: 10),
-                fiveYrsText.leadingAnchor.constraint(equalTo: fiveYrsBubble.leadingAnchor, constant: 10),
-                fiveYrsText.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor, constant: -10),
-                fiveYrsText.bottomAnchor.constraint(equalTo: fiveYrsBubble.bottomAnchor, constant: -10),
-                
-                //Two years icon
-                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 58)),
-                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 35)),
-                
-                //Custom curve for two years bubble
-                curveTop.bottomAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 2),
-                curveTop.leadingAnchor.constraint(equalTo: twoYrsIcon.trailingAnchor, constant: 20),
-                
-                //Two years bubble
-                twoYrsBubble.topAnchor.constraint(equalTo: twoYrsIcon.bottomAnchor, constant: 5),
-                twoYrsBubble.leadingAnchor.constraint(equalTo: leading),
-                twoYrsBubble.trailingAnchor.constraint(equalTo: trailing),
-                
-                //Two years text
-                twoYrsText.topAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 10),
-                twoYrsText.leadingAnchor.constraint(equalTo: twoYrsBubble.leadingAnchor, constant: 10),
-                twoYrsText.trailingAnchor.constraint(equalTo: twoYrsBubble.trailingAnchor, constant: -10),
-                twoYrsText.bottomAnchor.constraint(equalTo: twoYrsBubble.bottomAnchor, constant: -10),
-                
-                //One year icon
-                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2))),
-                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 15)),
-                
-                //One year bubble
-                oneYearBubble.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
-                oneYearBubble.leadingAnchor.constraint(equalTo: oneYearIcon.trailingAnchor, constant: 35),
-                oneYearBubble.trailingAnchor.constraint(equalTo: trailing),
-                
-                //One year text
-                oneYearText.topAnchor.constraint(equalTo: oneYearBubble.topAnchor, constant: 10),
-                oneYearText.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: 10),
-                oneYearText.trailingAnchor.constraint(equalTo: oneYearBubble.trailingAnchor, constant: -10),
-                oneYearText.bottomAnchor.constraint(equalTo: oneYearBubble.bottomAnchor, constant: -10),
-                
-                //Custom curve for one year bubble
-                curveLeft.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
-                curveLeft.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: -4),
-                
-            ])
-            
-        } else if horizontalSize == .compact {
-            NSLayoutConstraint.activate([
-                
-                background.widthAnchor.constraint(equalToConstant: view.bounds.width),
-                background.heightAnchor.constraint(equalToConstant: view.bounds.height),
-                
-                filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
-                filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
-                
-                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
-                
-                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-                
+
                 contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
                 contactButtonI.trailingAnchor.constraint(equalTo: trailing),
                 
@@ -451,12 +324,11 @@ class CareerGoalsViewController: UIViewController {
                 backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
                 
                 //Career View
-                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
                 careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
                 careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
                 careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
                 careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
                 
                 //Dragger line
                 line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
@@ -471,15 +343,6 @@ class CareerGoalsViewController: UIViewController {
                 //Contact Button 2nd
                 contactButtonII.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
                 contactButtonII.trailingAnchor.constraint(equalTo: trailing),
-                
-                //Chart image
-                chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
-                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
-                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
-                
-                //Five years icon
-                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 25)),
-                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 40)),
                 
                 //Five years bubble
                 fiveYrsBubble.topAnchor.constraint(equalTo: fiveYrsIcon.bottomAnchor, constant: 5),
@@ -496,10 +359,6 @@ class CareerGoalsViewController: UIViewController {
                 fiveYrsText.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor, constant: -10),
                 fiveYrsText.bottomAnchor.constraint(equalTo: fiveYrsBubble.bottomAnchor, constant: -10),
                 
-                //Two years icon
-                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 58)),
-                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 35)),
-                
                 //Custom curve for two years bubble
                 curveTop.bottomAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 2),
                 curveTop.leadingAnchor.constraint(equalTo: twoYrsIcon.trailingAnchor, constant: 20),
@@ -514,10 +373,6 @@ class CareerGoalsViewController: UIViewController {
                 twoYrsText.leadingAnchor.constraint(equalTo: twoYrsBubble.leadingAnchor, constant: 10),
                 twoYrsText.trailingAnchor.constraint(equalTo: twoYrsBubble.trailingAnchor, constant: -10),
                 twoYrsText.bottomAnchor.constraint(equalTo: twoYrsBubble.bottomAnchor, constant: -10),
-                
-                //One year icon
-                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2))),
-                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 15)),
                 
                 //One year bubble
                 oneYearBubble.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
@@ -535,8 +390,242 @@ class CareerGoalsViewController: UIViewController {
                 curveLeft.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: -4),
                 
             ])
-        }
         
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 45)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 45)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 12)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 4
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 18)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 12)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 4
+            
+            fiveYrsText.font = UIFont(name: "Nunito-Bold", size: 10)
+            
+            twoYrsText.font = UIFont(name: "Nunito-Bold", size: 10)
+            
+            oneYearText.font = UIFont(name: "Nunito-Bold", size: 10)
+            
+            NSLayoutConstraint.activate([
+            
+                //Contact Button 1st
+                contactButtonI.widthAnchor.constraint(equalToConstant: 70),
+                contactButtonI.heightAnchor.constraint(equalToConstant: 25),
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                //Contact Button 2nd
+                contactButtonII.widthAnchor.constraint(equalToConstant: 70),
+                contactButtonII.heightAnchor.constraint(equalToConstant: 25),
+                
+                //Career View
+                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
+                //Chart image
+                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 5)),
+                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                
+                //Five years icon
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 14)),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 20)),
+                fiveYrsIcon.widthAnchor.constraint(equalToConstant: 65),
+                fiveYrsIcon.heightAnchor.constraint(equalToConstant: 25),
+                
+                //Two years icon
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 54)),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 2)),
+                twoYrsIcon.widthAnchor.constraint(equalToConstant: 65),
+                twoYrsIcon.heightAnchor.constraint(equalToConstant: 25),
+                
+                //One year icon
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 10)),
+                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.4) - 5)),
+                oneYearIcon.widthAnchor.constraint(equalToConstant: 65),
+                oneYearIcon.heightAnchor.constraint(equalToConstant: 25),
+            ])
+            
+        } else if DeviceType.isIphone6or7or8 {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 50)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 50)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            fiveYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            twoYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            oneYearText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                //Career View
+                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 10 )),
+                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9) - 5),
+            
+                //Chart image
+                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 10)),
+                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+                
+                //Five years icon
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 15)),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 20)),
+                fiveYrsIcon.widthAnchor.constraint(equalToConstant: 70),
+                fiveYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //Two years icon
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.3) - 5 )),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 2 )),
+                twoYrsIcon.widthAnchor.constraint(equalToConstant: 70),
+                twoYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //One year icon
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 12)),
+                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.4) - 10)),
+                oneYearIcon.widthAnchor.constraint(equalToConstant: 70),
+                oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+
+                
+            ])
+            
+        } else if DeviceType.isIphone6or7or8Plus {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 60)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            fiveYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            twoYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            oneYearText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                //Career View
+                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 20)),
+                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9)),
+            
+                //Chart image
+                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 10)),
+                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                
+                //Five years icon
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 12)),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 25)),
+                fiveYrsIcon.widthAnchor.constraint(equalToConstant: 80),
+                fiveYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //Two years icon
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.3) + 10)),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 10)),
+                twoYrsIcon.widthAnchor.constraint(equalToConstant: 80),
+                twoYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //One year icon
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 23)),
+                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.4) - 20)),
+                oneYearIcon.widthAnchor.constraint(equalToConstant: 80),
+                oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
+
+                
+            ])
+            
+        } else if DeviceType.isIphoneXorLater {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 60)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            fiveYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            twoYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            oneYearText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                //Career View
+                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+            
+                //Chart image
+                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 10)),
+                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                
+                //Five years icon
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 18)),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 35)),
+                fiveYrsIcon.widthAnchor.constraint(equalToConstant: 80),
+                fiveYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //Two years icon
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.3) - 8)),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 30)),
+                twoYrsIcon.widthAnchor.constraint(equalToConstant: 80),
+                twoYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //One year icon
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 13)),
+                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 20)),
+                oneYearIcon.widthAnchor.constraint(equalToConstant: 80),
+                oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
+
+                
+            ])
+            
+        }
         
         //Adding button's action
         contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
@@ -546,14 +635,6 @@ class CareerGoalsViewController: UIViewController {
         
     }
     
-    //MARK: Adaptative constraints
-    private func iPhoneOlder() {
-        
-    }
-    
-    private func iPhoneXAndLater() {
-        
-    }
     
     //MARK: pulling contact view
     @objc func pullContactView() {

@@ -19,7 +19,6 @@ class MyCertificatesViewCell: UITableViewCell {
         let title = UILabel()
         title.text = "My certificates"
         title.textColor = UIColor(named: "BlackSecondary")
-        title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
     }()
@@ -36,6 +35,9 @@ class MyCertificatesViewCell: UITableViewCell {
     //MARK: Configuring layout
     private func configureLayout() {
         backgroundColor = UIColor.clear
+        
+        let leading = layoutMarginsGuide.leadingAnchor
+        
         addSubview(cellView)
         cellView.addSubview(cellTitle)
         
@@ -51,9 +53,19 @@ class MyCertificatesViewCell: UITableViewCell {
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             cellTitle.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
-            cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
+            cellTitle.leadingAnchor.constraint(equalTo: leading)
         
         ])
+        
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 {
+            
+            cellTitle.font = UIFont(name: "Nunito-Black", size: 18)
+            
+        } else {
+            
+            cellTitle.font = UIFont(name: "Nunito-Black", size: 20)
+        }
     }
 
 }

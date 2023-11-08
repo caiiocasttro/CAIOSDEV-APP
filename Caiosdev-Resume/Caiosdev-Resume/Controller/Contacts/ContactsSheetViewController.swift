@@ -35,7 +35,6 @@ class ContactsSheetViewController: UIViewController {
     lazy var titlePage: UILabel = {
         let title = UILabel()
         title.text = "Contact me!"
-        title.font = UIFont(name: "Nunito-Black", size: 40)
         title.textColor = UIColor(named: "BlackSecondary")
         title.textAlignment = .center
         return title
@@ -45,7 +44,6 @@ class ContactsSheetViewController: UIViewController {
         let title = UILabel()
         title.text = "Phone Number"
         title.textColor = UIColor(named: "BlackSecondary")
-        title.font = UIFont(name: "Nunito-Bold", size: 14)
         title.numberOfLines = 0
         title.textAlignment = .left
         return title
@@ -89,7 +87,7 @@ class ContactsSheetViewController: UIViewController {
     
     lazy var linkedinButton: CustomButtonAttributedText = {
         let icon = UIImage(named: "Linkedin")?.withTintColor(UIColor(named: "BlackLabels") ?? UIColor.gray)
-        let button = CustomButtonAttributedText(icon: icon!, text: ContactsModel.emailAddress, target: self, action: #selector(linkedinDidTapped))
+        let button = CustomButtonAttributedText(icon: icon!, text: "linkedin.com/in/caio-chaves" , target: self, action: #selector(linkedinDidTapped))
         
         return button
     }()
@@ -182,6 +180,36 @@ class ContactsSheetViewController: UIViewController {
             
             
         ])
+        
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 || DeviceType.isIphone6or7or8 {
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 25)
+            
+            phoneNumberTitle.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            emailTitle.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            linkedinTitle.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            NSLayoutConstraint.activate([
+            
+                dismissButton.widthAnchor.constraint(equalToConstant: 20),
+                dismissButton.heightAnchor.constraint(equalToConstant: 20)
+            
+            ])
+            
+        } else {
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 40)
+            
+            phoneNumberTitle.font = UIFont(name: "Nunito-Bold", size: 14)
+            
+            emailTitle.font = UIFont(name: "Nunito-Bold", size: 14)
+            
+            linkedinTitle.font = UIFont(name: "Nunito-Bold", size: 14)
+            
+        }
         
         dismissButton.addTarget(self, action: #selector(dismissButtonDidTapped), for: .touchUpInside)
         callButton.addTarget(self, action: #selector(callDidTapped), for: .touchUpInside)

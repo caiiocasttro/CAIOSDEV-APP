@@ -39,7 +39,6 @@ class EducationViewCell: UITableViewCell {
     //MARK: Objects
     lazy var iconImage: UIImageView = {
         let iconImage = UIImageView()
-        iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
         iconImage.image = UIImage(named: "education")
         return iconImage
     }()
@@ -47,7 +46,6 @@ class EducationViewCell: UITableViewCell {
     lazy var schoolName: UILabel = {
         let school = UILabel()
         school.textColor = UIColor(named: "BlackLabels")
-        school.font = UIFont(name: "Nunito-Bold", size: 18)
         school.textAlignment = .left
         return school
     }()
@@ -62,7 +60,6 @@ class EducationViewCell: UITableViewCell {
     lazy var graduateName: UILabel = {
         let graduate = UILabel()
         graduate.textColor = UIColor(named: "GrayLabels")
-        graduate.font = UIFont(name: "Nunito-SemiBold", size: 12)
         graduate.textAlignment = .left
         return graduate
     }()
@@ -77,7 +74,6 @@ class EducationViewCell: UITableViewCell {
     lazy var graduateDescription: UILabel = {
         let graduateDescription = UILabel()
         graduateDescription.textColor = UIColor(named: "GrayLabels")
-        graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 12)
         graduateDescription.textAlignment = .left
         graduateDescription.numberOfLines = 0
         return graduateDescription
@@ -96,6 +92,8 @@ class EducationViewCell: UITableViewCell {
     private func configureLayout() {
         
         backgroundColor = UIColor.clear
+        
+        let leading = layoutMarginsGuide.leadingAnchor
         
         addSubview(cellView)
         cellView.addSubview(iconImage)
@@ -123,25 +121,57 @@ class EducationViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 20),
             
             iconImage.topAnchor.constraint(equalTo: topAnchor),
-            iconImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            iconImage.leadingAnchor.constraint(equalTo: leading),
             
             schoolName.centerYAnchor.constraint(equalTo: iconImage.centerYAnchor),
             schoolName.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
             
             dotImage.topAnchor.constraint(equalTo: schoolName.bottomAnchor, constant: 10),
-            dotImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            dotImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 65),
             
             graduateName.centerYAnchor.constraint(equalTo: dotImage.centerYAnchor),
             graduateName.leadingAnchor.constraint(equalTo: dotImage.trailingAnchor, constant: 5),
             
             dotImageII.topAnchor.constraint(equalTo: dotImage.bottomAnchor, constant: 10),
-            dotImageII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            dotImageII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 65),
             
             graduateDescription.topAnchor.constraint(equalTo: graduateName.bottomAnchor, constant: -1),
             graduateDescription.leadingAnchor.constraint(equalTo: dotImageII.trailingAnchor, constant: 5),
             graduateDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
             
         ])
+        
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 {
+            
+            schoolName.font = UIFont(name: "Nunito-Bold", size: 16)
+            
+            graduateName.font = UIFont(name: "Nunito-SemiBold", size: 10)
+            
+            graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 10)
+            
+            NSLayoutConstraint.activate([
+            
+                iconImage.widthAnchor.constraint(equalToConstant: 35),
+                iconImage.heightAnchor.constraint(equalToConstant: 35)
+                
+            ])
+            
+        } else {
+            
+            schoolName.font = UIFont(name: "Nunito-Bold", size: 18)
+            
+            graduateName.font = UIFont(name: "Nunito-SemiBold", size: 12)
+            
+            graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 12)
+            
+            NSLayoutConstraint.activate([
+            
+                iconImage.widthAnchor.constraint(equalToConstant: 40),
+                iconImage.heightAnchor.constraint(equalToConstant: 40)
+                
+            ])
+        }
         
     }
     

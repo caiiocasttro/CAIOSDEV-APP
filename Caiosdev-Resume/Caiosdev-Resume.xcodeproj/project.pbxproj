@@ -17,6 +17,7 @@
 		E596E67F2AF9225600151415 /* CustomButtonAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596E67E2AF9225600151415 /* CustomButtonAttributedText.swift */; };
 		E597B7C82AEFC53300DC3081 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = E597B7C72AEFC53200DC3081 /* click.wav */; };
 		E597B7CA2AEFC67D00DC3081 /* pop-up.wav in Resources */ = {isa = PBXBuildFile; fileRef = E597B7C92AEFC67D00DC3081 /* pop-up.wav */; };
+		E599174E2AFBC32600B02D60 /* ScreenSizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599174D2AFBC32600B02D60 /* ScreenSizeManager.swift */; };
 		E5B3AEAB2AE2FBB700D0A9F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */; };
 		E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */; };
 		E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */; };
@@ -65,6 +66,7 @@
 		E596E67E2AF9225600151415 /* CustomButtonAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonAttributedText.swift; sourceTree = "<group>"; };
 		E597B7C72AEFC53200DC3081 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		E597B7C92AEFC67D00DC3081 /* pop-up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pop-up.wav"; sourceTree = "<group>"; };
+		E599174D2AFBC32600B02D60 /* ScreenSizeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeManager.swift; sourceTree = "<group>"; };
 		E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeModel.swift; sourceTree = "<group>"; };
 		E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerGoalsModel.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				E50B0B502AE98FAC0038DDB4 /* ConstraintsManager.swift */,
+				E599174D2AFBC32600B02D60 /* ScreenSizeManager.swift */,
 			);
 			path = "Constraints Manager";
 			sourceTree = "<group>";
@@ -432,6 +435,8 @@
 			dependencies = (
 			);
 			name = "Caiosdev-Resume";
+			packageProductDependencies = (
+			);
 			productName = "Caiosdev-Resume";
 			productReference = E5C619732AD196B1007C1EFB /* Caiosdev-Resume.app */;
 			productType = "com.apple.product-type.application";
@@ -460,6 +465,8 @@
 				Base,
 			);
 			mainGroup = E5C6196A2AD196B1007C1EFB;
+			packageReferences = (
+			);
 			productRefGroup = E5C619742AD196B1007C1EFB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -526,6 +533,7 @@
 				E5BF06E52AD9439800195F5F /* ExperienceModel.swift in Sources */,
 				E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */,
 				E5C619792AD196B1007C1EFB /* SceneDelegate.swift in Sources */,
+				E599174E2AFBC32600B02D60 /* ScreenSizeManager.swift in Sources */,
 				E5BF06EB2AD9499F00195F5F /* ContactsModel.swift in Sources */,
 				E596E67F2AF9225600151415 /* CustomButtonAttributedText.swift in Sources */,
 				E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */,
@@ -671,7 +679,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreenII;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -705,7 +713,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreenII;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

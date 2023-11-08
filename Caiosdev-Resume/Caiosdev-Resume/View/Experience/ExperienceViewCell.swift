@@ -76,7 +76,6 @@ class ExperienceViewCell: UITableViewCell {
     lazy var positionName: UILabel = {
         let name = UILabel()
         name.text = "iOS Developer Freelancer"
-        name.font = UIFont(name: "Nunito-Black", size: 20)
         name.textColor = UIColor(named: "BlackSecondary")
         name.textAlignment = .left
         return  name
@@ -85,7 +84,6 @@ class ExperienceViewCell: UITableViewCell {
     lazy var locationName: UILabel = {
         let location = UILabel()
         location.text = "Sky Switzerland, Neuchâtel, VD - Sep 2023 · 1 mo"
-        location.font = UIFont(name: "Nunito-Bold", size: 12)
         location.textColor = UIColor(named: "GrayLabels")
         location.textAlignment = .left
         location.numberOfLines = 0
@@ -122,7 +120,6 @@ class ExperienceViewCell: UITableViewCell {
     lazy var taskNameI: UILabel = {
         let position = UILabel()
         position.text = "New features implementation on iOS app."
-        position.font = UIFont(name: "Nunito-SemiBold", size: 12)
         position.textColor = UIColor(named: "GrayLabels")
         position.textAlignment = .left
         return position
@@ -131,7 +128,6 @@ class ExperienceViewCell: UITableViewCell {
     lazy var taskNameII: UILabel = {
         let position = UILabel()
         position.text = "iOS application maintenance."
-        position.font = UIFont(name: "Nunito-SemiBold", size: 12)
         position.textColor = UIColor(named: "GrayLabels")
         position.textAlignment = .left
         return position
@@ -140,7 +136,6 @@ class ExperienceViewCell: UITableViewCell {
     lazy var taskNameIII: UILabel = {
         let position = UILabel()
         position.text = "Improving existing iOS app."
-        position.font = UIFont(name: "Nunito-SemiBold", size: 12)
         position.textColor = UIColor(named: "GrayLabels")
         position.textAlignment = .left
         return position
@@ -159,6 +154,10 @@ class ExperienceViewCell: UITableViewCell {
     private func configureLayout() {
         
         backgroundColor = UIColor.clear
+        
+        let leading = layoutMarginsGuide.leadingAnchor
+        
+        let trailing = layoutMarginsGuide.trailingAnchor
 
         addSubview(cellView)
         cellView.addSubview(line)
@@ -186,21 +185,20 @@ class ExperienceViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
         
             cellView.topAnchor.constraint(equalTo: topAnchor),
-            cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            cellView.leadingAnchor.constraint(equalTo: leading),
+            cellView.trailingAnchor.constraint(equalTo: trailing),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            cellView.heightAnchor.constraint(equalToConstant: 180),
             
             line.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
-            line.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20),
+            line.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 15),
             line.widthAnchor.constraint(equalToConstant: 6),
-            line.heightAnchor.constraint(equalToConstant: 100),
             
             positionName.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20),
             positionName.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 10),
             
             locationName.topAnchor.constraint(equalTo: positionName.bottomAnchor),
             locationName.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 10),
+            locationName.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -10),
             
             circleTaskI.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 20),
             circleTaskI.leadingAnchor.constraint(equalTo: line.trailingAnchor, constant: 20),
@@ -228,6 +226,50 @@ class ExperienceViewCell: UITableViewCell {
             
         
         ])
+        
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 {
+            positionName.font = UIFont(name: "Nunito-Black", size: 18)
+            
+            locationName.font = UIFont(name: "Nunito-Bold", size: 10)
+            
+            taskNameI.font = UIFont(name: "Nunito-SemiBold", size: 10)
+            
+            taskNameII.font = UIFont(name: "Nunito-SemiBold", size: 10)
+            
+            taskNameIII.font = UIFont(name: "Nunito-SemiBold", size: 10)
+            
+            NSLayoutConstraint.activate([
+                
+                //Cell view
+                cellView.heightAnchor.constraint(equalToConstant: 160),
+            
+                //Vertical line
+                line.heightAnchor.constraint(equalToConstant: 90)
+            
+            ])
+            
+        } else {
+            positionName.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            locationName.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            taskNameI.font = UIFont(name: "Nunito-SemiBold", size: 12)
+            
+            taskNameII.font = UIFont(name: "Nunito-SemiBold", size: 12)
+            
+            taskNameIII.font = UIFont(name: "Nunito-SemiBold", size: 12)
+            
+            NSLayoutConstraint.activate([
+                
+                //Cell view
+                cellView.heightAnchor.constraint(equalToConstant: 180),
+            
+                //Vertical line
+                line.heightAnchor.constraint(equalToConstant: 100)
+            
+            ])
+        }
         
     }
     

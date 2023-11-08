@@ -27,7 +27,6 @@ class CustomButtonAttributedText: UIButton {
         let label = UILabel()
         label.attributedText = stringAttributed
         label.textColor = UIColor(named: "BlackSecondary")
-        label.font = UIFont(name: "Nunito-Bold", size: 14)
         label.numberOfLines = 0
         label.textAlignment = .left
         
@@ -47,6 +46,35 @@ class CustomButtonAttributedText: UIButton {
             label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10)
         
         ])
+        
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 {
+            
+            label.font = UIFont(name: "Nunito-Bold", size: 10)
+            
+            NSLayoutConstraint.activate([
+            
+                icon.widthAnchor.constraint(equalToConstant: 20),
+                icon.heightAnchor.constraint(equalToConstant: 20)
+            
+            ])
+            
+        } else if DeviceType.isIphone6or7or8 {
+            
+            label.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            NSLayoutConstraint.activate([
+            
+                icon.widthAnchor.constraint(equalToConstant: 25),
+                icon.heightAnchor.constraint(equalToConstant: 25)
+            
+            ])
+            
+        } else {
+            
+            label.font = UIFont(name: "Nunito-Bold", size: 14)
+            
+        }
 
     }
     

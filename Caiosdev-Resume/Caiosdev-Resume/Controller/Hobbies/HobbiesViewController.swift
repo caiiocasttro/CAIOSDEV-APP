@@ -31,7 +31,6 @@ class HobbiesViewController: UIViewController {
         let title = UILabel()
         title.text = "My"
         title.textColor = UIColor.white
-        title.font = UIFont(name: "Nunito-Black", size: 60)
         title.textAlignment = .left
         title.numberOfLines = 0
         title.alpha = 0
@@ -42,7 +41,6 @@ class HobbiesViewController: UIViewController {
         let title = UILabel()
         title.text = "Passions"
         title.textColor = UIColor.white
-        title.font = UIFont(name: "Nunito-Black", size: 60)
         title.textAlignment = .left
         title.numberOfLines = 0
         title.alpha = 0
@@ -54,9 +52,7 @@ class HobbiesViewController: UIViewController {
         button.frame = .init(x: 0, y: 0, width: 100, height: 50)
         button.backgroundColor = .white
         button.setTitle("Hire me", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
         button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
-        button.layer.cornerRadius = button.frame.size.height / 3
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         return button
     }()
@@ -66,9 +62,7 @@ class HobbiesViewController: UIViewController {
         button.frame = .init(x: 0, y: 0, width: 100, height: 50)
         button.backgroundColor = UIColor(named: "OrangeTitle")
         button.setTitle("Hire me", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = button.frame.size.height / 3
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         button.alpha = 0
         return button
@@ -187,9 +181,6 @@ class HobbiesViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
-            
-            titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -199,12 +190,12 @@ class HobbiesViewController: UIViewController {
             backgroundSheet.widthAnchor.constraint(equalTo: hobbiesView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: hobbiesView.heightAnchor),
             
-            hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+            
             hobbiesView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             hobbiesView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             hobbiesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             hobbiesView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+            
             
             contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
             contactButtonI.trailingAnchor.constraint(equalTo: trailing),
@@ -227,6 +218,120 @@ class HobbiesViewController: UIViewController {
             
         
         ])
+        
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 45)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 45)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 12)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 4
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 18)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 12)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 4
+            
+            NSLayoutConstraint.activate([
+            
+                //Contact Button 1st
+                contactButtonI.widthAnchor.constraint(equalToConstant: 70),
+                contactButtonI.heightAnchor.constraint(equalToConstant: 25),
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                //Contact Button 2nd
+                contactButtonII.widthAnchor.constraint(equalToConstant: 70),
+                contactButtonII.heightAnchor.constraint(equalToConstant: 25),
+                
+                //Hobbies View
+                hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+            ])
+            
+        } else if DeviceType.isIphone6or7or8 {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 50)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 50)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+            
+                //Hobbies View
+                hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 10)),
+                hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9) - 5),
+                
+            ])
+            
+        } else if DeviceType.isIphone6or7or8Plus {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 60)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+            
+                //Hobbies View
+                hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 20)),
+                hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9)),
+                
+            ])
+            
+        } else if DeviceType.isIphoneXorLater {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 60)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+            
+                //Hobbies View
+                hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
+            ])
+            
+        }
         
         //Adding target to contact button
         contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)

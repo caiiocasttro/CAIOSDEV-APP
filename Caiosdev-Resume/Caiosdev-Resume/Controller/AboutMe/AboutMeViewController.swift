@@ -36,9 +36,7 @@ class AboutMeViewController: UIViewController {
         button.frame = .init(x: 0, y: 0, width: 100, height: 50)
         button.backgroundColor = .white
         button.setTitle("Hire me", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
         button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
-        button.layer.cornerRadius = button.frame.size.height / 3
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         return button
     }()
@@ -48,9 +46,7 @@ class AboutMeViewController: UIViewController {
         button.frame = .init(x: 0, y: 0, width: 100, height: 50)
         button.backgroundColor = UIColor(named: "OrangeTitle")
         button.setTitle("Hire me", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = button.frame.size.height / 3
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         button.alpha = 0
         return button
@@ -79,7 +75,6 @@ class AboutMeViewController: UIViewController {
         let hello = UILabel()
         hello.text = "Hello,"
         hello.textColor = UIColor.white
-        hello.font = UIFont(name: "Nunito-Black", size: 60)
         hello.textAlignment = .left
         hello.numberOfLines = 0
         hello.alpha = 0
@@ -138,9 +133,6 @@ class AboutMeViewController: UIViewController {
         //Preparing sound
         prepareSoundEffect()
         
-        
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -169,7 +161,6 @@ class AboutMeViewController: UIViewController {
         
         let trailing = view.layoutMarginsGuide.trailingAnchor
         
-        print("Inch\(ConstraintsManager.screenSize)")
         
         //Adding subview
         view.addSubview(background)
@@ -186,7 +177,6 @@ class AboutMeViewController: UIViewController {
         aboutMeView.addSubview(titlePage)
         aboutMeView.addSubview(contactButtonII)
         aboutMeView.addSubview(tableView)
-        
         
         background.translatesAutoresizingMaskIntoConstraints = false
         backgroundSheet.translatesAutoresizingMaskIntoConstraints = false
@@ -211,9 +201,6 @@ class AboutMeViewController: UIViewController {
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-            hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
-            
-            myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -223,12 +210,11 @@ class AboutMeViewController: UIViewController {
             backgroundSheet.widthAnchor.constraint(equalTo: aboutMeView.widthAnchor),
             backgroundSheet.heightAnchor.constraint(equalTo: aboutMeView.heightAnchor),
             
-            aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+            
             aboutMeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             aboutMeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             aboutMeView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             aboutMeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
             
             contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
             contactButtonI.trailingAnchor.constraint(equalTo: trailing),
@@ -248,9 +234,124 @@ class AboutMeViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-            
-            
         ])
+        
+        //MARK: Adpting layout
+        
+        if DeviceType.isIphone5 {
+            
+            hello.font = UIFont(name: "Nunito-Black", size: 45)
+            myName.font = UIFont(name: "Nunito-Black", size: 45)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 12)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 4
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 18)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 12)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 4
+            
+            NSLayoutConstraint.activate([
+                
+                //Contact Button 1st
+                contactButtonI.widthAnchor.constraint(equalToConstant: 70),
+                contactButtonI.heightAnchor.constraint(equalToConstant: 25),
+                
+                //Hello & Name text
+                hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
+                
+                //Contact Button 2nd
+                contactButtonII.widthAnchor.constraint(equalToConstant: 70),
+                contactButtonII.heightAnchor.constraint(equalToConstant: 25),
+                
+                //About Me View
+                aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
+            ])
+            
+            
+        } else if DeviceType.isIphone6or7or8 {
+            
+            hello.font = UIFont(name: "Nunito-Black", size: 50)
+            myName.font = UIFont(name: "Nunito-Black", size: 50)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            NSLayoutConstraint.activate([
+                
+                //Hello & Name text
+                hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
+                
+                myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
+                
+                //About Me View
+                aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 10)),
+                aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9) - 5),
+                
+            ])
+            
+        } else if DeviceType.isIphone6or7or8Plus {
+            
+            hello.font = UIFont(name: "Nunito-Black", size: 60)
+            myName.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            NSLayoutConstraint.activate([
+                
+                //Hello & Name text
+                hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
+                
+                myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
+                
+                //About Me View
+                aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 20)),
+                aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9)),
+                
+            ])
+            
+        } else if DeviceType.isIphoneXorLater {
+            
+            hello.font = UIFont(name: "Nunito-Black", size: 60)
+            myName.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            NSLayoutConstraint.activate([
+                
+                //Hello & Name text
+                hello.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                myName.topAnchor.constraint(equalTo: hello.bottomAnchor, constant: -20),
+                
+                //About Me View
+                aboutMeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                aboutMeView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
+            ])
+            
+        }
         
         //Adding button's action
         contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
@@ -260,6 +361,8 @@ class AboutMeViewController: UIViewController {
         
         
     }
+    
+    
     
     //MARK: Configuring tab button
     private func configureTabBar() {
@@ -381,20 +484,22 @@ extension AboutMeViewController: UIScrollViewDelegate {
         
         if yOffset + scrollViewHeight + shouldAnimate >= contentViewHeight {
             
-            showButtonAnimation()
-            buttonShowed = true
+            if scrollView == self.scrollView {
+                showButtonAnimation()
+                buttonShowed = true
+            }
+            
             
             if !self.shouldAnimate {
                 self.shouldAnimate = true
                 tableView.reloadData()
-
+                
             }
         } else {
             
-            if self.buttonShowed {
+            if self.buttonShowed && scrollView == self.scrollView {
                 hideButtonAnimation()
             }
-            
         }
     }
 }
@@ -433,7 +538,7 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
             
             if shouldAnimate {
                 customCell.portugueseLevelFrame = 0
-
+                
                 UIView.animate(withDuration: 1.5, delay: 0.5, options: .curveEaseIn) {
                     customCell.portugueseLevelFrame = (ConstraintsManager.width * 0.8) - 19
                 }

@@ -14,7 +14,6 @@ class SkillsViewCell: UITableViewCell {
         let title = UILabel()
         title.text = "My Skills"
         title.textColor = UIColor(named: "BlackSecondary")
-        title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
         return title
     }()
@@ -110,7 +109,7 @@ class SkillsViewCell: UITableViewCell {
                 cellTitle.topAnchor.constraint(equalTo: topAnchor),
                 cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
                 
-                cellView.topAnchor.constraint(equalTo: cellTitle.bottomAnchor),
+                cellView.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 10),
                 cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
                 cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
                 cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
@@ -129,9 +128,14 @@ class SkillsViewCell: UITableViewCell {
                 level.centerYAnchor.constraint(equalTo: skill.centerYAnchor),
                 level.leadingAnchor.constraint(equalTo: space.trailingAnchor),
                 
-                
-                
             ])
+            
+            //MARK: Adaptative layout
+            if DeviceType.isIphone5 {
+                cellTitle.font = UIFont(name: "Nunito-Black", size: 18)
+            } else {
+                cellTitle.font = UIFont(name: "Nunito-Black", size: 20)
+            }
         }
     }
 }

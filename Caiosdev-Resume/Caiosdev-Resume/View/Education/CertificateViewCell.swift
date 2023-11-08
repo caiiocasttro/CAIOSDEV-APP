@@ -57,7 +57,6 @@ class CertificateViewCell: UITableViewCell {
     lazy var certificateTitle: UILabel = {
         let certificateTitle = UILabel()
         certificateTitle.textColor = UIColor(named: "BlackLabels")
-        certificateTitle.font = UIFont(name: "Nunito-Bold", size: 18)
         certificateTitle.textAlignment = .left
         return certificateTitle
     }()
@@ -93,6 +92,8 @@ class CertificateViewCell: UITableViewCell {
         
         backgroundColor = UIColor.clear
         
+        let leading = layoutMarginsGuide.leadingAnchor
+        
         addSubview(cellView)
         cellView.addSubview(iconImage)
         cellView.addSubview(certificateTitle)
@@ -114,19 +115,44 @@ class CertificateViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             
             iconImage.topAnchor.constraint(equalTo: topAnchor),
-            iconImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            iconImage.leadingAnchor.constraint(equalTo: leading),
             
             certificateTitle.centerYAnchor.constraint(equalTo: iconImage.centerYAnchor),
             certificateTitle.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
             
             schoolName.topAnchor.constraint(equalTo: certificateTitle.bottomAnchor),
-            schoolName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            schoolName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
             
             date.topAnchor.constraint(equalTo: schoolName.bottomAnchor),
-            date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70)
+            date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60)
             
         
         ])
+        
+        //MARK: Adaptative layout
+        if DeviceType.isIphone5 {
+            
+            certificateTitle.font = UIFont(name: "Nunito-Bold", size: 16)
+            
+            NSLayoutConstraint.activate([
+            
+                iconImage.widthAnchor.constraint(equalToConstant: 35),
+                iconImage.heightAnchor.constraint(equalToConstant: 35)
+                
+            ])
+            
+        } else {
+            
+            certificateTitle.font = UIFont(name: "Nunito-Bold", size: 18)
+            
+            NSLayoutConstraint.activate([
+            
+                iconImage.widthAnchor.constraint(equalToConstant: 35),
+                iconImage.heightAnchor.constraint(equalToConstant: 35)
+                
+            ])
+            
+        }
         
     }
 

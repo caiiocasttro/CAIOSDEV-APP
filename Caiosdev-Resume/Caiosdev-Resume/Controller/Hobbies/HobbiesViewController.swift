@@ -330,25 +330,28 @@ class HobbiesViewController: UIViewController {
 extension HobbiesViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollViewHeigt = scrollView.frame.size.height
-        let contentViewHeigt = scrollView.contentSize.height
-        let yOffset = scrollView.contentOffset.y
         
-        let shouldAnimate: CGFloat = 10
-        
-        if yOffset + scrollViewHeigt + shouldAnimate >= contentViewHeigt {
+        if scrollView == self.scrollView {
+            let scrollViewHeigt = scrollView.frame.size.height
+            let contentViewHeigt = scrollView.contentSize.height
+            let yOffset = scrollView.contentOffset.y
             
-            showButtonAnimation()
-            buttonShowed = true
+            let shouldAnimate: CGFloat = 10
+            
+            if yOffset + scrollViewHeigt + shouldAnimate >= contentViewHeigt {
                 
-        } else {
-            
-            if self.buttonShowed {
-                hideButtonAnimation()
+                showButtonAnimation()
+                buttonShowed = true
+                    
+            } else {
+                
+                if self.buttonShowed {
+                    hideButtonAnimation()
+                }
+                
             }
             
         }
-        
     }
     
 }

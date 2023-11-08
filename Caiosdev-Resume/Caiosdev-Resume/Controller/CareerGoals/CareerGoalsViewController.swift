@@ -28,8 +28,9 @@ class CareerGoalsViewController: UIViewController {
     
     var click: AVAudioPlayer?
     
-    
     var feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    
+    
     
     //MARK: Objects
     lazy var filter: UIView = {
@@ -256,6 +257,8 @@ class CareerGoalsViewController: UIViewController {
         let leading = view.layoutMarginsGuide.leadingAnchor
         let trailing = view.layoutMarginsGuide.trailingAnchor
         
+        let horizontalSize = self.traitCollection.horizontalSizeClass
+        
         //Adding subviews
         view.addSubview(background)
         view.sendSubviewToBack(background)
@@ -311,125 +314,244 @@ class CareerGoalsViewController: UIViewController {
         curveLeft.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
-        NSLayoutConstraint.activate([
+        
+        if horizontalSize == .regular {
             
-            background.widthAnchor.constraint(equalToConstant: view.bounds.width),
-            background.heightAnchor.constraint(equalToConstant: view.bounds.height),
+            NSLayoutConstraint.activate([
+                
+                background.widthAnchor.constraint(equalToConstant: view.bounds.width),
+                background.heightAnchor.constraint(equalToConstant: view.bounds.height),
+                
+                filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
+                filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
+                
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
+                contactButtonI.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                
+                scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                
+                backgroundSheet.widthAnchor.constraint(equalTo: careerGoalsView.widthAnchor),
+                backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
+                
+                //Career View
+                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+                careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
+                //Dragger line
+                line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
+                line.widthAnchor.constraint(equalToConstant: 35),
+                line.heightAnchor.constraint(equalToConstant: 5),
+                line.centerXAnchor.constraint(equalTo: careerGoalsView.centerXAnchor),
+                
+                //Title for the page
+                titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
+                titlePage.leadingAnchor.constraint(equalTo: leading),
+                
+                //Contact Button 2nd
+                contactButtonII.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
+                contactButtonII.trailingAnchor.constraint(equalTo: trailing),
+                
+                //Chart image
+                chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
+                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                
+                //Five years icon
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 25)),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 40)),
+                
+                //Five years bubble
+                fiveYrsBubble.topAnchor.constraint(equalTo: fiveYrsIcon.bottomAnchor, constant: 5),
+                fiveYrsBubble.leadingAnchor.constraint(equalTo: leading),
+                fiveYrsBubble.trailingAnchor.constraint(equalTo: trailing),
+                
+                //Custom curve for five years bubble
+                curveTopRight.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: -4),
+                curveTopRight.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor),
+                
+                //Five years text
+                fiveYrsText.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: 10),
+                fiveYrsText.leadingAnchor.constraint(equalTo: fiveYrsBubble.leadingAnchor, constant: 10),
+                fiveYrsText.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor, constant: -10),
+                fiveYrsText.bottomAnchor.constraint(equalTo: fiveYrsBubble.bottomAnchor, constant: -10),
+                
+                //Two years icon
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 58)),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 35)),
+                
+                //Custom curve for two years bubble
+                curveTop.bottomAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 2),
+                curveTop.leadingAnchor.constraint(equalTo: twoYrsIcon.trailingAnchor, constant: 20),
+                
+                //Two years bubble
+                twoYrsBubble.topAnchor.constraint(equalTo: twoYrsIcon.bottomAnchor, constant: 5),
+                twoYrsBubble.leadingAnchor.constraint(equalTo: leading),
+                twoYrsBubble.trailingAnchor.constraint(equalTo: trailing),
+                
+                //Two years text
+                twoYrsText.topAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 10),
+                twoYrsText.leadingAnchor.constraint(equalTo: twoYrsBubble.leadingAnchor, constant: 10),
+                twoYrsText.trailingAnchor.constraint(equalTo: twoYrsBubble.trailingAnchor, constant: -10),
+                twoYrsText.bottomAnchor.constraint(equalTo: twoYrsBubble.bottomAnchor, constant: -10),
+                
+                //One year icon
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2))),
+                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 15)),
+                
+                //One year bubble
+                oneYearBubble.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
+                oneYearBubble.leadingAnchor.constraint(equalTo: oneYearIcon.trailingAnchor, constant: 35),
+                oneYearBubble.trailingAnchor.constraint(equalTo: trailing),
+                
+                //One year text
+                oneYearText.topAnchor.constraint(equalTo: oneYearBubble.topAnchor, constant: 10),
+                oneYearText.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: 10),
+                oneYearText.trailingAnchor.constraint(equalTo: oneYearBubble.trailingAnchor, constant: -10),
+                oneYearText.bottomAnchor.constraint(equalTo: oneYearBubble.bottomAnchor, constant: -10),
+                
+                //Custom curve for one year bubble
+                curveLeft.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
+                curveLeft.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: -4),
+                
+            ])
             
-            filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
-            filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
-            
-            titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
-            
-            titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
-            contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
-            contactButtonI.trailingAnchor.constraint(equalTo: trailing),
-            
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            backgroundSheet.widthAnchor.constraint(equalTo: careerGoalsView.widthAnchor),
-            backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
-            
-            //Career View
-            careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
-            careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
-            
-            //Dragger line
-            line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
-            line.widthAnchor.constraint(equalToConstant: 35),
-            line.heightAnchor.constraint(equalToConstant: 5),
-            line.centerXAnchor.constraint(equalTo: careerGoalsView.centerXAnchor),
-            
-            //Title for the page
-            titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
-            titlePage.leadingAnchor.constraint(equalTo: leading),
-            
-            //Contact Button 2nd
-            contactButtonII.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
-            contactButtonII.trailingAnchor.constraint(equalTo: trailing),
-            
-            //Chart image
-            chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
-            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
-            chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
-            
-            //Five years icon
-            fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 25)),
-            fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 40)),
-            
-            //Five years bubble
-            fiveYrsBubble.topAnchor.constraint(equalTo: fiveYrsIcon.bottomAnchor, constant: 5),
-            fiveYrsBubble.leadingAnchor.constraint(equalTo: leading),
-            fiveYrsBubble.trailingAnchor.constraint(equalTo: trailing),
-            
-            //Custom curve for five years bubble
-            curveTopRight.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: -4),
-            curveTopRight.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor),
-            
-            //Five years text
-            fiveYrsText.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: 10),
-            fiveYrsText.leadingAnchor.constraint(equalTo: fiveYrsBubble.leadingAnchor, constant: 10),
-            fiveYrsText.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor, constant: -10),
-            fiveYrsText.bottomAnchor.constraint(equalTo: fiveYrsBubble.bottomAnchor, constant: -10),
-            
-            //Two years icon
-            twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 58)),
-            twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 35)),
-            
-            //Custom curve for two years bubble
-            curveTop.bottomAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 2),
-            curveTop.leadingAnchor.constraint(equalTo: twoYrsIcon.trailingAnchor, constant: 20),
-            
-            //Two years bubble
-            twoYrsBubble.topAnchor.constraint(equalTo: twoYrsIcon.bottomAnchor, constant: 5),
-            twoYrsBubble.leadingAnchor.constraint(equalTo: leading),
-            twoYrsBubble.trailingAnchor.constraint(equalTo: trailing),
-            
-            //Two years text
-            twoYrsText.topAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 10),
-            twoYrsText.leadingAnchor.constraint(equalTo: twoYrsBubble.leadingAnchor, constant: 10),
-            twoYrsText.trailingAnchor.constraint(equalTo: twoYrsBubble.trailingAnchor, constant: -10),
-            twoYrsText.bottomAnchor.constraint(equalTo: twoYrsBubble.bottomAnchor, constant: -10),
-            
-            //One year icon
-            oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2))),
-            oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 15)),
-            
-            //One year bubble
-            oneYearBubble.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
-            oneYearBubble.leadingAnchor.constraint(equalTo: oneYearIcon.trailingAnchor, constant: 35),
-            oneYearBubble.trailingAnchor.constraint(equalTo: trailing),
-            
-            //One year text
-            oneYearText.topAnchor.constraint(equalTo: oneYearBubble.topAnchor, constant: 10),
-            oneYearText.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: 10),
-            oneYearText.trailingAnchor.constraint(equalTo: oneYearBubble.trailingAnchor, constant: -10),
-            oneYearText.bottomAnchor.constraint(equalTo: oneYearBubble.bottomAnchor, constant: -10),
-            
-            //Custom curve for one year bubble
-            curveLeft.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
-            curveLeft.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: -4),
-            
-            
-            
-            
-            
-            
-        ])
+        } else if horizontalSize == .compact {
+            NSLayoutConstraint.activate([
+                
+                background.widthAnchor.constraint(equalToConstant: view.bounds.width),
+                background.heightAnchor.constraint(equalToConstant: view.bounds.height),
+                
+                filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
+                filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
+                
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
+                contactButtonI.trailingAnchor.constraint(equalTo: trailing),
+                
+                scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                
+                backgroundSheet.widthAnchor.constraint(equalTo: careerGoalsView.widthAnchor),
+                backgroundSheet.heightAnchor.constraint(equalTo: careerGoalsView.heightAnchor),
+                
+                //Career View
+                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
+                careerGoalsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                careerGoalsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+                careerGoalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                careerGoalsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
+                //Dragger line
+                line.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 10),
+                line.widthAnchor.constraint(equalToConstant: 35),
+                line.heightAnchor.constraint(equalToConstant: 5),
+                line.centerXAnchor.constraint(equalTo: careerGoalsView.centerXAnchor),
+                
+                //Title for the page
+                titlePage.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
+                titlePage.leadingAnchor.constraint(equalTo: leading),
+                
+                //Contact Button 2nd
+                contactButtonII.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: 15),
+                contactButtonII.trailingAnchor.constraint(equalTo: trailing),
+                
+                //Chart image
+                chartView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.7)),
+                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                
+                //Five years icon
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 25)),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 40)),
+                
+                //Five years bubble
+                fiveYrsBubble.topAnchor.constraint(equalTo: fiveYrsIcon.bottomAnchor, constant: 5),
+                fiveYrsBubble.leadingAnchor.constraint(equalTo: leading),
+                fiveYrsBubble.trailingAnchor.constraint(equalTo: trailing),
+                
+                //Custom curve for five years bubble
+                curveTopRight.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: -4),
+                curveTopRight.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor),
+                
+                //Five years text
+                fiveYrsText.topAnchor.constraint(equalTo: fiveYrsBubble.topAnchor, constant: 10),
+                fiveYrsText.leadingAnchor.constraint(equalTo: fiveYrsBubble.leadingAnchor, constant: 10),
+                fiveYrsText.trailingAnchor.constraint(equalTo: fiveYrsBubble.trailingAnchor, constant: -10),
+                fiveYrsText.bottomAnchor.constraint(equalTo: fiveYrsBubble.bottomAnchor, constant: -10),
+                
+                //Two years icon
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 58)),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 35)),
+                
+                //Custom curve for two years bubble
+                curveTop.bottomAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 2),
+                curveTop.leadingAnchor.constraint(equalTo: twoYrsIcon.trailingAnchor, constant: 20),
+                
+                //Two years bubble
+                twoYrsBubble.topAnchor.constraint(equalTo: twoYrsIcon.bottomAnchor, constant: 5),
+                twoYrsBubble.leadingAnchor.constraint(equalTo: leading),
+                twoYrsBubble.trailingAnchor.constraint(equalTo: trailing),
+                
+                //Two years text
+                twoYrsText.topAnchor.constraint(equalTo: twoYrsBubble.topAnchor, constant: 10),
+                twoYrsText.leadingAnchor.constraint(equalTo: twoYrsBubble.leadingAnchor, constant: 10),
+                twoYrsText.trailingAnchor.constraint(equalTo: twoYrsBubble.trailingAnchor, constant: -10),
+                twoYrsText.bottomAnchor.constraint(equalTo: twoYrsBubble.bottomAnchor, constant: -10),
+                
+                //One year icon
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2))),
+                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 15)),
+                
+                //One year bubble
+                oneYearBubble.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
+                oneYearBubble.leadingAnchor.constraint(equalTo: oneYearIcon.trailingAnchor, constant: 35),
+                oneYearBubble.trailingAnchor.constraint(equalTo: trailing),
+                
+                //One year text
+                oneYearText.topAnchor.constraint(equalTo: oneYearBubble.topAnchor, constant: 10),
+                oneYearText.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: 10),
+                oneYearText.trailingAnchor.constraint(equalTo: oneYearBubble.trailingAnchor, constant: -10),
+                oneYearText.bottomAnchor.constraint(equalTo: oneYearBubble.bottomAnchor, constant: -10),
+                
+                //Custom curve for one year bubble
+                curveLeft.topAnchor.constraint(equalTo: oneYearIcon.centerYAnchor),
+                curveLeft.leadingAnchor.constraint(equalTo: oneYearBubble.leadingAnchor, constant: -4),
+                
+            ])
+        }
+        
         
         //Adding button's action
         contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
         contactButtonII.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
         
         
+        
+    }
+    
+    //MARK: Adaptative constraints
+    private func iPhoneOlder() {
+        
+    }
+    
+    private func iPhoneXAndLater() {
         
     }
     

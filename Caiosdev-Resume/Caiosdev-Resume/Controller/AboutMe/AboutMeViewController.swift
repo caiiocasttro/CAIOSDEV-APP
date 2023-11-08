@@ -139,6 +139,8 @@ class AboutMeViewController: UIViewController {
         prepareSoundEffect()
         
         
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -166,6 +168,8 @@ class AboutMeViewController: UIViewController {
         let leading = view.layoutMarginsGuide.leadingAnchor
         
         let trailing = view.layoutMarginsGuide.trailingAnchor
+        
+        print("Inch\(ConstraintsManager.screenSize)")
         
         //Adding subview
         view.addSubview(background)

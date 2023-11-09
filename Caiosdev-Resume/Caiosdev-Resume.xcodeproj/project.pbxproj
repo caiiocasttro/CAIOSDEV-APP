@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E50B0B4E2AE98DEB0038DDB4 /* AnimationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B0B4D2AE98DEB0038DDB4 /* AnimationsManager.swift */; };
 		E50B0B512AE98FAC0038DDB4 /* ConstraintsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B0B502AE98FAC0038DDB4 /* ConstraintsManager.swift */; };
 		E530C65F2AE94C0800B91C48 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E530C65E2AE94C0800B91C48 /* LaunchScreen.swift */; };
 		E530C6612AE951FD00B91C48 /* LaunchScreenII.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */; };
@@ -52,11 +51,9 @@
 		E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */; };
 		E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */; };
 		E5C619C22AD727D1007C1EFB /* ExperienceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619C12AD727D0007C1EFB /* ExperienceViewCell.swift */; };
-		E5E9A36D2AE7EF2300B813C7 /* CustombubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9A36C2AE7EF2300B813C7 /* CustombubbleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E50B0B4D2AE98DEB0038DDB4 /* AnimationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsManager.swift; sourceTree = "<group>"; };
 		E50B0B502AE98FAC0038DDB4 /* ConstraintsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsManager.swift; sourceTree = "<group>"; };
 		E530C65E2AE94C0800B91C48 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenII.storyboard; sourceTree = "<group>"; };
@@ -103,7 +100,6 @@
 		E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewCell.swift; sourceTree = "<group>"; };
 		E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewCell.swift; sourceTree = "<group>"; };
 		E5C619C12AD727D0007C1EFB /* ExperienceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewCell.swift; sourceTree = "<group>"; };
-		E5E9A36C2AE7EF2300B813C7 /* CustombubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustombubbleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,17 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				E50B0B4F2AE98F8F0038DDB4 /* Constraints Manager */,
-				E50B0B4C2AE98DD30038DDB4 /* Animations Manager */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		E50B0B4C2AE98DD30038DDB4 /* Animations Manager */ = {
-			isa = PBXGroup;
-			children = (
-				E50B0B4D2AE98DEB0038DDB4 /* AnimationsManager.swift */,
-			);
-			path = "Animations Manager";
 			sourceTree = "<group>";
 		};
 		E50B0B4F2AE98F8F0038DDB4 /* Constraints Manager */ = {
@@ -285,7 +272,6 @@
 				E5BF06EC2AD9FEF200195F5F /* CustomFonts */,
 				E5C619AE2AD55490007C1EFB /* CustomView */,
 				E5C619A82AD42A9C007C1EFB /* AboutMe */,
-				E5C619A72AD42A8E007C1EFB /* CareerGoals */,
 				E5C619A62AD42A83007C1EFB /* Education */,
 				E5C619A52AD42A7C007C1EFB /* Experience */,
 				E5C619A42AD42A72007C1EFB /* Hobbies */,
@@ -393,13 +379,6 @@
 			path = Education;
 			sourceTree = "<group>";
 		};
-		E5C619A72AD42A8E007C1EFB /* CareerGoals */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CareerGoals;
-			sourceTree = "<group>";
-		};
 		E5C619A82AD42A9C007C1EFB /* AboutMe */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +393,6 @@
 			isa = PBXGroup;
 			children = (
 				E5C619AF2AD554C4007C1EFB /* CustomView.swift */,
-				E5E9A36C2AE7EF2300B813C7 /* CustombubbleView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -513,7 +491,6 @@
 				E5C619B62AD58E0E007C1EFB /* LanguagesViewCell.swift in Sources */,
 				E5C619962AD1A4AD007C1EFB /* TabBarViewController.swift in Sources */,
 				E5C619B82AD59739007C1EFB /* LocationViewCell.swift in Sources */,
-				E50B0B4E2AE98DEB0038DDB4 /* AnimationsManager.swift in Sources */,
 				E5C619922AD1A185007C1EFB /* ExperienceViewController.swift in Sources */,
 				E57B35992AE1390500F037DC /* MyCertificatesViewCell.swift in Sources */,
 				E596E67D2AF91F3A00151415 /* CustomButton.swift in Sources */,
@@ -525,7 +502,6 @@
 				E5C619902AD1A173007C1EFB /* EducationViewController.swift in Sources */,
 				E5C619942AD1A198007C1EFB /* HobbiesViewController.swift in Sources */,
 				E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */,
-				E5E9A36D2AE7EF2300B813C7 /* CustombubbleView.swift in Sources */,
 				E5C619B02AD554C4007C1EFB /* CustomView.swift in Sources */,
 				E5BF06E82AD943DF00195F5F /* HobbiesModel.swift in Sources */,
 				E5C619A02AD3FBBC007C1EFB /* ContactsSheetViewController.swift in Sources */,

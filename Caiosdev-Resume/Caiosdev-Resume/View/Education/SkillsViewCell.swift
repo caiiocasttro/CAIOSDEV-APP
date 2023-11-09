@@ -29,7 +29,6 @@ class SkillsViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-//        stackView.distribution = .fill
         return stackView
     }()
     
@@ -106,7 +105,7 @@ class SkillsViewCell: UITableViewCell {
             
             NSLayoutConstraint.activate([
                 
-                cellTitle.topAnchor.constraint(equalTo: topAnchor),
+                cellTitle.topAnchor.constraint(equalTo: topAnchor, constant: 20),
                 cellTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
                 
                 cellView.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 10),

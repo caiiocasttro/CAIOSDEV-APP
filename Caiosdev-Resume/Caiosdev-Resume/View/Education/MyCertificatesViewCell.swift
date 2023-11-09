@@ -52,8 +52,8 @@ class MyCertificatesViewCell: UITableViewCell {
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor),
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            cellTitle.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
-            cellTitle.leadingAnchor.constraint(equalTo: leading)
+            cellTitle.leadingAnchor.constraint(equalTo: leading),
+            cellTitle.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -10)
         
         ])
         

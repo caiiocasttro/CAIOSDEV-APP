@@ -16,10 +16,5 @@ class ConstraintsManager {
     class var height: CGFloat {
         return UIScreen.main.bounds.height
     }
-    
-    class var screenSize: CGFloat {
-        return 0.0
-        
-    }
 
 }

@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum UIUserInterfaceIdiom: Int {
-    case undefined
-    case phone
-}
-
 struct ScreenSize {
     
     static let width = UIScreen.main.bounds.size.width
@@ -25,6 +20,7 @@ struct DeviceType {
     static let isIphone5 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxHeight == 568.0
     static let isIphone6or7or8 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxHeight == 667.0
     static let isIphone6or7or8Plus = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxHeight == 736.0
-    static let isIphoneXorLater = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxHeight >= 812.0
+    static let isIphoneXorLater = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxHeight >= 812.0 && ScreenSize.maxHeight <= 852.0
+    static let isIphoneXsMaxorLater = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxHeight >= 896.0 && ScreenSize.maxHeight <= 932.0
     
 }

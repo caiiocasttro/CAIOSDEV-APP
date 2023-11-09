@@ -40,21 +40,35 @@ class CareerGoalsViewController: UIViewController {
     
     lazy var contactButtonI: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
-        button.backgroundColor = .white
-        button.setTitle("Hire me", for: .normal)
-        button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        var configuration = UIButton.Configuration.filled()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        configuration.baseBackgroundColor = UIColor.white
+        configuration.title = "Hire me"
+        configuration.baseForegroundColor = UIColor(named: "OrangeTitle")
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { text in
+            var newText = text
+            newText.font = DeviceType.isIphone5 ? UIFont(name: "Nunito-Black", size: 12) : UIFont(name: "Nunito-Black", size: 18)
+            return newText
+        }
+        configuration.cornerStyle = .capsule
+        button.configuration = configuration
         return button
     }()
     
     lazy var contactButtonII: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
-        button.backgroundColor = UIColor(named: "OrangeTitle")
-        button.setTitle("Hire me", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        var configuration = UIButton.Configuration.filled()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        configuration.baseBackgroundColor = UIColor(named: "OrangeTitle")
+        configuration.title = "Hire me"
+        configuration.baseForegroundColor = UIColor.white
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { text in
+            var newText = text
+            newText.font = DeviceType.isIphone5 ? UIFont(name: "Nunito-Black", size: 12) : UIFont(name: "Nunito-Black", size: 18)
+            return newText
+        }
+        configuration.cornerStyle = .capsule
+        button.configuration = configuration
         button.alpha = 0
         return button
     }()
@@ -236,6 +250,7 @@ class CareerGoalsViewController: UIViewController {
             titleAnimation()
             titleAnimatedOnce = true
         }
+        
     }
     
     //MARK: Configuring layout
@@ -405,11 +420,11 @@ class CareerGoalsViewController: UIViewController {
             contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 12)
             contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 4
             
-            fiveYrsText.font = UIFont(name: "Nunito-Bold", size: 10)
+            fiveYrsText.font = UIFont(name: "Nunito-Bold", size: 9)
             
-            twoYrsText.font = UIFont(name: "Nunito-Bold", size: 10)
+            twoYrsText.font = UIFont(name: "Nunito-Bold", size: 9)
             
-            oneYearText.font = UIFont(name: "Nunito-Bold", size: 10)
+            oneYearText.font = UIFont(name: "Nunito-Bold", size: 9)
             
             NSLayoutConstraint.activate([
             
@@ -431,26 +446,26 @@ class CareerGoalsViewController: UIViewController {
                 careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
                 
                 //Chart image
-                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 5)),
                 chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
                 chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
-                chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                chartView.widthAnchor.constraint(equalToConstant: 260),
+                chartView.heightAnchor.constraint(equalToConstant: 450),
                 
                 //Five years icon
-                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 14)),
-                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 20)),
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 44),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -36),
                 fiveYrsIcon.widthAnchor.constraint(equalToConstant: 65),
                 fiveYrsIcon.heightAnchor.constraint(equalToConstant: 25),
                 
                 //Two years icon
-                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.2) + 54)),
-                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 2)),
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 172),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -103),
                 twoYrsIcon.widthAnchor.constraint(equalToConstant: 65),
                 twoYrsIcon.heightAnchor.constraint(equalToConstant: 25),
                 
                 //One year icon
-                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 10)),
-                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.4) - 5)),
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -125),
+                oneYearIcon.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: -8),
                 oneYearIcon.widthAnchor.constraint(equalToConstant: 65),
                 oneYearIcon.heightAnchor.constraint(equalToConstant: 25),
             ])
@@ -486,26 +501,26 @@ class CareerGoalsViewController: UIViewController {
                 careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9) - 5),
             
                 //Chart image
-                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 10)),
                 chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
                 chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
-                chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+                chartView.widthAnchor.constraint(equalToConstant: 315),
+                chartView.heightAnchor.constraint(equalToConstant: 540),
                 
                 //Five years icon
-                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 15)),
-                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 20)),
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 52),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -40),
                 fiveYrsIcon.widthAnchor.constraint(equalToConstant: 70),
                 fiveYrsIcon.heightAnchor.constraint(equalToConstant: 30),
                 
                 //Two years icon
-                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.3) - 5 )),
-                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 2 )),
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 206),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -121),
                 twoYrsIcon.widthAnchor.constraint(equalToConstant: 70),
                 twoYrsIcon.heightAnchor.constraint(equalToConstant: 30),
                 
                 //One year icon
-                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 12)),
-                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.4) - 10)),
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -150),
+                oneYearIcon.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 3),
                 oneYearIcon.widthAnchor.constraint(equalToConstant: 70),
                 oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
                 
@@ -544,25 +559,26 @@ class CareerGoalsViewController: UIViewController {
                 careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9)),
             
                 //Chart image
-                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 10)),
                 chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
                 chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                chartView.widthAnchor.constraint(equalToConstant: 350),
+                chartView.heightAnchor.constraint(equalToConstant: 600),
                 
                 //Five years icon
-                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 12)),
-                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 25)),
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 60),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -43),
                 fiveYrsIcon.widthAnchor.constraint(equalToConstant: 80),
                 fiveYrsIcon.heightAnchor.constraint(equalToConstant: 30),
                 
                 //Two years icon
-                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.3) + 10)),
-                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 10)),
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 231),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -134),
                 twoYrsIcon.widthAnchor.constraint(equalToConstant: 80),
                 twoYrsIcon.heightAnchor.constraint(equalToConstant: 30),
                 
                 //One year icon
-                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 23)),
-                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.4) - 20)),
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -168),
+                oneYearIcon.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 2),
                 oneYearIcon.widthAnchor.constraint(equalToConstant: 80),
                 oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
 
@@ -600,25 +616,83 @@ class CareerGoalsViewController: UIViewController {
                 careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
             
                 //Chart image
-                chartView.topAnchor.constraint(equalTo: careerGoalsView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 10)),
                 chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
                 chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                chartView.widthAnchor.constraint(equalToConstant: 350),
+                chartView.heightAnchor.constraint(equalToConstant: 600),
                 
                 //Five years icon
-                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.1) - 18)),
-                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.1) - 35)),
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 60),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -43),
                 fiveYrsIcon.widthAnchor.constraint(equalToConstant: 80),
                 fiveYrsIcon.heightAnchor.constraint(equalToConstant: 30),
                 
                 //Two years icon
-                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: ((UIScreen.main.bounds.height * 0.3) - 8)),
-                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.2) - 30)),
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 231),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -134),
                 twoYrsIcon.widthAnchor.constraint(equalToConstant: 80),
                 twoYrsIcon.heightAnchor.constraint(equalToConstant: 30),
                 
                 //One year icon
-                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -((UIScreen.main.bounds.height * 0.2) + 13)),
-                oneYearIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -((UIScreen.main.bounds.height * 0.3) + 20)),
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -168),
+                oneYearIcon.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 2),
+                oneYearIcon.widthAnchor.constraint(equalToConstant: 80),
+                oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
+
+                
+            ])
+            
+        } else if DeviceType.isIphoneXsMaxorLater {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 60)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            fiveYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            twoYrsText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            oneYearText.font = UIFont(name: "Nunito-Bold", size: 12)
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.7) - 40),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+                
+                //Career View
+                careerGoalsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) - 20)),
+                careerGoalsView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+            
+                //Chart image
+                chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+                chartView.bottomAnchor.constraint(equalTo: careerGoalsView.bottomAnchor),
+                chartView.widthAnchor.constraint(equalToConstant: 400),
+                chartView.heightAnchor.constraint(equalToConstant: 700),
+                
+                //Five years icon
+                fiveYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 73),
+                fiveYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -47),
+                fiveYrsIcon.widthAnchor.constraint(equalToConstant: 80),
+                fiveYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //Two years icon
+                twoYrsIcon.topAnchor.constraint(equalTo: chartView.topAnchor, constant: 272),
+                twoYrsIcon.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -151),
+                twoYrsIcon.widthAnchor.constraint(equalToConstant: 80),
+                twoYrsIcon.heightAnchor.constraint(equalToConstant: 30),
+                
+                //One year icon
+                oneYearIcon.bottomAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -198),
+                oneYearIcon.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 17),
                 oneYearIcon.widthAnchor.constraint(equalToConstant: 80),
                 oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
 
@@ -646,7 +720,6 @@ class CareerGoalsViewController: UIViewController {
             sheet.largestUndimmedDetentIdentifier = .medium
             sheet.preferredCornerRadius = 15
         }
-        
         soundClick()
         contactButtonAnimation()
         feedbackGenerator.impactOccurred()
@@ -692,15 +765,15 @@ class CareerGoalsViewController: UIViewController {
     func contactButtonAnimation() {
         
         if contactButtonII.alpha == 1 {
-            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        } else {
-            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }
-        
-        UIView.animate(withDuration: 0.75) {
-            self.contactButtonI.transform = .identity
-            self.contactButtonII.transform = .identity
-        }
+                    self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                } else {
+                    self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                }
+                
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: [.curveLinear]) {
+                    self.contactButtonI.transform = .identity
+                    self.contactButtonII.transform = .identity
+                }
         
     }
     
@@ -750,7 +823,7 @@ class CareerGoalsViewController: UIViewController {
     
     
     
-    //MARK: SongEffect
+    //MARK: Sound effects
     
     func soundeffect() {
         guard let url = Bundle.main.url(forResource: "pop-up", withExtension: ".wav") else { return print("sound not found") }
@@ -765,7 +838,7 @@ class CareerGoalsViewController: UIViewController {
         }
     }
     
-    //MARK: Sound effects
+    
     private func prepareSoundEffect() {
         guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }
         

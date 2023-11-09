@@ -37,7 +37,6 @@ class HobbiesViewCell: UITableViewCell {
     //MARK: Objects
     lazy var imageI: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "travel")
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 20
         image.clipsToBounds = true
@@ -62,7 +61,6 @@ class HobbiesViewCell: UITableViewCell {
     
     lazy var dateName: UILabel = {
         let date = UILabel()
-        date.text = "Sep 2023"
         date.font = UIFont(name: "Nunito-Bold", size: 10)
         date.textColor = UIColor.white
         date.textAlignment = .left
@@ -72,7 +70,6 @@ class HobbiesViewCell: UITableViewCell {
     
     lazy var thoughts: UILabel = {
         let label = UILabel()
-        label.text = "Text"
         label.font = UIFont(name: "Nunito-Bold", size: 14)
         label.textColor = UIColor(named: "BlackSecondary")
         label.textAlignment = .left

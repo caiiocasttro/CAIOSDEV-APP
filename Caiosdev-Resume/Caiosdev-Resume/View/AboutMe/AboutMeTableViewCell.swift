@@ -29,7 +29,6 @@ class AboutMeTableViewCell: UITableViewCell {
     //MARK: Objects
     lazy var cellTitle: UILabel = {
         let title = UILabel()
-        title.text = "Title"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 15)
         title.textAlignment = .left
@@ -45,7 +44,6 @@ class AboutMeTableViewCell: UITableViewCell {
     
     lazy var text: UILabel = {
         let text = UILabel()
-        text.text = "Text"
         text.textColor = UIColor(named: "BlackSecondary")
         text.font = UIFont(name: "Nunito-SemiBold", size: 12)
         text.numberOfLines = 0

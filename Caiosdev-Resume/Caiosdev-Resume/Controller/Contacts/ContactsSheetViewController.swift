@@ -330,7 +330,7 @@ class ContactsSheetViewController: UIViewController {
     func buttonPressedAnimation(button: UIButton) {
         button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: [.curveLinear]) {
             button.transform = .identity
         }
     }

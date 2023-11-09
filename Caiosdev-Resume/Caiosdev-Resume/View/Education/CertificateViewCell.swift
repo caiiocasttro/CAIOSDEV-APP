@@ -147,8 +147,8 @@ class CertificateViewCell: UITableViewCell {
             
             NSLayoutConstraint.activate([
             
-                iconImage.widthAnchor.constraint(equalToConstant: 35),
-                iconImage.heightAnchor.constraint(equalToConstant: 35)
+                iconImage.widthAnchor.constraint(equalToConstant: 40),
+                iconImage.heightAnchor.constraint(equalToConstant: 40)
                 
             ])
             

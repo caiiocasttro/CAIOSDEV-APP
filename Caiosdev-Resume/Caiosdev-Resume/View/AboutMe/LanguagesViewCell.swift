@@ -45,7 +45,6 @@ class LanguagesViewCell: UITableViewCell {
     //MARK: Objects
     lazy var cellTitle: UILabel = {
         let title = UILabel()
-        title.text = "Title"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 15)
         title.textAlignment = .left
@@ -61,7 +60,7 @@ class LanguagesViewCell: UITableViewCell {
     
     lazy var portuguese: UILabel = {
         let label = UILabel()
-        label.text = "Portuguese"
+        label.text = AboutMeModel.languages[0]
         label.textColor = UIColor(named: "BlackSecondary")
         label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         return label
@@ -94,7 +93,7 @@ class LanguagesViewCell: UITableViewCell {
     
     lazy var english: UILabel = {
         let label = UILabel()
-        label.text = "English"
+        label.text = AboutMeModel.languages[1]
         label.textColor = UIColor(named: "BlackSecondary")
         label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         return label
@@ -127,7 +126,7 @@ class LanguagesViewCell: UITableViewCell {
     
     lazy var french: UILabel = {
         let label = UILabel()
-        label.text = "French"
+        label.text = AboutMeModel.languages[2]
         label.textColor = UIColor(named: "BlackSecondary")
         label.font = UIFont(name: "Nunito-SemiBold", size: 14)
         return label

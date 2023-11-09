@@ -75,7 +75,6 @@ class ExperienceViewCell: UITableViewCell {
     
     lazy var positionName: UILabel = {
         let name = UILabel()
-        name.text = "iOS Developer Freelancer"
         name.textColor = UIColor(named: "BlackSecondary")
         name.textAlignment = .left
         return  name
@@ -83,7 +82,6 @@ class ExperienceViewCell: UITableViewCell {
     
     lazy var locationName: UILabel = {
         let location = UILabel()
-        location.text = "Sky Switzerland, Neuchâtel, VD - Sep 2023 · 1 mo"
         location.textColor = UIColor(named: "GrayLabels")
         location.textAlignment = .left
         location.numberOfLines = 0
@@ -119,7 +117,6 @@ class ExperienceViewCell: UITableViewCell {
     
     lazy var taskNameI: UILabel = {
         let position = UILabel()
-        position.text = "New features implementation on iOS app."
         position.textColor = UIColor(named: "GrayLabels")
         position.textAlignment = .left
         return position
@@ -127,7 +124,6 @@ class ExperienceViewCell: UITableViewCell {
     
     lazy var taskNameII: UILabel = {
         let position = UILabel()
-        position.text = "iOS application maintenance."
         position.textColor = UIColor(named: "GrayLabels")
         position.textAlignment = .left
         return position
@@ -135,7 +131,6 @@ class ExperienceViewCell: UITableViewCell {
     
     lazy var taskNameIII: UILabel = {
         let position = UILabel()
-        position.text = "Improving existing iOS app."
         position.textColor = UIColor(named: "GrayLabels")
         position.textAlignment = .left
         return position

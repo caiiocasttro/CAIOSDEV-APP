@@ -29,21 +29,35 @@ class ExperienceViewController: UIViewController {
     
     lazy var contactButtonI: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
-        button.backgroundColor = .white
-        button.setTitle("Hire me", for: .normal)
-        button.setTitleColor(UIColor(named: "OrangeTitle"), for: .normal)
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        var configuration = UIButton.Configuration.filled()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        configuration.baseBackgroundColor = UIColor.white
+        configuration.title = "Hire me"
+        configuration.baseForegroundColor = UIColor(named: "OrangeTitle")
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { text in
+            var newText = text
+            newText.font = DeviceType.isIphone5 ? UIFont(name: "Nunito-Black", size: 12) : UIFont(name: "Nunito-Black", size: 18)
+            return newText
+        }
+        configuration.cornerStyle = .capsule
+        button.configuration = configuration
         return button
     }()
     
     lazy var contactButtonII: UIButton = {
         let button = UIButton()
-        button.frame = .init(x: 0, y: 0, width: 100, height: 50)
-        button.backgroundColor = UIColor(named: "OrangeTitle")
-        button.setTitle("Hire me", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        var configuration = UIButton.Configuration.filled()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        configuration.baseBackgroundColor = UIColor(named: "OrangeTitle")
+        configuration.title = "Hire me"
+        configuration.baseForegroundColor = UIColor.white
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { text in
+            var newText = text
+            newText.font = DeviceType.isIphone5 ? UIFont(name: "Nunito-Black", size: 12) : UIFont(name: "Nunito-Black", size: 18)
+            return newText
+        }
+        configuration.cornerStyle = .capsule
+        button.configuration = configuration
         button.alpha = 0
         return button
     }()
@@ -126,6 +140,7 @@ class ExperienceViewController: UIViewController {
             titleAnimation()
             animatedOnce = true
         }
+        
     }
     
     //MARK: Configuring layout
@@ -327,6 +342,32 @@ class ExperienceViewController: UIViewController {
                 
             ])
             
+        } else if DeviceType.isIphoneXsMaxorLater {
+            
+            titlePartI.font = UIFont(name: "Nunito-Black", size: 60)
+            titlePartII.font = UIFont(name: "Nunito-Black", size: 60)
+            
+            contactButtonI.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonI.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            titlePage.font = UIFont(name: "Nunito-Black", size: 20)
+            
+            contactButtonII.titleLabel?.font = UIFont(name: "Nunito-Black", size: 18)
+            contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 3
+            
+            NSLayoutConstraint.activate([
+                
+                //Title page
+                titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.7) - 40),
+                
+                titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
+            
+                //Experience View
+                experienceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) - 20)),
+                experienceView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
+                
+            ])
+            
         }
         
         //Adding button's action
@@ -373,15 +414,15 @@ class ExperienceViewController: UIViewController {
     func contactButtonAnimation() {
         
         if contactButtonII.alpha == 1 {
-            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        } else {
-            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }
-        
-        UIView.animate(withDuration: 0.75) {
-            self.contactButtonI.transform = .identity
-            self.contactButtonII.transform = .identity
-        }
+                    self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                } else {
+                    self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                }
+                
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: [.curveLinear]) {
+                    self.contactButtonI.transform = .identity
+                    self.contactButtonII.transform = .identity
+                }
         
     }
     

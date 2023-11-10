@@ -483,7 +483,7 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row <= 9 {
             return 80
         } else {
-            return 600
+            return 640
         }
         
     }

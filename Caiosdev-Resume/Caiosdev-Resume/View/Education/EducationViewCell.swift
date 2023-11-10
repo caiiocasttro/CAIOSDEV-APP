@@ -127,13 +127,13 @@ class EducationViewCell: UITableViewCell {
             schoolName.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
             
             dotImage.topAnchor.constraint(equalTo: schoolName.bottomAnchor, constant: 10),
-            dotImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 65),
+            dotImage.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
             
             graduateName.centerYAnchor.constraint(equalTo: dotImage.centerYAnchor),
             graduateName.leadingAnchor.constraint(equalTo: dotImage.trailingAnchor, constant: 5),
             
             dotImageII.topAnchor.constraint(equalTo: dotImage.bottomAnchor, constant: 10),
-            dotImageII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 65),
+            dotImageII.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
             
             graduateDescription.topAnchor.constraint(equalTo: graduateName.bottomAnchor, constant: -1),
             graduateDescription.leadingAnchor.constraint(equalTo: dotImageII.trailingAnchor, constant: 5),

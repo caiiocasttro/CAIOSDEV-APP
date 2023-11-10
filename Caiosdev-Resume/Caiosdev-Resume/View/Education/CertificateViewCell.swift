@@ -121,10 +121,10 @@ class CertificateViewCell: UITableViewCell {
             certificateTitle.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
             
             schoolName.topAnchor.constraint(equalTo: certificateTitle.bottomAnchor),
-            schoolName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
+            schoolName.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
             
             date.topAnchor.constraint(equalTo: schoolName.bottomAnchor),
-            date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60)
+            date.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10)
             
         
         ])

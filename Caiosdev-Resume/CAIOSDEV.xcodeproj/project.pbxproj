@@ -434,7 +434,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E5C6196E2AD196B1007C1EFB /* Build configuration list for PBXProject "Caiosdev-Resume" */;
+			buildConfigurationList = E5C6196E2AD196B1007C1EFB /* Build configuration list for PBXProject "CAIOSDEV" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -709,7 +709,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E5C6196E2AD196B1007C1EFB /* Build configuration list for PBXProject "Caiosdev-Resume" */ = {
+		E5C6196E2AD196B1007C1EFB /* Build configuration list for PBXProject "CAIOSDEV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E5C619852AD196B2007C1EFB /* Debug */,

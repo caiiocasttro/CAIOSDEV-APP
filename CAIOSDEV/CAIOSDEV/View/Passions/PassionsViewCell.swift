@@ -1,5 +1,5 @@
 //
-//  HobbiesViewCell.swift
+//  PassionsViewCell.swift
 //  CAIOSDEV
 //
 //  Created by Caio Chaves on 17.10.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HobbiesViewCell: UITableViewCell {
+class PassionsViewCell: UITableViewCell {
     
     //MARK: Proprieties
     var image: String? {

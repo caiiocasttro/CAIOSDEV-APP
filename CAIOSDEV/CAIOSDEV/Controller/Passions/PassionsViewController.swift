@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class HobbiesViewController: UIViewController {
+class PassionsViewController: UIViewController {
     
     //MARK: Initializer
     var player: AVAudioPlayer?
@@ -114,7 +114,7 @@ class HobbiesViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.clear
-        tableView.register(HobbiesViewCell.self, forCellReuseIdentifier: HobbiesIdentifier.main.rawValue)
+        tableView.register(PassionsViewCell.self, forCellReuseIdentifier: PassionsIdentifier.main.rawValue)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
@@ -473,7 +473,7 @@ class HobbiesViewController: UIViewController {
 }
 
 //MARK: Scrollview Delegate
-extension HobbiesViewController: UIScrollViewDelegate {
+extension PassionsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
@@ -503,18 +503,18 @@ extension HobbiesViewController: UIScrollViewDelegate {
 }
 
 //MARK: TableView Delegate & DataSource
-extension HobbiesViewController: UITableViewDelegate, UITableViewDataSource {
+extension PassionsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HobbiesModel.pictures.count
+        return PassionsModel.pictures.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HobbiesIdentifier.main.rawValue, for: indexPath) as! HobbiesViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PassionsIdentifier.main.rawValue, for: indexPath) as! PassionsViewCell
         cell.backgroundColor = UIColor.clear
-        cell.image = HobbiesModel(rawValue: HobbiesModel.pictures[indexPath.row])?.rawValue
-        cell.text = HobbiesModel(rawValue: HobbiesModel.pictures[indexPath.row])?.phrase
-        cell.date = HobbiesModel(rawValue: HobbiesModel.pictures[indexPath.row])?.date
+        cell.image = PassionsModel(rawValue: PassionsModel.pictures[indexPath.row])?.rawValue
+        cell.text = PassionsModel(rawValue: PassionsModel.pictures[indexPath.row])?.phrase
+        cell.date = PassionsModel(rawValue: PassionsModel.pictures[indexPath.row])?.date
         cell.isUserInteractionEnabled = false
         return cell
     }

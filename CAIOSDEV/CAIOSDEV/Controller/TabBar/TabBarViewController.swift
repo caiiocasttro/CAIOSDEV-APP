@@ -50,7 +50,7 @@ class TabBarViewController: UITabBarController {
         let CareerGoals = CareerGoalsViewController()
         let Education = EducationViewController()
         let Experience = ExperienceViewController()
-        let Hobbies = HobbiesViewController()
+        let Hobbies = PassionsViewController()
         
         self.setViewControllers([AboutMe, CareerGoals, Education, Experience, Hobbies], animated: true)
         self.tabBar.backgroundColor = UIColor.white

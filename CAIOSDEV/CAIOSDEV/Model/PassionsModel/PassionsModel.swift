@@ -1,5 +1,5 @@
 //
-//  HobbiesModel.swift
+//  PassionsModel.swift
 //  CAIOSDEV
 //
 //  Created by Caio Chaves on 13.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HobbiesModel: String {
+enum PassionsModel: String {
     
     static let pictures: [String] = ["coding", "model", "travelling", "best", "explore", "roller"]
     

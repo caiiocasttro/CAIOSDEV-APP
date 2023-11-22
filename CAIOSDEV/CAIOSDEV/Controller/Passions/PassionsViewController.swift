@@ -1,5 +1,5 @@
 //
-//  HobbiesViewController.swift
+//  PassionsViewController.swift
 //  CAIOSDEV
 //
 //  Created by Caio Chaves on 07.10.2023.
@@ -14,6 +14,8 @@ class PassionsViewController: UIViewController {
     var player: AVAudioPlayer?
     
     private var feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
+    private var collectionView: UICollectionView!
     
     //MARK: properties
     var animatedOnce = false
@@ -111,28 +113,30 @@ class PassionsViewController: UIViewController {
         return title
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = UIColor.clear
-        tableView.register(PassionsViewCell.self, forCellReuseIdentifier: PassionsIdentifier.main.rawValue)
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        return tableView
-    }()
-
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
+        
+        //CollectionView
+        self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+        
+        self.collectionView.delegate = self
+        
+        self.collectionView.dataSource = self
+        
+        self.collectionView.register(PassionsViewCell.self, forCellWithReuseIdentifier: PassionsIdentifier.main.rawValue)
+        
+        self.collectionView.backgroundColor = UIColor.clear
+        
+        hobbiesView.addSubview(self.collectionView)
         
         //Layout
         configureLayout()
         
         //Preparing sound
         prepareSoundEffect()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -145,8 +149,35 @@ class PassionsViewController: UIViewController {
         
     }
     
-
-    //MARK: COnfiguring layout
+    
+    //MARK: Configuring layout
+    private func collectionViewLayout() -> UICollectionViewCompositionalLayout {
+        
+        //Item
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+        
+        //Group
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.95), heightDimension: .fractionalHeight(1)), subitems: [item])
+        
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.interGroupSpacing = 20
+        
+        //Compositional layout
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        //Set up the layout configuration with a custom size provider
+//        layout.configuration = UICollectionViewCompositionalLayoutConfiguration { (environment) -> NSCollectionLayoutConfiguration in 
+//            
+//        }
+        
+        return layout
+    }
+    
+    
+    
+    
     private func configureLayout() {
         let background = UIImageView(frame: .init(x: 0, y: 0, width: ConstraintsManager.width, height: ConstraintsManager.height))
         background.image = UIImage(named: "passions")
@@ -172,7 +203,7 @@ class PassionsViewController: UIViewController {
         hobbiesView.addSubview(line)
         hobbiesView.addSubview(titlePage)
         hobbiesView.addSubview(contactButtonII)
-        hobbiesView.addSubview(tableView)
+        
         
         background.translatesAutoresizingMaskIntoConstraints = false
         filter.translatesAutoresizingMaskIntoConstraints = false
@@ -185,11 +216,11 @@ class PassionsViewController: UIViewController {
         line.translatesAutoresizingMaskIntoConstraints = false
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         contactButtonII.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
         NSLayoutConstraint.activate([
-        
+            
             background.widthAnchor.constraint(equalToConstant: view.bounds.width),
             background.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
@@ -226,12 +257,10 @@ class PassionsViewController: UIViewController {
             contactButtonII.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
             contactButtonII.trailingAnchor.constraint(equalTo: trailing),
             
-            tableView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
-            tableView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            collectionView.widthAnchor.constraint(equalToConstant: ConstraintsManager.width),
+            collectionView.heightAnchor.constraint(equalToConstant: ((ConstraintsManager.height * 0.7) + 30)),
+            collectionView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
             
-        
         ])
         
         //MARK: Adaptative layout
@@ -249,7 +278,7 @@ class PassionsViewController: UIViewController {
             contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 4
             
             NSLayoutConstraint.activate([
-            
+                
                 //Contact Button 1st
                 contactButtonI.widthAnchor.constraint(equalToConstant: 70),
                 contactButtonI.heightAnchor.constraint(equalToConstant: 25),
@@ -287,7 +316,7 @@ class PassionsViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Hobbies View
                 hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 10)),
                 hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9) - 5),
@@ -313,7 +342,7 @@ class PassionsViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Hobbies View
                 hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 20)),
                 hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9)),
@@ -339,7 +368,7 @@ class PassionsViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Hobbies View
                 hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
                 hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
@@ -365,7 +394,7 @@ class PassionsViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.7) - 40),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Hobbies View
                 hobbiesView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) - 20)),
                 hobbiesView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
@@ -417,15 +446,15 @@ class PassionsViewController: UIViewController {
     func contactButtonAnimation() {
         
         if contactButtonII.alpha == 1 {
-                    self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                } else {
-                    self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                }
-                
+            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } else {
+            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+        
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: [.curveLinear]) {
-                    self.contactButtonI.transform = .identity
-                    self.contactButtonII.transform = .identity
-                }
+            self.contactButtonI.transform = .identity
+            self.contactButtonII.transform = .identity
+        }
         
     }
     
@@ -488,7 +517,7 @@ extension PassionsViewController: UIScrollViewDelegate {
                 
                 showButtonAnimation()
                 buttonShowed = true
-                    
+                
             } else {
                 
                 if self.buttonShowed {
@@ -502,15 +531,16 @@ extension PassionsViewController: UIScrollViewDelegate {
     
 }
 
-//MARK: TableView Delegate & DataSource
-extension PassionsViewController: UITableViewDelegate, UITableViewDataSource {
+//MARK: CollectionView Delegate & DataSource
+extension PassionsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PassionsModel.pictures.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PassionsIdentifier.main.rawValue, for: indexPath) as! PassionsViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PassionsIdentifier.main.rawValue, for: indexPath) as! PassionsViewCell
         cell.backgroundColor = UIColor.clear
         cell.image = PassionsModel(rawValue: PassionsModel.pictures[indexPath.row])?.rawValue
         cell.text = PassionsModel(rawValue: PassionsModel.pictures[indexPath.row])?.phrase
@@ -520,6 +550,6 @@ extension PassionsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
 }
+
 

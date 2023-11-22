@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PassionsViewCell: UITableViewCell {
+class PassionsViewCell: UICollectionViewCell {
     
     //MARK: Proprieties
     var image: String? {
@@ -35,34 +35,25 @@ class PassionsViewCell: UITableViewCell {
     }
     
     //MARK: Objects
+    lazy var polaroidFrame: UIImageView = {
+        let frame = UIImageView()
+        frame.image = UIImage(named: "Polaroid Frame")
+        frame.layer.cornerRadius = 10
+        return frame
+    }()
+    
     lazy var imageI: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 20
+        image.layer.cornerRadius = 2
         image.clipsToBounds = true
         return image
     }()
     
-    lazy var dateView: UIView = {
-        let view = UIView()
-        view.frame = .init(x: 0, y: 0, width: 60, height: 20)
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [UIColor(red: 0.61, green: 0.17, blue: 0.47, alpha: 0.7).cgColor, UIColor(red: 0.8, green: 0.06, blue: 0.3, alpha: 0.8).cgColor, UIColor(red: 0.88, green: 0.3, blue: 0.16, alpha: 0.8).cgColor, UIColor(red: 0.99, green: 0.52, blue: 0.12, alpha: 0.8).cgColor]
-        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        view.layer.addSublayer(gradient)
-        return view
-    }()
-    
     lazy var dateName: UILabel = {
         let date = UILabel()
-        date.font = UIFont(name: "Nunito-Bold", size: 10)
-        date.textColor = UIColor.white
+        date.font = UIFont(name: "Nunito-Black", size: 10)
+        date.textColor = UIColor(named: "OrangeTitle")
         date.textAlignment = .left
         date.numberOfLines = 0
         return date
@@ -77,14 +68,14 @@ class PassionsViewCell: UITableViewCell {
         return label
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    override init(frame: CGRect) {
+            super.init(frame: frame)
+            configureLayout()
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     
     
     //MARK: Configuring Layout
@@ -93,37 +84,35 @@ class PassionsViewCell: UITableViewCell {
         let leading = layoutMarginsGuide.leadingAnchor
         let trailing = layoutMarginsGuide.trailingAnchor
         
-        addSubview(imageI)
-        imageI.addSubview(dateView)
-        dateView.addSubview(dateName)
-        addSubview(thoughts)
+        addSubview(polaroidFrame)
+        polaroidFrame.addSubview(imageI)
+        addSubview(dateName)
+        polaroidFrame.addSubview(thoughts)
 
-        
+        polaroidFrame.translatesAutoresizingMaskIntoConstraints = false
         imageI.translatesAutoresizingMaskIntoConstraints = false
-        dateView.translatesAutoresizingMaskIntoConstraints = false
         dateName.translatesAutoresizingMaskIntoConstraints = false
         thoughts.translatesAutoresizingMaskIntoConstraints = false
 
         
         NSLayoutConstraint.activate([
+            
+            polaroidFrame.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            polaroidFrame.leadingAnchor.constraint(equalTo: leading),
+            polaroidFrame.trailingAnchor.constraint(equalTo: trailing),
+            polaroidFrame.bottomAnchor.constraint(equalTo: bottomAnchor),
         
-            imageI.heightAnchor.constraint(equalToConstant: 450),
-            imageI.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            imageI.heightAnchor.constraint(equalToConstant: ((ConstraintsManager.height * 0.6) - 20)),
+            imageI.topAnchor.constraint(equalTo: topAnchor, constant: 35),
             imageI.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             imageI.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            dateView.widthAnchor.constraint(equalToConstant: 60),
-            dateView.heightAnchor.constraint(equalToConstant: 20),
-            dateView.bottomAnchor.constraint(equalTo: imageI.bottomAnchor, constant: -10),
-            dateView.leadingAnchor.constraint(equalTo: imageI.leadingAnchor, constant: 10),
+            dateName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            dateName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             
-            dateName.centerXAnchor.constraint(equalTo: dateView.centerXAnchor),
-            dateName.centerYAnchor.constraint(equalTo: dateView.centerYAnchor),
-            
-            thoughts.topAnchor.constraint(equalTo: imageI.bottomAnchor, constant: 5),
-            thoughts.leadingAnchor.constraint(equalTo: leading),
-            thoughts.trailingAnchor.constraint(equalTo: trailing),
-            thoughts.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            thoughts.topAnchor.constraint(equalTo: imageI.bottomAnchor, constant: 10),
+            thoughts.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            thoughts.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
         
         ])

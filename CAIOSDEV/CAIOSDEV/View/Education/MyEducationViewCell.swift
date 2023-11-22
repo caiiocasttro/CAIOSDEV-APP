@@ -1,13 +1,13 @@
 //
-//  MyCertificatesViewCell.swift
+//  MyEducationViewCell.swift
 //  CAIOSDEV
 //
-//  Created by Caio Chaves on 19.10.2023.
+//  Created by Caio Chaves on 21.11.2023.
 //
 
 import UIKit
 
-class MyCertificatesViewCell: UITableViewCell {
+class MyEducationViewCell: UITableViewCell {
     
     //MARK: Objects
     lazy var cellView: UIView = {

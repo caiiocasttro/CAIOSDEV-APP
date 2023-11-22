@@ -51,6 +51,7 @@
 		E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */; };
 		E5C619C02AD612E3007C1EFB /* CertificateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */; };
 		E5C619C22AD727D1007C1EFB /* ExperienceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C619C12AD727D0007C1EFB /* ExperienceViewCell.swift */; };
+		E5D15CE22B0CEA4400A492EC /* MyEducationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D15CE12B0CEA4400A492EC /* MyEducationViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewCell.swift; sourceTree = "<group>"; };
 		E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewCell.swift; sourceTree = "<group>"; };
 		E5C619C12AD727D0007C1EFB /* ExperienceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewCell.swift; sourceTree = "<group>"; };
+		E5D15CE12B0CEA4400A492EC /* MyEducationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEducationViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,7 +261,7 @@
 				E5BF06E02AD9432900195F5F /* EducationModel */,
 				E5BF06E32AD9437A00195F5F /* ExperienceModel */,
 				E5BF06E62AD943CF00195F5F /* PassionsModel */,
-				E5C619B92AD59D04007C1EFB /* Identifiers.swift */,
+				E5D15CE32B0CECF600A492EC /* Identifiers */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -371,6 +373,7 @@
 		E5C619A62AD42A83007C1EFB /* Education */ = {
 			isa = PBXGroup;
 			children = (
+				E5D15CE12B0CEA4400A492EC /* MyEducationViewCell.swift */,
 				E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */,
 				E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */,
 				E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */,
@@ -395,6 +398,14 @@
 				E5C619AF2AD554C4007C1EFB /* CustomView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		E5D15CE32B0CECF600A492EC /* Identifiers */ = {
+			isa = PBXGroup;
+			children = (
+				E5C619B92AD59D04007C1EFB /* Identifiers.swift */,
+			);
+			path = Identifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -499,6 +510,7 @@
 				E5C619BA2AD59D04007C1EFB /* Identifiers.swift in Sources */,
 				E5C6198E2AD1A163007C1EFB /* CareerGoalsViewController.swift in Sources */,
 				E5C619772AD196B1007C1EFB /* AppDelegate.swift in Sources */,
+				E5D15CE22B0CEA4400A492EC /* MyEducationViewCell.swift in Sources */,
 				E5C619902AD1A173007C1EFB /* EducationViewController.swift in Sources */,
 				E5C619942AD1A198007C1EFB /* PassionsViewController.swift in Sources */,
 				E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */,

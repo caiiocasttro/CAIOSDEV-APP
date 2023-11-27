@@ -104,7 +104,7 @@ class EducationViewController: UIViewController {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Scroll up to discover 📚"
+        title.text = "Scroll up to education 📚"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left
@@ -113,7 +113,6 @@ class EducationViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(MyEducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.educationTitle.rawValue)
         tableView.register(EducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.education.rawValue)
         tableView.register(MyCertificatesViewCell.self, forCellReuseIdentifier: EducationIdentifiers.title.rawValue)
         tableView.register(CertificateViewCell.self, forCellReuseIdentifier: EducationIdentifiers.certificate.rawValue)
@@ -481,7 +480,7 @@ class EducationViewController: UIViewController {
 extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row <= 10 {
+        if indexPath.row <= 9 {
             return 80
         } else {
             return 640
@@ -490,16 +489,12 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 12
+        return 11
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.educationTitle.rawValue, for: indexPath) as!
-            MyEducationViewCell
-            return cell
-        } else if indexPath.row <= 2 {
+         if indexPath.row <= 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
             cell.isUserInteractionEnabled = false
             cell.school = MyEducationModel.school[indexPath.row]

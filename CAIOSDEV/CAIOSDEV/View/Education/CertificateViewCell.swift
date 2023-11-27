@@ -95,13 +95,11 @@ class CertificateViewCell: UITableViewCell {
         let leading = layoutMarginsGuide.leadingAnchor
         
         addSubview(cellView)
-//        cellView.addSubview(iconImage)
         cellView.addSubview(certificateTitle)
         cellView.addSubview(schoolName)
         cellView.addSubview(date)
         
         cellView.translatesAutoresizingMaskIntoConstraints = false
-//        iconImage.translatesAutoresizingMaskIntoConstraints = false
         certificateTitle.translatesAutoresizingMaskIntoConstraints = false
         schoolName.translatesAutoresizingMaskIntoConstraints = false
         date.translatesAutoresizingMaskIntoConstraints = false
@@ -114,17 +112,14 @@ class CertificateViewCell: UITableViewCell {
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             
-//            iconImage.topAnchor.constraint(equalTo: topAnchor),
-//            iconImage.leadingAnchor.constraint(equalTo: leading),
-            
             certificateTitle.topAnchor.constraint(equalTo: topAnchor),
-            certificateTitle.leadingAnchor.constraint(equalTo: leading),
+            certificateTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             
             schoolName.topAnchor.constraint(equalTo: certificateTitle.bottomAnchor),
-            schoolName.leadingAnchor.constraint(equalTo: leading),
+            schoolName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             
             date.topAnchor.constraint(equalTo: schoolName.bottomAnchor),
-            date.leadingAnchor.constraint(equalTo: leading)
+            date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30)
             
         
         ])
@@ -134,24 +129,10 @@ class CertificateViewCell: UITableViewCell {
             
             certificateTitle.font = UIFont(name: "Nunito-Bold", size: 16)
             
-//            NSLayoutConstraint.activate([
-//            
-//                iconImage.widthAnchor.constraint(equalToConstant: 35),
-//                iconImage.heightAnchor.constraint(equalToConstant: 35)
-//                
-//            ])
-            
         } else {
             
             certificateTitle.font = UIFont(name: "Nunito-Bold", size: 18)
-            
-//            NSLayoutConstraint.activate([
-//            
-//                iconImage.widthAnchor.constraint(equalToConstant: 40),
-//                iconImage.heightAnchor.constraint(equalToConstant: 40)
-//                
-//            ])
-            
+                        
         }
         
     }

@@ -96,7 +96,6 @@ class EducationViewCell: UITableViewCell {
         let leading = layoutMarginsGuide.leadingAnchor
         
         addSubview(cellView)
-        cellView.addSubview(iconImage)
         cellView.addSubview(schoolName)
         cellView.addSubview(dotImage)
         cellView.addSubview(graduateName)
@@ -104,7 +103,6 @@ class EducationViewCell: UITableViewCell {
         cellView.addSubview(graduateDescription)
 
         cellView.translatesAutoresizingMaskIntoConstraints = false
-        iconImage.translatesAutoresizingMaskIntoConstraints = false
         schoolName.translatesAutoresizingMaskIntoConstraints = false
         dotImage.translatesAutoresizingMaskIntoConstraints = false
         graduateName.translatesAutoresizingMaskIntoConstraints = false
@@ -120,20 +118,17 @@ class EducationViewCell: UITableViewCell {
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 20),
             
-            iconImage.topAnchor.constraint(equalTo: topAnchor),
-            iconImage.leadingAnchor.constraint(equalTo: leading),
-            
-            schoolName.centerYAnchor.constraint(equalTo: iconImage.centerYAnchor),
-            schoolName.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
+            schoolName.topAnchor.constraint(equalTo: topAnchor),
+            schoolName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             
             dotImage.topAnchor.constraint(equalTo: schoolName.bottomAnchor, constant: 10),
-            dotImage.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
+            dotImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             
             graduateName.centerYAnchor.constraint(equalTo: dotImage.centerYAnchor),
             graduateName.leadingAnchor.constraint(equalTo: dotImage.trailingAnchor, constant: 5),
             
             dotImageII.topAnchor.constraint(equalTo: dotImage.bottomAnchor, constant: 10),
-            dotImageII.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
+            dotImageII.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             
             graduateDescription.topAnchor.constraint(equalTo: graduateName.bottomAnchor, constant: -1),
             graduateDescription.leadingAnchor.constraint(equalTo: dotImageII.trailingAnchor, constant: 5),

@@ -22,6 +22,10 @@ class PassionsViewController: UIViewController {
     
     var buttonShowed = false
     
+    var currentItem = 0
+    
+    var balls: [UIView] = []
+    
     //MARK: Objects
     lazy var filter: UIView = {
         let filter = UIView()
@@ -84,7 +88,7 @@ class PassionsViewController: UIViewController {
         return button
     }()
     
-    private var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
@@ -113,6 +117,14 @@ class PassionsViewController: UIViewController {
         return title
     }()
     
+    lazy var ballStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 2
+        stackView.alignment = .center
+        return stackView
+    }()
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,6 +140,8 @@ class PassionsViewController: UIViewController {
         self.collectionView.register(PassionsViewCell.self, forCellWithReuseIdentifier: PassionsIdentifier.main.rawValue)
         
         self.collectionView.backgroundColor = UIColor.clear
+        
+        self.collectionView.allowsSelection = true
         
         hobbiesView.addSubview(self.collectionView)
         
@@ -164,15 +178,7 @@ class PassionsViewController: UIViewController {
         section.orthogonalScrollingBehavior = .groupPagingCentered
         section.interGroupSpacing = 20
         
-        //Compositional layout
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        
-        //Set up the layout configuration with a custom size provider
-//        layout.configuration = UICollectionViewCompositionalLayoutConfiguration { (environment) -> NSCollectionLayoutConfiguration in 
-//            
-//        }
-        
-        return layout
+        return UICollectionViewCompositionalLayout(section: section)
     }
     
     
@@ -189,6 +195,21 @@ class PassionsViewController: UIViewController {
         let leading = view.layoutMarginsGuide.leadingAnchor
         let trailing = view.layoutMarginsGuide.trailingAnchor
         
+        for _ in 0..<PassionsModel.pictures.count {
+            let ball = UIView()
+            ball.frame = .init(x: 0, y: 0, width: 10, height: 10)
+            ball.layer.cornerRadius = 5
+            ball.backgroundColor = UIColor(named: "BlackSecondary")
+            ball.translatesAutoresizingMaskIntoConstraints = false
+            ball.widthAnchor.constraint(equalToConstant: 10).isActive = true
+            ball.heightAnchor.constraint(equalToConstant: 10).isActive = true
+            self.ballStackView.addArrangedSubview(ball)
+            self.balls.append(ball)
+        }
+        
+        //Updating balls size
+        setBallsAnimation()
+        
         //Adding subview
         view.addSubview(background)
         view.sendSubviewToBack(background)
@@ -203,6 +224,7 @@ class PassionsViewController: UIViewController {
         hobbiesView.addSubview(line)
         hobbiesView.addSubview(titlePage)
         hobbiesView.addSubview(contactButtonII)
+        hobbiesView.addSubview(ballStackView)
         
         
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -217,6 +239,7 @@ class PassionsViewController: UIViewController {
         titlePage.translatesAutoresizingMaskIntoConstraints = false
         contactButtonII.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        ballStackView.translatesAutoresizingMaskIntoConstraints = false
         
         //Constraints
         NSLayoutConstraint.activate([
@@ -257,9 +280,15 @@ class PassionsViewController: UIViewController {
             contactButtonII.topAnchor.constraint(equalTo: hobbiesView.topAnchor, constant: 15),
             contactButtonII.trailingAnchor.constraint(equalTo: trailing),
             
+            collectionView.centerXAnchor.constraint(equalTo: hobbiesView.centerXAnchor),
             collectionView.widthAnchor.constraint(equalToConstant: ConstraintsManager.width),
-            collectionView.heightAnchor.constraint(equalToConstant: ((ConstraintsManager.height * 0.7) + 30)),
+            collectionView.heightAnchor.constraint(equalToConstant: ((ConstraintsManager.height * 0.7) + 10)),
             collectionView.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 30),
+            
+            
+            ballStackView.centerXAnchor.constraint(equalTo: hobbiesView.centerXAnchor),
+            ballStackView.bottomAnchor.constraint(equalTo: hobbiesView.bottomAnchor, constant: -10),
+            // ballStackView.widthAnchor.constraint(equalToConstant: 100)
             
         ])
         
@@ -473,6 +502,13 @@ class PassionsViewController: UIViewController {
         }
     }
     
+    func setBallsAnimation() {
+        for (index, ballView) in balls.enumerated() {
+            let scale: CGFloat = (index == currentItem) ? 1.5 : 1.0
+            ballView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+    }
+    
     //MARK: Sound effects
     private func prepareSoundEffect() {
         guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }
@@ -549,7 +585,12 @@ extension PassionsViewController: UICollectionViewDelegateFlowLayout, UICollecti
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        currentItem = indexPath.item
+        setBallsAnimation()
+    }
+    
     
 }
 
-
+//MARK: ¨

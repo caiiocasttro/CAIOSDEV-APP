@@ -35,18 +35,20 @@ enum PassionsModel: String {
         }
     }
     
-    var date: String {
+    var picNumber: String {
         switch self {
         case .coding:
-            return "Oct 2023"
+            return "1/6"
         case .model:
-            return "April 2022"
+            return "2/6"
         case .travelling:
-            return "May 2023"
+            return "3/6"
         case .best:
-            return "April 2022"
-        case .explore, .roller:
-            return "Aug 2021"
+            return "4/6"
+        case .explore:
+            return "5/6"
+        case .roller:
+            return "6/6"
         }
     }
     

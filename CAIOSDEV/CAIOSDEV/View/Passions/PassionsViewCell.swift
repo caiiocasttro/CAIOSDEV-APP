@@ -26,11 +26,11 @@ class PassionsViewCell: UICollectionViewCell {
         }
     }
     
-    var date: String? {
+    var number: String? {
         didSet {
-            guard let string = date else { return }
+            guard let string = number else { return }
             
-            dateName.text = string
+            picNumber.text = string
         }
     }
     
@@ -50,7 +50,7 @@ class PassionsViewCell: UICollectionViewCell {
         return image
     }()
     
-    lazy var dateName: UILabel = {
+    lazy var picNumber: UILabel = {
         let date = UILabel()
         date.font = UIFont(name: "Nunito-Black", size: 10)
         date.textColor = UIColor(named: "OrangeTitle")
@@ -61,7 +61,6 @@ class PassionsViewCell: UICollectionViewCell {
     
     lazy var thoughts: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Nunito-Bold", size: 14)
         label.textColor = UIColor(named: "BlackSecondary")
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -69,59 +68,60 @@ class PassionsViewCell: UICollectionViewCell {
     }()
     
     override init(frame: CGRect) {
-            super.init(frame: frame)
-            configureLayout()
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+        super.init(frame: frame)
+        configureLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     //MARK: Configuring Layout
     private func configureLayout() {
         
-        let leading = layoutMarginsGuide.leadingAnchor
-        let trailing = layoutMarginsGuide.trailingAnchor
-        
         addSubview(polaroidFrame)
         polaroidFrame.addSubview(imageI)
-        addSubview(dateName)
+        addSubview(picNumber)
         polaroidFrame.addSubview(thoughts)
-
+        
         polaroidFrame.translatesAutoresizingMaskIntoConstraints = false
         imageI.translatesAutoresizingMaskIntoConstraints = false
-        dateName.translatesAutoresizingMaskIntoConstraints = false
+        picNumber.translatesAutoresizingMaskIntoConstraints = false
         thoughts.translatesAutoresizingMaskIntoConstraints = false
-
         
         NSLayoutConstraint.activate([
             
             polaroidFrame.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            polaroidFrame.leadingAnchor.constraint(equalTo: leading),
-            polaroidFrame.trailingAnchor.constraint(equalTo: trailing),
+            polaroidFrame.leadingAnchor.constraint(equalTo: leadingAnchor),
+            polaroidFrame.trailingAnchor.constraint(equalTo: trailingAnchor),
             polaroidFrame.bottomAnchor.constraint(equalTo: bottomAnchor),
-        
-            imageI.heightAnchor.constraint(equalToConstant: ((ConstraintsManager.height * 0.6) - 20)),
-            imageI.topAnchor.constraint(equalTo: topAnchor, constant: 35),
-            imageI.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            imageI.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            dateName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            dateName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
+            imageI.heightAnchor.constraint(equalToConstant: ((ConstraintsManager.height * 0.6) - 30)),
+            imageI.topAnchor.constraint(equalTo: polaroidFrame.topAnchor, constant: 20),
+            imageI.leadingAnchor.constraint(equalTo: polaroidFrame.leadingAnchor, constant: 12),
+            imageI.trailingAnchor.constraint(equalTo: polaroidFrame.trailingAnchor, constant: -12),
+            
+            picNumber.bottomAnchor.constraint(equalTo: polaroidFrame.bottomAnchor, constant: -12),
+            picNumber.trailingAnchor.constraint(equalTo: polaroidFrame.trailingAnchor, constant: -12),
             
             thoughts.topAnchor.constraint(equalTo: imageI.bottomAnchor, constant: 10),
-            thoughts.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            thoughts.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            thoughts.leadingAnchor.constraint(equalTo: polaroidFrame.leadingAnchor, constant: 12),
+            thoughts.trailingAnchor.constraint(equalTo: polaroidFrame.trailingAnchor, constant: -12),
             
-        
+            
         ])
         
-        
-        
+        if DeviceType.isIphone5 {
+            
+            thoughts.font = UIFont(name: "Nunito-Bold", size: 10)
+            
+        } else {
+            
+            thoughts.font = UIFont(name: "Nunito-Bold", size: 14)
+            
+        }
+          
     }
-    
-    
-    
-    
+      
 }

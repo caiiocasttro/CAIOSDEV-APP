@@ -7,14 +7,39 @@
 
 import Foundation
 
+
+/**
+ `MyEducationModel` is an enum representing education experiences at different instituitions. It includes informations about the school's name, graduation status, and descriptions of the certificates obtained.
+ 
+ #Example usage:
+ ```
+ let myEducation = MyEducationModel.londonAppBrewery
+ 
+ print("School: \(myEducation.rawValue)")
+ print("Graduation: \(myEducation.graduation)")
+ print("Description: \(myEducation.description)")
+ ```
+ */
 enum MyEducationModel: String {
     
+    //MARK: Properties
+    /// An array containing the names of education instituitions
     static let school: [String] = ["London App Brewery", "Zero To Mastery", "Proflight Escola de Aviação"]
     
+    //MARK: Cases
+    
+    /// Represents education at London App Brewery.
     case londonAppBrewery = "London App Brewery"
+    
+    /// Represents education at Zero To Mastery.
     case zeroToMatery = "Zero To Mastery"
+    
+    /// Represents education at Proflight Escola de Aviação.
     case proflight = "Proflight Escola de Aviação"
     
+    //MARK: Computed properties
+    
+    /// Returns a string indicating the graduation status. All cases return "Certificate Graduated".
     var graduation: String {
         switch self {
         case .londonAppBrewery, .zeroToMatery, .proflight:
@@ -22,6 +47,7 @@ enum MyEducationModel: String {
         }
     }
     
+    /// Returns a string providing a brief description of the certificate obtained at each educational institution.
     var description: String {
         switch self {
         case .londonAppBrewery:
@@ -34,17 +60,37 @@ enum MyEducationModel: String {
     }
 }
 
+/// `MyCertificateModel` is an enum representing various courses certificates.
 enum MyCertificateModel: String {
-    
+    // MARK: Certificate Names
+        
+    /// Certificate names for different courses.
     static let cetificateName: [String] = ["Level Up in Swift", "Level Up in Auto Layout - Swift", "iOS Animations", "iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
     
+    //MARK: Cases
+    
+    /// Certificate case for the "Level Up in Swift" course.
     case levelUpinSwift = "Level Up in Swift"
+    
+    /// Certificate case for the "Level Up in Auto Layout - Swift" course.
     case levelUpinAutoLayout = "Level Up in Auto Layout - Swift"
+    
+    /// Certificate case for the "iOS Animations" course.
     case iOSAnimations = "iOS Animations"
+    
+    /// Certificate case for the "iOS App Development Bootcamp" course.
     case iOSAppDevelopment = "iOS App Development Bootcamp"
+    
+    /// Certificate case for the "User Experience Essentials" course.
     case userExperience = "User Experience Essentials"
+    
+    /// Certificate case for the "Web & Mobile Design" course.
     case webMobileDesign = "Web & Mobile Design"
     
+    
+    // MARK: Certificate Properties
+        
+    /// URL link for each certificate.
     var linkURL: String {
         switch self {
         case .levelUpinSwift:
@@ -62,6 +108,7 @@ enum MyCertificateModel: String {
         }
     }
     
+    /// Issue dates for each certificate.
     var dates: String {
         switch self {
         case .levelUpinSwift:
@@ -75,6 +122,7 @@ enum MyCertificateModel: String {
         }
     }
     
+    /// School or platform where the courses were taken.
     var school: String {
         switch self {
         case .levelUpinSwift, .levelUpinAutoLayout, .iOSAnimations, .iOSAppDevelopment, .userExperience, .webMobileDesign:
@@ -83,10 +131,17 @@ enum MyCertificateModel: String {
     }
 }
 
+/// `MySkillsModel` is an enum representing a model containing all the owner's skills related to iOS App Development
 enum MySkillsModel: String {
     
+    //MARK: Properties
+    
+    /// An array containing all available skills.
     static let skills: [String] = ["APIs", "CocoaPods", "CoreData", "Firebase", "Figma", "Git", "GitHub", "iOS Animations", "JSON", "MVC", "MVVM", "Swift", "SwiftUI", "UIKit", "UI/UX Designer", "VIPER"]
     
+    //MARK: Cases
+    
+    /// Cases representing individual skills.
     case api = "APIs"
     case autoLayout = "Auto Layout"
     case cocoaPods = "CocoaPods"
@@ -105,7 +160,9 @@ enum MySkillsModel: String {
     case uiuxDesign = "UI/UX Designer"
     case VIPER = "VIPER"
     
+    //MARK: Computed properties
     
+    /// Computed property representing the skill level based on the skill category.
     var level: String {
         switch self {
         case .VIPER:
@@ -120,3 +177,4 @@ enum MySkillsModel: String {
     }
  
 }
+

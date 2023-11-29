@@ -7,16 +7,23 @@
 
 import Foundation
 
+/// `MyExperienceMode` is an enum representing diverse work experiences, each associated with a specific company.
 enum MyExperienceModel: String {
     
+    //MARK: Properties
+    /// An array containing the names of all companies available in the enum.
     static let companies: [String] = ["Malt", "Sky", "EccoSalva", "Arcor do Brasil", "Motiva Contact Center"]
     
+    //MARK: Cases
+    /// Cases representing each company along with its corresponding name.
     case malt = "Malt"
     case sky = "Sky"
     case eccosalve = "EccoSalva"
     case arcor = "Arcor do Brasil"
     case motiva = "Motiva Contact Center"
     
+    //MARK: Computed properties
+    /// Computed property returning the role or position associated with each company.
     var position: String {
         switch self {
         case .malt, .sky:
@@ -30,6 +37,7 @@ enum MyExperienceModel: String {
         }
     }
     
+    /// Computed property returning a formatted string containing company name, location, and employment duration.
     var companiesNameLocationDate: String {
         switch self {
         case .malt:
@@ -45,6 +53,7 @@ enum MyExperienceModel: String {
         }
     }
     
+    /// Computed property returning an array of tasks or responsibilities for each company.
     var tasks: [String] {
         switch self {
             

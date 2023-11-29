@@ -6,11 +6,20 @@
 //
 
 import Foundation
-
+/**
+ `PassionsModel` Enum
+  
+ An enum representing different passions or interests along with associated information such as a description, picture filenames, and their order in a sequence.
+ 
+ */
 enum PassionsModel: String {
     
+    //MARK: Properties
+    /// An array containing filenames of pictures corresponding to each passion.
     static let pictures: [String] = ["coding", "model", "travelling", "best", "explore", "roller"]
     
+    //MARK: Cases
+    /// Cases representing the filenames of pictures
     case coding = "coding"
     case model = "model"
     case travelling = "travelling"
@@ -18,6 +27,8 @@ enum PassionsModel: String {
     case explore = "explore"
     case roller = "roller"
     
+    //MARK: Computed properties
+    /// A descriptive phrase associated with each passion.
     var phrase: String {
         switch self {
         case .coding:
@@ -34,7 +45,7 @@ enum PassionsModel: String {
             return "I'm the wheely cool summer skater, rollin' with my pals and collecting sunshine and laughter on eight wheels! 🌞🛼"
         }
     }
-    
+    /// The sequence number of the picture associated with each passion.
     var picNumber: String {
         switch self {
         case .coding:

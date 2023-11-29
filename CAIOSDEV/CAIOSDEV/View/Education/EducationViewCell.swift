@@ -6,7 +6,63 @@
 //
 
 import UIKit
+/**
+ `EducationViewCell` is a custom `UITableViewCell` designed to display education-related information in a timeline-like format.
 
+  ## Properties
+
+  - `school: String?`: Represents the name of the educational institution. Setting this property updates the `schoolName` label.
+
+  - `graduatedString: String?`: Represents a string indicating the graduation status or degree obtained. Setting this property updates the `graduateName` label.
+
+  - `graduateInfo: String?`: Represents additional information about the graduation. Setting this property updates the `graduateDescription` label.
+
+  ## UI Elements
+
+  - `cellView: UIView`: The main view container for the cell, holding all other UI elements.
+
+  - `schoolName: UILabel`: A label displaying the name of the educational institution.
+
+  - `dotImage: UIImageView`: An image view representing a dot in the timeline.
+
+  - `graduateName: UILabel`: A label displaying the graduation status or degree obtained.
+
+  - `dotImageII: UIImageView`: Another timeline dot.
+
+  - `graduateDescription: UILabel`: A label displaying additional information about the graduation.
+
+  ## Initialization
+
+  - `init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)`: Initializes the cell with a given style and reuseIdentifier. Calls `configureLayout()` to set up the initial layout.
+
+  - `required init?(coder: NSCoder)`: Not implemented, raises a fatal error if used. Use `init(style:reuseIdentifier:)` instead.
+
+  ## Layout Configuration
+
+  - `configureLayout()`: Configures the layout of the cell by adding subviews, setting up constraints, and adjusting fonts based on the device type.
+
+  ## Usage
+
+  To use this cell in a `UITableView`, instantiate an object of `EducationViewCell` and set its properties to populate the UI elements. Then, add the cell to the table view.
+
+  ```
+  let cell = EducationViewCell(style: .default, reuseIdentifier: "educationCell")
+  cell.school = "University of Example"
+  cell.graduatedString = "Graduated with Honors"
+  cell.graduateInfo = "Bachelor of Example"
+  tableView.dequeueReusableCell(withIdentifier: "educationCell", for: indexPath)
+ ```
+ 
+ Note: Ensure that the required image assets, such as "education," "dot," etc., are present in the project.
+ 
+ ## Adaptative Layout
+
+ The layout is adjusted based on the device type. For iPhone 5, font sizes and icon dimensions are set to smaller values.
+
+ DeviceType.isIphone5: Checks if the device is an iPhone 5.
+ Font sizes and icon dimensions are adjusted accordingly.
+
+ */
 class EducationViewCell: UITableViewCell {
     
     //MARK: Proprieties
@@ -30,17 +86,11 @@ class EducationViewCell: UITableViewCell {
             graduateDescription.text = string
         }
     }
-    
+  
+    //MARK: Objects
     lazy var cellView: UIView = {
         let view = UIView()
         return view
-    }()
-    
-    //MARK: Objects
-    lazy var iconImage: UIImageView = {
-        let iconImage = UIImageView()
-        iconImage.image = UIImage(named: "education")
-        return iconImage
     }()
     
     lazy var schoolName: UILabel = {
@@ -93,8 +143,6 @@ class EducationViewCell: UITableViewCell {
         
         backgroundColor = UIColor.clear
         
-        let leading = layoutMarginsGuide.leadingAnchor
-        
         addSubview(cellView)
         cellView.addSubview(schoolName)
         cellView.addSubview(dotImage)
@@ -145,13 +193,6 @@ class EducationViewCell: UITableViewCell {
             
             graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 10)
             
-            NSLayoutConstraint.activate([
-            
-                iconImage.widthAnchor.constraint(equalToConstant: 35),
-                iconImage.heightAnchor.constraint(equalToConstant: 35)
-                
-            ])
-            
         } else {
             
             schoolName.font = UIFont(name: "Nunito-Bold", size: 18)
@@ -160,12 +201,6 @@ class EducationViewCell: UITableViewCell {
             
             graduateDescription.font = UIFont(name: "Nunito-SemiBold", size: 12)
             
-            NSLayoutConstraint.activate([
-            
-                iconImage.widthAnchor.constraint(equalToConstant: 40),
-                iconImage.heightAnchor.constraint(equalToConstant: 40)
-                
-            ])
         }
         
     }

@@ -7,6 +7,39 @@
 
 import UIKit
 
+/**
+ Custom UITableViewCell for displaying language proficiency levels.
+
+  ## Properties:
+  - `title`: String? - The title of the cell.
+  - `portugueseLevelFrame`: CGFloat? - The frame for the Portuguese language proficiency level.
+  - `englishLevelFrame`: CGFloat? - The frame for the English language proficiency level.
+  - `frenchLevelFrame`: CGFloat? - The frame for the French language proficiency level.
+
+  ## Objects:
+  - `cellTitle`: UILabel - The label displaying the cell title.
+  - `cellView`: UIView - The main container view for the cell.
+  - `portuguese`, `english`, `french`: UILabel - Labels for displaying language names.
+  - `portugueseLevelBackground`, `englishLevelBackground`, `frenchLevelBackground`: UIView - Background views for language proficiency levels.
+  - `portugueseLevel`, `englishLevel`, `frenchLevel`: UIView - Views representing language proficiency levels with gradient colors.
+
+  ## Methods:
+  - `configureLayout()`: Configures the layout of the cell, adding subviews and setting up constraints.
+
+  ## Usage:
+  - Initialize an instance of `LanguagesViewCell` and set its properties to display language information.
+
+  ## Example:
+  ```
+  let cell = LanguagesViewCell(style: .default, reuseIdentifier: "LanguagesCell")
+  cell.title = "Language Proficiency"
+  cell.portugueseLevelFrame = 150
+  cell.englishLevelFrame = 120
+  cell.frenchLevelFrame = 90
+ ```
+ Note: Ensure to set the AboutMeModel.languages array with appropriate language names before using this cell.
+ */
+
 class LanguagesViewCell: UITableViewCell {
     
     //MARK: Properties

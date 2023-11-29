@@ -6,10 +6,47 @@
 //
 
 import UIKit
+/**
+ A custom UITableViewCell class for displaying location information.
 
+ - Note: This class assumes that the cell layout consists of a title, an icon representing the location, and additional text.
+
+ ### Properties:
+ - `title`: A string representing the title of the location.
+ - `textString`: A string providing additional information about the location.
+
+ ### Objects:
+ - `cellTitle`: A UILabel for displaying the title of the cell.
+ - `cellView`: A UIView serving as the background for the cell with rounded corners.
+ - `iconLocation`: An UIImageView displaying an icon representing the location (assumed to be a map icon).
+ - `text`: A UILabel for displaying the location.
+
+ ### Initialization:
+ - `init(style:reuseIdentifier:)`: Initializes the cell with the specified style and reuseIdentifier. It also configures the layout using `configureLayout()`.
+
+ ### Layout Configuration:
+ - `configureLayout()`: Configures the layout of the cell, adding subviews, setting colors, fonts, and constraints.
+
+ ### Constraints:
+ The layout is set up with the following constraints:
+ - `cellTitle` is positioned at the top-left of the cell.
+ - `cellView` is positioned below `cellTitle`, filling the cell width, and with rounded corners.
+ - `iconLocation` is positioned inside `cellView` with a fixed width and height, and a distance from the top and left edges.
+ - `text` is positioned to the right of `iconLocation`, centered vertically.
+
+ ### Usage:
+ ```
+ // Example usage in a UITableViewController
+ let locationCell = LocationViewCell(style: .default, reuseIdentifier: "LocationCell")
+ locationCell.title = "Eiffel Tower"
+ locationCell.textString = "A famous landmark in Paris, France."
+ return locationCell
+ */
 class LocationViewCell: UITableViewCell {
     
     //MARK: Proprieties
+    
+    /// The title of the cell.
     var title: String? {
         didSet {
             guard let string = title else { return }
@@ -18,6 +55,7 @@ class LocationViewCell: UITableViewCell {
         }
     }
     
+    /// Name of the location.
     var textString: String? {
         didSet {
             guard let string = textString else { return }
@@ -27,6 +65,8 @@ class LocationViewCell: UITableViewCell {
     }
     
     //MARK: Objects
+    
+    /// Label for displaying the title of the cell.
     lazy var cellTitle: UILabel = {
         let title = UILabel()
         title.textColor = UIColor(named: "BlackSecondary")
@@ -35,6 +75,7 @@ class LocationViewCell: UITableViewCell {
         return title
     }()
     
+    /// View serving as the background for the cell with rounded corners.
     lazy var cellView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -42,12 +83,14 @@ class LocationViewCell: UITableViewCell {
         return view
     }()
     
+    /// ImageView displaying an icon representing the location (assumed to be a map icon).
     lazy var iconLocation: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "map")
         return image
     }()
     
+    /// Label for displaying name of the location.
     lazy var text: UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "BlackSecondary")
@@ -67,6 +110,8 @@ class LocationViewCell: UITableViewCell {
     }
     
     //MARK: Configuring layout
+    
+    /// Configures the layout of the cell, adding subviews, setting colors, fonts, and constraints.
     private func configureLayout() {
         
         backgroundColor = UIColor.clear

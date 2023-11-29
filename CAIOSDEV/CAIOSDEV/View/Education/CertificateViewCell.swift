@@ -8,6 +8,39 @@
 import SafariServices
 import UIKit
 
+/**
+ `CertificateViewCell` is a custom `UITableViewCell` designed to display information about a certificate, including its title, associated school, and date.
+
+  ### Properties:
+  - `certificate`: A string representing the title of the certificate. Setting this property will automatically underline the text in the `certificateTitle` label.
+  - `school`: A string representing the name of the school associated with the certificate. Setting this property will update the `schoolName` label.
+  - `dateString`: A string representing the date of the certificate. Setting this property will update the `date` label.
+
+  ### UI Elements:
+  - `cellView`: The main container view for the cell.
+  - `certificateTitle`: A label displaying the title of the certificate. It automatically underlines the text when the `certificate` property is set.
+  - `schoolName`: A label displaying the name of the school associated with the certificate.
+  - `date`: A label displaying the date of the certificate.
+
+  ### Initialization:
+  - `init(style:reuseIdentifier:)`: Initializes the cell with a style and a reuse identifier. Calls the `configureLayout` method to set up the UI.
+
+  ### Layout Configuration:
+  - `configureLayout()`: Configures the layout by adding subviews, setting up constraints, and adjusting fonts based on the device type.
+
+  ### Fonts:
+  The font size of the `certificateTitle` label is adjusted based on the device type. It uses the "Nunito-Bold" font with a larger size for iPhone 6 and later, and a slightly smaller size for iPhone 5.
+
+  - Note: Ensure that the "Nunito-Bold", "Nunito-SemiBold", and "Nunito-Medium" fonts are available in your project for the respective labels.
+
+  ### Example Usage:
+  ```
+  let cell = CertificateViewCell(style: .default, reuseIdentifier: "CertificateCell")
+  cell.certificate = "Certificate of Achievement"
+  cell.school = "Sample School"
+  cell.dateString = "January 1, 2023"
+ ```
+ */
 class CertificateViewCell: UITableViewCell {
     
     //MARK: Properties
@@ -46,14 +79,7 @@ class CertificateViewCell: UITableViewCell {
         let view = UIView()
         return view
     }()
-    
-    lazy var iconImage: UIImageView = {
-        let iconImage = UIImageView()
-        iconImage.frame = .init(x: 0, y: 0, width: 40, height: 40)
-        iconImage.image = UIImage(named: "certificate")
-        return iconImage
-    }()
-    
+
     lazy var certificateTitle: UILabel = {
         let certificateTitle = UILabel()
         certificateTitle.textColor = UIColor(named: "BlackLabels")
@@ -91,8 +117,6 @@ class CertificateViewCell: UITableViewCell {
     private func configureLayout() {
         
         backgroundColor = UIColor.clear
-        
-        let leading = layoutMarginsGuide.leadingAnchor
         
         addSubview(cellView)
         cellView.addSubview(certificateTitle)

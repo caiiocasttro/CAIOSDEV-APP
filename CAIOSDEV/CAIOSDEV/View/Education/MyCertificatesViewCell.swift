@@ -6,7 +6,38 @@
 //
 
 import UIKit
+/**
+ `MyCertificatesViewCell` is a custom `UITableViewCell` designed to display a cell with an icon image and a title. It is specifically created for showcasing certificates in a table view.
 
+  ## Properties:
+  - `cellView`: A UIView representing the main container for the cell's content.
+  - `iconImage`: An UIImageView for displaying the certificate icon.
+  - `cellTitle`: A UILabel for displaying the title of the certificate.
+
+  ## Initialization:
+  - `init(style:reuseIdentifier:)`: Initializes the cell with a specified style and reuseIdentifier. Calls the `configureLayout()` method to set up the initial layout.
+  - `init?(coder:)`: Not implemented to ensure the cell is not created from storyboard or xib.
+
+  ## Layout Configuration:
+  - `configureLayout()`: Sets up the layout of the cell, adding subviews and applying constraints.
+     - Configures the background color to be clear.
+     - Adds `cellView` to the cell and `iconImage` and `cellTitle` to `cellView`.
+     - Applies constraints to ensure proper positioning and sizing of the subviews.
+     - Adjusts layout based on the device type using the `DeviceType` enum.
+
+  ### Adaptative Layout:
+  The cell adapts its layout based on the device type, specifically handling the iPhone 5 screen size.
+  - If the device is iPhone 5 (`DeviceType.isIphone5`), the font size of `cellTitle` is set to 18, and the size of `iconImage` is reduced to 35x35.
+  - For other device types, the font size of `cellTitle` is set to 20, and the size of `iconImage` is kept at 40x40.
+
+  ## Example Usage:
+  ```
+  let cell = MyCertificatesViewCell(style: .default, reuseIdentifier: "CertificateCell")
+  cell.cellTitle.text = "My Achievements"
+  // Set up additional properties as needed
+ ```
+ Note: Ensure to set the DeviceType enum appropriately based on the actual implementation in the project.
+ */
 class MyCertificatesViewCell: UITableViewCell {
     
     //MARK: Objects

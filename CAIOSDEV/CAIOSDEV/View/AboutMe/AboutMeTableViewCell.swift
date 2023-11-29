@@ -6,10 +6,45 @@
 //
 
 import UIKit
+/**
+ `AboutMeTableViewCell` is a custom `UITableViewCell` designed for displaying information with a title and accompanying text. It features a rounded-corner background view with a title label and a multiline text label.
 
+ ## Properties
+
+ - `title`: A string representing the title of the cell. Setting this property updates the `cellTitle` label.
+ - `textString`: A string representing the text content of the cell. Setting this property updates the `text` label.
+
+ ## Objects
+
+ - `cellTitle`: A `UILabel` used to display the title of the cell. It is configured with a custom font, text color, and left alignment.
+ - `cellView`: A `UIView` serving as the background view for the cell. It has rounded corners and a white background color.
+ - `text`: A `UILabel` used to display multiline text content. It is configured with a custom font, text color, and left alignment.
+
+ ## Initialization
+
+ - `init(style:reuseIdentifier:)`: The designated initializer for the cell. It calls `configureLayout()` to set up the cell's layout.
+
+ ## Layout Configuration
+
+ - `configureLayout()`: Configures the layout of the cell, setting up constraints for the `cellTitle`, `cellView`, and `text` components.
+
+ ## Example Usage:
+
+ ```
+ // Create an instance of AboutMeTableViewCell
+ let cell = AboutMeTableViewCell(style: .default, reuseIdentifier: "AboutMeCell")
+
+ // Set the title and text content
+ cell.title = "About Me"
+ cell.textString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+ ```
+ Note: Make sure to customize font names, sizes, and color names according to your project's design system.
+*/
 class AboutMeTableViewCell: UITableViewCell {
     
     //MARK: Proprieties
+    
+    /// A string representing the title of the cell.
     var title: String? {
         didSet {
             guard let string = title else { return }
@@ -18,6 +53,7 @@ class AboutMeTableViewCell: UITableViewCell {
         }
     }
     
+    /// A string representing the text content of the cell.
     var textString: String? {
         didSet {
             guard let string = textString else { return }
@@ -27,6 +63,8 @@ class AboutMeTableViewCell: UITableViewCell {
     }
     
     //MARK: Objects
+    
+    /// A label for displaying the title of the cell.
     lazy var cellTitle: UILabel = {
         let title = UILabel()
         title.textColor = UIColor(named: "BlackSecondary")
@@ -35,6 +73,7 @@ class AboutMeTableViewCell: UITableViewCell {
         return title
     }()
     
+    /// The background view for the cell with rounded corners.
     lazy var cellView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -42,6 +81,7 @@ class AboutMeTableViewCell: UITableViewCell {
         return view
     }()
     
+    /// A label for displaying multiline text content.
     lazy var text: UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "BlackSecondary")
@@ -63,6 +103,8 @@ class AboutMeTableViewCell: UITableViewCell {
     
     
     //MARK: Configuring layout
+    
+    /// Configures the layout of the cell.
     private func configureLayout() {
         
         backgroundColor = UIColor.clear

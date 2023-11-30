@@ -21,6 +21,7 @@ enum AboutMeIdentifiers: String {
 
 /// `EducationIdentifiers` is an enum  representing cell identifiers for the Education page.
 enum EducationIdentifiers: String {
+    case educationTitle = "MyEducationViewCell"
     case education = "EducationViewCell"
     case certificate = "CertificateViewCell"
     case title = "MyCertificatesViewCell"

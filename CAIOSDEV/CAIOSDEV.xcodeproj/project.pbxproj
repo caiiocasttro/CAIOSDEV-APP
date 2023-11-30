@@ -12,6 +12,7 @@
 		E530C6612AE951FD00B91C48 /* LaunchScreenII.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */; };
 		E57B35952ADEDCF200F037DC /* PassionsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35942ADEDCF200F037DC /* PassionsViewCell.swift */; };
 		E57B35992AE1390500F037DC /* MyCertificatesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */; };
+		E585E1852B18ED60001B7B11 /* MyEducationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E585E1842B18ED60001B7B11 /* MyEducationViewCell.swift */; };
 		E596E67D2AF91F3A00151415 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596E67C2AF91F3A00151415 /* CustomButton.swift */; };
 		E596E67F2AF9225600151415 /* CustomButtonAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596E67E2AF9225600151415 /* CustomButtonAttributedText.swift */; };
 		E597B7C82AEFC53300DC3081 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = E597B7C72AEFC53200DC3081 /* click.wav */; };
@@ -59,6 +60,7 @@
 		E530C6602AE951FD00B91C48 /* LaunchScreenII.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenII.storyboard; sourceTree = "<group>"; };
 		E57B35942ADEDCF200F037DC /* PassionsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionsViewCell.swift; sourceTree = "<group>"; };
 		E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertificatesViewCell.swift; sourceTree = "<group>"; };
+		E585E1842B18ED60001B7B11 /* MyEducationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEducationViewCell.swift; sourceTree = "<group>"; };
 		E596E67C2AF91F3A00151415 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		E596E67E2AF9225600151415 /* CustomButtonAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonAttributedText.swift; sourceTree = "<group>"; };
 		E597B7C72AEFC53200DC3081 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 		E5C619A62AD42A83007C1EFB /* Education */ = {
 			isa = PBXGroup;
 			children = (
+				E585E1842B18ED60001B7B11 /* MyEducationViewCell.swift */,
 				E5C619BD2AD60DBA007C1EFB /* EducationViewCell.swift */,
 				E57B35982AE1390500F037DC /* MyCertificatesViewCell.swift */,
 				E5C619BF2AD612E3007C1EFB /* CertificateViewCell.swift */,
@@ -507,6 +510,7 @@
 				E5C619BA2AD59D04007C1EFB /* Identifiers.swift in Sources */,
 				E5C6198E2AD1A163007C1EFB /* CareerGoalsViewController.swift in Sources */,
 				E5C619772AD196B1007C1EFB /* AppDelegate.swift in Sources */,
+				E585E1852B18ED60001B7B11 /* MyEducationViewCell.swift in Sources */,
 				E5C619902AD1A173007C1EFB /* EducationViewController.swift in Sources */,
 				E5C619942AD1A198007C1EFB /* PassionsViewController.swift in Sources */,
 				E5C619BE2AD60DBA007C1EFB /* EducationViewCell.swift in Sources */,

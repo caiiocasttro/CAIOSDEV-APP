@@ -113,6 +113,7 @@ class EducationViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(MyEducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.educationTitle.rawValue)
         tableView.register(EducationViewCell.self, forCellReuseIdentifier: EducationIdentifiers.education.rawValue)
         tableView.register(MyCertificatesViewCell.self, forCellReuseIdentifier: EducationIdentifiers.title.rawValue)
         tableView.register(CertificateViewCell.self, forCellReuseIdentifier: EducationIdentifiers.certificate.rawValue)
@@ -143,7 +144,7 @@ class EducationViewController: UIViewController {
             titleAnimation()
             animatedOnce = true
         }
-       
+        
     }
     
     
@@ -248,7 +249,7 @@ class EducationViewController: UIViewController {
             contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 4
             
             NSLayoutConstraint.activate([
-            
+                
                 //Contact Button 1st
                 contactButtonI.widthAnchor.constraint(equalToConstant: 70),
                 contactButtonI.heightAnchor.constraint(equalToConstant: 25),
@@ -287,7 +288,7 @@ class EducationViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Education View
                 educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 10)),
                 educationView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9) - 5),
@@ -313,7 +314,7 @@ class EducationViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Education View
                 educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 20)),
                 educationView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9)),
@@ -339,7 +340,7 @@ class EducationViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Education View
                 educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
                 educationView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
@@ -365,7 +366,7 @@ class EducationViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.7) - 40),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Education View
                 educationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) - 20)),
                 educationView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
@@ -423,15 +424,15 @@ class EducationViewController: UIViewController {
     func contactButtonAnimation() {
         
         if contactButtonII.alpha == 1 {
-                    self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                } else {
-                    self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                }
-                
+            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } else {
+            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+        
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: [.curveLinear]) {
-                    self.contactButtonI.transform = .identity
-                    self.contactButtonII.transform = .identity
-                }
+            self.contactButtonI.transform = .identity
+            self.contactButtonII.transform = .identity
+        }
         
     }
     
@@ -480,7 +481,7 @@ class EducationViewController: UIViewController {
 extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row <= 9 {
+        if indexPath.row <= 10 {
             return 80
         } else {
             return 640
@@ -489,23 +490,30 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        return 12
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-         if indexPath.row <= 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.educationTitle.rawValue, for: indexPath) as! MyEducationViewCell
             cell.isUserInteractionEnabled = false
-            cell.school = MyEducationModel.school[indexPath.row]
-            cell.graduatedString = MyEducationModel(rawValue: MyEducationModel.school[indexPath.row])?.graduation
-            cell.graduateInfo = MyEducationModel(rawValue: MyEducationModel.school[indexPath.row])?.description
             return cell
-        } else if indexPath.row == 3 {
+        } else if indexPath.row <= 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.education.rawValue, for: indexPath) as! EducationViewCell
+            
+            let dataIndex = max(0, indexPath.row - 1)
+            cell.isUserInteractionEnabled = false
+            cell.school = MyEducationModel.school[dataIndex]
+            cell.graduatedString = MyEducationModel(rawValue: MyEducationModel.school[dataIndex])?.graduation
+            cell.graduateInfo = MyEducationModel(rawValue: MyEducationModel.school[dataIndex])?.description
+            return cell
+            
+        } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.title.rawValue, for: indexPath) as! MyCertificatesViewCell
             cell.isUserInteractionEnabled = false
             return cell
-        } else if indexPath.row == 10 {
+        } else if indexPath.row == 11 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.skills.rawValue, for: indexPath) as!
             SkillsViewCell
             cell.isUserInteractionEnabled = false
@@ -513,23 +521,23 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EducationIdentifiers.certificate.rawValue, for: indexPath) as!
             CertificateViewCell
-            if indexPath.row == 4 {
+            if indexPath.row == 5 {
                 cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.rawValue
                 cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.school
                 cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.dates
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.rawValue
                 cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.school
                 cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.dates
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 7 {
                 cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.rawValue
                 cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.school
                 cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.dates
-            } else if indexPath.row == 7 {
+            } else if indexPath.row == 8 {
                 cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.rawValue
                 cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.school
                 cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.dates
-            } else if indexPath.row == 8 {
+            } else if indexPath.row == 9 {
                 cell.certificate = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.rawValue
                 cell.school = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.school
                 cell.dateString = MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.dates
@@ -545,35 +553,35 @@ extension EducationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 4 {
+        if indexPath.row == 5 {
             feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[0])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
-        } else if indexPath.row == 5 {
+        } else if indexPath.row == 6 {
             feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[1])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
-        } else if indexPath.row == 6 {
+        } else if indexPath.row == 7 {
             feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[2])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
-        } else if indexPath.row == 7 {
+        } else if indexPath.row == 8 {
             feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[3])?.linkURL ?? "google.com") else { return }
             
             let vc = SFSafariViewController(url: url)
             vc.modalPresentationStyle = .pageSheet
             self.present(vc, animated: true)
-        } else if indexPath.row == 8 {
+        } else if indexPath.row == 9 {
             feedbackGenerator.impactOccurred()
             guard let url = URL(string: MyCertificateModel(rawValue: MyCertificateModel.cetificateName[4])?.linkURL ?? "google.com") else { return }
             
@@ -607,7 +615,7 @@ extension EducationViewController: UIScrollViewDelegate {
                 
                 showButtonAnimation()
                 buttonShowed = true
-                    
+                
             } else {
                 
                 if self.buttonShowed {

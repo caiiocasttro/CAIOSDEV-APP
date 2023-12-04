@@ -7,7 +7,56 @@
 
 import UIKit
 import AVFoundation
-
+/**
+ `ExperienceViewController` is a UIViewController subclass responsible for displaying a professional experience page. It includes a scrollable view containing a title, buttons, and a table view listing work experiences.
+ 
+ ## Properties
+ 
+ - player: An instance of AVAudioPlayer for playing a sound effect.
+ - feedbackGenerator: An instance of UIImpactFeedbackGenerator for providing haptic feedback.
+ - animatedOnce: A boolean flag to track if the title animation has been performed.
+ - buttonShowed: A boolean flag to track whether the buttons are currently visible.
+ - filter: A semi-transparent view used as a background filter.
+ - contactButtonI: A UIButton for initiating contact, styled with different configurations.
+ - contactButtonII: Another UIButton styled differently, initially hidden.
+ - scrollView: A UIScrollView containing the main content of the view.
+ - experienceView: An instance of a custom view (CustomView) representing the main experience section.
+ - line: A horizontal line separating sections in the experienceView.
+ - titlePartI and titlePartII: UILabels representing the title split into two parts.
+ - titlePage: UILabel representing the overall title of the page.
+ - tableView: A UITableView displaying work experiences.
+ 
+ ## Methods
+ 
+ - viewDidLoad(): Overrides the superclass method to perform additional setup. It configures the layout and prepares the sound effect.
+ - viewDidAppear(_:): Overrides the superclass method to trigger the title animation on the first appearance.
+ - configureLayout(): Configures the layout constraints for various UI elements based on the device type.
+ - pullContactView(): Presents a ContactsSheetViewController when the contact button is pressed, along with animations and sound effects.
+ - titleAnimation(): Performs an animation to reveal the title parts sequentially.
+ - contactButtonAnimation(): Applies a scaling animation to the contact buttons for a visual effect.
+ - showButtonAnimation(): Animates the transition between contact buttons (I and II).
+ - hideButtonAnimation(): Animates the transition between contact buttons (II and I).
+ - prepareSoundEffect(): Prepares the AVAudioPlayer with a sound effect for button clicks.
+ - soundClick(): Plays the prepared sound effect.
+ - scrollViewDidScroll(_:): Implements the UIScrollViewDelegate method to handle button visibility based on scroll position.
+ - tableView(_:numberOfRowsInSection:) and tableView(_:cellForRowAt:): Implement UITableViewDataSource methods to populate the table view with work experiences.
+ 
+ ## Extensions
+ 
+ - UIScrollViewDelegate: Provides additional functionality related to scroll view behavior.
+ - UITableViewDelegate and UITableViewDataSource: Extend the class to conform to table view delegate and data source protocols.
+ 
+ # Usage
+ ```
+ let experienceVC = ExperienceViewController()
+ navigationController?.pushViewController(experienceVC, animated: true)
+ ```
+ 
+ ## Important Notes
+ 
+ - This class relies on external dependencies, such as AVAudioPlayer and custom classes like CustomView and ExperienceViewCell.
+ - It uses device-specific layout adjustments to ensure a consistent UI across different iPhone models.
+ */
 class ExperienceViewController: UIViewController {
     
     //MARK: Initializer
@@ -119,7 +168,7 @@ class ExperienceViewController: UIViewController {
         return tableView
     }()
     
-
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -186,14 +235,14 @@ class ExperienceViewController: UIViewController {
         
         //Constraints
         NSLayoutConstraint.activate([
-        
+            
             background.widthAnchor.constraint(equalToConstant: view.bounds.width),
             background.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
             filter.widthAnchor.constraint(equalToConstant: view.bounds.width),
             filter.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
-
+            
             contactButtonI.topAnchor.constraint(equalTo: view.topAnchor, constant: ((ConstraintsManager.height * 0.1) - 30)),
             contactButtonI.trailingAnchor.constraint(equalTo: trailing),
             
@@ -244,7 +293,7 @@ class ExperienceViewController: UIViewController {
             contactButtonII.layer.cornerRadius = contactButtonI.frame.size.height / 4
             
             NSLayoutConstraint.activate([
-            
+                
                 //Contact Button 1st
                 contactButtonI.widthAnchor.constraint(equalToConstant: 70),
                 contactButtonI.heightAnchor.constraint(equalToConstant: 25),
@@ -283,7 +332,7 @@ class ExperienceViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Experience View
                 experienceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 10)),
                 experienceView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9) - 5),
@@ -309,7 +358,7 @@ class ExperienceViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6) + 20),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Experience View
                 experienceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) + 20)),
                 experienceView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.9)),
@@ -335,7 +384,7 @@ class ExperienceViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.6)),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Experience View
                 experienceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.7) + 50)),
                 experienceView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
@@ -361,7 +410,7 @@ class ExperienceViewController: UIViewController {
                 titlePartI.topAnchor.constraint(equalTo: view.topAnchor, constant: (ConstraintsManager.height * 0.7) - 40),
                 
                 titlePartII.topAnchor.constraint(equalTo: titlePartI.bottomAnchor, constant: -20),
-            
+                
                 //Experience View
                 experienceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ((ConstraintsManager.height * 0.8) - 20)),
                 experienceView.heightAnchor.constraint(equalToConstant: (ConstraintsManager.height * 0.8) + 40),
@@ -414,15 +463,15 @@ class ExperienceViewController: UIViewController {
     func contactButtonAnimation() {
         
         if contactButtonII.alpha == 1 {
-                    self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                } else {
-                    self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                }
-                
+            self.contactButtonII.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } else {
+            self.contactButtonI.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+        
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: [.curveLinear]) {
-                    self.contactButtonI.transform = .identity
-                    self.contactButtonII.transform = .identity
-                }
+            self.contactButtonI.transform = .identity
+            self.contactButtonII.transform = .identity
+        }
         
     }
     
@@ -484,7 +533,7 @@ extension ExperienceViewController: UIScrollViewDelegate {
                 
                 showButtonAnimation()
                 buttonShowed = true
-                    
+                
             } else {
                 
                 if self.buttonShowed {

@@ -6,7 +6,26 @@
 //
 
 import UIKit
+/**
+ CustomButton is a subclass of UIButton that combines an icon and text in a stylized button.
 
+ # Properties
+
+ - icon: An UIImage representing the icon for the button.
+ - text: A String representing the text for the button.
+ 
+ # Methods
+ 
+ - convenience init(icon: UIImage, text: String): Initializes a new CustomButton with the specified icon and text.
+ 
+ # Usage:
+ ```
+ let customButton = CustomButton(icon: UIImage(named: "yourIcon"), text: "Your Button Text")
+ view.addSubview(customButton)
+```
+ 
+ Note: This class sets a white background with rounded corners, and it allows for adaptive layouts based on the device type.
+ */
 class CustomButton: UIButton {
     
     convenience init(icon: UIImage, text: String) {

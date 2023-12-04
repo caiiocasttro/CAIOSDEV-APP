@@ -8,7 +8,54 @@
 import SafariServices
 import UIKit
 import AVFoundation
+/**
+ `EducationViewController` is a view controller responsible for displaying educational information, including a list of schools, certificates, and skills.
 
+ ## Usage
+ - Instantiate an object of `EducationViewController` to display the education view.
+ - The education view includes information about schools, certificates, and skills.
+ - The view has adaptive layout adjustments for different iPhone devices.
+ - The user can interact with buttons to show additional contact information.
+
+ ## Dependencies
+ - The class uses `AVAudioPlayer` for playing a sound effect.
+ - UI elements include buttons, labels, a table view, and various subviews.
+
+ ## Properties
+ - `player`: An `AVAudioPlayer` instance for playing sound effects.
+ - `feedbackGenerator`: A `UIImpactFeedbackGenerator` for providing haptic feedback.
+ - `animatedOnce`: A boolean flag to track whether the title animation has been performed.
+ - `buttonShowed`: A boolean flag to track the visibility of contact buttons.
+ - `filter`: A semi-transparent view used as a background overlay.
+ - `contactButtonI` and `contactButtonII`: Buttons for displaying contact information.
+ - `scrollView`: A scroll view containing the education information.
+ - `educationView`: A custom view containing the main content of the education section.
+ - `line`: A decorative line separating the title and content in the education view.
+ - `titlePartI` and `titlePartII`: Labels displaying the title of the education section.
+ - `titlePage`: A label displaying a message at the top of the education view.
+ - `tableView`: A table view displaying information about schools, certificates, and skills.
+
+ ## Methods
+ - `pullContactView()`: Presents a contact view (instance of `ContactsSheetViewController`) with animation.
+ - `certificateView(view:)`: Presents a certificate view (UIViewController) within the navigation stack.
+ - `titleAnimation()`: Animates the appearance of the title labels.
+ - `contactButtonAnimation()`: Animates the contact buttons with a spring effect.
+ - `showButtonAnimation()`: Animates the appearance of contact buttons.
+ - `hideButtonAnimation()`: Animates the disappearance of contact buttons.
+ - `prepareSoundEffect()`: Prepares the sound effect for button clicks.
+ - `soundClick()`: Plays the prepared sound effect.
+
+ ## Extensions
+ - `UITableViewDelegate`, `UITableViewDataSource`: Implements table view delegate and data source methods.
+ - `UIScrollViewDelegate`: Implements scroll view delegate methods.
+
+ ## Notes
+ - The layout of UI elements is configured using Auto Layout constraints.
+ - Adaptive layout adjustments are made for different iPhone devices.
+ - The view includes animations for title appearance, button interactions, and table view scrolling.
+ - Haptic feedback is provided when interacting with buttons.
+
+ */
 class EducationViewController: UIViewController {
     
     //MARK: Initializer

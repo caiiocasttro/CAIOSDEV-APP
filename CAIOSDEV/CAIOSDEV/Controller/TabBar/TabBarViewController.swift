@@ -6,7 +6,37 @@
 //
 
 import UIKit
+/**
+ `TabBarViewController` is a custom subclass of `UITabBarController` that enhances the appearance of the tab bar by adding a custom highlight line under the selected tab.
 
+  ## Properties
+
+  - `lineLeadingConstraints`: A variable to hold the leading constraint for the custom highlight line.
+
+  - `line`: A lazy-loaded UIView representing the custom highlight line under the selected tab. It has a background color, corner radius, and clipping properties configured.
+
+  ## Lifecycle
+
+  - `viewDidLoad()`: Overrides the default implementation to call the `configureTabBar()` method during the view controller's load.
+
+  ## Methods
+
+  - `configureTabBar()`: Configures the tab bar appearance by adding the custom highlight line, setting up its constraints, configuring shadow properties, creating view controllers for each tab, setting tab bar item images and titles, and assigning the view controllers to the tab bar.
+
+  - `tabBar(_:didSelect:)`: Overrides the default tab bar delegate method to animate the custom highlight line when a tab is selected. It calculates the width of each tab item and updates the leading constraint of the highlight line accordingly.
+
+  # Example Usage
+
+  ```
+  let tabBarController = TabBarViewController()
+  navigationController?.pushViewController(tabBarController, animated: true)
+ ```
+ 
+ ## Important Notes
+
+ Ensure that the images named "user," "trophy," "motherboard," "book," and "Heart" are available in the asset catalog.
+ The custom highlight line assumes that each tab item has an equal distribution of width in the tab bar.
+ */
 class TabBarViewController: UITabBarController {
     
     //MARK: Initializer
@@ -92,10 +122,6 @@ class TabBarViewController: UITabBarController {
                 // This method updates the layout of the view and its subviews immediately if needed.
                 self.view.layoutIfNeeded()
             }
-            
-            
         }
     }
-    
-    
 }

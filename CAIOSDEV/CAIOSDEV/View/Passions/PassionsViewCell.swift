@@ -28,6 +28,7 @@ import UIKit
 class PassionsViewCell: UICollectionViewCell {
     
     //MARK: Proprieties
+    
     var image: String? {
         didSet {
             guard let string = image else { return }

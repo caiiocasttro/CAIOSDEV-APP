@@ -7,7 +7,109 @@
 
 import UIKit
 import AVFoundation
+/**
+ The `PassionsViewController` class is a Swift view controller that manages the UI for displaying a collection of passions, each represented by an image and accompanying text. This view controller is part of an iOS application and includes various UI elements, animations, and interactions.
+ 
+ ## Properties
 
+ - player: AVAudioPlayer?
+ - Description: An instance of AVAudioPlayer for playing sound effects.
+ - Usage: Used to play a sound effect when a button is tapped.
+ - feedbackGenerator: UIImpactFeedbackGenerator
+ - Description: An instance of UIImpactFeedbackGenerator for providing haptic feedback.
+ - Usage: Used to generate haptic feedback when a button is tapped.
+ - collectionView: UICollectionView!
+ - Description: A collection view for displaying a grid of passion items.
+ - Usage: Used to present the collection of passions with images and text.
+ - animatedOnce: Bool
+ - Description: A boolean flag to track whether the title animation has been performed.
+ - Usage: Used to ensure that the title animation is only executed once.
+ - buttonShowed: Bool
+ - Description: A boolean flag to track whether the contact button is currently visible.
+ - Usage: Used to manage the appearance and disappearance animations of the contact button.
+ 
+ ## UI Elements
+
+ - filter: UIView
+ - Description: A semi-transparent filter view to overlay on the background.
+ - Usage: Enhances the visual appearance of the background image.
+ - titlePartI: UILabel and titlePartII: UILabel
+ - Description: UILabels for displaying the title in two parts.
+ - Usage: Part of the title animation.
+ - contactButtonI: UIButton and contactButtonII: UIButton
+ - Description: Two contact buttons with different styles.
+ - Usage: Buttons to trigger the presentation of a contact view.
+ - scrollView: UIScrollView
+ - Description: A scroll view containing the collection view and other UI elements.
+ - Usage: Enables scrolling through the content.
+ - hobbiesView: CustomView
+ - Description: A custom view containing the background image, title, line, and buttons.
+ - Usage: Provides a container for organizing and presenting UI elements.
+ - line: UIView
+ - Description: A horizontal line view with rounded corners.
+ - Usage: Separates the title and the collection view.
+ - titlePage: UILabel
+ - Description: A UILabel displaying the title of the page.
+ - Usage: Identifies the content as different versions of the user.
+ 
+ ## Lifecycle Methods
+
+ - viewDidLoad()
+ - Description: Overrides the superclass method to perform additional setup after loading the view.
+ - Usage: Configures the collection view, layout, and prepares the sound effect.
+ - viewDidAppear(_ animated: Bool)
+ - Description: Overrides the superclass method to perform actions after the view has appeared.
+ - Usage: Triggers the title animation if it hasn't been performed before.
+ 
+ ## Layout and Constraints
+
+ - collectionViewLayout() -> UICollectionViewCompositionalLayout
+ - Description: Configures the layout for the collection view using compositional layout.
+ - Usage: Defines the layout of items, groups, and sections in the collection view.
+ - configureLayout()
+ - Description: Sets up the constraints and layout for various UI elements based on the device type.
+ - Usage: Ensures proper positioning and sizing of UI elements for different screen sizes.
+ 
+ ## Interaction Methods
+
+ - pullContactView()
+ - Description: Presents a contact view with animation and sound effect.
+ - Usage: Called when the contact button is tapped.
+ 
+ ## Animation Methods
+
+ - titleAnimation()
+ - Description: Animates the appearance of the title in two parts.
+ - Usage: Creates a visually appealing title animation.
+ - contactButtonAnimation()
+ - Description: Animates the contact buttons with a scale effect.
+ - Usage: Enhances the visual feedback when the contact button is tapped.
+ - showButtonAnimation() and hideButtonAnimation()
+ - Description: Animates the appearance and disappearance of the contact buttons.
+ - Usage: Controls the visibility of the contact buttons based on scrolling.
+ 
+ ## Sound Effects
+
+ - prepareSoundEffect() and soundClick()
+ - Description: Prepares and plays a sound effect when the contact button is tapped.
+ - Usage: Adds an auditory element to the user interaction.
+ 
+ ## UIScrollViewDelegate Methods
+
+ - scrollViewDidScroll(_ scrollView: UIScrollView)
+ - Description: Responds to scrolling events in the main scroll view.
+ - Usage: Manages the appearance and disappearance of the contact buttons based on scrolling.
+ 
+ ## UICollectionViewDelegateFlowLayout & UICollectionViewDataSource Methods
+
+ - collectionView(_:numberOfItemsInSection:) and collectionView(_:cellForItemAt:)
+ - Description: Implementations for the collection view data source methods.
+ - Usage: Populate the collection view with data.
+ 
+ ## Note
+
+ This documentation provides an overview of the PassionsViewController class, its properties, methods, and their usages. It highlights the key features and functionalities of the code for better understanding and maintenance.
+ */
 class PassionsViewController: UIViewController {
     
     //MARK: Initializer

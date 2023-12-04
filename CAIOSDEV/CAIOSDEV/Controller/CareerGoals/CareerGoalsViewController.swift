@@ -240,7 +240,6 @@ class CareerGoalsViewController: UIViewController {
         
         //Preparing sound
         prepareSoundEffect()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -250,7 +249,6 @@ class CareerGoalsViewController: UIViewController {
             titleAnimation()
             titleAnimatedOnce = true
         }
-        
     }
     
     //MARK: Configuring layout
@@ -523,9 +521,7 @@ class CareerGoalsViewController: UIViewController {
                 oneYearIcon.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 3),
                 oneYearIcon.widthAnchor.constraint(equalToConstant: 70),
                 oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
-                
-
-                
+    
             ])
             
         } else if DeviceType.isIphone6or7or8Plus {
@@ -695,18 +691,13 @@ class CareerGoalsViewController: UIViewController {
                 oneYearIcon.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 17),
                 oneYearIcon.widthAnchor.constraint(equalToConstant: 80),
                 oneYearIcon.heightAnchor.constraint(equalToConstant: 30),
-
                 
             ])
-            
         }
         
         //Adding button's action
         contactButtonI.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
         contactButtonII.addTarget(self, action: #selector(pullContactView), for: .touchUpInside)
-        
-        
-        
     }
     
     
@@ -741,10 +732,7 @@ class CareerGoalsViewController: UIViewController {
                 self.titlePartI.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
                 self.titlePartII.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
             }
-            
         }
-
-        
     }
     
     func showButtonAnimation() {
@@ -860,9 +848,7 @@ class CareerGoalsViewController: UIViewController {
                 player.play()
             }
         }
-        
     }
-    
 }
 
 //MARK: Scrollview Delegate
@@ -912,10 +898,7 @@ extension CareerGoalsViewController: UIScrollViewDelegate {
             if self.buttonShowed {
                 hideButtonAnimation()
             }
-            
         }
-        
     }
-    
 }
 

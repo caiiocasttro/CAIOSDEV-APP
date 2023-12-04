@@ -9,7 +9,64 @@ import MessageUI
 import SafariServices
 import AVFoundation
 import UIKit
+/**
+ `ContactsSheetViewController` is a UIViewController subclass responsible for displaying contact information in a sheet-like interface.
 
+ ## Properties
+
+ - `feedbackGenerator`: A private property to provide haptic feedback when certain actions are performed.
+
+ - `player`: An AVAudioPlayer for playing a sound effect when buttons are pressed.
+
+ ## UI Components
+
+ - `dismissButton`: A button to dismiss the sheet.
+
+ - `line`: A decorative line at the top of the sheet.
+
+ - `titlePage`: A label displaying the title of the contact sheet.
+
+ - `phoneNumberTitle`: A label displaying the title for the phone number.
+
+ - `callButton`: A custom button for displaying and interacting with the phone number.
+
+ - `emailTitle`: A label displaying the title for the email address.
+
+ - `emailButton`: A custom button for displaying and interacting with the email address.
+
+ - `linkedinTitle`: A label displaying the title for the LinkedIn profile.
+
+ - `linkedinButton`: A custom button for displaying and interacting with the LinkedIn profile.
+
+ ## Lifecycle Methods
+
+ - `viewDidLoad()`: Called after the controller's view is loaded into memory. It sets up the initial view configurations and prepares the sound effect.
+
+ ## Configuration and Layout Methods
+
+ - `configureLayout()`: Configures the layout of all UI components, including constraints and adaptive layout for different device sizes.
+
+ ## Button Actions
+
+ - `dismissButtonDidTapped()`: Dismisses the contact sheet when the dismiss button is tapped.
+
+ - `callDidTapped()`: Shows an action sheet for options related to the phone number, such as copying or calling.
+
+ - `emailDidTapped()`: Shows an action sheet for options related to the email address, such as copying or sending an email.
+
+ - `linkedinDidTapped()`: Opens the LinkedIn profile in a Safari View Controller.
+
+ ## Animations
+
+ - `buttonPressedAnimation(button:)`: Provides a visual animation effect when a button is pressed.
+
+ ## Sound Effects
+
+ - `prepareSoundEffect()`: Prepares the AVAudioPlayer for the button press sound effect.
+
+ - `soundClick()`: Plays the button press sound effect.
+
+ */
 class ContactsSheetViewController: UIViewController {
     
     //MARK: Initializer

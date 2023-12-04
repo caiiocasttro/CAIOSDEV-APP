@@ -6,7 +6,48 @@
 //
 
 import UIKit
+/**
+ `CustomButtonAttributedText` is a custom UIButton subclass designed to display text with an associated icon, where the text is underlined. This class provides a convenient way to create buttons with attributed text, including an icon image.
+ 
+ # Parameters:
 
+ Parameters are set through the convenience init method.
+ 
+ - icon: The UIImage to be used as the icon in the button.
+ - text: The String to be displayed as underlined text in the button.
+ - target: The target object that will handle the button tap.
+ - action: The Selector to be invoked when the button is tapped.
+ 
+ # Customization:
+
+ - The button's background color is set to white.
+ - The button's height is fixed at 50 points.
+ - The button has a rounded corner with a radius equal to one-third of its height.
+ 
+ # Adaptative Layout:
+
+ - The button's appearance adapts to different device sizes. The icon size and label font are adjusted based on the device type (iPhone 5, 6/7/8, or others).
+ 
+ # Fonts:
+
+ - The label uses the "Nunito-Bold" font with different sizes based on the device type.
+ 
+ # Underline Style:
+
+ - The text is displayed with a single underline style using NSAttributedString.
+ 
+ # Constraints:
+
+ - Auto Layout constraints are used to position the icon and label within the button.
+ 
+ # Note:
+
+ - Make sure to handle the button tap action in the target object's method connected through the action parameter.
+ 
+ # Warning:
+
+ - This class assumes that the DeviceType struct (not provided in the code) is correctly implemented to determine the device type.
+ */
 class CustomButtonAttributedText: UIButton {
     
     convenience init(icon: UIImage, text: String, target: Any?, action: Selector) {

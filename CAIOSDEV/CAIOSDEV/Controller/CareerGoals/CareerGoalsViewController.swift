@@ -7,7 +7,60 @@
 
 import UIKit
 import AVFoundation
+/**
+ The `CareerGoalsViewController` class is a UIViewController responsible for displaying information about the developer. It includes a variety of UI elements such as labels, buttons, and a UITableView.
 
+ ## Properties
+ - `sheet`: An instance of `ContactsSheetViewController` for handling contact sheet presentation.
+ - `player`: An AVAudioPlayer instance for playing sound effects.
+ - `feedbackGenerator`: A UIImpactFeedbackGenerator for providing haptic feedback.
+ - `animatedOnce`: A boolean flag to track whether the initial animation has occurred.
+ - `shouldAnimate`: A boolean flag to determine whether table view cells should be animated.
+ - `buttonShowed`: A boolean flag indicating whether the contact button has been shown.
+
+ ## UI Elements
+ 
+ - `filter`: A UIView used as a semi-transparent filter overlay.
+ - `contactButtonI`: A UIButton for contact, with different configurations for light and dark appearances.
+ - `contactButtonII`: A secondary contact button with initial alpha set to 0 for smooth animation.
+ - `scrollView`: A UIScrollView for scrolling content.
+ - `careerGoalsView`: A CustomView containing various UI elements for displaying information.
+ - `line`: A UIView representing a decorative line.
+ - `titlePartI` and `titlePartII`: Labels displaying the title of the career goals section.
+ - `titlePage`: A UILabel displaying the title of the page.
+ - `chartView`: An UIImageView displaying a fixed-sized chart image.
+ - `fiveYrsIcon` and `fiveYrsBubble`: UIImageView and UIView components for the five years career goals section.
+ - `curveTopRight`: An UIImageView with a top-right curve image.
+ - `fiveYrsText`:A UILabel displaying long-term career goals text.
+ - `twoYrsIcon` and `twoYrsBubble`: UIImageView and UIView components for the two years career goals section.
+ - `curveTop`: An UIImageView with a top curve image.
+ - `twoYrsText`: A UILabel displaying mid-term career goals text.
+ - `oneYearIcon` and `oneYearBubble`: UIImageView and UIView components for the one year career goals section.
+ - `curveLeft`: An UIImageView with a left curve image.
+ - `oneYearText`: A UILabel displaying short-term career goals text.
+
+ ## Lifecycle Methods
+ - `viewDidLoad()`: Initializes the view and configures its layout, tab bar appearance, and prepares sound effects.
+ - `viewDidAppear(_ animated:)`: Overrides the viewDidAppear method to trigger the initial animation only once.
+
+ ## Methods
+
+ - `configureLayout()`: Configures the layout of the view, including background images, subviews, and their constraints.
+ - `pullContactView()`: Presents the contact view with animations, including a configurable sheet presentation controller, and provides haptic feedback.
+ - `titleAnimation()`: Animates the appearance of titles on the screen.
+ - `contactButtonAnimation()`: Animates the transition between contact buttons with a spring effect.
+ - `fiveYrsAnimation()`: Animates the appearance of the five years bubble.
+ - `twoYrsAnimation()`: Animates the appearance of the two years bubble.
+ - `oneYearAnimation()`: Animates the appearance of the one year bubble.
+ - `soundeffect()`: Plays a sound effect, specifically a pop-up sound, with a configured volume.
+ - `prepareSoundEffect()`: Prepares the AVAudioPlayer with a sound effect file (pop-up sound).
+ - `soundClick()`: Plays the sound effect (click sound) when a contact button is pressed.
+
+
+ ## Extensions
+ - `UIScrollViewDelegate`: Implements scrollViewDidScroll to handle scrolling events.
+
+ */
 class CareerGoalsViewController: UIViewController {
     
     //MARK: Properties

@@ -7,6 +7,29 @@
 
 import UIKit
 
+/**
+ A custom table view cell for displaying experience information.
+
+  This cell includes details such as position, location, and tasks along with a visual representation using circles and a gradient line.
+
+  ## Usage
+  1. Create an instance of `ExperienceViewCell` and set the properties like `position`, `location`, `taskI`, `taskII`, and `taskIII`.
+  2. Add the cell to your table view.
+
+  ## Example
+  ```
+  let cell = ExperienceViewCell(style: .default, reuseIdentifier: "ExperienceCell")
+  cell.position = "Software Engineer"
+  cell.location = "XYZ Company, City"
+  cell.taskI = "Task 1 description"
+  cell.taskII = "Task 2 description"
+  cell.taskIII = "Task 3 description"
+ ```
+ Important: Make sure to set the position, location, and task properties before adding the cell to the table view.
+ 
+ Note: This cell is designed to adapt its layout based on the device type, providing an optimal user interface on different screen sizes.
+ */
+
 class ExperienceViewCell: UITableViewCell {
     
     //MARK: Proprieties

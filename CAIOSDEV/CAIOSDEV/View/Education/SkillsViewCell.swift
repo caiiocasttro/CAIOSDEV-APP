@@ -6,7 +6,38 @@
 //
 
 import UIKit
+/**
+ `SkillsViewCell` is a custom table view cell designed to display a list of skills along with their levels.
 
+  # Objects:
+  - `cellTitle`: UILabel for the title of the cell.
+  - `cellView`: UIView serving as the background container with rounded corners.
+  - `stackView`: UIStackView to organize and arrange the skills vertically.
+  - `skill`: UILabel to display each individual skill.
+  - `spaceView`: UIView used as a spacer between skill name and skill level.
+  - `skillLevel`: UIImageView representing the skill level visually.
+
+  # Initialization:
+  - `init(style:reuseIdentifier:)`: Initializes the cell with a specific style and reuse identifier. Calls `configureLayout()` to set up the cell's layout.
+
+  # Layout Configuration:
+  - `configureLayout()`: Sets up the layout constraints and adds subviews for each skill and its components. Loops through the skills defined in `MySkillsModel` and dynamically creates rows for each skill.
+
+  # Adaptative Layout:
+  - Adjusts the font size of `cellTitle` based on the device type. If the device is an iPhone 5, it uses a smaller font size; otherwise, it uses a larger font size.
+
+  # Note:
+  - The code assumes the existence of `MySkillsModel` and `DeviceType` classes or enums, which are not provided in the code snippet.
+
+  # Usage:
+  - Create an instance of `SkillsViewCell` in your table view data source and configure it with the desired data.
+
+  # Example Usage:
+  ```swift
+  let cell = SkillsViewCell(style: .default, reuseIdentifier: "SkillsCell")
+  // Configure cell with data
+  return cell
+ */
 class SkillsViewCell: UITableViewCell {
     
     //MARK: Objects

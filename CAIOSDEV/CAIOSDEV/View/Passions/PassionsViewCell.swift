@@ -6,7 +6,25 @@
 //
 
 import UIKit
-
+/**
+ Custom UICollectionViewCell for displaying passion-related content.
+ 
+ This cell consists of a polaroid-style frame with an image, a number label, and a thoughts label.
+ 
+ - Important:
+   This cell assumes that the images and other assets are available in the app's asset catalog.
+ 
+ - Note:
+   The design of the cell is responsive to different screen sizes, and the font size of the 'thoughts' label adjusts for iPhone 5.
+ 
+ Usage Example:
+ ```swift
+ let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PassionsCell", for: indexPath) as! PassionsViewCell
+ cell.image = "passion_image"
+ cell.text = "Passionate Thought"
+ cell.number = "1"
+ return cell
+ */
 class PassionsViewCell: UICollectionViewCell {
     
     //MARK: Proprieties

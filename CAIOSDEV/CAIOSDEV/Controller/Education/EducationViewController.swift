@@ -104,7 +104,7 @@ class EducationViewController: UIViewController {
     
     lazy var titlePage: UILabel = {
         let title = UILabel()
-        title.text = "Scroll up to education 📚"
+        title.text = "Scroll up to discover 📚"
         title.textColor = UIColor(named: "BlackSecondary")
         title.font = UIFont(name: "Nunito-Black", size: 20)
         title.textAlignment = .left

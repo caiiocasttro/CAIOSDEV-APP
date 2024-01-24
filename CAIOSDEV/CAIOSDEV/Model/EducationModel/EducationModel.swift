@@ -65,9 +65,15 @@ enum MyCertificateModel: String {
     // MARK: Certificate Names
         
     /// Certificate names for different courses.
-    static let cetificateName: [String] = ["Level Up in Swift", "Level Up in Auto Layout - Swift", "iOS Animations", "iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
+    static let cetificateName: [String] = ["Software Engineeringn 101", "Declarative Interfaces", "Level Up in Swift", "Level Up in Auto Layout - Swift", "iOS Animations", "iOS App Development Bootcamp", "User Experience Essentials", "Web & Mobile Design"]
     
     //MARK: Cases
+    
+    /// Certificate case for the "Level Up in Swift" course.
+    case declarativeInterfaces = "Declarative Interfaces"
+    
+    /// Certificate case for the "Level Up in Swift" course.
+    case softwareEngineering101 = "Software Engineeringn 101"
     
     /// Certificate case for the "Level Up in Swift" course.
     case levelUpinSwift = "Level Up in Swift"
@@ -93,6 +99,10 @@ enum MyCertificateModel: String {
     /// URL link for each certificate.
     var linkURL: String {
         switch self {
+        case .softwareEngineering101:
+            return "https://ude.my/UC-225dacf6-4e77-44fa-b9c3-a8877af2f6c1"
+        case .declarativeInterfaces:
+            return "https://ude.my/UC-b00e4a1d-b164-43f2-95fc-c27f53738cb7"
         case .levelUpinSwift:
             return "https://ude.my/UC-fc31ba51-469d-4045-a24f-f75c6989c4b4/"
         case .levelUpinAutoLayout:
@@ -111,6 +121,10 @@ enum MyCertificateModel: String {
     /// Issue dates for each certificate.
     var dates: String {
         switch self {
+        case .softwareEngineering101:
+            return "January 2024"
+        case .declarativeInterfaces:
+            return "December 2023"
         case .levelUpinSwift:
             return "November 2023"
         case .levelUpinAutoLayout, .iOSAnimations:
@@ -125,7 +139,7 @@ enum MyCertificateModel: String {
     /// School or platform where the courses were taken.
     var school: String {
         switch self {
-        case .levelUpinSwift, .levelUpinAutoLayout, .iOSAnimations, .iOSAppDevelopment, .userExperience, .webMobileDesign:
+        case  .softwareEngineering101, .declarativeInterfaces, .levelUpinSwift, .levelUpinAutoLayout, .iOSAnimations, .iOSAppDevelopment, .userExperience, .webMobileDesign:
             return "Udemy"
         }
     }

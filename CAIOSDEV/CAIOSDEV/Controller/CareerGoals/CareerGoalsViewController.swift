@@ -818,7 +818,6 @@ class CareerGoalsViewController: UIViewController {
         
     }
     
-    
     func fiveYrsAnimation() {
         
         
@@ -862,8 +861,6 @@ class CareerGoalsViewController: UIViewController {
         }
     }
     
-    
-    
     //MARK: Sound effects
     
     func soundeffect() {
@@ -878,7 +875,6 @@ class CareerGoalsViewController: UIViewController {
             print("Error trying to play the sound \(error.localizedDescription)")
         }
     }
-    
     
     private func prepareSoundEffect() {
         guard let url = Bundle.main.url(forResource: "click", withExtension: ".wav") else { return }

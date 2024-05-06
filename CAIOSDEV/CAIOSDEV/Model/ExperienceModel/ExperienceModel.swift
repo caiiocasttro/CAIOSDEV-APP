@@ -12,10 +12,11 @@ enum MyExperienceModel: String {
     
     //MARK: Properties
     /// An array containing the names of all companies available in the enum.
-    static let companies: [String] = ["Malt", "Sky", "EccoSalva", "Arcor do Brasil", "Motiva Contact Center"]
+    static let companies: [String] = ["Swissquote", "Malt", "Sky", "EccoSalva", "Arcor do Brasil", "Motiva Contact Center"]
     
     //MARK: Cases
     /// Cases representing each company along with its corresponding name.
+    case swissquote = "Swissquote"
     case malt = "Malt"
     case sky = "Sky"
     case eccosalve = "EccoSalva"
@@ -26,45 +27,50 @@ enum MyExperienceModel: String {
     /// Computed property returning the role or position associated with each company.
     var position: String {
         switch self {
+        case .swissquote:
+            "Junior iOS Software Engineer"
         case .malt, .sky:
-            return "iOS Developer Freelancer"
+            "iOS Developer Freelancer"
         case .eccosalve:
-            return "Assistant"
+             "Assistant"
         case .arcor:
-            return "Production"
+            "Production"
         case .motiva:
-            return "Customer Care"
+            "Customer Care"
         }
     }
     
     /// Computed property returning a formatted string containing company name, location, and employment duration.
     var companiesNameLocationDate: String {
         switch self {
+        case .swissquote:
+            "Swissquote, Gland, Vaud, April 2024 - Present"
         case .malt:
-            return "Malt Freelancer, Lausanne, VD, Aug 2023 - Present"
+            "Malt Freelancer, Lausanne, VD, Aug 2023 - Present"
         case .sky:
-            return "Sky Switzerland, Neuchâtel, VD, Sep 2023 · 1 mo"
+            "Sky Switzerland, Neuchâtel, VD, Sep 2023 · 1 mo"
         case .eccosalve:
-            return "EccoSalva, Lisbon, LIS, Nov 2019 - Jul 2022"
+            "EccoSalva, Lisbon, LIS, Nov 2019 - Jul 2022"
         case .arcor:
-            return "Arcor do Brasil, Campinas, SP, May 2018 - Feb 2019"
+            "Arcor do Brasil, Campinas, SP, May 2018 - Feb 2019"
         case .motiva:
-            return "Motiva, Campinas, SP, Feb 2016 - Apr 2018"
+            "Motiva, Campinas, SP, Feb 2016 - Apr 2018"
         }
     }
     
     /// Computed property returning an array of tasks or responsibilities for each company.
     var tasks: [String] {
         switch self {
-            
+        case .swissquote:
+            ["New features implementation on iOS app.", "iOS application maintenance.", "Improving existing iOS app."]
         case .malt, .sky:
-            return ["New features implementation on iOS app.", "iOS application maintenance.", "Improving existing iOS app."]
+            ["New features implementation on iOS app.", "iOS application maintenance.", "Improving existing iOS app."]
         case .eccosalve:
-            return ["Providing patient care.", "Administration of documents.", "Emergency transport."]
+            ["Providing patient care.", "Administration of documents.", "Emergency transport."]
         case .arcor:
-            return ["Food production.", "Machine maintenance.", "Stock replenishment."]
+            ["Food production.", "Machine maintenance.", "Stock replenishment."]
         case .motiva:
-            return ["Customer's support.", "Transport of products support.", "Selling products."]
+            ["Customer's support.", "Transport of products support.", "Selling products."]
         }
     }
 }

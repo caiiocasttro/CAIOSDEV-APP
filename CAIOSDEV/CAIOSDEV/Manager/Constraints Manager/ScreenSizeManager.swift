@@ -40,4 +40,20 @@ struct DeviceType {
     /// A boolean indicating whether the device is an iPhone Xs Max or later, with a specific height range.
     static let isIphoneXsMaxorLater = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxHeight >= 896.0 && ScreenSize.maxHeight <= 932.0
     
+    static func deviceTypeAsString() -> String {
+        if isIphone5 {
+           return "isIphone5"
+        } else if isIphone6or7or8 {
+            return "isIphone6or7or8"
+        } else if isIphone6or7or8Plus {
+            return "isIphone6or7or8Plus"
+        } else if isIphoneXorLater {
+            return "isIphoneXorLater"
+        } else if isIphoneXsMaxorLater {
+            return "isIphoneXorLater"
+        } else {
+            return "Not possible to recognise device"
+        }
+    }
+    
 }

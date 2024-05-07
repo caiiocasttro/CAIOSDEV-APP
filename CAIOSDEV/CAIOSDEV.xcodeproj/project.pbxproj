@@ -19,6 +19,7 @@
 		E597B7CA2AEFC67D00DC3081 /* pop-up.wav in Resources */ = {isa = PBXBuildFile; fileRef = E597B7C92AEFC67D00DC3081 /* pop-up.wav */; };
 		E599174E2AFBC32600B02D60 /* ScreenSizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599174D2AFBC32600B02D60 /* ScreenSizeManager.swift */; };
 		E5B3AEAB2AE2FBB700D0A9F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B3AEAA2AE2FBB700D0A9F5 /* LaunchScreen.storyboard */; };
+		E5B78FF82BE8EB190031C0AE /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = E5B78FF72BE8EB190031C0AE /* DeviceKit */; };
 		E5BF06DC2AD942D900195F5F /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DB2AD942D900195F5F /* AboutMeModel.swift */; };
 		E5BF06DF2AD9430900195F5F /* CareerGoalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06DE2AD9430900195F5F /* CareerGoalsModel.swift */; };
 		E5BF06E22AD9435700195F5F /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF06E12AD9435700195F5F /* EducationModel.swift */; };
@@ -109,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5B78FF82BE8EB190031C0AE /* DeviceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +427,7 @@
 			);
 			name = CAIOSDEV;
 			packageProductDependencies = (
+				E5B78FF72BE8EB190031C0AE /* DeviceKit */,
 			);
 			productName = "Caiosdev-Resume";
 			productReference = E5C619732AD196B1007C1EFB /* CAIOSDEV.app */;
@@ -455,6 +458,7 @@
 			);
 			mainGroup = E5C6196A2AD196B1007C1EFB;
 			packageReferences = (
+				E5B78FF62BE8EB190031C0AE /* XCRemoteSwiftPackageReference "DeviceKit" */,
 			);
 			productRefGroup = E5C619742AD196B1007C1EFB /* Products */;
 			projectDirPath = "";
@@ -740,6 +744,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E5B78FF62BE8EB190031C0AE /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devicekit/DeviceKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E5B78FF72BE8EB190031C0AE /* DeviceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B78FF62BE8EB190031C0AE /* XCRemoteSwiftPackageReference "DeviceKit" */;
+			productName = DeviceKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E5C6196B2AD196B1007C1EFB /* Project object */;
 }

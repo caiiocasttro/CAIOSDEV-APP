@@ -286,7 +286,7 @@ class CareerGoalsViewController: UIViewController {
         super.viewDidLoad()
         
         scrollView.delegate = self
-        
+        scrollView.bounces = false
         
         //Layout
         configureLayout()

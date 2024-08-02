@@ -219,6 +219,7 @@ class PassionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
+        scrollView.bounces = false
         
         //CollectionView
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())

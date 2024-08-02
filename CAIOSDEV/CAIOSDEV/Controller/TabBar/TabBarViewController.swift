@@ -56,6 +56,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         configureTabBar()
         
+        
     }
     
     //MARK: Configuring tab bar

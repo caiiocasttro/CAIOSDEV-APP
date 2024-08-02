@@ -173,6 +173,7 @@ class ExperienceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
+        scrollView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
         
